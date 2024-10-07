@@ -247,7 +247,7 @@ GameObject:
   - component: {fileID: 248696784}
   - component: {fileID: 248696786}
   m_Layer: 0
-  m_Name: 'MPBar '
+  m_Name: 'SPBar '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -951,7 +951,7 @@ GameObject:
   - component: {fileID: 654200605}
   - component: {fileID: 654200604}
   m_Layer: 0
-  m_Name: 'MPNumber.txt '
+  m_Name: 'SPNumber.txt '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1779,7 +1779,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1146316316
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2207,7 +2207,7 @@ GameObject:
   - component: {fileID: 1545286214}
   - component: {fileID: 1545286213}
   m_Layer: 0
-  m_Name: MPText
+  m_Name: SPText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2252,7 +2252,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: MP
+  m_text: SP
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
@@ -2710,7 +2710,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1722563596
 RectTransform:
   m_ObjectHideFlags: 0

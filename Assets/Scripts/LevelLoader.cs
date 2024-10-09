@@ -11,9 +11,10 @@ public class LevelLoader : MonoBehaviour
     public Animator transition;
     public float transitionTime = 1f;
 
-    public LoadLevel(string levelName) 
+    public  void LoadLevel(string levelName) 
     { 
-        StartCoroutine(LoadNameLevel(levelName));
+        StartCoroutine(LoadNamedLevel(levelName));
+       
     }
 
     IEnumerator LoadNamedLevel(string levelName) 
@@ -23,20 +24,20 @@ public class LevelLoader : MonoBehaviour
         yield return new WaitForSeconds(transitionTime);
 
         SceneManager.LoadScene(levelName);
+        
 
         transition.SetTrigger("End");
     }
     
-    // Start is called before the first frame update
+    // 
     void Awake()
     {
         instance = this;
         DontDestroyOnLoad(this.gameObject);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public void EndBattle() 
+    { 
+      LevelLoader.instance.LoadLevel("Harvest-Quest");
     }
 }

@@ -31,9 +31,9 @@ public class LifeManaHandler : MonoBehaviour
         MPBar.value = myMP;
     }
 
-    // Update is called once per frame
     void Update()
     {
+
         HPBar.value = currentHP;
         MPBar.value = currentMP;
 
@@ -51,8 +51,8 @@ public class LifeManaHandler : MonoBehaviour
         }
 
         if (currentHP < 0) 
-        { 
-          // Game Over
+        {
+            Debug.Log("Game Over"); 
         }
     }
 

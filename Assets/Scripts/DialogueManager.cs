@@ -1,50 +1,80 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine;
+using TMPro;
 
 public class DialogueManager : MonoBehaviour
 {
-    public Text nameText;
-    public Text dialogueText;
+    public static DialogueManager Instance;
 
-    private Queue<string> sentences;
+    public Image characterIcon;
+    public TextMeshProUGUI characterName;
+    public TextMeshProUGUI dialogueArea;
 
-    // Start is called before the first frame update
-    void Start()
+    private Queue<DialogueLine> lines;
+
+    public bool isDialogueActive = false;
+
+    public float typingSpeed = 0.2f;
+
+    public Animator animator;
+
+    private void Awake()
     {
-        sentences = new Queue<string>();
+        if (Instance == null)
+            Instance = this;
+
+        lines = new Queue<DialogueLine>();
     }
 
     public void StartDialogue(Dialogue dialogue)
     {
-        nameText.text = dialogue.name;
+        isDialogueActive = true;
 
-        sentences.Clear();
+        animator.Play("Show");
 
-        foreach (string sentence in dialogue.sentences)
+        lines.Clear();
+
+        foreach (DialogueLine dialogueLine in dialogue.dialogueLines)
         {
-            sentences.Enqueue(sentence);
+            lines.Enqueue(dialogueLine);
         }
 
-        DisplayNextSentence();
+        DisplayNextDialogueLine();
     }
 
-    public void DisplayNextSentence()
+    public void DisplayNextDialogueLine()
     {
-        if (sentences.Count == 0)
+        if (lines.Count == 0)
         {
             EndDialogue();
             return;
         }
 
-        string sentence = sentences.Dequeue();
-        dialogueText.text = sentence;
+        DialogueLine currentLine = lines.Dequeue();
+
+        characterIcon.sprite = currentLine.character.icon;
+        characterName.text = currentLine.character.name;
+
+        StopAllCoroutines();
+
+        StartCoroutine(TypeSentence(currentLine));
+    }
+
+    IEnumerator TypeSentence(DialogueLine dialogueLine)
+    {
+        dialogueArea.text = "";
+        foreach (char letter in dialogueLine.line.ToCharArray())
+        {
+            dialogueArea.text += letter;
+            yield return new WaitForSeconds(typingSpeed);
+        }
     }
 
     void EndDialogue()
     {
-        Debug.Log("End conversation.");
+        isDialogueActive = false;
+        animator.Play("Hide");
     }
-
 }

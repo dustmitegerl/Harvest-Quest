@@ -5,7 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+<<<<<<< HEAD
   - Battle Zone
+=======
+  - NPC
+>>>>>>> 4e204839c54e5b6e57ece5d37b57503998f5c230
   layers:
   - Default
   - TransparentFX

@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 27697153}
   - component: {fileID: 27697152}
   m_Layer: 0
-  m_Name: 'HPNumber.txt '
+  m_Name: 'enemyHPNumber.txt '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -275,7 +275,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &96808874
 RectTransform:
   m_ObjectHideFlags: 0
@@ -339,7 +339,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 96808876}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 300592519}
+        m_TargetAssemblyTypeName: LifeManaHandler, Assembly-CSharp
+        m_MethodName: AttackEnemy
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 25
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &96808876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1009,10 +1021,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HPBar: {fileID: 379154778}
   MPBar: {fileID: 248696786}
+  enemyHPBar: {fileID: 797812936}
   HPText: {fileID: 1212249712}
   MPText: {fileID: 654200604}
+  enemyHPText: {fileID: 27697152}
   myHP: 100
   myMP: 100
+  attackDamage: 10
+  manaCost: 5
+  enemyHP: 100
+  magicAttackDamage: 10
 --- !u!1 &319217214
 GameObject:
   m_ObjectHideFlags: 0
@@ -1413,7 +1431,7 @@ GameObject:
   - component: {fileID: 442600734}
   - component: {fileID: 442600733}
   m_Layer: 0
-  m_Name: HPBorder
+  m_Name: enemyHPBorder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1586,7 +1604,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &532273871
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1717,7 +1735,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &543441646
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1781,7 +1799,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 543441648}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 300592519}
+        m_TargetAssemblyTypeName: LifeManaHandler, Assembly-CSharp
+        m_MethodName: UseSkill
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 10
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &543441648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1987,7 +2017,7 @@ RectTransform:
   m_Father: {fileID: 532273871}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0.049995422, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0.5}
@@ -2590,8 +2620,6 @@ GameObject:
   - component: {fileID: 860823309}
   - component: {fileID: 860823311}
   - component: {fileID: 860823310}
-  - component: {fileID: 860823312}
-  - component: {fileID: 860823313}
   m_Layer: 0
   m_Name: PlayerHUD
   m_TagString: Untagged
@@ -2658,36 +2686,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 860823308}
   m_CullTransparentMesh: 1
---- !u!114 &860823312
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 860823308}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2956dba571ddc6143b1da58e66f470d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &860823313
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 860823308}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f02eba66b3c26c47a0e71fd1df1cfad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HPBar: {fileID: 379154778}
-  MPBar: {fileID: 248696786}
-  HPText: {fileID: 1212249712}
-  MPText: {fileID: 654200604}
-  myHP: 100
-  myMP: 100
 --- !u!1 &864946389
 GameObject:
   m_ObjectHideFlags: 0
@@ -3170,7 +3168,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1146316316
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3300,7 +3298,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1187927909
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3470,7 +3468,7 @@ GameObject:
   - component: {fileID: 1264537879}
   - component: {fileID: 1264537878}
   m_Layer: 0
-  m_Name: HPfill
+  m_Name: enemyHPfill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4130,7 +4128,6 @@ GameObject:
   - component: {fileID: 1712918788}
   - component: {fileID: 1712918790}
   - component: {fileID: 1712918789}
-  - component: {fileID: 1712918791}
   m_Layer: 0
   m_Name: EnemyHUD
   m_TagString: Untagged
@@ -4197,18 +4194,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1712918787}
   m_CullTransparentMesh: 1
---- !u!114 &1712918791
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1712918787}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8080d20f8e009af4d812a197c06d4d3b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1722563595
 GameObject:
   m_ObjectHideFlags: 0
@@ -4227,7 +4212,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1722563596
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4640,7 +4625,7 @@ GameObject:
   - component: {fileID: 1964549736}
   - component: {fileID: 1964549735}
   m_Layer: 0
-  m_Name: 'SPNumber.txt '
+  m_Name: 'enemySPNumber.txt '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4774,7 +4759,7 @@ GameObject:
   - component: {fileID: 2006436184}
   - component: {fileID: 2006436183}
   m_Layer: 0
-  m_Name: HPText
+  m_Name: enemyHPText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -16,6 +16,8 @@ public class PlayerMovement : MonoBehaviour
     bool isDashing;
     bool canDash = true;
 
+    public LayerMask battleLayer;
+
     void Start()
     {
         canDash = true;
@@ -58,5 +60,9 @@ public class PlayerMovement : MonoBehaviour
 
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
+
+        
     }
+
+   
 }

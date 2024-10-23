@@ -39,20 +39,9 @@ public class GameTime : MonoBehaviour
     [SerializeField]
     int hrsInDay = 24;
     
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
     void Awake()
     {
         hrs = startingHr;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     // used for time-fixed rather than frame-fixed methods
@@ -88,10 +77,7 @@ public class GameTime : MonoBehaviour
     }
 
     /// <summary>
-    /// updates the clock and days calendar displays. 
-    /// i intend to replace this part and move it to the actual clock and calendar prefabs, 
-    /// leaving this script to only produce the time and then, in those scripts, 
-    /// have them read the time from this and render it however they wish.
+    /// updates the clock and days calendar displays
     /// </summary>
     void UpdateTimePrefabs()
     {
@@ -141,3 +127,9 @@ public class GameTime : MonoBehaviour
         dayRead.SetText("day " + days.ToString()); // set the day in the calendar object
     }
 }
+
+/// some notes:
+/// 1. i would really like to move the game time variables to backend userPrefs or something and have them grabbed from there. i could
+/// save a "currentValues" table in there that saves all relevant values, and then have other tables for saves, with a 
+/// preset number of them. then, the saves could be managed in a menu in the main menu, and when the game is saved it writes
+/// currentValues to a save table, and when a save is loaded it writes its values to currentValues. 

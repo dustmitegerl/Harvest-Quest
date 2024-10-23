@@ -5,11 +5,6 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
-<<<<<<< HEAD
-  - Battle Zone
-=======
-  - NPC
->>>>>>> 4e204839c54e5b6e57ece5d37b57503998f5c230
   layers:
   - Default
   - TransparentFX
@@ -17,7 +12,7 @@ TagManager:
   - 
   - Water
   - UI
-  - Battle Zone
+  - 
   - 
   - 
   - 
@@ -46,7 +41,4 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: Foreground
-    uniqueID: 4175149811
     locked: 0

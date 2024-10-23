@@ -154,17 +154,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clockRead: {fileID: 554646401}
   dayRead: {fileID: 379700659}
-  AM: a.m.
-  PM: p.m.
+  startingHr: 4
+  days: 1
+  hrs: 0
+  mins: 0
+  secs: 0
+  AM: am
+  PM: pm
   timeSpeedModulator: 1
   secsInMin: 60
   minsInHr: 60
   hrsInDay: 24
-  gameTime: []
-  secs: 0
-  mins: 0
-  hrs: 0
-  days: 1
 --- !u!4 &83916248
 Transform:
   m_ObjectHideFlags: 0
@@ -214,8 +214,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 196.4617, y: 190.29172}
-  m_SizeDelta: {x: 124.9235, y: 48.5834}
+  m_AnchoredPosition: {x: 155.5858, y: 190.29172}
+  m_SizeDelta: {x: 101.5659, y: 48.5834}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &379700659
 MonoBehaviour:
@@ -768,8 +768,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 306, y: 190.29172}
-  m_SizeDelta: {x: 124.9235, y: 48.5834}
+  m_AnchoredPosition: {x: 313.29932, y: 190.29172}
+  m_SizeDelta: {x: 145.3613, y: 48.5834}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &554646401
 MonoBehaviour:
@@ -791,7 +791,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0:00
+  m_text: 00:00xm
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

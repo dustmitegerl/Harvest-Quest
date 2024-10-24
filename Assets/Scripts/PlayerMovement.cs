@@ -1,18 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityStandardAssets.CrossPlatformInput;
 
 public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 2f;
     private bool walking;
 
-    public Rigidbody2D rb;
+    private Rigidbody2D rb;
     private Animator anim;
 
     Vector2 movement;
-    Vector3 moveToPosition;
 
     void Start()
     {
@@ -23,42 +21,40 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (walking)
+        movement.x = Input.GetAxisRaw("Horizontal");
+        movement.y = Input.GetAxisRaw("Vertical");
+
+        if (movement.x != 0)
         {
-            movement.x = CrossPlatformInputManager.GetAxis("Horizontal");
-            movement.y = CrossPlatformInputManager.GetAxis("Vertical");
-
-            if (movement.x != 0)
-            {
-                movement.y = 0;
-            }
-
-            if (movement != Vector2.zero)
-            {
-                moveToPosition = transform.position + new Vector3(movement.x, movement.y, 0);
-                anim.SetFloat("X", movement.x);
-                anim.SetFloat("Y", movement.y);
-                StartCoroutine(Move(moveToPosition));
-            }
-
-            anim.SetBool("walking", walking);
+            movement.y = 0;
         }
-        
+
+        if (movement != Vector2.zero)
+        {
+            if (!walking)
+            {
+                walking = true;
+                anim.SetBool("walking", true);
+            }
+
+            Move();
+        }
+
+        else
+        {
+            if (walking)
+            {
+                walking = false;
+                anim.SetBool("walking", false);
+            }
+        }
     }
 
-    IEnumerator Move(Vector3 newPos)
+    private void Move()
     {
-        walking = true;
+        anim.SetFloat("X", movement.x);
+        anim.SetFloat("Y", movement.y);
 
-        while ((newPos - transform.position).sqrMagnitude > Mathf.Epsilon)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, newPos, moveSpeed * Time.fixedDeltaTime);
-            yield return null;
-        }
-        transform.position = newPos;
-
-        walking = false;
-
-        //transform.Translate(movement.x * moveSpeed * Time.fixedDeltaTime, movement.y * moveSpeed * Time.fixedDeltaTime, 0);
+        transform.Translate(movement.x * moveSpeed * Time.fixedDeltaTime, movement.y * moveSpeed * Time.fixedDeltaTime, 0);
     }
 }

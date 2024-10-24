@@ -1,68 +1,64 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 2f;
+    private bool walking;
 
     public Rigidbody2D rb;
+    private Animator anim;
 
     Vector2 movement;
-
-    [SerializeField] float dashSpeed = 10f;
-    [SerializeField] float dashDuration = 1f;
-    [SerializeField] float dashCooldown = 1f;
-    bool isDashing;
-    bool canDash = true;
-
-    public LayerMask battleLayer;
+    Vector3 moveToPosition;
 
     void Start()
     {
-        canDash = true;
+        rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
-    void Update() //Input
+    void Update()
     {
-        if (isDashing)
+        if (walking)
         {
-            return;
+            movement.x = CrossPlatformInputManager.GetAxis("Horizontal");
+            movement.y = CrossPlatformInputManager.GetAxis("Vertical");
+
+            if (movement.x != 0)
+            {
+                movement.y = 0;
+            }
+
+            if (movement != Vector2.zero)
+            {
+                moveToPosition = transform.position + new Vector3(movement.x, movement.y, 0);
+                anim.SetFloat("X", movement.x);
+                anim.SetFloat("Y", movement.y);
+                StartCoroutine(Move(moveToPosition));
+            }
+
+            anim.SetBool("walking", walking);
         }
-
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
-
-        if (Input.GetKeyDown(KeyCode.Space) && canDash)
-        {
-            StartCoroutine(Dash());
-        }
-    }
-
-    private void FixedUpdate()
-    {
-        if (isDashing)
-        {
-            return;
-        }
-
-        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
-    }
-
-    private IEnumerator Dash()
-    {
-        canDash = false;
-        isDashing = true;
-        rb.velocity = new Vector2(movement.x * dashSpeed, movement.y * dashSpeed);
-        yield return new WaitForSeconds(dashDuration);
-        isDashing = false;
-
-        yield return new WaitForSeconds(dashCooldown);
-        canDash = true;
-
         
     }
 
-   
+    IEnumerator Move(Vector3 newPos)
+    {
+        walking = true;
+
+        while ((newPos - transform.position).sqrMagnitude > Mathf.Epsilon)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, newPos, moveSpeed * Time.fixedDeltaTime);
+            yield return null;
+        }
+        transform.position = newPos;
+
+        walking = false;
+
+        //transform.Translate(movement.x * moveSpeed * Time.fixedDeltaTime, movement.y * moveSpeed * Time.fixedDeltaTime, 0);
+    }
 }

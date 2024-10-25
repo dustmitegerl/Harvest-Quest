@@ -10,7 +10,8 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private Animator anim;
 
-    Vector2 movement;
+    private Vector2 movement;
+    private Vector3 moveToPosition;
 
     void Start()
     {
@@ -21,40 +22,41 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
-
-        if (movement.x != 0)
+        if (!walking)
         {
-            movement.y = 0;
-        }
-
-        if (movement != Vector2.zero)
-        {
-            if (!walking)
+            movement.x = Input.GetAxisRaw("Horizontal");
+            movement.y = Input.GetAxisRaw("Vertical");
+            //prevents diagnial movement
+            if (movement.x != 0)
             {
-                walking = true;
-                anim.SetBool("walking", true);
+                movement.y = 0;
             }
 
-            Move();
-        }
-
-        else
-        {
-            if (walking)
+            if (movement != Vector2.zero)
             {
-                walking = false;
-                anim.SetBool("walking", false);
+                moveToPosition = transform.position + new Vector3(movement.x, movement.y, 0);
+                anim.SetFloat("X", movement.x);
+                anim.SetFloat("Y", movement.y);
+                StartCoroutine (Move(moveToPosition));
             }
+
+            anim.SetBool("walking", walking);
         }
     }
 
-    private void Move()
+      IEnumerator Move(Vector3 newPos)
     {
-        anim.SetFloat("X", movement.x);
-        anim.SetFloat("Y", movement.y);
+        walking = true;
 
-        transform.Translate(movement.x * moveSpeed * Time.fixedDeltaTime, movement.y * moveSpeed * Time.fixedDeltaTime, 0);
+        while ((newPos - transform.position).sqrMagnitude > Mathf.Epsilon)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, newPos, moveSpeed * Time.fixedDeltaTime);
+            yield return null;
+        }
+        transform.position = newPos;
+
+        walking = false;
+
+        //transform.Translate(movement.x * moveSpeed * Time.fixedDeltaTime, movement.y * moveSpeed * Time.fixedDeltaTime, 0);
     }
 }

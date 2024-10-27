@@ -6,6 +6,8 @@ public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 2f;
     private bool walking;
+    public LayerMask solidObjectLayer;
+    public LayerMask interactableLayer;
 
     private Rigidbody2D rb;
     private Animator anim;
@@ -37,10 +39,28 @@ public class PlayerMovement : MonoBehaviour
                 moveToPosition = transform.position + new Vector3(movement.x, movement.y, 0);
                 anim.SetFloat("X", movement.x);
                 anim.SetFloat("Y", movement.y);
-                StartCoroutine (Move(moveToPosition));
-            }
 
-            anim.SetBool("walking", walking);
+                if(Walkable(moveToPosition))
+                    StartCoroutine (Move(moveToPosition));
+            }
+        }
+        anim.SetBool("walking", walking);
+
+        if (Input.GetKeyDown(KeyCode.Tab))
+            Interact();
+    }
+
+    void Interact()
+    {
+        var facingDir = new Vector3(anim.GetFloat("X"), anim.GetFloat("Y"));
+        var interactPos = transform.position + facingDir;
+
+        //Debug.DrawLine(transform.position, interactPos, Color.green, 0.5f);
+
+        var collider = Physics2D.OverlapCircle(interactPos, 0.3f, interactableLayer);
+        if (collider != null)
+        {
+            collider.GetComponent<Interactable>()?.Interact();
         }
     }
 
@@ -58,5 +78,15 @@ public class PlayerMovement : MonoBehaviour
         walking = false;
 
         //transform.Translate(movement.x * moveSpeed * Time.fixedDeltaTime, movement.y * moveSpeed * Time.fixedDeltaTime, 0);
+    }
+
+    private bool Walkable(Vector3 targetPos)
+    {
+        if (Physics2D.OverlapCircle(targetPos, 0.2f, solidObjectLayer | interactableLayer) != null)
+        {
+            return false;
+        }
+
+        return true;
     }
 }

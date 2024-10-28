@@ -50,7 +50,7 @@ public class LifeManaHandler : MonoBehaviour
     void Update()
     {
         enemyHPBar.value = currentenemyHP;
-        HPBar.value = currentHP;
+        //HPBar.value = currentHP;
         MPBar.value = currentMP;
         
         enemyHPText.text = "" + (int)currentenemyHP;
@@ -67,16 +67,15 @@ public class LifeManaHandler : MonoBehaviour
           currentMP = 0;
         }
         
-        if (currentHP < 0) 
-        {
-            Debug.Log("Game Over"); 
-        }
+        
     }
 
-    public void AttackEnemy() 
+    public IEnumerator AttackEnemy() 
     {
         UpdateEnemyUI();
         Damage(attackDamage);
+
+        yield return new WaitForSeconds(2f);
         
     }
 
@@ -96,11 +95,33 @@ public class LifeManaHandler : MonoBehaviour
 
     }
 
+    public bool TakeDamage(float damage) 
+    {
+        currentHP -= damage;
+        currentHP = Mathf.Clamp(currentHP, 0, myHP);
+
+        HPBar.value = currentHP;
+        HPText.text = "" + (int)currentHP;
+
+        if (currentHP <= 0) 
+        {
+            return true;
+        }
+            return false;
+
+        if (currentenemyHP <= 0)
+        {
+            Destroy(gameObject);
+            return true;
+        }
+        return false;
+        /*{
+            Debug.Log("Game Over");
+        }*/
+    }
+
     public void Damage(float damage) 
     {
-        //currentHP -= damage;
-        //currentHP = Mathf.Clamp(currentHP, 0, myHP);
-
         currentenemyHP -= damage;
         currentenemyHP = Mathf.Clamp(currentenemyHP, 0, enemyHP);
 

@@ -1,14 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class DialogManager : MonoBehaviour
 {
     [SerializeField] GameObject dialogBox;
-    [SerializeField] Text dialogText;
+    [SerializeField] public TMP_Text dialogText;
     [SerializeField] int lettersPerSecond;
 
+    //public event Action OnShowDialog;
+       
     public static DialogManager Instance { get; private set; }
     private void Awake()
     {
@@ -19,6 +22,11 @@ public class DialogManager : MonoBehaviour
     {
         dialogBox.SetActive(true);
         StartCoroutine(TypeDialog(dialog.Lines[0]));
+    }
+
+    public void HandleUpdate()
+    {
+
     }
 
     public IEnumerator TypeDialog(string line)

@@ -46,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
         }
         anim.SetBool("walking", walking);
 
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (Input.GetKeyDown(KeyCode.LeftShift))
             Interact();
     }
 

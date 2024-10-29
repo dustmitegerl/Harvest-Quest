@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,8 @@ public class PlayerMovement : MonoBehaviour
     private bool walking;
     public LayerMask solidObjectLayer;
     public LayerMask interactableLayer;
+
+    public event Action OnEncountered;
 
     private Rigidbody2D rb;
     private Animator anim;
@@ -22,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void HandleUpdate()
     {
         if (!walking)
         {
@@ -46,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
         }
         anim.SetBool("walking", walking);
 
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.T))
             Interact();
     }
 
@@ -88,5 +91,16 @@ public class PlayerMovement : MonoBehaviour
         }
 
         return true;
+    }
+    private void CheckForEncounters()
+    {
+        if(Physics2D.OverlapCircle(transform.position, 0.2f) != null)
+        {
+            if (UnityEngine.Random.Range(1, 101) <= 10)
+            {
+                anim.SetBool("walking", false);
+                OnEncountered();
+            }
+        }
     }
 }

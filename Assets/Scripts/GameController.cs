@@ -3,24 +3,57 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum GameState { FreeRoam, Battle, Dialog }
+
 public class GameController : MonoBehaviour
 {
-    //[SerializeField] PlayerController playerController;
+    [SerializeField] PlayerMovement playerController;
+    [SerializeField] BattleSystem battleSystem;
+    [SerializeField] Camera worldCamera;
 
     GameState state;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        
+        playerController.OnEncountered += StartBattle;
+        //battleSystem.EndBattle += OverBattle;
+
+        DialogManager.Instance.OnShowDialog += () =>
+        {
+            state = GameState.Dialog;
+        };
+
+        DialogManager.Instance.OnCloseDialog += () =>
+        {
+            if (state == GameState.Dialog)
+                state = GameState.FreeRoam;
+        };
     }
 
-    // Update is called once per frame
+    void StartBattle()
+    {
+        state = GameState.Battle;
+        battleSystem.gameObject.SetActive(true);
+        worldCamera.gameObject.SetActive(false);
+
+        //battleSystem.Start();
+    }
+
+    void OverBattle(bool WON)
+    {
+        state = GameState.FreeRoam;
+        battleSystem.gameObject.SetActive(false);
+        worldCamera.gameObject.SetActive(true);
+    }
+
     private void Update()
     {
         if (state == GameState.FreeRoam)
         {
-            //playerController.HandleUpdate();
+            playerController.HandleUpdate();
+        }
+        else if (state == GameState.Battle)
+        {
+            //battleSystem.HandleUpdate();
         }
         else if (state == GameState.Dialog)
         {

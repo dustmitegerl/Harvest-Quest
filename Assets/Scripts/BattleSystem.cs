@@ -26,7 +26,7 @@ public class BattleSystem : MonoBehaviour
 
     }
 
-    IEnumerator SetupBattle() 
+    public IEnumerator SetupBattle() 
     { 
       GameObject playerGO = Instantiate(playerPrefab, playerPosition);
       playerUnit = playerGO.GetComponent<LifeManaHandler>();
@@ -85,7 +85,7 @@ public class BattleSystem : MonoBehaviour
 
     }
 
-    void EndBattle() 
+    public void EndBattle() 
     {
         if (state == BattleState.WON)
         {

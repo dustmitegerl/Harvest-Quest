@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
 
     public event Action OnEncountered;
 
-    private Rigidbody2D rb;
+    //private Rigidbody2D rb;
     private Animator anim;
 
     private Vector2 movement;
@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        //rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
     }
 
@@ -40,14 +40,14 @@ public class PlayerMovement : MonoBehaviour
             if (movement != Vector2.zero)
             {
                 moveToPosition = transform.position + new Vector3(movement.x, movement.y, 0);
-                anim.SetFloat("X", movement.x);
-                anim.SetFloat("Y", movement.y);
+                anim.SetFloat("moveX", movement.x);
+                anim.SetFloat("moveY", movement.y);
 
                 if(Walkable(moveToPosition))
                     StartCoroutine (Move(moveToPosition));
             }
         }
-        anim.SetBool("walking", walking);
+        anim.SetBool("isMoving", walking);
 
         if (Input.GetKeyDown(KeyCode.T))
             Interact();

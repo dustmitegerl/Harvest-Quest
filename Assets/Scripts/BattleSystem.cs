@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 
 public enum BattleState { START, PLAYERTURN, ENEMYTURN, WON, LOST }
@@ -14,9 +16,10 @@ public class BattleSystem : MonoBehaviour
     public Transform playerPosition;
     public Transform enemyPosition;
 
-    LifeManaHandler playerUnit;
-    LifeManaHandler enemyUnit;
+    public LifeManaHandler playerHUD;
+    public LifeManaHandler enemyHUD;
 
+    public TextMeshProUGUI dialogueText;
     public BattleState state;
 
     // Start is called before the first frame update
@@ -30,10 +33,12 @@ public class BattleSystem : MonoBehaviour
     public IEnumerator SetupBattle() 
     { 
       GameObject playerGO = Instantiate(playerPrefab, playerPosition);
-      playerUnit = playerGO.GetComponent<LifeManaHandler>();
+      playerHUD = playerGO.GetComponent<LifeManaHandler>();
 
       GameObject enemyGO = Instantiate(enemyPrefab, enemyPosition);
-      enemyUnit = enemyGO.GetComponent<LifeManaHandler>();
+      enemyHUD = enemyGO.GetComponent<LifeManaHandler>();
+
+        dialogueText.text = "The enemy is going to attack you!";
       
         state = BattleState.PLAYERTURN;
         PlayerTurn();
@@ -42,38 +47,68 @@ public class BattleSystem : MonoBehaviour
     }
 
     void PlayerTurn() 
-    { 
-      
+    {
+        dialogueText.text = "Select your tactic...";
     }
+    
     // Setting the player to damage the enemy
     IEnumerator PlayerAttack() 
     { 
-      bool isDead = enemyUnit.TakeDamage(playerUnit.attackDamage);
+      bool isDead = enemyHUD.TakeDamage(playerHUD.attackDamage);
+      enemyHUD.UpdateEnemyUI();
 
         if (isDead)
         {
             state = BattleState.WON;
-            EnemyHUD.SetHP(enemyUnit.currentHP = 0);
             EndBattle();
         }
         else 
         { 
             state = BattleState.ENEMYTURN;
-            EnemyHUD.SetHP(enemyUnit.currentHP);
-            dialogueText.text = "You deal" + playerUnit.attackDamage + "damage" ;
+            dialogueText.text = "Enemy turn!" ;
 
             yield return new WaitForSeconds(2f);
             StartCoroutine(EnemyTurn());
         }
     }
 
+    IEnumerator PlayerSkill() 
+    {
+        if (playerHUD.currentMP >= playerHUD.manaCost) 
+        {
+            playerHUD.UseSkill();
+            enemyHUD.UpdateEnemyUI();
+            playerHUD.MPBar.value = playerHUD.currentMP;
+
+            yield return new WaitForSeconds(2f);
+
+            bool isDead = enemyHUD.currentHP <= 0;
+            if (isDead)
+            {
+                state = BattleState.WON;
+                EndBattle();
+            }
+
+            else 
+            {
+              state = BattleState.ENEMYTURN;
+                dialogueText.text = "Enemy's attack you";
+                StartCoroutine(EnemyTurn());
+            }
+        }
+    }
+
     // Setting the Enemy and Player Turn
     IEnumerator EnemyTurn() 
     {
-        //Add dialogue saying that the enemy is attacking the player
+        dialogueText.text = "The enemy is attacking you.";
         yield return new WaitForSeconds(1f);
 
-        bool isDead = playerUnit.TakeDamage(enemyUnit.attackDamage);
+        bool isDead = playerHUD.TakeDamage(enemyHUD.attackDamage);
+
+        playerHUD.HPBar.value = playerHUD.currentHP;
+
+        yield return new WaitForSeconds(1f);
 
         if (isDead)
         {
@@ -88,31 +123,33 @@ public class BattleSystem : MonoBehaviour
 
     }
 
-<<<<<<< Updated upstream
     // Setting the End Battle
     public void EndBattle() 
     {
         if (state == BattleState.WON)
         {
-            // Add dialogue saying you won
-            Destroy(enemyUnit.gameObject);
+            dialogueText.text = "You defeated the enemy!";
+            Destroy(enemyHUD.gameObject);
         }
         else if (state == BattleState.LOST)
         {
-
+            dialogueText.text = "You loss.";
         }
     }
-=======
-    
-   
-     
->>>>>>> Stashed changes
-    
+
     public void OnAttackButton() 
     { 
      if (state != BattleState.PLAYERTURN)
             return;
 
         StartCoroutine(PlayerAttack());
+    }
+
+    public void OnSkillButton()
+    {
+        if (state != BattleState.PLAYERTURN)
+            return;
+
+        StartCoroutine(PlayerSkill());
     }
 }

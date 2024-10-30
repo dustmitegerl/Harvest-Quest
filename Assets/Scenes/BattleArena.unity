@@ -503,7 +503,7 @@ GameObject:
   - component: {fileID: 143580071}
   - component: {fileID: 143580070}
   m_Layer: 0
-  m_Name: DialogText
+  m_Name: DialogueText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -996,6 +996,8 @@ MonoBehaviour:
   enemyHPText: {fileID: 27697152}
   myHP: 100
   myMP: 100
+  currentHP: 0
+  currentMP: 0
   attackDamage: 10
   manaCost: 5
   enemyHP: 100
@@ -2215,7 +2217,7 @@ GameObject:
   - component: {fileID: 827735558}
   - component: {fileID: 827735557}
   m_Layer: 0
-  m_Name: DialogBox
+  m_Name: DialogueBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3654,6 +3656,9 @@ MonoBehaviour:
   enemyPrefab: {fileID: 8259538032588520519, guid: c86194a3df4449f47aeaed8821b4c19d, type: 3}
   playerPosition: {fileID: 404858160880091494, guid: 2844582327f60444d99cf489720bb5b3, type: 3}
   enemyPosition: {fileID: 6804054044495180085, guid: 4b85b70f7be5137418a279c2d371f3f3, type: 3}
+  playerHUD: {fileID: 0}
+  enemyHUD: {fileID: 0}
+  dialogueText: {fileID: 143580070}
   state: 0
 --- !u!1 &1545286211
 GameObject:

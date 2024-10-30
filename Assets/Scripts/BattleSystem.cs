@@ -18,6 +18,7 @@ public class BattleSystem : MonoBehaviour
     LifeManaHandler enemyUnit;
 
     public BattleState state;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,27 +45,29 @@ public class BattleSystem : MonoBehaviour
     { 
       
     }
-
+    // Setting the player to damage the enemy
     IEnumerator PlayerAttack() 
     { 
       bool isDead = enemyUnit.TakeDamage(playerUnit.attackDamage);
 
-      
-
-        yield return new WaitForSeconds(2f);
-
         if (isDead)
         {
             state = BattleState.WON;
+            EnemyHUD.SetHP(enemyUnit.currentHP = 0);
             EndBattle();
         }
         else 
         { 
             state = BattleState.ENEMYTURN;
+            EnemyHUD.SetHP(enemyUnit.currentHP);
+            dialogueText.text = "You deal" + playerUnit.attackDamage + "damage" ;
+
+            yield return new WaitForSeconds(2f);
             StartCoroutine(EnemyTurn());
         }
     }
 
+    // Setting the Enemy and Player Turn
     IEnumerator EnemyTurn() 
     {
         //Add dialogue saying that the enemy is attacking the player
@@ -85,27 +88,31 @@ public class BattleSystem : MonoBehaviour
 
     }
 
+<<<<<<< Updated upstream
+    // Setting the End Battle
     public void EndBattle() 
     {
         if (state == BattleState.WON)
         {
-          // Add dialogue saying you won
-
+            // Add dialogue saying you won
             Destroy(enemyUnit.gameObject);
         }
+        else if (state == BattleState.LOST)
+        {
 
-        else if (state == BattleState.LOST) 
-        { 
-          // Add dialogue saying that you were defeated
         }
-
     }
-
+=======
+    
+   
+     
+>>>>>>> Stashed changes
+    
     public void OnAttackButton() 
     { 
      if (state != BattleState.PLAYERTURN)
             return;
 
-        StartCoroutine(playerUnit.AttackEnemy());
+        StartCoroutine(PlayerAttack());
     }
 }

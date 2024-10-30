@@ -18,8 +18,8 @@ public class LifeManaHandler : MonoBehaviour
 
     public float myHP;
     public float myMP;
-    private float currentHP;
-    private float currentMP;
+    public float currentHP;
+    public float currentMP;
     
     public float attackDamage;
     public float manaCost;
@@ -79,6 +79,7 @@ public class LifeManaHandler : MonoBehaviour
         
     }
 
+    // Using the skill button to damage the enemy
     public void UseSkill() 
     {
         
@@ -95,6 +96,7 @@ public class LifeManaHandler : MonoBehaviour
 
     }
 
+    //Calculating Damage taken
     public bool TakeDamage(float damage) 
     {
         currentHP -= damage;
@@ -107,7 +109,7 @@ public class LifeManaHandler : MonoBehaviour
         {
             return true;
         }
-            return false;
+            
 
         if (currentenemyHP <= 0)
         {
@@ -115,9 +117,6 @@ public class LifeManaHandler : MonoBehaviour
             return true;
         }
         return false;
-        /*{
-            Debug.Log("Game Over");
-        }*/
     }
 
     public void Damage(float damage) 
@@ -128,6 +127,7 @@ public class LifeManaHandler : MonoBehaviour
         UpdateEnemyUI();
     }
   
+    // Reducing SP for each usage
     public void ReduceMP(float mp) 
     {
         currentMP -= mp;
@@ -137,7 +137,8 @@ public class LifeManaHandler : MonoBehaviour
         MPText.text = "" + Mathf.FloorToInt(currentMP);
     }
 
-    private void UpdateEnemyUI() 
+    // Updating enemy damage
+    public void UpdateEnemyUI() 
     {
         enemyHPBar.value = currentenemyHP;
         enemyHPText.text = "" + (int)currentenemyHP;

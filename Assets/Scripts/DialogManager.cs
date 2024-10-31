@@ -36,14 +36,14 @@ public class DialogManager : MonoBehaviour
 
     public void HandleUpdate()
     {
-        if (Input.GetKeyUp(KeyCode.T) && !isTyping)
-        {
+        if (Input.GetKeyDown(KeyCode.Space) && !isTyping)
+        {// If "T" is hit more lines will show if there is more
             ++currentLine;
             if (currentLine < dialog.Lines.Count)
             {
                 StartCoroutine(TypeDialog(dialog.Lines[currentLine]));
             }
-            else
+            else //Closes the Dialog and set it back to the first line
             {
                 currentLine = 0;
                 dialogBox.SetActive(false);
@@ -53,7 +53,7 @@ public class DialogManager : MonoBehaviour
     }
 
     public IEnumerator TypeDialog(string line)
-    {
+    {//Show current dialog
         isTyping = true;
         dialogText.text = "";
         foreach (var letter in line.ToCharArray())

@@ -49,13 +49,13 @@ public class PlayerMovement : MonoBehaviour
         }
         anim.SetBool("isMoving", walking);
 
-        if (Input.GetKeyDown(KeyCode.T))
+        if (Input.GetKeyDown(KeyCode.Space))
             Interact();
     }
 
     void Interact()
     {
-        var facingDir = new Vector3(anim.GetFloat("X"), anim.GetFloat("Y"));
+        var facingDir = new Vector3(anim.GetFloat("moveX"), anim.GetFloat("moveY"));
         var interactPos = transform.position + facingDir;
 
         //Debug.DrawLine(transform.position, interactPos, Color.green, 0.5f);
@@ -73,7 +73,7 @@ public class PlayerMovement : MonoBehaviour
 
         while ((newPos - transform.position).sqrMagnitude > Mathf.Epsilon)
         {
-            transform.position = Vector3.MoveTowards(transform.position, newPos, moveSpeed * Time.fixedDeltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, newPos, moveSpeed * Time.deltaTime);
             yield return null;
         }
         transform.position = newPos;
@@ -83,9 +83,9 @@ public class PlayerMovement : MonoBehaviour
         //transform.Translate(movement.x * moveSpeed * Time.fixedDeltaTime, movement.y * moveSpeed * Time.fixedDeltaTime, 0);
     }
 
-    private bool Walkable(Vector3 targetPos)
+    private bool Walkable(Vector3 newPos)
     {
-        if (Physics2D.OverlapCircle(targetPos, 0.2f, solidObjectLayer | interactableLayer) != null)
+        if (Physics2D.OverlapCircle(newPos, 0.2f, solidObjectLayer | interactableLayer) != null)
         {
             return false;
         }

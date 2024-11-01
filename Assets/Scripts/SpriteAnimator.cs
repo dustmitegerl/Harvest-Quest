@@ -11,7 +11,7 @@ public class SpriteAnimator
 
     int currentFrame;
     float timer;
-
+    //This is for any other sprite to be animated
     public SpriteAnimator(List<Sprite> frames, SpriteRenderer spriteRenderer, float frameRate = 0.16f)
     {
         this.frames = frames;

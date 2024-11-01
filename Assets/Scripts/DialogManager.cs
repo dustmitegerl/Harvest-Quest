@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -24,7 +23,7 @@ public class DialogManager : MonoBehaviour
     bool isTyping;
 
     public IEnumerator ShowDialog(Dialog dialog)
-    {
+    {//Show the dialog like it was typing it out
         yield return new WaitForEndOfFrame();
 
         OnShowDialog?.Invoke();

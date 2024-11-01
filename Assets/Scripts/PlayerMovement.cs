@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -19,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 moveToPosition;
 
     void Start()
-    {
+    {//Animation will happen once movement start
         //rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
     }
@@ -28,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
     public void HandleUpdate()
     {
         if (!walking)
-        {
+        {//Player's movement
             movement.x = Input.GetAxisRaw("Horizontal");
             movement.y = Input.GetAxisRaw("Vertical");
             //prevents diagnial movement
@@ -46,9 +45,9 @@ public class PlayerMovement : MonoBehaviour
                 if(Walkable(moveToPosition))
                     StartCoroutine (Move(moveToPosition));
             }
-        }
+        }//Animation for the player's movement
         anim.SetBool("isMoving", walking);
-
+        //for the dialog
         if (Input.GetKeyDown(KeyCode.Space))
             Interact();
     }
@@ -58,9 +57,7 @@ public class PlayerMovement : MonoBehaviour
         var facingDir = new Vector3(anim.GetFloat("moveX"), anim.GetFloat("moveY"));
         var interactPos = transform.position + facingDir;
 
-        //Debug.DrawLine(transform.position, interactPos, Color.green, 0.5f);
-
-        var collider = Physics2D.OverlapCircle(interactPos, 0.3f, interactableLayer);
+        var collider = Physics2D.OverlapCircle(interactPos, 0.5f, interactableLayer);
         if (collider != null)
         {
             collider.GetComponent<Interactable>()?.Interact();
@@ -79,13 +76,11 @@ public class PlayerMovement : MonoBehaviour
         transform.position = newPos;
 
         walking = false;
-
-        //transform.Translate(movement.x * moveSpeed * Time.fixedDeltaTime, movement.y * moveSpeed * Time.fixedDeltaTime, 0);
     }
 
     private bool Walkable(Vector3 newPos)
-    {
-        if (Physics2D.OverlapCircle(newPos, 0.2f, solidObjectLayer | interactableLayer) != null)
+    {//Not walk over objects
+        if (Physics2D.OverlapCircle(newPos, 0.5f, solidObjectLayer | interactableLayer) != null)
         {
             return false;
         }
@@ -93,8 +88,8 @@ public class PlayerMovement : MonoBehaviour
         return true;
     }
     private void CheckForEncounters()
-    {
-        if(Physics2D.OverlapCircle(transform.position, 0.2f) != null)
+    {//Not walk over objects
+        if(Physics2D.OverlapCircle(transform.position, 0.5f) != null)
         {
             if (UnityEngine.Random.Range(1, 101) <= 10)
             {

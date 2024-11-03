@@ -4,11 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-
 public enum BattleState { START, PLAYERTURN, ENEMYTURN, WON, LOST }
 
 public class BattleSystem : MonoBehaviour
-{ // reference to script: https://www.youtube.com/watch?v=_1pz_ohupPs
+{
+    // Reference to script: https://www.youtube.com/watch?v=_1pz_ohupPs
 
     public GameObject playerPrefab;
     public GameObject enemyPrefab;
@@ -16,97 +16,118 @@ public class BattleSystem : MonoBehaviour
     public Transform playerPosition;
     public Transform enemyPosition;
 
-    public LifeManaHandler playerHUD;
-    public LifeManaHandler enemyHUD;
+    Unit playerUnit;
+    Unit enemyUnit;
 
     public TextMeshProUGUI dialogueText;
+
+    public BattleHUD playerHUD;
+    public BattleHUD enemyHUD;
+
     public BattleState state;
 
-    // Start is called before the first frame update
+    // Starting the Battle State
     void Start()
     {
         state = BattleState.START;
         StartCoroutine(SetupBattle());
-
     }
 
-    public IEnumerator SetupBattle() 
-    { 
-      GameObject playerGO = Instantiate(playerPrefab, playerPosition);
-      playerHUD = playerGO.GetComponent<LifeManaHandler>();
+    // Setting up the player and enemy positions while including dialogue
+    IEnumerator SetupBattle()
+    {
+        GameObject playerGO = Instantiate(playerPrefab);
+        playerGO.transform.position = playerPosition.position;
+        playerUnit = playerGO.GetComponent<Unit>();
 
-      GameObject enemyGO = Instantiate(enemyPrefab, enemyPosition);
-      enemyHUD = enemyGO.GetComponent<LifeManaHandler>();
+        GameObject enemyGO = Instantiate(enemyPrefab);
+        enemyGO.transform.position = enemyPosition.position;
+        enemyUnit = enemyGO.GetComponent<Unit>();
 
-        dialogueText.text = "The enemy is going to attack you!";
-      
-        state = BattleState.PLAYERTURN;
-        PlayerTurn();
+        dialogueText.text = "You are being attack by " + enemyUnit.unitName + "!";
+
+        playerHUD.SetHUD(playerUnit);
+        enemyHUD.SetHUD(enemyUnit);
 
         yield return new WaitForSeconds(2f);
+
+        //Transitioning to PLayer's Turn
+
+        state = BattleState.PLAYERTURN;
+        PlayerTurn();
+        Debug.Log("It's the player's turn.");
     }
 
-    void PlayerTurn() 
-    {
-        dialogueText.text = "Select your tactic...";
-    }
-    
-    // Setting the player to damage the enemy
+    // Adding function to Player Attack Button
+
     IEnumerator PlayerAttack() 
-    { 
-      bool isDead = enemyHUD.TakeDamage(playerHUD.attackDamage);
-      enemyHUD.UpdateEnemyUI();
+    {
+        bool isDead = enemyUnit.TakeDamage(playerUnit.damage);
+
+        enemyHUD.SetHP(enemyUnit.currentHP);
+        dialogueText.text = "The attack hit " + enemyUnit.unitName + "!"; 
+
+        yield return new WaitForSeconds(2f);
+
+        // Creating a Battle State for winning and losing
 
         if (isDead)
         {
             state = BattleState.WON;
             EndBattle();
+            Debug.Log("Player Won.");
         }
         else 
         { 
             state = BattleState.ENEMYTURN;
-            dialogueText.text = "Enemy turn!" ;
-
-            yield return new WaitForSeconds(2f);
             StartCoroutine(EnemyTurn());
+            Debug.Log("Enemy Turn!");
         }
     }
 
-    IEnumerator PlayerSkill() 
+    // Adding function to Player Attack Button
+
+    IEnumerator PlayerSPAction() 
     {
-        if (playerHUD.currentMP >= playerHUD.manaCost) 
+        bool isDead = enemyUnit.TakeDamage(playerUnit.damage);
+
+        enemyHUD.SetSP(enemyUnit.currentHP);
+        dialogueText.text = "Player unleash their skills.";
+
+        playerHUD.SetSP(playerUnit.currentSP);
+
+        yield return new WaitForSeconds(2f);
+
+        // Creating a Battle State for winning and losing
+
+        if (isDead)
         {
-            playerHUD.UseSkill();
-            enemyHUD.UpdateEnemyUI();
-            playerHUD.MPBar.value = playerHUD.currentMP;
-
-            yield return new WaitForSeconds(2f);
-
-            bool isDead = enemyHUD.currentHP <= 0;
-            if (isDead)
-            {
-                state = BattleState.WON;
-                EndBattle();
-            }
-
-            else 
-            {
-              state = BattleState.ENEMYTURN;
-                dialogueText.text = "Enemy's attack you";
-                StartCoroutine(EnemyTurn());
-            }
+            state = BattleState.WON;
+            EndBattle();
+            Debug.Log("Player Won.");
         }
+        else
+        {
+            state = BattleState.ENEMYTURN;
+            StartCoroutine(EnemyTurn());
+            Debug.Log("Enemy Turn!");
+        }
+
+        state = BattleState.ENEMYTURN;
+        dialogueText.text = "Enemy's Turn!";
     }
 
-    // Setting the Enemy and Player Turn
+    // Creating functions for the enemy turn
+
     IEnumerator EnemyTurn() 
     {
-        dialogueText.text = "The enemy is attacking you.";
+        dialogueText.text = enemyUnit.unitName + " is making their moves.";
+
         yield return new WaitForSeconds(1f);
 
-        bool isDead = playerHUD.TakeDamage(enemyHUD.attackDamage);
+        bool isDead = playerUnit.TakeDamage(enemyUnit.damage);
 
-        playerHUD.HPBar.value = playerHUD.currentHP;
+        playerHUD.SetHP(playerUnit.currentHP);
 
         yield return new WaitForSeconds(1f);
 
@@ -114,35 +135,46 @@ public class BattleSystem : MonoBehaviour
         {
             state = BattleState.LOST;
             EndBattle();
+            Debug.Log("Enemy Won");
         }
         else 
-        {
+        { 
             state = BattleState.PLAYERTURN;
             PlayerTurn();
+            Debug.Log("Player takes the turn");
         }
-
     }
 
-    // Setting the End Battle
-    public void EndBattle() 
+    // Creating an End Battle State
+
+    void EndBattle() 
     {
         if (state == BattleState.WON)
         {
-            dialogueText.text = "You defeated the enemy!";
-            Destroy(enemyHUD.gameObject);
+            dialogueText.text = "You were victorious!";
         }
-        else if (state == BattleState.LOST)
+        else if (state == BattleState.LOST) 
         {
-            dialogueText.text = "You loss.";
+            dialogueText.text = "The enemy has ended your story.";
         }
     }
+    // Creating Player Turn Function
+
+    void PlayerTurn() 
+    {
+        dialogueText.text = "Select your moves:";
+        Debug.Log("Player is picking an action.");
+    }
+
+    // Creating Button Functions
 
     public void OnAttackButton() 
-    { 
-     if (state != BattleState.PLAYERTURN)
+    {
+        if (state != BattleState.PLAYERTURN)
             return;
 
         StartCoroutine(PlayerAttack());
+
     }
 
     public void OnSkillButton()
@@ -150,6 +182,7 @@ public class BattleSystem : MonoBehaviour
         if (state != BattleState.PLAYERTURN)
             return;
 
-        StartCoroutine(PlayerSkill());
+        StartCoroutine(PlayerSPAction());
+
     }
 }

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2683203542114129910}
   - component: {fileID: 4527526489224627428}
+  - component: {fileID: -3719698073402493879}
   m_Layer: 0
   m_Name: PlayerHarvestQuest
   m_TagString: Untagged
@@ -84,3 +85,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-3719698073402493879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4816589886938252063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42ee7604891553247a5d2b34f1b2e1a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitName: Player
+  damage: 5
+  maxHP: 30
+  currentHP: 30
+  maxSP: 30
+  currentSP: 30

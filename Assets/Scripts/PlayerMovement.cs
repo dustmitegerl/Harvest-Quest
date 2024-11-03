@@ -1,62 +1,101 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 2f;
+    private bool walking;
+    public LayerMask solidObjectLayer;
+    public LayerMask interactableLayer;
 
-    public Rigidbody2D rb;
+    public event Action OnEncountered;
 
-    Vector2 movement;
+    //private Rigidbody2D rb;
+    private Animator anim;
 
-    [SerializeField] float dashSpeed = 10f;
-    [SerializeField] float dashDuration = 1f;
-    [SerializeField] float dashCooldown = 1f;
-    bool isDashing;
-    bool canDash = true;
+    private Vector2 movement;
+    private Vector3 moveToPosition;
 
     void Start()
-    {
-        canDash = true;
+    {//Animation will happen once movement start
+        //rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
-    void Update() //Input
+    public void HandleUpdate()
     {
-        if (isDashing)
-        {
-            return;
-        }
+        if (!walking)
+        {//Player's movement
+            movement.x = Input.GetAxisRaw("Horizontal");
+            movement.y = Input.GetAxisRaw("Vertical");
+            //prevents diagnial movement
+            if (movement.x != 0)
+            {
+                movement.y = 0;
+            }
 
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
+            if (movement != Vector2.zero)
+            {
+                moveToPosition = transform.position + new Vector3(movement.x, movement.y, 0);
+                anim.SetFloat("moveX", movement.x);
+                anim.SetFloat("moveY", movement.y);
 
-        if (Input.GetKeyDown(KeyCode.Space) && canDash)
+                if(Walkable(moveToPosition))
+                    StartCoroutine (Move(moveToPosition));
+            }
+        }//Animation for the player's movement
+        anim.SetBool("isMoving", walking);
+        //for the dialog
+        if (Input.GetKeyDown(KeyCode.Space))
+            Interact();
+    }
+
+    void Interact()
+    {
+        var facingDir = new Vector3(anim.GetFloat("moveX"), anim.GetFloat("moveY"));
+        var interactPos = transform.position + facingDir;
+
+        var collider = Physics2D.OverlapCircle(interactPos, 0.5f, interactableLayer);
+        if (collider != null)
         {
-            StartCoroutine(Dash());
+            collider.GetComponent<Interactable>()?.Interact();
         }
     }
 
-    private void FixedUpdate()
+      IEnumerator Move(Vector3 newPos)
     {
-        if (isDashing)
-        {
-            return;
-        }
+        walking = true;
 
-        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+        while ((newPos - transform.position).sqrMagnitude > Mathf.Epsilon)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, newPos, moveSpeed * Time.deltaTime);
+            yield return null;
+        }
+        transform.position = newPos;
+
+        walking = false;
     }
 
-    private IEnumerator Dash()
-    {
-        canDash = false;
-        isDashing = true;
-        rb.velocity = new Vector2(movement.x * dashSpeed, movement.y * dashSpeed);
-        yield return new WaitForSeconds(dashDuration);
-        isDashing = false;
+    private bool Walkable(Vector3 newPos)
+    {//Not walk over objects
+        if (Physics2D.OverlapCircle(newPos, 0.5f, solidObjectLayer | interactableLayer) != null)
+        {
+            return false;
+        }
 
-        yield return new WaitForSeconds(dashCooldown);
-        canDash = true;
+        return true;
+    }
+    private void CheckForEncounters()
+    {//Not walk over objects
+        if(Physics2D.OverlapCircle(transform.position, 0.5f) != null)
+        {
+            if (UnityEngine.Random.Range(1, 101) <= 10)
+            {
+                anim.SetBool("walking", false);
+                OnEncountered();
+            }
+        }
     }
 }

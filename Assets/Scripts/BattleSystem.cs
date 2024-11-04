@@ -152,10 +152,12 @@ public class BattleSystem : MonoBehaviour
         if (state == BattleState.WON)
         {
             dialogueText.text = "You were victorious!";
+            Destroy(enemyUnit.gameObject);
         }
         else if (state == BattleState.LOST) 
         {
             dialogueText.text = "The enemy has ended your story.";
+            Destroy(playerUnit.gameObject);
         }
     }
     // Creating Player Turn Function

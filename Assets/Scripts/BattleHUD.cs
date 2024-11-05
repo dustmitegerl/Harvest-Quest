@@ -13,6 +13,10 @@ public class BattleHUD : MonoBehaviour
     public Slider hpSlider;
     public Slider spSlider;
 
+    public TextMeshProUGUI HPnumberText;
+    public TextMeshProUGUI SPnumberText;
+
+
     // Creating a function that will use the involed element
 
     public void SetHUD(Unit unit) 
@@ -28,6 +32,10 @@ public class BattleHUD : MonoBehaviour
 
         spSlider.maxValue = unit.maxSP;
         spSlider.value = unit.currentSP;
+
+        HPnumberText.text = unit.currentHP.ToString();
+        SPnumberText.text = unit.currentSP.ToString();
+
     }
 
     //Setting the HP Value
@@ -35,6 +43,8 @@ public class BattleHUD : MonoBehaviour
     public void SetHP(int hp) 
     {
         hpSlider.value = hp;
+        HPnumberText.text = hp.ToString();
+        
     }
 
     //Setting the SP Value
@@ -42,5 +52,6 @@ public class BattleHUD : MonoBehaviour
     public void SetSP(int sp)
     {
         spSlider.value = sp;
+        SPnumberText.text = sp.ToString();
     }
 }

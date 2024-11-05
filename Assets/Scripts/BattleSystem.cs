@@ -26,6 +26,7 @@ public class BattleSystem : MonoBehaviour
 
     public BattleState state;
 
+
     // Starting the Battle State
     void Start()
     {

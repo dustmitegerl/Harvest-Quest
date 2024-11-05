@@ -2751,6 +2751,8 @@ MonoBehaviour:
   nameText: {fileID: 1747597608}
   hpSlider: {fileID: 379154778}
   spSlider: {fileID: 248696786}
+  HPnumberText: {fileID: 1212249712}
+  SPnumberText: {fileID: 654200604}
 --- !u!1 &864946389
 GameObject:
   m_ObjectHideFlags: 0
@@ -4295,6 +4297,8 @@ MonoBehaviour:
   nameText: {fileID: 143366473}
   hpSlider: {fileID: 797812936}
   spSlider: {fileID: 532273872}
+  HPnumberText: {fileID: 27697152}
+  SPnumberText: {fileID: 1964549735}
 --- !u!1 &1722563595
 GameObject:
   m_ObjectHideFlags: 0

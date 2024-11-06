@@ -5,9 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    [SerializeField]
+    string mainLevelName;
     public void LoadNewGame()
     {
-        SceneManager.LoadScene("Harvest-Quest");
+        SceneManager.LoadScene(mainLevelName);
     }
 
     public void Close()

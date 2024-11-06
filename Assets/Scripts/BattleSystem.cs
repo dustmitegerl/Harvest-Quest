@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine.SceneManagement;
 
 public enum BattleState { START, PLAYERTURN, ENEMYTURN, WON, LOST }
 
@@ -27,9 +26,6 @@ public class BattleSystem : MonoBehaviour
 
     public BattleState state;
 
-    public int skillCost;
-    public int skillDamage;
-   
 
     // Starting the Battle State
     void Start()
@@ -56,19 +52,11 @@ public class BattleSystem : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
 
-        //Transitioning to Player's Turn
+        //Transitioning to PLayer's Turn
 
         state = BattleState.PLAYERTURN;
         PlayerTurn();
         Debug.Log("It's the player's turn.");
-    }
-
-    //Transition from Battle Arena to Overworld
-    IEnumerator TransitionToInteract() 
-    { 
-        yield return new WaitForSeconds(2f);
-
-        SceneManager.LoadScene("Interact");
     }
 
     // Adding function to Player Attack Button
@@ -102,39 +90,32 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator PlayerSPAction() 
     {
-        if (playerUnit.HasEnoughSP (skillCost)) 
+        bool isDead = enemyUnit.TakeDamage(playerUnit.damage);
+
+        enemyHUD.SetSP(enemyUnit.currentHP);
+        dialogueText.text = "Player unleash their skills.";
+
+        playerHUD.SetSP(playerUnit.currentSP);
+
+        yield return new WaitForSeconds(2f);
+
+        // Creating a Battle State for winning and losing
+
+        if (isDead)
         {
-            playerUnit.currentSP -= skillCost;
-            playerHUD.SetSP(playerUnit.currentSP);
-
-            bool isDead = enemyUnit.TakeDamage(skillDamage);
-
-            enemyHUD.SetHP(enemyUnit.currentHP);
-            dialogueText.text = "Player unleash their skills and dealt " + skillDamage + " of damage.";
-
-            yield return new WaitForSeconds(2f);
-
-            // Creating a Battle State for winning and losing
-
-            if (isDead)
-            {
-                state = BattleState.WON;
-                EndBattle();
-                Debug.Log("Player Won.");
-            }
-            else
-            {
-                state = BattleState.ENEMYTURN;
-                StartCoroutine(EnemyTurn());
-                Debug.Log("Enemy Turn!");
-            }
-
+            state = BattleState.WON;
+            EndBattle();
+            Debug.Log("Player Won.");
+        }
+        else
+        {
+            state = BattleState.ENEMYTURN;
+            StartCoroutine(EnemyTurn());
+            Debug.Log("Enemy Turn!");
         }
 
-        else
-        dialogueText.text = playerUnit.unitName + " does not have enough energy for that move.";
-        yield return new WaitForSeconds(1f);
-        PlayerTurn();
+        state = BattleState.ENEMYTURN;
+        dialogueText.text = "Enemy's Turn!";
     }
 
     // Creating functions for the enemy turn
@@ -142,9 +123,11 @@ public class BattleSystem : MonoBehaviour
     IEnumerator EnemyTurn() 
     {
         dialogueText.text = enemyUnit.unitName + " is making their moves.";
+
         yield return new WaitForSeconds(1f);
 
         bool isDead = playerUnit.TakeDamage(enemyUnit.damage);
+
         playerHUD.SetHP(playerUnit.currentHP);
 
         yield return new WaitForSeconds(1f);
@@ -171,16 +154,13 @@ public class BattleSystem : MonoBehaviour
         {
             dialogueText.text = "You were victorious!";
             Destroy(enemyUnit.gameObject);
-            StartCoroutine(TransitionToInteract());
         }
         else if (state == BattleState.LOST) 
         {
             dialogueText.text = "The enemy has ended your story.";
             Destroy(playerUnit.gameObject);
         }
-        
     }
-
     // Creating Player Turn Function
 
     void PlayerTurn() 

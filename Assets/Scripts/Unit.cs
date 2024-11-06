@@ -30,16 +30,4 @@ public class Unit : MonoBehaviour
         else
             return false;
     }
-
-    // Having enough SP for attack
-    public bool HasEnoughSP(int cost) 
-    {
-        return currentSP >= cost;
-    }
-
-    // Regenerating SP 
-    public void RegenerateSP(int amount)
-    {
-        currentSP = Mathf.Min(currentSP + amount, maxSP); 
-    }
 }

@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class Combatant : MonoBehaviour
 {
-  
+  //stats go here
 }

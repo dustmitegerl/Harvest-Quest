@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: c3efe044bef482a45b54ecbc55049132
+  - enabled: 1
     path: Assets/Scenes/Harvest-Quest.unity
     guid: dc7afd2e199441444bf5b7a975ad6a25
   - enabled: 1

@@ -3786,6 +3786,8 @@ MonoBehaviour:
   playerHUD: {fileID: 860823312}
   enemyHUD: {fileID: 1712918791}
   state: 0
+  skillCost: 5
+  skillDamage: 10
 --- !u!1 &1545286211
 GameObject:
   m_ObjectHideFlags: 0

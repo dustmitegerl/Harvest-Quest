@@ -9,6 +9,9 @@ public class BattleSystem : MonoBehaviour
 {
     LevelLoader levelLoader;
 
+    [SerializeField]
+    GameObject levelLoaderPrefab;
+
     // Reference to script: https://www.youtube.com/watch?v=_1pz_ohupPs
 
     public GameObject playerPrefab;
@@ -31,7 +34,8 @@ public class BattleSystem : MonoBehaviour
     // Starting the Battle State
     void Start()
     {
-        levelLoader = GetComponent<LevelLoader>();
+        levelLoaderPrefab = GameObject.Find("LevelLoader");
+        levelLoader = levelLoaderPrefab.GetComponent<LevelLoader>();
         state = BattleState.START;
         StartCoroutine(SetupBattle());
     }

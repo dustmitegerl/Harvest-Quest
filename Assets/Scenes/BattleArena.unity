@@ -402,13 +402,14 @@ GameObject:
   - component: {fileID: 143125184}
   - component: {fileID: 143125183}
   - component: {fileID: 143125182}
+  - component: {fileID: 143125185}
   m_Layer: 0
   m_Name: LevelLoader
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &143125181
 RectTransform:
   m_ObjectHideFlags: 0
@@ -421,7 +422,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1471043982}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -491,6 +492,20 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &143125185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 143125180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0ceebb2cb7278244a0662cdab56b745, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainLevelName: Interact
+  transitionTime: 1
 --- !u!1 &143366471
 GameObject:
   m_ObjectHideFlags: 0
@@ -3763,7 +3778,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 322120736}
-  - {fileID: 143125181}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1471043983
@@ -3778,6 +3792,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 751eeee5cd9399f4c8dbc3838a12f5ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelLoaderPrefab: {fileID: 0}
   playerPrefab: {fileID: 4816589886938252063, guid: 5453ed72ce3080e4599c25db1eca3908, type: 3}
   enemyPrefab: {fileID: 8259538032588520519, guid: c86194a3df4449f47aeaed8821b4c19d, type: 3}
   playerPosition: {fileID: 404858160880091494, guid: 2844582327f60444d99cf489720bb5b3, type: 3}
@@ -5240,3 +5255,4 @@ SceneRoots:
   - {fileID: 1471043982}
   - {fileID: 2145069381}
   - {fileID: 300592515}
+  - {fileID: 143125181}

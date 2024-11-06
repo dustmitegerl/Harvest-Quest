@@ -8,28 +8,32 @@ public class LevelLoader : MonoBehaviour
     // reference to script: https://pavcreations.com/turn-based-battle-and-transition-from-a-game-world-unity/#preserving-world-state-data
 
     public static LevelLoader instance;
-    public Animator transition;
-    public float transitionTime = 1f;
+    [SerializeField]
+    string mainLevelName;
+    [SerializeField]
+    //Animator transition;
+    //[SerializeField]
+    float transitionTime = 1f;
 
-    public  void LoadLevel(string levelName) 
-    { 
+    public void LoadLevel(string levelName)
+    {
         StartCoroutine(LoadNamedLevel(levelName));
-       
+
     }
 
-    IEnumerator LoadNamedLevel(string levelName) 
+    IEnumerator LoadNamedLevel(string levelName)
     {
-        transition.SetTrigger("Start");
+        //transition.SetTrigger("Start");
 
         yield return new WaitForSeconds(transitionTime);
 
         SceneManager.LoadScene(levelName);
-        
 
-        transition.SetTrigger("End");
+
+        //transition.SetTrigger("End");
     }
-    
-    // 
+
+
     void Awake()
     {
         instance = this;
@@ -38,7 +42,7 @@ public class LevelLoader : MonoBehaviour
 
     public void EndBattle() 
     { 
-      LevelLoader.instance.LoadLevel("Harvest-Quest");
+      LevelLoader.instance.LoadLevel(mainLevelName);
     }
 
 }

@@ -5,9 +5,10 @@ using UnityEngine.UI;
 using TMPro;
 
 public enum BattleState { START, PLAYERTURN, ENEMYTURN, WON, LOST }
-
 public class BattleSystem : MonoBehaviour
 {
+    LevelLoader levelLoader;
+
     // Reference to script: https://www.youtube.com/watch?v=_1pz_ohupPs
 
     public GameObject playerPrefab;
@@ -30,6 +31,7 @@ public class BattleSystem : MonoBehaviour
     // Starting the Battle State
     void Start()
     {
+        levelLoader = GetComponent<LevelLoader>();
         state = BattleState.START;
         StartCoroutine(SetupBattle());
     }
@@ -154,11 +156,13 @@ public class BattleSystem : MonoBehaviour
         {
             dialogueText.text = "You were victorious!";
             Destroy(enemyUnit.gameObject);
+            levelLoader.EndBattle();
         }
         else if (state == BattleState.LOST) 
         {
             dialogueText.text = "The enemy has ended your story.";
             Destroy(playerUnit.gameObject);
+            levelLoader.EndBattle();
         }
     }
     // Creating Player Turn Function

@@ -133,7 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 31001503}
   - component: {fileID: 31001502}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BroccoliStage3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -217,7 +217,7 @@ GameObject:
   m_Component:
   - component: {fileID: 53824171}
   - component: {fileID: 53824170}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LemonStage3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -444,7 +444,7 @@ GameObject:
   m_Component:
   - component: {fileID: 407708296}
   - component: {fileID: 407708295}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TownFolkHouse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8356,7 +8356,7 @@ Transform:
   m_GameObject: {fileID: 697005983}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3, y: 12.17, z: 0}
+  m_LocalPosition: {x: 3.5, y: 12.5, z: 0}
   m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -8460,7 +8460,7 @@ GameObject:
   m_Component:
   - component: {fileID: 725393476}
   - component: {fileID: 725393475}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: StrawberryStage3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8647,7 +8647,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1095566120}
   - component: {fileID: 1095566119}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: OnionStage3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8962,7 +8962,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1624238648}
   - component: {fileID: 1624238647}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SmithShop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9231,7 +9231,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1908854961}
   - component: {fileID: 1908854960}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ACabin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9475,6 +9475,10 @@ PrefabInstance:
     - target: {fileID: 8518166871296549689, guid: 61fd0da72b16f94479060eb15be3e321, type: 3}
       propertyPath: m_Name
       value: DialogBox
+      objectReference: {fileID: 0}
+    - target: {fileID: 8518166871296549689, guid: 61fd0da72b16f94479060eb15be3e321, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

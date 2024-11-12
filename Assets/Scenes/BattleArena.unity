@@ -767,7 +767,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1187927909}
-  - {fileID: 827735556}
   m_Father: {fileID: 300592515}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -939,6 +938,7 @@ RectTransform:
   m_Children:
   - {fileID: 2100308718}
   - {fileID: 239756039}
+  - {fileID: 827735556}
   - {fileID: 860823309}
   - {fileID: 1712918788}
   - {fileID: 1146316316}
@@ -2243,17 +2243,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 827735555}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 143580069}
-  m_Father: {fileID: 239756039}
+  m_Father: {fileID: 300592515}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 167.2, y: -94}
+  m_AnchoredPosition: {x: 83.200005, y: -153}
   m_SizeDelta: {x: 451.63, y: 85.22}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &827735557
@@ -3690,6 +3690,9 @@ MonoBehaviour:
   playerHUD: {fileID: 860823312}
   enemyHUD: {fileID: 1712918791}
   state: 0
+  actionMenu: {fileID: 239756038}
+  attackButton: {fileID: 96808875}
+  skillButton: {fileID: 543441647}
 --- !u!1001 &1522895105
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -30,6 +30,10 @@ public class BattleSystem : MonoBehaviour
 
     public BattleState state;
 
+    public GameObject actionMenu;
+
+    public Button attackButton;
+    public Button skillButton;
 
     // Starting the Battle State
     void Start()
@@ -128,12 +132,12 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator EnemyTurn() 
     {
-        dialogueText.text = enemyUnit.unitName + " is making their moves.";
+        actionMenu.SetActive(false);
 
+        dialogueText.text = enemyUnit.unitName + " is making their moves.";
         yield return new WaitForSeconds(1f);
 
         bool isDead = playerUnit.TakeDamage(enemyUnit.damage);
-
         playerHUD.SetHP(playerUnit.currentHP);
 
         yield return new WaitForSeconds(1f);
@@ -174,6 +178,11 @@ public class BattleSystem : MonoBehaviour
     void PlayerTurn() 
     {
         dialogueText.text = "Select your moves:";
+        actionMenu.SetActive(true);
+
+        attackButton.interactable = true;
+        skillButton.interactable = true;
+
         Debug.Log("Player is picking an action.");
     }
 
@@ -184,6 +193,9 @@ public class BattleSystem : MonoBehaviour
         if (state != BattleState.PLAYERTURN)
             return;
 
+        attackButton.interactable = false;
+        skillButton.interactable = false;
+
         StartCoroutine(PlayerAttack());
 
     }
@@ -192,6 +204,9 @@ public class BattleSystem : MonoBehaviour
     {
         if (state != BattleState.PLAYERTURN)
             return;
+
+        attackButton.interactable = false;
+        skillButton.interactable = false;
 
         StartCoroutine(PlayerSPAction());
 

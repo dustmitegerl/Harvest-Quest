@@ -128,6 +128,33 @@ public class BattleSystem : MonoBehaviour
         dialogueText.text = "Enemy's Turn!";
     }
 
+    // Implementing Run Button
+    IEnumerator PlayerRun() 
+    {
+        yield return new WaitForSeconds(1f);
+
+        bool escapeSuccessful = Random.Range(0, 2) == 0;
+
+        if (escapeSuccessful)
+        {
+            dialogueText.text = "You strategically withdrawn from battle!";
+            Debug.Log("Player ran from battle.");
+
+            yield return new WaitForSeconds(1f);
+            levelLoader.EndBattle();
+        }
+        else 
+        {
+            dialogueText.text = "No where to run.";
+            Debug.Log("Player failed to escape.");
+
+            yield return new WaitForSeconds(1f);
+
+            state = BattleState.ENEMYTURN;
+            StartCoroutine(EnemyTurn());
+        }
+
+    }
     // Creating functions for the enemy turn
 
     IEnumerator EnemyTurn() 
@@ -210,5 +237,14 @@ public class BattleSystem : MonoBehaviour
 
         StartCoroutine(PlayerSPAction());
 
+    }
+
+    // Creating a Function Run Button
+    public void OnRunButton() 
+    { 
+        if (state != BattleState.PLAYERTURN)
+            return;
+
+        StartCoroutine(PlayerRun());
     }
 }

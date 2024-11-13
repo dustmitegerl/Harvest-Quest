@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - Plant
+  - Level Loader
   layers:
   - Default
   - TransparentFX
@@ -14,7 +16,7 @@ TagManager:
   - UI
   - Interactable
   - SolidObject
-  - 
+  - Grid
   - 
   - 
   - 
@@ -50,4 +52,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 2971115205
+    locked: 0
+  - name: Grid
+    uniqueID: 1581897341
     locked: 0

@@ -684,7 +684,13 @@ PlayerSettings:
   XboxOneOverrideIdentityName: 
   XboxOneOverrideIdentityPublisher: 
   vrEditorSettings: {}
-  cloudServicesEnabled: {}
+  cloudServicesEnabled:
+    Build: 0
+    Game Performance: 0
+    Legacy Analytics: 0
+    Purchasing: 0
+    UDP: 0
+    Unity Ads: 0
   luminIcon:
     m_Name: 
     m_ModelFolderPath: 
@@ -704,11 +710,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: 203215b3-3091-4325-9d36-10dbc53e8916
+  cloudProjectId: 4b8f8ea1-60a8-4a46-8deb-abead52b7085
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: Harvest-Quest-main
-  organizationId: unity_9ee81a89879c7746688e
+  projectName: Harvest-Quest
+  organizationId: fibrodoll_ida
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}

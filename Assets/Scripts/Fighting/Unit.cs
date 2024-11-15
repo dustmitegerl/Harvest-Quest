@@ -19,6 +19,8 @@ public class Unit : MonoBehaviour
     public int maxSP;
     public int currentSP;
 
+    [SerializeField] int currentExperience, maxExperience, currentLevel;
+
     //Creating Take Damage
 
     public bool TakeDamage(int dmg) 

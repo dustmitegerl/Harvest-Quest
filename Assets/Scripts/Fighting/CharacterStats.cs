@@ -9,14 +9,12 @@ public class CharacterStats : ScriptableObject
     public string charName = "name";
     public float[] position = new float[2];
     public GameObject characterGameObject;
-    [SerializeField] int expYield;
     public int level = 1;
     public float maxHP;
     public float maxMP;
     public float hp;
     public float mp;
 
-    
-
+   
 
 }

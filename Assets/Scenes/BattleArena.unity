@@ -390,6 +390,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 96808873}
   m_CullTransparentMesh: 1
+--- !u!1 &115887135 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8615043974029656799, guid: 611058c807770da4193f568097dce5f3, type: 3}
+  m_PrefabInstance: {fileID: 333461629}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &143125180 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6189223903089929151, guid: a0789d2e05d164b43a313fef2299ac5b, type: 3}
@@ -917,6 +922,7 @@ GameObject:
   - component: {fileID: 300592518}
   - component: {fileID: 300592517}
   - component: {fileID: 300592516}
+  - component: {fileID: 300592519}
   m_Layer: 0
   m_Name: BattleCanvas
   m_TagString: Untagged
@@ -1014,6 +1020,18 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &300592519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 300592514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ac2c72a17282af4d8b0289a0c04cffc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &322120733
 GameObject:
   m_ObjectHideFlags: 0
@@ -1242,6 +1260,18 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6845567262804662955, guid: 611058c807770da4193f568097dce5f3, type: 3}
+      propertyPath: m_text
+      value: Lv. 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6845567262804662955, guid: 611058c807770da4193f568097dce5f3, type: 3}
+      propertyPath: m_margin.w
+      value: 0.11211111
+      objectReference: {fileID: 0}
+    - target: {fileID: 6845567262804662955, guid: 611058c807770da4193f568097dce5f3, type: 3}
+      propertyPath: m_margin.z
+      value: -0.1673257
+      objectReference: {fileID: 0}
     - target: {fileID: 7105383614843155673, guid: 611058c807770da4193f568097dce5f3, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.2742742
@@ -1253,13 +1283,29 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8615043974029656799, guid: 611058c807770da4193f568097dce5f3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 333461633}
   m_SourcePrefab: {fileID: 100100000, guid: 611058c807770da4193f568097dce5f3, type: 3}
 --- !u!224 &333461630 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2666487000591484672, guid: 611058c807770da4193f568097dce5f3, type: 3}
   m_PrefabInstance: {fileID: 333461629}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &333461633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 115887135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f76f57e472c813447b3fd5d0477d8a37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FillSpeed: 0.5
 --- !u!1 &379154774
 GameObject:
   m_ObjectHideFlags: 0
@@ -2810,7 +2856,6 @@ MonoBehaviour:
   nameText: {fileID: 1747597608}
   hpSlider: {fileID: 379154778}
   spSlider: {fileID: 248696786}
-  exSlider: {fileID: 0}
   HPnumberText: {fileID: 1212249712}
   SPnumberText: {fileID: 654200604}
   ExnumberText: {fileID: 0}
@@ -3875,12 +3920,20 @@ PrefabInstance:
       value: 35
       objectReference: {fileID: 0}
     - target: {fileID: -5380860584421605747, guid: 5453ed72ce3080e4599c25db1eca3908, type: 3}
+      propertyPath: maxSP
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: -5380860584421605747, guid: 5453ed72ce3080e4599c25db1eca3908, type: 3}
       propertyPath: damage
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: -5380860584421605747, guid: 5453ed72ce3080e4599c25db1eca3908, type: 3}
       propertyPath: currentHP
       value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: -5380860584421605747, guid: 5453ed72ce3080e4599c25db1eca3908, type: 3}
+      propertyPath: currentSP
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: -5380860584421605747, guid: 5453ed72ce3080e4599c25db1eca3908, type: 3}
       propertyPath: currentLevel
@@ -4455,7 +4508,6 @@ MonoBehaviour:
   nameText: {fileID: 143366473}
   hpSlider: {fileID: 797812936}
   spSlider: {fileID: 532273872}
-  exSlider: {fileID: 0}
   HPnumberText: {fileID: 27697152}
   SPnumberText: {fileID: 1964549735}
   ExnumberText: {fileID: 0}

@@ -12,7 +12,6 @@ public class BattleHUD : MonoBehaviour
 
     public Slider hpSlider;
     public Slider spSlider;
-    public Slider exSlider;
 
     public TextMeshProUGUI HPnumberText;
     public TextMeshProUGUI SPnumberText;

@@ -107,6 +107,7 @@ public class BattleSystem : MonoBehaviour
 
         playerHUD.SetSP(playerUnit.currentSP);
 
+
         yield return new WaitForSeconds(2f);
 
         // Creating a Battle State for winning and losing

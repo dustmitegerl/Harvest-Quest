@@ -11,9 +11,16 @@ public class ExperienceManager : MonoBehaviour
     public delegate void ExperienceChangeHandler(int amount);
     public event ExperienceChangeHandler OnExperienceChange;
 
+    public AnimationCurve experienceCurve;
+
+    public TextMeshProUGUI ExnumberText;
+    public TextMeshProUGUI LevelText;
+    public Image experienceFill;
+
+
     private void Awake()
     {
-        if(Instance != null && Instance != this)
+        if (Instance != null && Instance != this)
         {
             Destroy(this);
         }

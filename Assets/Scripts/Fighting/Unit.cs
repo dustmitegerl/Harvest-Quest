@@ -20,7 +20,6 @@ public class Unit : MonoBehaviour
 
     [SerializeField] int currentExperience, maxExperience, currentLevel;
 
-
     //Creating Take Damage
 
     public bool TakeDamage(int dmg) 
@@ -52,12 +51,14 @@ public class Unit : MonoBehaviour
     }
 
     private void OnEnable()
-    {//Subscribe Event
+    {
+        //Subscribe Event
         ExperienceManager.Instance.OnExperienceChange += HandleExperienceChange;
     }
 
     private void OnDisable()
-    {//Unscribe from Event
+    {
+        //Unsubscribe from Event
         ExperienceManager.Instance.OnExperienceChange -= HandleExperienceChange;
     }
 
@@ -70,13 +71,9 @@ public class Unit : MonoBehaviour
         }
     }
 
-    //Increase Stats here or somewhere else
     private void LevelUp()
     {
-        maxHP += 45;
-        currentHP = maxHP;
-
-        currentLevel++;
+        //what ever you want to level up
 
         currentExperience = 0;
         maxExperience += 50;

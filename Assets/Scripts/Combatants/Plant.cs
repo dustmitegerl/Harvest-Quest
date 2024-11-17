@@ -8,7 +8,7 @@ public class Plant : Combatant
     [SerializeField]
     Ability[] abilities;
 
-    [SerializeField] int expAmount;
+    int expAmount = 10;
 
     void Die()
     {

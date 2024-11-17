@@ -15,7 +15,6 @@ public class BattleHUD : MonoBehaviour
 
     public TextMeshProUGUI HPnumberText;
     public TextMeshProUGUI SPnumberText;
-    public TextMeshProUGUI ExnumberText;
 
     // Creating a function that will use the involed element
 

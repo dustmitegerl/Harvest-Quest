@@ -50,11 +50,13 @@ public class GameTime : MonoBehaviour
         UnPause();
     }
 
-    void Update()
+
+    // used for time-fixed rather than frame-fixed methods
+    private void FixedUpdate()
     {
-        // this section is for re-selecting the clock and calendar when returning to the overworld
         if (!isPaused)
         {
+            UpdateGameTime();
             if (clockRead == null) // if no clock
             {
                 clockRead = GameObject.Find("Clock").GetComponent<TextMeshProUGUI>(); // find clock
@@ -63,15 +65,6 @@ public class GameTime : MonoBehaviour
             {
                 dayRead = GameObject.Find("Calendar").GetComponent<TextMeshProUGUI>(); // find calendar
             }
-        }
-    }
-
-    // used for time-fixed rather than frame-fixed methods
-    private void FixedUpdate()
-    {
-        if (!isPaused)
-        {
-            UpdateGameTime();
             UpdateTimePrefabs();
         }
         

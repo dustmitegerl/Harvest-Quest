@@ -10,7 +10,6 @@ public class Unit : MonoBehaviour
 
     public string unitName;
     
-
     public int damage;
 
     public int maxHP;
@@ -18,6 +17,8 @@ public class Unit : MonoBehaviour
 
     public int maxSP;
     public int currentSP;
+
+    [SerializeField] int currentExperience, maxExperience, currentLevel;
 
     //Creating Take Damage
 
@@ -35,5 +36,46 @@ public class Unit : MonoBehaviour
             //return true;
         //else
             //return false;
+    }
+
+    // Having enough SP for attack
+    public bool HasEnoughSP(int cost) 
+    {
+        return currentSP >= cost;
+    }
+
+    // Regenerating SP 
+    public void RegenerateSP(int amount)
+    {
+        currentSP = Mathf.Min(currentSP + amount, maxSP); 
+    }
+
+    private void OnEnable()
+    {
+        //Subscribe Event
+        ExperienceManager.Instance.OnExperienceChange += HandleExperienceChange;
+    }
+
+    private void OnDisable()
+    {
+        //Unsubscribe from Event
+        ExperienceManager.Instance.OnExperienceChange -= HandleExperienceChange;
+    }
+
+    private void HandleExperienceChange(int newExperience)
+    {
+        currentExperience += newExperience;
+        if(currentExperience >= maxExperience)
+        {
+            LevelUp();
+        }
+    }
+
+    private void LevelUp()
+    {
+        //what ever you want to level up
+
+        currentExperience = 0;
+        maxExperience += 50;
     }
 }

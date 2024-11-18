@@ -16,16 +16,11 @@ public class BattleHUD : MonoBehaviour
     public TextMeshProUGUI HPnumberText;
     public TextMeshProUGUI SPnumberText;
 
-
     // Creating a function that will use the involed element
 
     public void SetHUD(Unit unit) 
     {
-        if (nameText == null) Debug.LogError("nameText is not assigned.");
-        if (hpSlider == null) Debug.LogError("hpSlider is not assigned.");
-        if (spSlider == null) Debug.LogError("spSlider is not assigned.");
-        if (unit == null) Debug.LogError("unit is null in SetHUD.");
-
+    
         nameText.text = unit.unitName;
         hpSlider.maxValue = unit.maxHP;
         hpSlider.value = unit.currentHP;

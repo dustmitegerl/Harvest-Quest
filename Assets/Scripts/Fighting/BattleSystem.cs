@@ -31,9 +31,18 @@ public class BattleSystem : MonoBehaviour
     public BattleState state;
 
     public GameObject actionMenu;
+    public GameObject skillsMenu;
+    public GameObject dialogueBox; 
+    
 
     public Button attackButton;
     public Button skillButton;
+ 
+    public int fireCost;
+    public int fireDamage;
+
+    public int iceCost;
+    public int iceDamage;
 
     // Starting the Battle State
     void Start()
@@ -69,6 +78,29 @@ public class BattleSystem : MonoBehaviour
         Debug.Log("It's the player's turn.");
     }
 
+    public void ShowSkillsMenu() 
+    {
+        actionMenu.SetActive(false);
+        skillsMenu.SetActive(true);
+    }
+
+    public void HideSkillsMenu()
+    {
+        actionMenu.SetActive(true);
+        skillsMenu.SetActive(false);
+    }
+
+    public void HideDialogueBox() 
+    { 
+        dialogueBox.SetActive(false);
+        dialogueText.text = "";
+    }
+
+    public void ShowDialogueBox(string message) 
+    { 
+        dialogueBox.SetActive(true);
+        dialogueText.text = message;
+    }
     // Adding function to Player Attack Button
 
     IEnumerator PlayerAttack() 
@@ -235,9 +267,83 @@ public class BattleSystem : MonoBehaviour
         attackButton.interactable = false;
         skillButton.interactable = false;
 
-        StartCoroutine(PlayerSPAction());
+        skillsMenu.SetActive(!skillsMenu.activeSelf);
+        //StartCoroutine(PlayerSPAction());
 
+        actionMenu.SetActive(false);
+        //dialogueBox.SetActive(false);
+        skillsMenu.SetActive(true);
+        HideDialogueBox();
     }
+
+    // Creating Function to Fire Attack Button
+    public void OnFireSkill() 
+    {
+        if (playerUnit.currentSP >= fireCost)
+        {
+            playerUnit.currentSP = fireCost;
+            playerHUD.SetSP(playerUnit.currentSP);
+
+            bool isDead = enemyUnit.TakeDamage(fireDamage);
+            enemyHUD.SetHP(enemyUnit.currentHP);
+
+            dialogueText.text = playerUnit.unitName + " has used Fire.";
+
+            skillsMenu.SetActive(false);
+            actionMenu.SetActive(true);
+            //dialogueBox.SetActive(true);
+            
+
+            if (isDead)
+            {
+                state = BattleState.WON;
+                EndBattle();
+            }
+            else
+            {
+                state = BattleState.ENEMYTURN;
+                StartCoroutine(EnemyTurn());
+            }
+        }
+        else 
+        {
+            dialogueText.text = "No SP for that attack";
+        }
+    }
+    // Creating Function to Ice Attack Button
+    public void OnIceSkill()
+    {
+        if (playerUnit.currentSP >= fireCost)
+        {
+            playerUnit.currentSP = iceCost;
+            playerHUD.SetSP(playerUnit.currentSP);
+
+            bool isDead = enemyUnit.TakeDamage(iceDamage);
+            enemyHUD.SetHP(enemyUnit.currentHP);
+
+            dialogueText.text = playerUnit.unitName + " has used Ice.";
+
+            skillsMenu.SetActive(false);
+            actionMenu.SetActive(true);
+            //dialogueBox.SetActive(true);
+
+            if (isDead)
+            {
+                state = BattleState.WON;
+                EndBattle();
+            }
+            else
+            {
+                state = BattleState.ENEMYTURN;
+                StartCoroutine(EnemyTurn());
+            }
+        }
+        else
+        {
+            dialogueText.text = "No SP for that attack";
+        }
+    }
+    // Creating Function to Healing Button
 
     // Creating a Function Run Button
     public void OnRunButton() 

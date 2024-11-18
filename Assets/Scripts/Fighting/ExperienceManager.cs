@@ -5,63 +5,33 @@ using UnityEngine.UI;
 using TMPro;
 
 public class ExperienceManager : MonoBehaviour
-{
-    [Header("Experience")]
-    [SerializeField] AnimationCurve experienceCurve;
+{//https://www.youtube.com/watch?v=zuLIZFNLOgA&t=262s
+    public static ExperienceManager Instance;
 
-    int currentLevel, totalExperience;
-    int previousLevelsExperience, nextLevelsExperience;
+    public delegate void ExperienceChangeHandler(int amount);
+    public event ExperienceChangeHandler OnExperienceChange;
 
-    [Header("Interface")]
-    [SerializeField] TextMeshProUGUI levelText;
-    [SerializeField] TextMeshProUGUI experienceText;
-    [SerializeField] Image experienceFill;
+    public AnimationCurve experienceCurve;
 
-    void Start()
+    public TextMeshProUGUI ExnumberText;
+    public TextMeshProUGUI LevelText;
+    public Image experienceFill;
+
+
+    private void Awake()
     {
-        UpdateLevel();
-    }
-
-    void Update()
-    {
-        ///if (Input.GetMouseButtonDown(0))
+        if (Instance != null && Instance != this)
         {
-           /// AddExperience(5);
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
         }
     }
 
     public void AddExperience(int amount)
     {
-        totalExperience += amount;
-        CheckForLevelUp();
-        UpdateInterface();
-    }
-
-    void CheckForLevelUp()
-    {
-        while (totalExperience >= nextLevelsExperience)
-        {
-            currentLevel++;
-            UpdateLevel();
-
-            // Start level up sequence... Possibly vfx?
-        }
-    }
-
-    void UpdateLevel()
-    {
-        previousLevelsExperience = (int)experienceCurve.Evaluate(currentLevel);
-        nextLevelsExperience = (int)experienceCurve.Evaluate(currentLevel + 1);
-        UpdateInterface();
-    }
-
-    void UpdateInterface()
-    {
-        int start = totalExperience - previousLevelsExperience;
-        int end = nextLevelsExperience - previousLevelsExperience;
-
-        levelText.text = currentLevel.ToString();
-        experienceText.text = start + " exp / " + end + " exp";
-        experienceFill.fillAmount = (float)start / (float)end;
+        OnExperienceChange?.Invoke(amount);
     }
 }

@@ -15,6 +15,5 @@ public class CharacterStats : ScriptableObject
     public float hp;
     public float mp;
 
-   
-
+    
 }

@@ -12,11 +12,9 @@ public class BattleHUD : MonoBehaviour
 
     public Slider hpSlider;
     public Slider spSlider;
-    public Slider exSlider;
 
     public TextMeshProUGUI HPnumberText;
     public TextMeshProUGUI SPnumberText;
-    public TextMeshProUGUI ExnumberText;
 
     // Creating a function that will use the involed element
 

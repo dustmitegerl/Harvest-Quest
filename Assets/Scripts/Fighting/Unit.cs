@@ -10,7 +10,6 @@ public class Unit : MonoBehaviour
 
     public string unitName;
     
-
     public int damage;
 
     public int maxHP;
@@ -49,5 +48,34 @@ public class Unit : MonoBehaviour
     public void RegenerateSP(int amount)
     {
         currentSP = Mathf.Min(currentSP + amount, maxSP); 
+    }
+
+    private void OnEnable()
+    {
+        //Subscribe Event
+        ExperienceManager.Instance.OnExperienceChange += HandleExperienceChange;
+    }
+
+    private void OnDisable()
+    {
+        //Unsubscribe from Event
+        ExperienceManager.Instance.OnExperienceChange -= HandleExperienceChange;
+    }
+
+    private void HandleExperienceChange(int newExperience)
+    {
+        currentExperience += newExperience;
+        if(currentExperience >= maxExperience)
+        {
+            LevelUp();
+        }
+    }
+
+    private void LevelUp()
+    {
+        //what ever you want to level up
+
+        currentExperience = 0;
+        maxExperience += 50;
     }
 }

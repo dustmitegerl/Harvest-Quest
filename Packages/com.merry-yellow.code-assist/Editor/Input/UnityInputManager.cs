@@ -7,7 +7,7 @@ using System.Security.Cryptography;
 
 
 #pragma warning disable IDE0005
-using Serilog = Meryel.UnityCodeAssist.Serilog;
+using Serilog = Meryel.Serilog;
 using YamlDotNet = Meryel.UnityCodeAssist.YamlDotNet;
 #pragma warning restore IDE0005
 
@@ -154,10 +154,10 @@ namespace Meryel.UnityCodeAssist.Editor.Input
                 joystickNames = new string[0];
             }
 
-            NetMQInitializer.Publisher?.SendInputManager(axisNames, axisInfos, buttonKeys, buttonAxis, joystickNames);
+            MQTTnetInitializer.Publisher?.SendInputManager(axisNames, axisInfos, buttonKeys, buttonAxis, joystickNames);
 
             /*
-            NetMQInitializer.Publisher?.SendInputManager(
+            MQTTnetInitializer.Publisher?.SendInputManager(
                 inputManager.Axes.Select(a => a.Name).Distinct().ToArray(),
                 inputManager.Axes.Select(a => a.positiveButton).ToArray(),
                 inputManager.Axes.Select(a => a.negativeButton).ToArray(),

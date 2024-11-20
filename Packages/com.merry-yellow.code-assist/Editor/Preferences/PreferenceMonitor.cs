@@ -10,7 +10,7 @@ using UnityEditorInternal;
 
 
 #pragma warning disable IDE0005
-using Serilog = Meryel.UnityCodeAssist.Serilog;
+using Serilog = Meryel.Serilog;
 #pragma warning restore IDE0005
 
 
@@ -97,9 +97,9 @@ namespace Meryel.UnityCodeAssist.Editor.Preferences
             string[] values = GetKeyValues(reloadKeys, keys, out var stringKeys, out var integerKeys, out var floatKeys, out var booleanKeys);
 
             if (isPlayerPrefs)
-                NetMQInitializer.Publisher?.SendPlayerPrefs(keys, values, stringKeys, integerKeys, floatKeys);
+                MQTTnetInitializer.Publisher?.SendPlayerPrefs(keys, values, stringKeys, integerKeys, floatKeys);
             else
-                NetMQInitializer.Publisher?.SendEditorPrefs(keys, values, stringKeys, integerKeys, floatKeys, booleanKeys);
+                MQTTnetInitializer.Publisher?.SendEditorPrefs(keys, values, stringKeys, integerKeys, floatKeys, booleanKeys);
         }
 
         private void OnEnable()

@@ -6,7 +6,8 @@ using UnityEditor;
 
 
 #pragma warning disable IDE0005
-using Serilog = Meryel.UnityCodeAssist.Serilog;
+//using Serilog = Meryel.UnityCodeAssist.Serilog;
+using Serilog = Meryel.Serilog;
 #pragma warning restore IDE0005
 
 
@@ -22,11 +23,13 @@ namespace Meryel.UnityCodeAssist.Editor.Setup
     {
         static SetupManager()
         {
-            var cleanupPath = CommonTools.GetToolPath("CleanupObsoleteFiles.bat");
-            Assister.Execute(cleanupPath);
+            //var cleanupPath = CommonTools.GetToolPath("CleanupObsoleteFiles.bat");
+            //Assister.Execute(cleanupPath);
+			Cleanup.DoCleanup();
 
-            var installerPath = CommonTools.GetToolPath("InstallFullVersionOfVsix.bat");
-            Assister.Execute(installerPath);
+            //var installerPath = CommonTools.GetToolPath("InstallFullVersionOfVsix.bat");
+            //Assister.Execute(installerPath);
+            Assister.Upgrade();
 
             // delete itself (file), so these cleanup and install only called once
             var scriptMeta = CommonTools.GetScriptPath("SetupManager.cs.meta");

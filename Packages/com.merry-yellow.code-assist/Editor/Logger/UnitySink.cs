@@ -1,13 +1,16 @@
 using System;
 using System.Linq;
-using Meryel.UnityCodeAssist.Serilog;
-using Meryel.UnityCodeAssist.Serilog.Core;
-using Meryel.UnityCodeAssist.Serilog.Events;
-using Meryel.UnityCodeAssist.Serilog.Configuration;
+//using Meryel.UnityCodeAssist.Serilog;
+//using Meryel.UnityCodeAssist.Serilog.Core;
+//using Meryel.UnityCodeAssist.Serilog.Events;
+//using Meryel.UnityCodeAssist.Serilog.Configuration;
+using Meryel.Serilog;
+using Meryel.Serilog.Core;
+using Meryel.Serilog.Events;
 
 
 #pragma warning disable IDE0005
-using Serilog = Meryel.UnityCodeAssist.Serilog;
+using Serilog = Meryel.Serilog;
 #pragma warning restore IDE0005
 
 
@@ -25,14 +28,17 @@ namespace Meryel.UnityCodeAssist.Editor.Logger
             _formatProvider = formatProvider;
         }
 
-        public void Emit(LogEvent logEvent)
+        public void Emit(LogEvent? logEvent)
         {
+            if (logEvent == null)
+                return;
+
             var message = logEvent.RenderMessage(_formatProvider);
 
             switch (logEvent.Level)
             {
-                case LogEventLevel.Verbose:
-                case LogEventLevel.Debug:
+                //case LogEventLevel.Verbose:
+                //case LogEventLevel.Debug:
                 case LogEventLevel.Information:
                     UnityEngine.Debug.Log(message);
                     break;
@@ -46,6 +52,10 @@ namespace Meryel.UnityCodeAssist.Editor.Logger
                 default:
                     break;
             }
+        }
+
+        public void Dispose()
+        {
         }
     }
 

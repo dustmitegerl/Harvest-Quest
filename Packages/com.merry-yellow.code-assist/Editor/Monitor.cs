@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 
 
 #pragma warning disable IDE0005
-using Serilog = Meryel.UnityCodeAssist.Serilog;
+using Serilog = Meryel.Serilog;
 #pragma warning restore IDE0005
 
 
@@ -62,11 +62,11 @@ namespace Meryel.UnityCodeAssist.Editor
             if (playModeStateChange != PlayModeStateChange.EnteredEditMode)
                 return;
 
-            var delayedRequestUpdate = NetMQInitializer.Publisher?.DelayedRequestUpdate;
+            var delayedRequestUpdate = MQTTnetInitializer.Publisher?.DelayedRequestUpdate;
             if (delayedRequestUpdate == null)
                 return;
 
-            var processor = NetMQInitializer.Publisher as Synchronizer.Model.IProcessor;
+            var processor = MQTTnetInitializer.Publisher as Synchronizer.Model.IProcessor;
             processor?.Process(delayedRequestUpdate);
         }
 
@@ -94,6 +94,7 @@ namespace Meryel.UnityCodeAssist.Editor
             if (Selection.activeObject)
                 currentEditorFocus = Selection.activeObject.GetType().ToString();
 
+            //**-- use this instead? https://learn.microsoft.com/en-us/dotnet/api/system.io.filesystemwatcher?view=net-8.0
             var currentTagManagerLastWrite = previousTagManagerLastWrite;
             try
             {
@@ -135,10 +136,10 @@ namespace Meryel.UnityCodeAssist.Editor
             Serilog.Log.Debug("Monitor {Event}", nameof(OnHierarchyChanged));
 
             // For requesting active doc's GO
-            NetMQInitializer.Publisher?.SendHandshake();
+            MQTTnetInitializer.Publisher?.SendHandshake();
 
             if (ScriptFinder.GetActiveGameObject(out var activeGO))
-                NetMQInitializer.Publisher?.SendGameObject(activeGO);
+                MQTTnetInitializer.Publisher?.SendGameObject(activeGO);
             //Assister.SendTagsAndLayers(); Don't send tags & layers here
         }
 
@@ -181,7 +182,7 @@ namespace Meryel.UnityCodeAssist.Editor
                 foreach (var obj in selectedObjects)
                 {
                     if (obj is GameObject go)
-                        NetMQInitializer.Publisher.SendGameObject(go);
+                        MQTTnetInitializer.Publisher.SendGameObject(go);
                 }
 
                 selectedObjects.Clear();
@@ -234,7 +235,7 @@ namespace Meryel.UnityCodeAssist.Editor
             foreach (var entry in sortedDict)
             {
                 var go = entry.Key;
-                NetMQInitializer.Publisher?.SendGameObject(go);
+                MQTTnetInitializer.Publisher?.SendGameObject(go);
             }
 
             dirtyDict.Clear();
@@ -252,7 +253,7 @@ namespace Meryel.UnityCodeAssist.Editor
 
             var typeStr = type.ToString();
 
-            NetMQInitializer.Publisher?.SendErrorReport(condition, stackTrace, typeStr);
+            MQTTnetInitializer.Publisher?.SendErrorReport(condition, stackTrace, typeStr);
         }
 
 
@@ -272,7 +273,7 @@ namespace Meryel.UnityCodeAssist.Editor
             }
             else if(category == "AnimationHuman")
             {
-                NetMQInitializer.Publisher?.SendComponentHumanTrait(HumanTrait.BoneName, HumanTrait.MuscleName);
+                MQTTnetInitializer.Publisher?.SendComponentHumanTrait(HumanTrait.BoneName, HumanTrait.MuscleName);
             }
             else
             {

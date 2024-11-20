@@ -7,7 +7,7 @@ using UnityEngine;
 
 
 #pragma warning disable IDE0005
-using Serilog = Meryel.UnityCodeAssist.Serilog;
+using Serilog = Meryel.Serilog;
 #pragma warning restore IDE0005
 
 
@@ -31,6 +31,12 @@ namespace Meryel.UnityCodeAssist.Editor.Input
             EditorApplication.update += Update;
             inputManagerFilePath = CommonTools.GetInputManagerFilePath();
 
+            if (!System.IO.File.Exists(inputManagerFilePath))
+            {
+                Serilog.Log.Error("InputManager file not found at {location}", inputManagerFilePath);
+                return;
+            }
+
             try
             {
                 previousTagManagerLastWrite = System.IO.File.GetLastWriteTime(inputManagerFilePath);
@@ -53,7 +59,8 @@ namespace Meryel.UnityCodeAssist.Editor.Input
             var currentInputManagerLastWrite = previousTagManagerLastWrite;
             try
             {
-                currentInputManagerLastWrite = System.IO.File.GetLastWriteTime(inputManagerFilePath);
+                if (System.IO.File.Exists(inputManagerFilePath))
+                    currentInputManagerLastWrite = System.IO.File.GetLastWriteTime(inputManagerFilePath);
             }
             catch (Exception ex)
             {
@@ -78,6 +85,12 @@ namespace Meryel.UnityCodeAssist.Editor.Input
 #pragma warning disable IDE0035
 
             Serilog.Log.Debug("InputMonitor {Event}", nameof(Bump));
+
+            if (!System.IO.File.Exists(inputManagerFilePath))
+            {
+                Serilog.Log.Error("InputManager file not found at {location}", inputManagerFilePath);
+                return;
+            }
 
             var inputManager = new UnityInputManager();
             inputManager.ReadFromPath(inputManagerFilePath);

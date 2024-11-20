@@ -1,12 +1,13 @@
-using Meryel.UnityCodeAssist.Serilog;
-using Meryel.UnityCodeAssist.Serilog.Core;
+//using Meryel.UnityCodeAssist.Serilog;
+//using Meryel.UnityCodeAssist.Serilog.Core;
 using UnityEngine;
 using UnityEditor;
 using System.Linq;
 
+#if ELOGGER
 
 #pragma warning disable IDE0005
-using Serilog = Meryel.UnityCodeAssist.Serilog;
+using Serilog = Meryel.Serilog;
 #pragma warning restore IDE0005
 
 
@@ -84,10 +85,11 @@ namespace Meryel.UnityCodeAssist.Editor.Logger
             var os = System.Runtime.InteropServices.RuntimeInformation.OSDescription;
             var assisterVersion = Assister.Version;
             var syncModel = Synchronizer.Model.Utilities.Version;
-            var hash = CommonTools.GetHashOfPath(solutionDir);
+            var hash = CommonTools.GetHashForLogFile(solutionDir);
+            var port = Synchronizer.Model.Utilities.GetPortForMQTTnet(solutionDir);
             Serilog.Log.Debug(
-                "Beginning logging {OS}, Unity {U}, Unity Code Assist {A}, Communication Protocol {SM}, Project: '{Dir}', Project Hash: {Hash}",
-                os, unityVersion, assisterVersion, syncModel, solutionDir, hash);
+                "Beginning logging {OS}, Unity {U}, Unity Code Assist {A}, Communication Protocol {SM}, Project: '{Dir}', Project Hash: {Hash}, Port: {Port}",
+                os, unityVersion, assisterVersion, syncModel, solutionDir, hash, port);
         }
 
 
@@ -98,7 +100,7 @@ namespace Meryel.UnityCodeAssist.Editor.Logger
 
         static string GetFilePath(string solutionDir)
         {
-            var solutionHash = CommonTools.GetHashOfPath(solutionDir);
+            var solutionHash = CommonTools.GetHashForLogFile(solutionDir);
             var tempDir = System.IO.Path.GetTempPath();
             var fileName = $"UnityCodeAssist_U_Log_{solutionHash}_.TXT"; // hour code will be appended to the end of file, so add a trailing '_'
             var filePath = System.IO.Path.Combine(tempDir, fileName);
@@ -107,7 +109,7 @@ namespace Meryel.UnityCodeAssist.Editor.Logger
 
         static string GetVSFilePath(string solutionDir)
         {
-            var solutionHash = CommonTools.GetHashOfPath(solutionDir);
+            var solutionHash = CommonTools.GetHashForLogFile(solutionDir);
             var tempDir = System.IO.Path.GetTempPath();
 #if MERYEL_UCA_LITE_VERSION
             var fileName = $"UnityCodeAssistLite_VS_Log_{solutionHash}_.TXT"; // hour code will be appended to the end of file, so add a trailing '_'
@@ -197,3 +199,5 @@ namespace Meryel.UnityCodeAssist.Editor.Logger
         }
     }
 }
+
+#endif

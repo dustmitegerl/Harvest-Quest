@@ -4,9 +4,11 @@ using System.Linq;
 using UnityEngine;
 using UnityEditor;
 
+using CodeEditor = Unity.CodeEditor.CodeEditor;
+
 
 #pragma warning disable IDE0005
-using Serilog = Meryel.UnityCodeAssist.Serilog;
+using Serilog = Meryel.Serilog;
 #pragma warning restore IDE0005
 
 
@@ -17,7 +19,7 @@ namespace Meryel.UnityCodeAssist.Editor
 {
     public class Assister
     {
-        public const string Version = "1.2.6";
+        public const string Version = "1.3.9"; //do NOT modify this line, except the number value, its being used by VSCode/Typescript for version detection (in exporter.ts.getVersionOfUnitySide())
 
 #if MERYEL_UCA_LITE_VERSION
         public const string Title = "Code Assist Lite";
@@ -35,12 +37,12 @@ namespace Meryel.UnityCodeAssist.Editor
         [MenuItem("Tools/" + Title + "/Synchronize", false, 2)]
         static void Sync()
         {
-            EditorCoroutines.EditorCoroutineUtility.StartCoroutine(SyncAux(), NetMQInitializer.Publisher);
+            EditorCoroutines.EditorCoroutineUtility.StartCoroutine(SyncAux(), MQTTnetInitializer.Publisher);
 
-            //NetMQInitializer.Publisher.SendConnect();
+            //MQTTnetInitializer.Publisher.SendConnect();
             //Serilog.Log.Information("Code Assist is looking for more IDEs to connect to...");
 
-            NetMQInitializer.Publisher?.SendAnalyticsEvent("Gui", "Synchronize_MenuItem");
+            MQTTnetInitializer.Publisher?.SendAnalyticsEvent("Gui", "Synchronize_MenuItem");
         }
 
 
@@ -62,37 +64,80 @@ namespace Meryel.UnityCodeAssist.Editor
         {
             Application.OpenURL("http://unitycodeassist.netlify.app/compare");
 
-            NetMQInitializer.Publisher?.SendAnalyticsEvent("Gui", "CompareVersions_MenuItem");
+            MQTTnetInitializer.Publisher?.SendAnalyticsEvent("Gui", "CompareVersions_MenuItem");
         }
 
         [MenuItem("Tools/" + Title + "/Get full version", false, 32)]
         static void GetFullVersion()
         {
-            Application.OpenURL("http://u3d.as/2N2H");
+            Application.OpenURL("https://unitycodeassist.netlify.app/purchase?utm_source=unity_getfull");
 
-            NetMQInitializer.Publisher?.SendAnalyticsEvent("Gui", "FullVersion_MenuItem");
+            MQTTnetInitializer.Publisher?.SendAnalyticsEvent("Gui", "FullVersion_MenuItem");
         }
 #endif // MERYEL_UCA_LITE_VERSION
 
         [MenuItem("Tools/" + Title + "/Setup/Upgrade to full version", false, 65)]
-        static void Upgrade()
+        public static void Upgrade()
         {
-            NetMQInitializer.Publisher?.SendAnalyticsEvent("Gui", "Upgrade_MenuItem");
+            MQTTnetInitializer.Publisher?.SendAnalyticsEvent("Gui", "Upgrade_MenuItem");
 
 #if MERYEL_UCA_LITE_VERSION
-            Serilog.Log.Information("Purchase <a href=\"http://u3d.as/2N2H\">'Code Assist'</a> from the asset store and download it from the package manager first");
+            Serilog.Log.Information("Purchase <a href=\"https://unitycodeassist.netlify.app/purchase?utm_source=unity_upgrade\">Unity Code Assist</a> from the <a href=\"http://u3d.as/2N2H\">Asset Store</a> or <a href=\"https://meryel.itch.io/unity-code-assist\">itch.io</a> first. Then download it from the package manager or itch.io");
             return;
 #else
-            var vsixPath = CommonTools.GetInstallerPath("UnityCodeAssist.Full.VisualStudio.Installer.vsix");
-            if (!System.IO.File.Exists(vsixPath))
+            if (GetCodeEditor(true, out var isVisualStudio, out var isVisualStudioCode, out var error))
             {
-                Serilog.Log.Information($"Installer for Visual Studio couldn't be found at {vsixPath}. Please try re-importing the asset from the package manager");
-                return;
-            }
+                if (isVisualStudio)
+                {
+                    var vsixPath = CommonTools.GetInstallerPath("CodeAssist.Full.VisualStudio.Installer.vsix");
+                    if (System.IO.File.Exists(vsixPath))
+                    {
+                        CallVisualStudioInstaller(vsixPath);
+                        return;
+                    }
 
-            var installerPath = CommonTools.GetToolPath("InstallFullVersionOfVsix.bat");
-            Execute(installerPath);
+                    var zipPath = CommonTools.GetInstallerPath("CodeAssist.Full.VisualStudio.Installer.zip");
+                    if (System.IO.File.Exists(zipPath))
+                    {
+                        var tempVsixPath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "CodeAssist.Full.VisualStudio.Installer.vsix");
+                        System.IO.File.Copy(zipPath, tempVsixPath, true);
+
+                        CallVisualStudioInstaller(tempVsixPath);
+                        return;
+                    }
+                    
+                    Serilog.Log.Information("Installer for Visual Studio couldn't be found at {ZipPath}. Please try re-importing the asset from the package manager", zipPath);
+                    return;
+                }
+                else if (isVisualStudioCode)
+                {
+                    var vsixPath = CommonTools.GetInstallerPath("CodeAssist.Full.VSCode.Installer.vsix");
+                    if (System.IO.File.Exists(vsixPath))
+                    {
+                        CallVSCodeInstaller(vsixPath);
+                        return;
+                    }
+
+                    var zipPath = CommonTools.GetInstallerPath("CodeAssist.Full.VSCode.Installer.zip");
+                    if (System.IO.File.Exists(zipPath))
+                    {
+                        var tempVsixPath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "CodeAssist.Full.VSCode.Installer.vsix");
+                        System.IO.File.Copy(zipPath, tempVsixPath, true);
+
+                        CallVSCodeInstaller(tempVsixPath);
+                        return;
+                    }
+
+                    Serilog.Log.Information("Installer for VS Code couldn't be found at {ZipPath}. Please try re-importing the asset from the package manager", zipPath);
+                    return;
+                }
+            }
+            else
+            {
+                Serilog.Log.Information(error!);
+            }
 #endif
+            
         }
 
         /*
@@ -106,35 +151,124 @@ namespace Meryel.UnityCodeAssist.Editor
         [MenuItem("Tools/" + Title + "/Setup/Re-import package", false, 62)]
         static void RepairFiles()
         {
-            if (NetMQInitializer.Publisher?.clients.Any() != true)
-                Serilog.Log.Information("No connected IDE found. Please start up Visual Studio first");
+            if (MQTTnetInitializer.Publisher?.Clients.Any() != true)
+                Serilog.Log.Information("No connected IDE found. Please start up Visual Studio or VS Code first");
 
-            var cleanupPath = CommonTools.GetToolPath("CleanupObsoleteFiles.bat");
-            //var cleanupPath = CommonTools.GetToolPath("HelloWorld.bat");
-            Execute(cleanupPath);
-            NetMQInitializer.Publisher?.SendRequestUpdate("Unity", string.Empty, true);
+            //var cleanupPath = CommonTools.GetToolPath("CleanupObsoleteFiles.bat");
+            //Execute(cleanupPath);
+            Cleanup.DoCleanup();
 
-            NetMQInitializer.Publisher?.SendAnalyticsEvent("Gui", "Reimport_MenuItem");
+            MQTTnetInitializer.Publisher?.SendRequestUpdate("Unity", string.Empty, true);
+
+            MQTTnetInitializer.Publisher?.SendAnalyticsEvent("Gui", "Reimport_MenuItem");
         }
 
         [MenuItem("Tools/" + Title + "/Setup/Import files for .NET Standard 2.0", false, 63)]
         static void ImportSystemBinariesForDotNetStandard20()
         {
-            if (NetMQInitializer.Publisher?.clients.Any() != true)
-                Serilog.Log.Information("No connected IDE found. Please start up Visual Studio first");
+            var solutionDirectory = CommonTools.GetProjectPath();
+            var cSharpVersion = Cleanup.GetCSharpVersionFromUnityProjectVersionFile(solutionDirectory);
 
-            NetMQInitializer.Publisher?.SendRequestUpdate("SystemBinariesForDotNetStandard20", string.Empty, true);
+            if (cSharpVersion >= 9)
+            {
+                if (!EditorUtility.DisplayDialog("Import files for .NET Standard 2.0",
+                    "This is not required for versions of Unity 2021.2 and newer. Do you still want to continue?",
+                    "Okay", "Cancel"))
+                {
+                    Serilog.Log.Debug("ImportNetStandard20_MenuItem cancelled via confirm dialog");
+                    return;
+                }
+            }
 
-            NetMQInitializer.Publisher?.SendAnalyticsEvent("Gui", "ImportNetStandard20_MenuItem");
+            if (MQTTnetInitializer.Publisher?.Clients.Any() != true)
+                Serilog.Log.Information("No connected IDE found. Please start up Visual Studio or VS Code first");
+
+            MQTTnetInitializer.Publisher?.SendRequestUpdate("SystemBinariesForDotNetStandard20", string.Empty, true);
+
+            MQTTnetInitializer.Publisher?.SendAnalyticsEvent("Gui", "ImportNetStandard20_MenuItem");
         }
 
-        internal static string Execute(string path)//, string args, string workingDirectoryPath)
+        [MenuItem("Tools/" + Title + "/Setup/Regenerate project files", false, 64)]
+        public static void RegenerateProjectFiles() => RegenerateProjectFilesAux(true);
+
+        public static void RegenerateProjectFilesAux(bool showError)
+        {
+            try
+            {
+                if (GetCodeEditor(true, out _, out _, out var error))
+                {
+                    CodeEditor.Editor.CurrentCodeEditor.SyncAll();
+                }
+                else
+                {
+                    if (showError && error != null)
+                        Serilog.Log.Information(error);
+
+                    // other similar approaches
+                    // https://www.reddit.com/r/Unity3D/comments/s1joc6/help_with_generating_csproj_and_sln_for_github/
+                    // https://discussions.unity.com/t/manually-generate-sln-and-csproj-files/648686/6
+                    // https://discussions.unity.com/t/how-can-i-generate-csproj-files-during-continuous-integration-builds/842493/3
+                    // https://github.com/Unity-Technologies/UnityCsReference/blob/f45f297f342239326ea865a57a1bb8ddf93e38c6/Editor/Mono/CodeEditor/SyncVS.cs#L22
+                    var t = ScriptFinder.GetType123("Microsoft.Unity.VisualStudio.Editor.Cli");
+                    var m = t!.GetMethod("GenerateSolution", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic);
+                    m.Invoke(null, null);
+                }
+            }
+            catch (System.Exception ex)
+            {
+                Serilog.Log.Error(ex, "Couldn't invoke GenerateSolution");
+                Serilog.Log.Information("Please 'Regenerate project files' manually. 'Edit'->'Preferences'->'External Tools'->'Regenerate project files'");
+            }
+        }
+
+
+        static IEnumerator CallShell(string command, string ide)
+        {
+            Serilog.Log.Debug("calling shell with command: {Command}", command);
+            var task = Shell.UnityEditorShell.Execute(command);
+            task.OnLog += (logType, log) =>
+            {
+                Serilog.Log.Debug("shell log: {Log}", log);
+            };
+            task.OnExit += (code) =>
+            {
+                Serilog.Log.Debug("shell exit: {Code}", code);
+                if (code == 0)
+                    Serilog.Log.Information($"{ide} extension installed successfully. Please restart {ide}");
+                else
+                    Serilog.Log.Information($"{ide} extension installation failed. Please try manual installition at {CommonTools.GetInstallerPath(string.Empty)}");
+            };
+            yield return new Shell.ShellCommandYieldable(task);
+        }
+
+        static void CallVisualStudioInstaller(string vsixPath)
+        {
+            EditorCoroutines.EditorCoroutineUtility.StartCoroutine(CallShell(
+                $"@for /f \"usebackq delims=\" %i in (`\"%ProgramFiles(x86)%\\Microsoft Visual Studio\\Installer\\vswhere.exe\" -latest -prerelease -products * -property enginePath`) do @set enginePath=%i & if exist \"%i\\VSIXInstaller.exe\" call \"%i\\VSIXInstaller.exe\" /u:VSIXLite2.6815b720-6186-48a1-a405-1387e54b41c6 & call \"%i\\VSIXInstaller.exe\" \"{vsixPath}\"", "Visual Studio"), MQTTnetInitializer.Publisher);
+        }
+
+        static void CallVSCodeInstaller(string vsixPath)
+        {
+            string command;
+#if UNITY_EDITOR_WIN
+            command = $"code --uninstall-extension MerryYellow.uca-lite-vscode & code --install-extension \"{vsixPath}\"";
+#elif UNITY_EDITOR_OSX || UNITY_EDITOR_LINUX
+            command = $"code --uninstall-extension MerryYellow.uca-lite-vscode ; code --install-extension \"{vsixPath}\"";
+#else
+            Serilog.Log.Error("invalid platform at {Location}", nameof(CallVSCodeInstaller));
+            command = string.Empty;
+#endif
+
+            EditorCoroutines.EditorCoroutineUtility.StartCoroutine(CallShell(command, "VS Code"), MQTTnetInitializer.Publisher);
+        }
+
+        internal static string Execute(string vsixPath, bool isVisualStudio = false, bool isVSCode = false)
         {
             var startInfo = new System.Diagnostics.ProcessStartInfo
             {
                 WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden,
                 //startInfo.FileName = GetExePath();
-                FileName = path,
+                FileName = vsixPath,
                 //startInfo.Arguments = args;
                 UseShellExecute = false,
                 RedirectStandardOutput = true
@@ -151,7 +285,7 @@ namespace Meryel.UnityCodeAssist.Editor
             }
             catch (System.ComponentModel.Win32Exception ex)
             {
-                Serilog.Log.Error(ex, "Error at running bat file {File}", path);
+                Serilog.Log.Error(ex, "Error at running bat file {File}", vsixPath);
             }
 
             string output = process.StandardOutput.ReadToEnd();
@@ -163,14 +297,14 @@ namespace Meryel.UnityCodeAssist.Editor
 
         static IEnumerator SyncAux()
         {
-            var clientCount = NetMQInitializer.Publisher?.clients.Count ?? 0;
-            NetMQInitializer.Publisher?.SendConnect();
+            var clientCount = MQTTnetInitializer.Publisher?.Clients.Count() ?? 0;
+            MQTTnetInitializer.Publisher?.SendConnect();
             Serilog.Log.Information("Code Assist is looking for more IDEs to connect to...");
 
             //yield return new WaitForSeconds(3);
             yield return new EditorCoroutines.EditorWaitForSeconds(3);
 
-            var newClientCount = NetMQInitializer.Publisher?.clients.Count ?? 0;
+            var newClientCount = MQTTnetInitializer.Publisher?.Clients.Count() ?? 0;
 
             var dif = newClientCount - clientCount;
 
@@ -205,14 +339,14 @@ namespace Meryel.UnityCodeAssist.Editor
         {
             var names = UnityEditorInternal.InternalEditorUtility.layers;
             var indices = names.Select(l => LayerMask.NameToLayer(l).ToString()).ToArray();
-            NetMQInitializer.Publisher?.SendLayers(indices, names);
+            MQTTnetInitializer.Publisher?.SendLayers(indices, names);
 
             var sls = SortingLayer.layers;
             var sortingNames = sls.Select(sl => sl.name).ToArray();
             var sortingIds = sls.Select(sl => sl.id.ToString()).ToArray();
             var sortingValues = sls.Select(sl => sl.value.ToString()).ToArray();
 
-            NetMQInitializer.Publisher?.SendSortingLayers(sortingNames, sortingIds, sortingValues);
+            MQTTnetInitializer.Publisher?.SendSortingLayers(sortingNames, sortingIds, sortingValues);
 
             /*
             for (var i = 0; i < 32; i++)
@@ -225,7 +359,7 @@ namespace Meryel.UnityCodeAssist.Editor
             }
 
             if (ScriptFinder.FindGameObjectOfType("Deneme", out var go))
-                NetMQInitializer.Publisher.SendGameObject(go);
+                MQTTnetInitializer.Publisher.SendGameObject(go);
             */
         }
 
@@ -242,7 +376,7 @@ namespace Meryel.UnityCodeAssist.Editor
                 }
             }
 
-            NetMQInitializer.Publisher?.SendTags(UnityEditorInternal.InternalEditorUtility.tags);
+            MQTTnetInitializer.Publisher?.SendTags(UnityEditorInternal.InternalEditorUtility.tags);
 
         }
 
@@ -254,7 +388,7 @@ namespace Meryel.UnityCodeAssist.Editor
             var go = GameObject.Find("Deneme");
             //var go = MonoBehaviour.FindObjectOfType<Deneme>().gameObject;
 
-            NetMQInitializer.Publisher?.SendGameObject(go);
+            MQTTnetInitializer.Publisher?.SendGameObject(go);
         }
 
         [MenuItem("Code Assist/Undo Records Test")]
@@ -319,7 +453,7 @@ namespace Meryel.UnityCodeAssist.Editor
             //if (ScriptFinder.FindGameObjectOfType("Deneme_OtherScene", out var go))
             if (ScriptFinder.FindInstanceOfType("Deneme_SO", out var go, out var so))
             {
-                NetMQInitializer.Publisher.SendScriptableObject(so);
+                MQTTnetInitializer.Publisher.SendScriptableObject(so);
             }
 
             ScriptFinder.DENEMEEEE();
@@ -337,17 +471,123 @@ namespace Meryel.UnityCodeAssist.Editor
             Serilog.Log.Debug(nameof(SendTagsAndLayers));
 
             var tags = UnityEditorInternal.InternalEditorUtility.tags;
-            NetMQInitializer.Publisher?.SendTags(tags);
+            MQTTnetInitializer.Publisher?.SendTags(tags);
 
             var names = UnityEditorInternal.InternalEditorUtility.layers;
             var indices = names.Select(l => LayerMask.NameToLayer(l).ToString()).ToArray();
-            NetMQInitializer.Publisher?.SendLayers(indices, names);
+            MQTTnetInitializer.Publisher?.SendLayers(indices, names);
 
             var sls = SortingLayer.layers;
             var sortingNames = sls.Select(sl => sl.name).ToArray();
             var sortingIds = sls.Select(sl => sl.id.ToString()).ToArray();
             var sortingValues = sls.Select(sl => sl.value.ToString()).ToArray();
-            NetMQInitializer.Publisher?.SendSortingLayers(sortingNames, sortingIds, sortingValues);
+            MQTTnetInitializer.Publisher?.SendSortingLayers(sortingNames, sortingIds, sortingValues);
+        }
+
+        public static bool GetCodeEditor(bool checkVersion, out bool isVisualStudio, out bool isVisualStudioCode, out string? error)
+        {
+            isVisualStudio = false;
+            isVisualStudioCode = false;
+
+            if (CodeEditor.Editor.CurrentCodeEditor.TryGetInstallationForPath(CodeEditor.CurrentEditorInstallation, out var installation))
+            {
+                if (installation.Name.StartsWith("Visual Studio Code"))
+                    isVisualStudioCode = true;
+                else if (installation.Name.StartsWith("Visual Studio"))
+                    isVisualStudio = true;
+
+                if (!isVisualStudioCode && !isVisualStudio)
+                {
+                    error = $"Unsupported code editor: {installation.Name}. Unity Code Assist only supports Visual Studio and Visual Studio Code";
+                    return false;
+                }
+
+                if (installation.Name.Contains("(internal)"))
+                {
+                    error = "Code editor set but not working properly. Please try updating 'Visual Studio Editor' package";
+                    return false;
+                }
+
+                if (!checkVersion)
+                {
+                    error = null;
+                    return true;
+                }
+
+                var versionRegex = new System.Text.RegularExpressions.Regex(".*\\[([\\d\\.]+)\\]");
+                var versionStr = versionRegex.Match(installation.Name).Groups.ElementAtOrDefault(1)?.Value;
+
+                if (isVisualStudioCode && !string.IsNullOrEmpty(versionStr) && (versionCompare(versionStr!, "1.76") < 0))
+                {
+                    error = $"Version {versionStr} of Visual Studio Code is not supported by Unity Code Assist. Please update Visual Studio Code";
+                    return false;
+                }
+
+                if (isVisualStudio && !string.IsNullOrEmpty(versionStr) && (versionCompare(versionStr!, "17") < 0))
+                {
+                    error = $"Version {versionStr} of Visual Studio is not supported by Unity Code Assist. Please update Visual Studio";
+                    return false;
+                }
+
+                error = null;
+                return true;
+            }
+            else
+            {
+                error = "No code editor found. Please set it through 'Edit'->'Preferences'->'External Tools'->'External Script Editor'";
+                return false;
+            }
+
+            //https://www.geeksforgeeks.org/compare-two-version-numbers/amp/
+            static int versionCompare(string v1, string v2)
+            {
+                // vnum stores each numeric
+
+                // part of version
+
+                int vnum1 = 0, vnum2 = 0;
+
+                // loop until both string are
+                // processed
+
+                for (int i = 0, j = 0; (i < v1.Length || j < v2.Length);)
+
+                {
+                    // storing numeric part of
+                    // version 1 in vnum1
+                    while (i < v1.Length && v1[i] != '.')
+                    {
+
+                        vnum1 = vnum1 * 10 + (v1[i] - '0');
+
+                        i++;
+                    }
+                    // storing numeric part of
+
+                    // version 2 in vnum2
+
+                    while (j < v2.Length && v2[j] != '.')
+                    {
+                        vnum2 = vnum2 * 10 + (v2[j] - '0');
+                        j++;
+                    }
+                    if (vnum1 > vnum2)
+                        return 1;
+
+                    if (vnum2 > vnum1)
+                        return -1;
+
+                    // if equal, reset variables and
+
+                    // go for next numeric part
+                    vnum1 = vnum2 = 0;
+                    i++;
+                    j++;
+                }
+
+                return 0;
+            }
+
         }
 
     }

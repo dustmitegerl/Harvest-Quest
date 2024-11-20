@@ -6,7 +6,7 @@ using UnityEditor;
 
 
 #pragma warning disable IDE0005
-using Serilog = Meryel.UnityCodeAssist.Serilog;
+using Serilog = Meryel.Serilog;
 #pragma warning restore IDE0005
 
 
@@ -25,11 +25,11 @@ namespace Meryel.UnityCodeAssist.Editor
             var window = GetWindow<StatusWindow>();
             window.Show();
 
-            NetMQInitializer.Publisher?.SendConnectionInfo();
+            MQTTnetInitializer.Publisher?.SendConnectionInfo();
 
             Serilog.Log.Debug("Displaying status window");
 
-            NetMQInitializer.Publisher?.SendAnalyticsEvent("Gui", "StatusWindow_Display");
+            MQTTnetInitializer.Publisher?.SendAnalyticsEvent("Gui", "StatusWindow_Display");
         }
 
         private void OnEnable()
@@ -42,7 +42,7 @@ namespace Meryel.UnityCodeAssist.Editor
 
         private void OnGUI()
         {
-            var hasAnyClient = NetMQInitializer.Publisher?.clients.Any() == true;
+            var hasAnyClient = MQTTnetInitializer.Publisher?.Clients.Any() == true;
 
             styleLabel ??= new GUIStyle(GUI.skin.label)
             {
@@ -54,7 +54,7 @@ namespace Meryel.UnityCodeAssist.Editor
             {
                 EditorGUILayout.LabelField($"Code Assist is working!", styleLabel, GUILayout.ExpandWidth(true));
 
-                foreach (var client in NetMQInitializer.Publisher!.clients)
+                foreach (var client in MQTTnetInitializer.Publisher!.Clients)
                 {
                     EditorGUILayout.LabelField($"Connected to {client.ContactInfo}", styleLabel, GUILayout.ExpandWidth(true));
                 }
@@ -74,7 +74,7 @@ namespace Meryel.UnityCodeAssist.Editor
 
             if (GUILayout.Button("Get full version"))
             {
-                Application.OpenURL("http://u3d.as/2N2H");
+                Application.OpenURL("https://unitycodeassist.netlify.app/purchase?utm_source=unity_getfullbutton");
             }
 
 #endif // MERYEL_UCA_LITE_VERSION

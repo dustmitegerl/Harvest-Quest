@@ -5,11 +5,10 @@ using System.Reflection;
 using System.Linq;
 using UnityEngine;
 using UnityEditor;
-using UnityEditor.SceneManagement;
 
 
 #pragma warning disable IDE0005
-using Serilog = Meryel.UnityCodeAssist.Serilog;
+using Serilog = Meryel.Serilog;
 #pragma warning restore IDE0005
 
 
@@ -22,7 +21,7 @@ namespace Meryel.UnityCodeAssist.Editor
     public class ScriptFinder //: MonoBehaviour
     {
 
-        static Type? GetType123(string typeName)
+        internal static Type? GetType123(string typeName)
         {
             //**--
             //**--
@@ -101,7 +100,7 @@ namespace Meryel.UnityCodeAssist.Editor
 
             var obj = GetObjectOfType(type, out var requestVerboseType);
             if (requestVerboseType)
-                NetMQInitializer.Publisher?.SendRequestVerboseType(typeName, docPath);
+                MQTTnetInitializer.Publisher?.SendRequestVerboseType(typeName, docPath);
 
             if (obj != null && obj is GameObject go)
             {
@@ -295,8 +294,6 @@ namespace Meryel.UnityCodeAssist.Editor
             {
                 var assetPath = AssetDatabase.GUIDToAssetPath(assetGuid);
                 Debug.Log("Asset: " + assetGuid + " " + assetPath);
-
-
             }
         }
 

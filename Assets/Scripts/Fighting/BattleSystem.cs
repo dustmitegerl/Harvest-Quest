@@ -38,7 +38,7 @@ public class BattleSystem : MonoBehaviour
     // Starting the Battle State
     void Start()
     {
-        levelLoaderPrefab = GameObject.Find("LevelLoader");
+        levelLoaderPrefab = GameObject.FindGameObjectWithTag("Game Manager");
         levelLoader = levelLoaderPrefab.GetComponent<LevelLoader>();
         state = BattleState.START;
         StartCoroutine(SetupBattle());
@@ -106,6 +106,7 @@ public class BattleSystem : MonoBehaviour
         dialogueText.text = "Player unleash their skills.";
 
         playerHUD.SetSP(playerUnit.currentSP);
+
 
         yield return new WaitForSeconds(2f);
 

@@ -82,13 +82,13 @@ namespace Meryel.UnityCodeAssist.Editor.EditorCoroutines
         {
             if(coroutine == null)
             {
-                Debug.LogAssertion("Provided EditorCoroutine handle is null.");
+                Serilog.Log.Warning("Provided EditorCoroutine handle is null.");
                 return;
             }
 
             if(coroutine.m_Owner == null)
             {
-                Debug.LogError("The EditorCoroutine is ownerless. Please use EditorCoroutineEditor.StopCoroutine to terminate such coroutines.");
+                Serilog.Log.Error("The EditorCoroutine is ownerless. Please use EditorCoroutineEditor.StopCoroutine to terminate such coroutines.");
                 return;
             }
 
@@ -99,7 +99,7 @@ namespace Meryel.UnityCodeAssist.Editor.EditorCoroutines
 
             if (owner == null || owner != null && owner != window)
             {
-                Debug.LogErrorFormat("The EditorCoroutine is owned by another object: {0}.", coroutine.m_Owner.Target);
+                Serilog.Log.Error("The EditorCoroutine is owned by another object: {0}.", coroutine.m_Owner.Target);
                 return;
             }
 

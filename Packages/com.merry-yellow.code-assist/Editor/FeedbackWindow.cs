@@ -5,7 +5,7 @@ using UnityEditor;
 
 
 #pragma warning disable IDE0005
-using Serilog = Meryel.UnityCodeAssist.Serilog;
+using Serilog = Meryel.Serilog;
 #pragma warning restore IDE0005
 
 
@@ -21,7 +21,7 @@ namespace Meryel.UnityCodeAssist.Editor
 
         public static void Display()
         {
-            NetMQInitializer.Publisher?.SendRequestInternalLog();
+            MQTTnetInitializer.Publisher?.SendRequestInternalLog();
 
             // Get existing open window or if none, make a new one:
             var window = GetWindow<FeedbackWindow>();
@@ -29,7 +29,7 @@ namespace Meryel.UnityCodeAssist.Editor
 
             Serilog.Log.Debug("Displaying feedback window");
 
-            NetMQInitializer.Publisher?.SendAnalyticsEvent("Gui", "FeedbackWindow_Display");
+            MQTTnetInitializer.Publisher?.SendAnalyticsEvent("Gui", "FeedbackWindow_Display");
         }
 
 

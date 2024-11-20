@@ -119,7 +119,7 @@ namespace Meryel.UnityCodeAssist.Editor.EditorCoroutines
         {
             if (coroutine == null)
             {
-                Debug.LogAssertion("EditorCoroutine handle is null.");
+                Serilog.Log.Warning("EditorCoroutine handle is null.");
                 return;
             }
             coroutine.Stop();

@@ -6,7 +6,7 @@ using static System.IO.Path;
 
 
 #pragma warning disable IDE0005
-using Serilog = Meryel.UnityCodeAssist.Serilog;
+using Serilog = Meryel.Serilog;
 #pragma warning restore IDE0005
 
 
@@ -24,6 +24,18 @@ namespace Meryel.UnityCodeAssist.Editor
             return toolPath;
         }
 
+        /// <summary>
+        /// does NOT include the trailing slash
+        /// </summary>
+        /// <returns></returns>
+        public static string GetExternalReferencesPath()
+        {
+            var projectPath = GetProjectPathRaw();
+            var extRefPath = Combine(projectPath, "Packages/com.merry-yellow.code-assist/Editor/ExternalReferences");
+            return extRefPath;
+        }
+
+        [Obsolete]
         public static string GetToolPath(string tool)
         {
             var projectPath = GetProjectPathRaw();
@@ -55,10 +67,22 @@ namespace Meryel.UnityCodeAssist.Editor
         public static string GetProjectPath()
         {
             var rawPath = GetProjectPathRaw();
+            //var pathWithoutWhiteSpace = rawPath.Trim(); // this is done in OSPath ctor
             var osPath = new OSPath(rawPath);
             var unixPath = osPath.Unix;
             var trimmed = unixPath.TrimEnd('\\', '/');
-            return trimmed;
+            var capitalized = FirstCharToUpper(trimmed); // this is required for TypeScript, so doing it here as well just in case
+            return capitalized!;
+        }
+
+        static string? FirstCharToUpper(string? input)
+        {
+            switch (input)
+            {
+                case null: return null;
+                case "": return "";
+                default: return input[0].ToString().ToUpper() + input.Substring(1);
+            }
         }
 
         /// <summary>
@@ -77,21 +101,7 @@ namespace Meryel.UnityCodeAssist.Editor
             return path;
         }
 
-        public static int GetHashOfPath(string path)
-        {
-            var osPath = new OSPath(path);
-            var unixPath = osPath.Unix;
-            var trimmed = unixPath.TrimEnd('\\', '/');
-            var hash = trimmed.GetHashCode();
-
-            if (hash < 0) // Get rid of the negative values, so there will be no '-' char in file names
-            {
-                hash++;
-                hash = Math.Abs(hash);
-            }
-
-            return hash;
-        }
+        public static string GetHashForLogFile(string path) => Synchronizer.Model.Utilities.GetHashForLogFile(path);
     }
 
     // https://github.com/dmitrynogin/cdsf/blob/master/Cds.Folders/OSPath.cs

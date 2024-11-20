@@ -1,5 +1,5 @@
-Code Assist improves your coding experience with Visual Studio. Coding for Unity projects becomes easier and more efficient with fewer bugs.
-Connect your game editor and IDE, let Unity and Visual Studio share data between each other. Enrich your coding experience with the new data available.
+Code Assist improves your coding experience with Visual Studio and VS Code. Coding for Unity projects becomes easier and more efficient with fewer bugs.
+Connect your game editor and IDE, let Unity and Visual Studio/VS Code share data between each other. Enrich your coding experience with the new data available.
 
 
 
@@ -21,34 +21,41 @@ https://github.com/merryyellow/Unity-Code-Assist
 Asset Store:
 http://u3d.as/2N2H
 
+itch.io:
+https://meryel.itch.io/unity-code-assist
+
 Visual Studio Marketplace:
 https://marketplace.visualstudio.com/items?itemName=MerryYellow.UCA-Lite
+
+VS Code Marketplace:
+https://marketplace.visualstudio.com/items?itemName=MerryYellow.uca-lite-vscode
 
 
 
 Restrictions:
 * Unity 2020.2 and newer.
-* Visual Studio 2022. Does not work with Visual Studio Code, Visual Studio for Mac, Rider or any other IDE or text editor.
+* Visual Studio 2022 or VS Code (1.75+). Does not work with Visual Studio for Mac, Rider or any other IDE or text editor.
 
 
 
 How to Setup:
 * Import the Unity asset with the package manager into your Unity project
-* Install UnityCodeAssist.Full.VisualStudio.Installer.vsix under folder "Packages/com.merry-yellow.code-assist/Installers~" (You can skip this step if you have installed it before for another project)
-* Open your Unity project with Visual Studio. Code Assist loads in background with low priority, so it will be ready in a minute when Visual Studio first starts up.
-* To check if setup is successfull, in Unity, choose "Tools"->"Code Assist"->"Status" from menu. The windows should display "Code Assist is working!".
+* In Unity, from top menu bar, select "Tools"->"Code Assist"->"Setup"->"Upgrade to full version" (You can skip this step if you have installed it before for another project). This will uninstall the lite version of extension from Visual Studio/VS Code, and then install full version of extension to Visual Studio/VS Code. To install the extension manually, see "YOUR_PROJECT_PATH/Packages/com.merry-yellow.code-assist/Installers~/Extension Installation.md"
+* Open your Unity project with Visual Studio/VS Code. Code Assist loads in background with low priority, so it will be ready in a minute when Visual Studio/VS Code first starts up.
+* To check if setup is successfull, in Unity, from top menu bar choose "Tools"->"Code Assist"->"Status". The windows should display "Code Assist is working!".
 
 
 
 How to Use:
 Code Assist is always active while you are coding. The following samples will give you a glimpse of Code Assist.
 * Code Completion: In a class which derives MonoBehaviour, type "CompareTag(". When you press double quotes("), code completion popup should appear with the available tags of the scene.
-* Inline Visuals: Type a color in hex code with quotation marks, like "#FF8800". A box with the matching color should appear left of the color code.
+* Inline Visuals: In a class which derives MonoBehaviour, type "gameObject.layer = 0;" and save the document. "Default" text should appear on top or right of "0".
 * Code Analyzers: Define a Vector3 (let's say vec3). When used like "if (vec3.magnitude < 10)", a warning will appear on that line. Press Alt+Enter to convert it to "if (vec3.sqrMagnitude < 10 * 10)", which has better performance.
 
 
 
 Generative AI:
+Generative AI is working only in Visual Studio (for now). It does not work in VS Code.
 Generative AI is one of the features of Code Assist. If you have any ethical or legal concerns, you can use Code Assist without this feature by disabling generative AI in the options.
 
 To use generative AI with your comments:
@@ -82,17 +89,18 @@ https://ai.google.dev/pricing
 
 
 Troubleshooting:
-* Make sure in Unity, "Tools"->"Code Assist"->"Status" is available from the menu bar. If not, reimport the asset.
-* Make sure in Visual Studio, "Extensions"->"Unity Code Assist"->Status is available from the menu bar. If not, reinstall the UnityCodeAssist.Full.VisualStudio.Installer.vsix file (under folder "Packages/com.merry-yellow.code-assist/Installers~").
-* If Visual Studio has just been started, just wait; it usually takes around one minute to fully load Code Assist.
-* If still not working, in Unity try "Tools"->"Code Assist"->"Synchronize" from the menu bar. This will attempt a new connection with Visual Studio.
-* If none works above, try restarting both Unity and Visual Studio; sometimes an unclosed background thread blocks communication channels (network ports).
+* Make sure in Unity, "Tools"->"Code Assist"->"Status" is available from the top menu bar. If not, reimport the asset.
+* Make sure in Visual Studio, "Extensions"->"Unity Code Assist"->Status is available from the top menu bar. If not, install the extension manually, see "YOUR_PROJECT_PATH/Packages/com.merry-yellow.code-assist/Installers~/Extension Installation.md"
+* Make sure in VS Code,"Unity Code Assist: Status" command is avaible in the commands palette (shortcut: Ctrl+Shift+P) . If not, install the extension manually, see "YOUR_PROJECT_PATH/Packages/com.merry-yellow.code-assist/Installers~/Extension Installation.md"
+* If Visual Studio/VS Code has just been started, just wait; it usually takes around one minute to fully load Code Assist.
+* If still not working, in Unity try "Tools"->"Code Assist"->"Synchronize" from the top menu bar. This will attempt a new connection with Visual Studio/VS Code.
+* If none works above, try restarting both Unity and Visual Studio/VS Code; sometimes an unclosed background thread blocks communication channels (network ports).
 
 
 
 Error Reporting:
 * In Unity, choose "Tools"->"Code Assist"->"Report error" from the menu bar, to open feedback window.
-* Or in Visual Studio, choose "Extensions"->"Unity Code Assist"->"Report error" from the menu bar, to open feedback window.
+* Or in Visual Studio, choose "Extensions"->"Unity Code Assist"->"Report error" from the menu bar, to open feedback window. (There is no feedback window in VS Code, log files are under system temp folder)
 * In the feedback window, you can view the most recent logs, or view full log of Unity or Visual Studio.
 * You can report the error via email ( merryyellow@outlook.com ) or Discord ( https://discord.gg/2CgKHDq ) or GitHub ( https://github.com/merryyellow/Unity-Code-Assist/issues/new )
 * Attaching full logs is recommended when reporting an error.

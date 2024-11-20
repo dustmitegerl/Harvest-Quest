@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3145159194417299168}
   - component: {fileID: 8428809815481713975}
   - component: {fileID: 1617179201577881402}
+  - component: {fileID: 262396572927698914}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -62,4 +63,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogBox: {fileID: 0}
   dialogText: {fileID: 0}
-  lettersPerSecond: 5
+  lettersPerSecond: 45
+--- !u!114 &262396572927698914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5179791305528178011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: beb506f725d8a244984ee770720d6538, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clockRead: {fileID: 0}
+  dayRead: {fileID: 0}
+  startingHr: 0
+  days: 1
+  hrs: 0
+  mins: 0
+  secs: 0
+  AM: am
+  PM: pm
+  timeSpeedModulator: 11
+  secsInMin: 60
+  minsInHr: 60
+  hrsInDay: 24

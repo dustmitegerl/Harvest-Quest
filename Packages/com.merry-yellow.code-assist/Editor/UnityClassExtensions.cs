@@ -8,7 +8,7 @@ using UnityEditor.Animations;
 
 
 #pragma warning disable IDE0005
-using Serilog = Meryel.UnityCodeAssist.Serilog;
+using Serilog = Meryel.Serilog;
 #pragma warning restore IDE0005
 
 
@@ -58,9 +58,10 @@ namespace Meryel.UnityCodeAssist.Editor
             if (!animation.isActiveAndEnabled)
                 return null;
 
-            var data = new Synchronizer.Model.Component_Animation();
-
-            data.GameObjectId = GetId(go);
+            var data = new Synchronizer.Model.Component_Animation
+            {
+                GameObjectId = GetId(go)
+            };
 
             /*
             var clips = AnimationUtility.GetAnimationClips(go);
@@ -92,9 +93,10 @@ namespace Meryel.UnityCodeAssist.Editor
             if (!animator.runtimeAnimatorController)
                 return null;
 
-            var data = new Synchronizer.Model.Component_Animator();
-
-            data.GameObjectId = GetId(go);
+            var data = new Synchronizer.Model.Component_Animator
+            {
+                GameObjectId = GetId(go)
+            };
 
             var layerCount = animator.layerCount;
             data.LayerIndices = new string[layerCount];
@@ -112,6 +114,8 @@ namespace Meryel.UnityCodeAssist.Editor
             data.ParameterTypes = new int[parameterCount];
             for (var i = 0; i < parameterCount; i++)
             {
+                //**-- recieving error here, like "IndexOutOfRangeException: Index must be between 0 and 3",
+                //**-- probably user edits it while retrieving data, fix? or just ignore?
                 var parameter = animator.GetParameter(i);
                 data.ParameterIndices[i] = i.ToString();
                 data.ParameterNames[i] = parameter.name;

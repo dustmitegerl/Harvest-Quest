@@ -14,10 +14,16 @@ public class LevelLoader : MonoBehaviour
     //[SerializeField]
     float transitionTime = 1f;
 
+    GameTime gameTime;
+    
+    void Start()
+    {
+        gameTime = GetComponent<GameTime>();
+    }
     public void LoadLevel(string levelName)
     {
         StartCoroutine(LoadNamedLevel(levelName));
-
+        
     }
 
     IEnumerator LoadNamedLevel(string levelName)
@@ -27,7 +33,10 @@ public class LevelLoader : MonoBehaviour
         yield return new WaitForSeconds(transitionTime);
 
         SceneManager.LoadScene(levelName);
-
+        if (levelName == "BattleArena")
+        {
+            gameTime.Pause();
+        } else gameTime.UnPause();
 
         //transition.SetTrigger("End");
     }
@@ -36,18 +45,7 @@ public class LevelLoader : MonoBehaviour
     void Awake()
     {
         instance = this;
-        DontDestroyOnLoad(this.gameObject);
-        //GameObject[] levelLoaders = GameObject.FindGameObjectsWithTag("Level Loader");
-        //if (levelLoaders.Length > 1)
-        //{
-        //    for (int i = 0; i < levelLoaders.Length; i++)
-        //    {
-        //        if (levelLoaders[i] != this)
-        //        {
-        //            Destroy(levelLoaders[i]);
-        //        }
-        //    }
-        //}
+        
     }
 
     public void EndBattle() 

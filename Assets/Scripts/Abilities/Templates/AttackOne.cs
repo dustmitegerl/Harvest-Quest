@@ -4,5 +4,12 @@ using UnityEngine;
 
 public class AttackOne : Attack
 {
-    
+    [SerializeField]
+    GameObject selected;
+
+    void Start()
+    {
+        
+    }
+
 }

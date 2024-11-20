@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Attack : Ability
+public abstract class Attack : Ability
 {
-    [SerializeField] 
-    float attackPower;
+    float attackNumber;
 }

@@ -63,8 +63,8 @@ public class BattleSystem : MonoBehaviour
 
     // Setting up the player and enemy positions while including dialogue
     IEnumerator SetupBattle()
-    {
-        GameObject playerGO = Instantiate(playerPrefab);
+    { 
+        GameObject playerGO = GameObject.Instantiate(playerPrefab);
         playerGO.transform.position = playerPosition.position;
         playerUnit = playerGO.GetComponent<Unit>();
 

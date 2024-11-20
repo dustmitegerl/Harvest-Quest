@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 63229346012373629}
   - component: {fileID: 1813416786316998516}
   - component: {fileID: 1681242733759746182}
+  - component: {fileID: 101115226305981451}
   - component: {fileID: 1978385948152900484}
   - component: {fileID: 6718740423815525231}
   - component: {fileID: -5380860584421605747}
@@ -136,6 +137,20 @@ MonoBehaviour:
   interactableLayer:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &101115226305981451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3037191485019776758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e7f0dd0a8a83fa49a8d581bb408804f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  overWorldName: Interact
+  battleArenaName: BattleArena
 --- !u!95 &1978385948152900484
 Animator:
   serializedVersion: 5
@@ -215,11 +230,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitName: Player
-  damage: 0
-  maxHP: 10
-  currentHP: 10
-  maxSP: 0
-  currentSP: 0
+  damage: 7
+  maxHP: 35
+  currentHP: 35
+  maxSP: 20
+  currentSP: 20
   currentExperience: 0
   maxExperience: 100
   currentLevel: 1

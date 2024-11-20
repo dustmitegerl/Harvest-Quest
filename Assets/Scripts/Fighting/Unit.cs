@@ -78,4 +78,13 @@ public class Unit : MonoBehaviour
         currentExperience = 0;
         maxExperience += 50;
     }
+
+    public void Heal(int amount) 
+    {
+        currentHP += amount;
+        if (currentHP > maxHP) 
+        {
+            currentHP = maxHP;
+        }
+    }
 }

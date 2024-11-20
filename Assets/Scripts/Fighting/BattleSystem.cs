@@ -32,17 +32,23 @@ public class BattleSystem : MonoBehaviour
 
     public GameObject actionMenu;
     public GameObject skillsMenu;
-    public GameObject dialogueBox; 
+    public GameObject dialogueBox;
+    public GameObject mainMenu;
     
 
     public Button attackButton;
     public Button skillButton;
+    public Button healButton;
+    public Button backButton;
  
     public int fireCost;
     public int fireDamage;
 
     public int iceCost;
     public int iceDamage;
+
+    public int healCost;
+    public int healAmount;
 
     // Starting the Battle State
     void Start()
@@ -51,6 +57,8 @@ public class BattleSystem : MonoBehaviour
         levelLoader = levelLoaderPrefab.GetComponent<LevelLoader>();
         state = BattleState.START;
         StartCoroutine(SetupBattle());
+        
+        healButton.onClick.AddListener(OnHealSkill); 
     }
 
     // Setting up the player and enemy positions while including dialogue
@@ -96,7 +104,7 @@ public class BattleSystem : MonoBehaviour
         dialogueText.text = "";
     }
 
-    public void ShowDialogueBox(string message) 
+    private void ShowDialogueBox(string message) 
     { 
         dialogueBox.SetActive(true);
         dialogueText.text = message;
@@ -164,6 +172,7 @@ public class BattleSystem : MonoBehaviour
     // Implementing Run Button
     IEnumerator PlayerRun() 
     {
+        //dialogueText.text = "Is it best to run?";
         yield return new WaitForSeconds(1f);
 
         bool escapeSuccessful = Random.Range(0, 2) == 0;
@@ -183,6 +192,13 @@ public class BattleSystem : MonoBehaviour
 
             yield return new WaitForSeconds(1f);
 
+            if (state == BattleState.PLAYERTURN) 
+            {
+                attackButton.interactable = true;
+                skillButton.interactable = true;
+                healButton.interactable = true;
+                backButton.interactable = true;
+            }
             state = BattleState.ENEMYTURN;
             StartCoroutine(EnemyTurn());
         }
@@ -268,13 +284,16 @@ public class BattleSystem : MonoBehaviour
         attackButton.interactable = false;
         skillButton.interactable = false;
 
-        skillsMenu.SetActive(!skillsMenu.activeSelf);
+        //skillsMenu.SetActive(!skillsMenu.activeSelf);
         //StartCoroutine(PlayerSPAction());
 
         actionMenu.SetActive(false);
-        //dialogueBox.SetActive(false);
-        skillsMenu.SetActive(true);
         HideDialogueBox();
+        skillsMenu.SetActive(true);
+        
+        //dialogueBox.SetActive(false);
+
+
     }
 
     // Creating Function to Fire Attack Button
@@ -292,6 +311,8 @@ public class BattleSystem : MonoBehaviour
 
             skillsMenu.SetActive(false);
             actionMenu.SetActive(true);
+
+            ShowDialogueBox("Next move is yours");
             //dialogueBox.SetActive(true);
             
 
@@ -309,6 +330,7 @@ public class BattleSystem : MonoBehaviour
         else 
         {
             dialogueText.text = "No SP for that attack";
+            ShowDialogueBox(dialogueText.text);
         }
     }
     // Creating Function to Ice Attack Button
@@ -326,6 +348,7 @@ public class BattleSystem : MonoBehaviour
 
             skillsMenu.SetActive(false);
             actionMenu.SetActive(true);
+            ShowDialogueBox("The next move is yours");
             //dialogueBox.SetActive(true);
 
             if (isDead)
@@ -342,16 +365,62 @@ public class BattleSystem : MonoBehaviour
         else
         {
             dialogueText.text = "No SP for that attack";
+            ShowDialogueBox (dialogueText.text);
         }
     }
     // Creating Function to Healing Button
+    public void OnHealSkill() 
+    {
+        if (playerUnit.currentSP >= healCost)
+        {
+            playerUnit.currentSP -= healCost;
+            playerHUD.SetSP(playerUnit.currentSP);
 
+            playerUnit.Heal(healAmount);
+            playerHUD.SetHP(playerUnit.currentHP);
+
+            dialogueText.text = playerUnit.unitName + " used healing.";
+
+            skillsMenu.SetActive(false);
+            actionMenu.SetActive(true);
+            ShowDialogueBox("The next move is yours.");
+
+            state = BattleState.ENEMYTURN;
+            StartCoroutine(EnemyTurn());
+        }
+        else 
+        {
+            dialogueText.text = "No SP for that skill";
+            ShowDialogueBox(dialogueText.text);
+
+            backButton.gameObject.SetActive(true);
+            backButton.interactable = true;
+        }
+    }
     // Creating a Function Run Button
     public void OnRunButton() 
     { 
         if (state != BattleState.PLAYERTURN)
             return;
 
+        attackButton.interactable = false;
+        skillButton.interactable = false;
+        healButton.interactable = false;
+        backButton.interactable = true;
+        
         StartCoroutine(PlayerRun());
     }
+
+    // Adding Back Button for the player to go back to the Action Selector
+    public void OnBackButton() 
+    {
+        skillsMenu.SetActive(false);
+        actionMenu.SetActive(true);
+
+        attackButton.interactable = true;
+        skillButton.interactable = true;
+
+        ShowDialogueBox("Pick a move");
+    }
+      
 }

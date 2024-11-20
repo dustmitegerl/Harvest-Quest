@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum abilityType { magic, ranged, melee }
-public class Ability : MonoBehaviour
+public abstract class Ability : MonoBehaviour
 {
-
+    public int numberOfTargets;
 }

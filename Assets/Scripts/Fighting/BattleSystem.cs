@@ -64,8 +64,9 @@ public class BattleSystem : MonoBehaviour
     // Setting up the player and enemy positions while including dialogue
     IEnumerator SetupBattle()
     { 
-        GameObject playerGO = GameObject.Instantiate(playerPrefab);
+        GameObject playerGO = Instantiate(playerPrefab);
         playerGO.transform.position = playerPosition.position;
+        playerGO.transform.rotation = Quaternion.identity;
         playerUnit = playerGO.GetComponent<Unit>();
 
         GameObject enemyGO = Instantiate(enemyPrefab);
@@ -179,7 +180,7 @@ public class BattleSystem : MonoBehaviour
 
         if (escapeSuccessful)
         {
-            dialogueText.text = "You strategically withdrawn from battle!";
+            dialogueText.text = "You strategically withdraw from battle!";
             Debug.Log("Player ran from battle.");
 
             yield return new WaitForSeconds(1f);

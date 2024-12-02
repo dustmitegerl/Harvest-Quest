@@ -17,12 +17,14 @@ public class AntiDuplicateSpawner : MonoBehaviour
     {
         for (int i = 0; i < spawnDefaults.Count; i++)
         {
-            if (GameObject.Find(spawnDefaults[i].uniqueObject.name) == null)
+            GameObject thisObject = GameObject.Find(spawnDefaults[i].uniqueObject.name);
+            if (thisObject == null)
             {
                 GameObject newObject = GameObject.Instantiate(spawnDefaults[i].uniqueObject, spawnDefaults[i].defaultLocation, Quaternion.identity);
                 newObject.name = spawnDefaults[i].uniqueObject.name; // prevends "(Clone)" from being appended to the name
-                DontDestroyOnLoad(newObject); // enables persistence
+                thisObject = newObject;
             } else Debug.Log("Found " + spawnDefaults[i].uniqueObject.name + " in scene. No need to spawn another.");
+            DontDestroyOnLoad(thisObject); // enables persistence
         }
     }
 }

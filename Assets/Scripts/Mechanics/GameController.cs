@@ -10,10 +10,11 @@ public class GameController : MonoBehaviour
     [SerializeField] BattleSystem battleSystem;
     [SerializeField] Camera worldCamera;
 
-    GameState state;
+    public GameState state;
 
     private void Start()
     {
+        worldCamera = Camera.main;
         playerController.OnEncountered += StartBattle;
         //battleSystem.EndBattle += OverBattle;
 

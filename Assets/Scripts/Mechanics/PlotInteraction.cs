@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -49,3 +50,35 @@ public class PlotInteraction : MonoBehaviour, Interactable
     }
 
 }
+=======
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlotInteraction : MonoBehaviour
+{
+    public Plant[] plants;
+    [SerializeField]
+    LevelLoader levelLoader;
+   
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            levelLoader = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<LevelLoader>(); 
+            levelLoader.LoadLevel("BattleArena");
+        }
+    }
+
+    void Start()
+    {
+            
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+}
+>>>>>>> Stashed changes

@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
 --- !u!78 &1
@@ -57,3 +58,64 @@ TagManager:
   - name: Grid
     uniqueID: 1581897341
     locked: 0
+=======
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Enemy
+  - Plant
+  - Level Loader
+  - Game Manager
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - Interactable
+  - SolidObject
+  - Grid
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 3531452067
+    locked: 0
+  - name: Foreground
+    uniqueID: 2206627721
+    locked: 0
+  - name: Player
+    uniqueID: 2971115205
+    locked: 0
+  - name: Grid
+    uniqueID: 1581897341
+    locked: 0
+>>>>>>> Stashed changes

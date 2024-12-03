@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream:Assets/Prefab/scenery, buildings.meta
 fileFormatVersion: 2
 guid: b56704dce9300ef478df3ce9cb7b2186
 folderAsset: yes
@@ -6,3 +7,13 @@ DefaultImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+=======
+fileFormatVersion: 2
+guid: d943a1d892a27ed40904ece13b6ac154
+folderAsset: yes
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+>>>>>>> Stashed changes:Packages/com.merry-yellow.code-assist/Editor/ExternalReferences.meta

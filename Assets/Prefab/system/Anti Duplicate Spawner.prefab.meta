@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream:Assets/Prefab/system/Anti Duplicate Spawner.prefab.meta
 fileFormatVersion: 2
 guid: 224f6f3be9cd466468e0dc7c6eae078b
 PrefabImporter:
@@ -5,3 +6,12 @@ PrefabImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+=======
+fileFormatVersion: 2
+guid: e27586c93b8421a4cbcc9ae3017db31f
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+>>>>>>> Stashed changes:Packages/com.merry-yellow.code-assist/Editor/ExternalReferences/Meryel.UnityCodeAssist.MQTTnet.xml.meta

@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream:Assets/Scripts/BackgroundMusic.cs.meta
 fileFormatVersion: 2
 guid: b05881882699930479baa771ff72b1ee
 MonoImporter:
@@ -9,3 +10,16 @@ MonoImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+=======
+fileFormatVersion: 2
+guid: b773a1d4b9561324fa0bc568c62c3770
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+>>>>>>> Stashed changes:Packages/com.merry-yellow.code-assist/Editor/AboutWindow.cs.meta

@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream:Assets/Prefab/system/AppManager(main menu).prefab.meta
 fileFormatVersion: 2
 guid: a11b961609b846947bf397b8a0bd4a5a
 PrefabImporter:
@@ -5,3 +6,12 @@ PrefabImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+=======
+fileFormatVersion: 2
+guid: 1c541f26362738d45ad369a0458b7559
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+>>>>>>> Stashed changes:Packages/com.merry-yellow.code-assist/CHANGELOG.md.meta

@@ -1,7 +1,25 @@
+<<<<<<< Updated upstream
+<<<<<<<< Updated upstream:Assets/Scenes/Harvest-Quest.unity.meta
 fileFormatVersion: 2
 guid: 3994be554b90ad54fb72aefb4c92405e
+=======
+fileFormatVersion: 2
+guid: dc7afd2e199441444bf5b7a975ad6a25
+>>>>>>> Stashed changes
 DefaultImporter:
   externalObjects: {}
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+<<<<<<< Updated upstream
+========
+fileFormatVersion: 2
+guid: 45ca2846d675c9a438e49991db89e437
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+>>>>>>>> Stashed changes:Packages/com.merry-yellow.code-assist/Editor/csc.rsp.meta
+=======
+>>>>>>> Stashed changes

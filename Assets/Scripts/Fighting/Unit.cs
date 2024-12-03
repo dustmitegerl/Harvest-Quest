@@ -53,13 +53,13 @@ public class Unit : MonoBehaviour
     private void OnEnable()
     {
         //Subscribe Event
-        ExperienceManager.Instance.OnExperienceChange += HandleExperienceChange;
+        //ExperienceManager.Instance.OnExperienceChange += HandleExperienceChange;
     }
 
     private void OnDisable()
     {
         //Unsubscribe from Event
-        ExperienceManager.Instance.OnExperienceChange -= HandleExperienceChange;
+        //ExperienceManager.Instance.OnExperienceChange -= HandleExperienceChange;
     }
 
     private void HandleExperienceChange(int newExperience)

@@ -9,9 +9,6 @@ public class BattleSystem : MonoBehaviour
 {
     LevelLoader levelLoader;
 
-    [SerializeField]
-    GameObject levelLoaderPrefab;
-
     // Reference to script: https://www.youtube.com/watch?v=_1pz_ohupPs
 
     public GameObject playerPrefab;
@@ -53,19 +50,19 @@ public class BattleSystem : MonoBehaviour
     // Starting the Battle State
     void Start()
     {
-        levelLoaderPrefab = GameObject.FindGameObjectWithTag("Game Manager");
-        levelLoader = levelLoaderPrefab.GetComponent<LevelLoader>();
+        levelLoader = GameObject.FindGameObjectWithTag("Level Loader").GetComponent<LevelLoader>();
         state = BattleState.START;
         StartCoroutine(SetupBattle());
         
         healButton.onClick.AddListener(OnHealSkill); 
     }
-
     // Setting up the player and enemy positions while including dialogue
     IEnumerator SetupBattle()
     { 
-        GameObject playerGO = GameObject.Instantiate(playerPrefab);
+        GameObject playerGO = Instantiate(playerPrefab);
+        Destroy(playerGO.transform.Find("Main Camera").gameObject);
         playerGO.transform.position = playerPosition.position;
+        playerGO.transform.rotation = Quaternion.identity;
         playerUnit = playerGO.GetComponent<Unit>();
 
         GameObject enemyGO = Instantiate(enemyPrefab);
@@ -179,7 +176,7 @@ public class BattleSystem : MonoBehaviour
 
         if (escapeSuccessful)
         {
-            dialogueText.text = "You strategically withdrawn from battle!";
+            dialogueText.text = "You strategically withdraw from battle!";
             Debug.Log("Player ran from battle.");
 
             yield return new WaitForSeconds(1f);
@@ -281,16 +278,17 @@ public class BattleSystem : MonoBehaviour
         if (state != BattleState.PLAYERTURN)
             return;
 
-        attackButton.interactable = false;
-        skillButton.interactable = false;
+        //attackButton.interactable = false;
+        //skillButton.interactable = false;
 
         //skillsMenu.SetActive(!skillsMenu.activeSelf);
         //StartCoroutine(PlayerSPAction());
 
         actionMenu.SetActive(false);
-        HideDialogueBox();
         skillsMenu.SetActive(true);
-        
+
+        HideDialogueBox();
+        //ShowDialogueBox("Unleash your skill and defeat the enemy:");
         //dialogueBox.SetActive(false);
 
 
@@ -301,7 +299,7 @@ public class BattleSystem : MonoBehaviour
     {
         if (playerUnit.currentSP >= fireCost)
         {
-            playerUnit.currentSP = fireCost;
+            playerUnit.currentSP -= fireCost;
             playerHUD.SetSP(playerUnit.currentSP);
 
             bool isDead = enemyUnit.TakeDamage(fireDamage);
@@ -312,7 +310,7 @@ public class BattleSystem : MonoBehaviour
             skillsMenu.SetActive(false);
             actionMenu.SetActive(true);
 
-            ShowDialogueBox("Next move is yours");
+            //ShowDialogueBox("Next move is yours");
             //dialogueBox.SetActive(true);
             
 
@@ -329,26 +327,29 @@ public class BattleSystem : MonoBehaviour
         }
         else 
         {
-            dialogueText.text = "No SP for that attack";
-            ShowDialogueBox(dialogueText.text);
+            ShowDialogueBox("Not enough SP for that attack!");
+            //dialogueText.text = "No SP for that attack";
+            //ShowDialogueBox(dialogueText.text);
         }
     }
     // Creating Function to Ice Attack Button
     public void OnIceSkill()
     {
-        if (playerUnit.currentSP >= fireCost)
+        if (playerUnit.currentSP >= iceCost)
         {
-            playerUnit.currentSP = iceCost;
+            playerUnit.currentSP -= iceCost;
             playerHUD.SetSP(playerUnit.currentSP);
 
             bool isDead = enemyUnit.TakeDamage(iceDamage);
             enemyHUD.SetHP(enemyUnit.currentHP);
 
             dialogueText.text = playerUnit.unitName + " has used Ice.";
-
+            
+            ShowDialogueBox("The next move is yours");
+            
             skillsMenu.SetActive(false);
             actionMenu.SetActive(true);
-            ShowDialogueBox("The next move is yours");
+            
             //dialogueBox.SetActive(true);
 
             if (isDead)
@@ -364,8 +365,9 @@ public class BattleSystem : MonoBehaviour
         }
         else
         {
-            dialogueText.text = "No SP for that attack";
-            ShowDialogueBox (dialogueText.text);
+            ShowDialogueBox("Not enough SP for that attack!");
+            //dialogueText.text = "No SP for that attack";
+            //ShowDialogueBox (dialogueText.text);
         }
     }
     // Creating Function to Healing Button
@@ -391,7 +393,7 @@ public class BattleSystem : MonoBehaviour
         else 
         {
             dialogueText.text = "No SP for that skill";
-            ShowDialogueBox(dialogueText.text);
+            //ShowDialogueBox(dialogueText.text);
 
             backButton.gameObject.SetActive(true);
             backButton.interactable = true;
@@ -419,6 +421,10 @@ public class BattleSystem : MonoBehaviour
 
         attackButton.interactable = true;
         skillButton.interactable = true;
+        healButton.interactable = true;
+        backButton.interactable = true;
+
+        //backButton.gameObject.SetActive(true);
 
         ShowDialogueBox("Pick a move");
     }

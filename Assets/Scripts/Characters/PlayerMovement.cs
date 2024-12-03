@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     private bool walking;
     public LayerMask solidObjectLayer;
     public LayerMask interactableLayer;
+    public LayerMask wallLayer;
 
     public event Action OnEncountered;
 
@@ -64,7 +65,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-      IEnumerator Move(Vector3 newPos)
+    IEnumerator Move(Vector3 newPos)
     {
         walking = true;
 
@@ -80,7 +81,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool Walkable(Vector3 newPos)
     {//Not walk over objects
-        if (Physics2D.OverlapCircle(newPos, 0.5f, solidObjectLayer | interactableLayer) != null)
+        if (Physics2D.OverlapCircle(newPos, 0.5f, solidObjectLayer | interactableLayer | wallLayer) != null)
         {
             return false;
         }

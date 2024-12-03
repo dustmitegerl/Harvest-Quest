@@ -175,6 +175,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plot
       objectReference: {fileID: 0}
+    - target: {fileID: 5962605653763600835, guid: c3a18b117e165434591469a7729a1011, type: 3}
+      propertyPath: battleInteraction
+      value: 
+      objectReference: {fileID: 1816782564}
+    - target: {fileID: 5962605653763600835, guid: c3a18b117e165434591469a7729a1011, type: 3}
+      propertyPath: dialog.lines.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5962605653763600835, guid: c3a18b117e165434591469a7729a1011, type: 3}
+      propertyPath: dialog.lines.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7076612931929637429, guid: c3a18b117e165434591469a7729a1011, type: 3}
+      propertyPath: m_Size.y
+      value: 1.7107508
+      objectReference: {fileID: 0}
+    - target: {fileID: 7076612931929637429, guid: c3a18b117e165434591469a7729a1011, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7076612931929637429, guid: c3a18b117e165434591469a7729a1011, type: 3}
+      propertyPath: m_Offset.y
+      value: -1.2444204
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -283,6 +307,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 794589520}
     m_Modifications:
+    - target: {fileID: 2645588518949176616, guid: 61fd0da72b16f94479060eb15be3e321, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5832057017340975204, guid: 61fd0da72b16f94479060eb15be3e321, type: 3}
       propertyPath: m_Color.a
       value: 1
@@ -298,6 +326,16 @@ PrefabInstance:
     - target: {fileID: 5832057017340975204, guid: 61fd0da72b16f94479060eb15be3e321, type: 3}
       propertyPath: m_Color.r
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5832057017340975204, guid: 61fd0da72b16f94479060eb15be3e321, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672132933727885202, guid: 61fd0da72b16f94479060eb15be3e321, type: 3}
+      propertyPath: m_text
+      value: 'You have crops ready to harvest!
+
+        Harvest them now?'
       objectReference: {fileID: 0}
     - target: {fileID: 6672132933727885202, guid: 61fd0da72b16f94479060eb15be3e321, type: 3}
       propertyPath: m_fontSize
@@ -762,7 +800,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 750437780}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1728234399}
+        m_TargetAssemblyTypeName: PlotInteraction, Assembly-CSharp
+        m_MethodName: CloseMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &750437780
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1201,7 +1251,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 995298446}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1728234399}
+        m_TargetAssemblyTypeName: PlotInteraction, Assembly-CSharp
+        m_MethodName: StartBattle
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &995298446
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1251,6 +1313,10 @@ PrefabInstance:
     - target: {fileID: 1588615702365696042, guid: 3774161addcd96e46972f138bcf0c403, type: 3}
       propertyPath: m_Name
       value: LemonFullGrown
+      objectReference: {fileID: 0}
+    - target: {fileID: 2010514837649706288, guid: 3774161addcd96e46972f138bcf0c403, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7233410649333547338, guid: 3774161addcd96e46972f138bcf0c403, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1889,6 +1955,17 @@ MonoBehaviour:
   ExnumberText: {fileID: 0}
   LevelText: {fileID: 0}
   experienceFill: {fileID: 0}
+--- !u!114 &1728234399 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5962605653763600835, guid: c3a18b117e165434591469a7729a1011, type: 3}
+  m_PrefabInstance: {fileID: 178967712}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5aa41a53173627c48810011567425c0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1810354304
 GameObject:
   m_ObjectHideFlags: 0
@@ -1924,6 +2001,11 @@ Transform:
   - {fileID: 1145731936}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1816782564 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8518166871296549689, guid: 61fd0da72b16f94479060eb15be3e321, type: 3}
+  m_PrefabInstance: {fileID: 576580435}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1876234570 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1681242733759746182, guid: 5453ed72ce3080e4599c25db1eca3908, type: 3}
@@ -2804,6 +2886,10 @@ PrefabInstance:
     - target: {fileID: 5832057017340975204, guid: 61fd0da72b16f94479060eb15be3e321, type: 3}
       propertyPath: m_Color.r
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672132933727885202, guid: 61fd0da72b16f94479060eb15be3e321, type: 3}
+      propertyPath: m_text
+      value: "You have plants ready to harvest! \nHarvest them now?"
       objectReference: {fileID: 0}
     - target: {fileID: 6672132933727885202, guid: 61fd0da72b16f94479060eb15be3e321, type: 3}
       propertyPath: m_fontSize

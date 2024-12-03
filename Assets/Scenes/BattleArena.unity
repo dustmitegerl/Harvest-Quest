@@ -1276,6 +1276,52 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1471043982}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &334084971
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 334084973}
+  - component: {fileID: 334084972}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Game Manager
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &334084972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 334084971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0ceebb2cb7278244a0662cdab56b745, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainLevelName: Interact
+  transitionTime: 1
+--- !u!4 &334084973
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 334084971}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -24.53753, y: 3.5027914, z: 84.154396}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &379154774
 GameObject:
   m_ObjectHideFlags: 0
@@ -1900,7 +1946,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &543441646
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2650,7 +2696,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1471043983}
         m_TargetAssemblyTypeName: BattleSystem, Assembly-CSharp
-        m_MethodName: OnAttackButton
+        m_MethodName: OnIceSkill
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4175,7 +4221,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1471043983}
         m_TargetAssemblyTypeName: BattleSystem, Assembly-CSharp
-        m_MethodName: OnAttackButton
+        m_MethodName: OnHealSkill
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4403,7 +4449,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1471043983}
         m_TargetAssemblyTypeName: BattleSystem, Assembly-CSharp
-        m_MethodName: OnAttackButton
+        m_MethodName: OnBackButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4709,7 +4755,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 751eeee5cd9399f4c8dbc3838a12f5ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelLoaderPrefab: {fileID: 0}
+  levelLoaderPrefab: {fileID: 6189223903089929151, guid: a0789d2e05d164b43a313fef2299ac5b, type: 3}
   playerPrefab: {fileID: 3037191485019776758, guid: 5453ed72ce3080e4599c25db1eca3908, type: 3}
   enemyPrefab: {fileID: 8259538032588520519, guid: c86194a3df4449f47aeaed8821b4c19d, type: 3}
   playerPosition: {fileID: 404858160880091494, guid: 2844582327f60444d99cf489720bb5b3, type: 3}
@@ -6382,7 +6428,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1471043983}
         m_TargetAssemblyTypeName: BattleSystem, Assembly-CSharp
-        m_MethodName: OnAttackButton
+        m_MethodName: OnFireSkill
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6581,3 +6627,4 @@ SceneRoots:
   - {fileID: 1471043982}
   - {fileID: 2145069381}
   - {fileID: 300592515}
+  - {fileID: 334084973}

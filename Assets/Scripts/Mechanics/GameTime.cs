@@ -45,6 +45,8 @@ public class GameTime : MonoBehaviour
     {
         hrs = startingHr;
         UnPause();
+        clockRead = GameObject.Find("Clock").GetComponent<TextMeshProUGUI>(); // find clock
+        dayRead = GameObject.Find("Calendar").GetComponent<TextMeshProUGUI>(); // find calendar
     }
 
 
@@ -54,14 +56,6 @@ public class GameTime : MonoBehaviour
         if (!isPaused)
         {
             UpdateGameTime();
-            if (clockRead == null) // if no clock
-            {
-                clockRead = GameObject.Find("Clock").GetComponent<TextMeshProUGUI>(); // find clock
-            }
-            if (dayRead == null) // if no calendar
-            {
-                dayRead = GameObject.Find("Calendar").GetComponent<TextMeshProUGUI>(); // find calendar
-            }
             UpdateTimePrefabs();
         }
         
@@ -97,6 +91,15 @@ public class GameTime : MonoBehaviour
     /// </summary>
     void UpdateTimePrefabs()
     {
+        if (clockRead == null) // if no clock
+        {
+            clockRead = GameObject.Find("Clock").GetComponent<TextMeshProUGUI>(); // find clock
+        }
+        if (dayRead == null) // if no calendar
+        {
+            dayRead = GameObject.Find("Calendar").GetComponent<TextMeshProUGUI>(); // find calendar
+        }
+
         int adjHrs = 12; // adjusting for am vs pm; starting at 12 prevents reading "0" at 12pm
         string minsString; // for adding a 0 before single-digit minutes
 

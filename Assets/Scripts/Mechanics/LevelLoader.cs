@@ -18,7 +18,7 @@ public class LevelLoader : MonoBehaviour
     
     void Start()
     {
-        gameTime = GetComponent<GameTime>();
+        gameTime = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameTime>();
     }
     public void LoadLevel(string levelName)
     {

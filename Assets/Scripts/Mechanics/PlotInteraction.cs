@@ -22,17 +22,16 @@ public class PlotInteraction : MonoBehaviour, Interactable
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player" && !collision.gameObject != null) // prevents an exception when entering battle
         {
             battleInteraction.SetActive(false);
-
         }
     }
 
     public void StartBattle()
     {
         Debug.Log("starting battle");
-        levelLoader = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<LevelLoader>();
+        levelLoader = GameObject.FindGameObjectWithTag("Level Loader").GetComponent<LevelLoader>();
         levelLoader.LoadLevel("BattleArena");
         
     }

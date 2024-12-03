@@ -50,17 +50,17 @@ public class BattleSystem : MonoBehaviour
     // Starting the Battle State
     void Start()
     {
-        levelLoader = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<LevelLoader>();
+        levelLoader = GameObject.FindGameObjectWithTag("Level Loader").GetComponent<LevelLoader>();
         state = BattleState.START;
         StartCoroutine(SetupBattle());
         
         healButton.onClick.AddListener(OnHealSkill); 
     }
-
     // Setting up the player and enemy positions while including dialogue
     IEnumerator SetupBattle()
     { 
         GameObject playerGO = Instantiate(playerPrefab);
+        Destroy(playerGO.transform.Find("Main Camera").gameObject);
         playerGO.transform.position = playerPosition.position;
         playerGO.transform.rotation = Quaternion.identity;
         playerUnit = playerGO.GetComponent<Unit>();

@@ -23,8 +23,7 @@ public class AntiDuplicateSpawner : MonoBehaviour
                 GameObject newObject = GameObject.Instantiate(spawnDefaults[i].uniqueObject, spawnDefaults[i].defaultLocation, Quaternion.identity);
                 newObject.name = spawnDefaults[i].uniqueObject.name; // prevends "(Clone)" from being appended to the name
                 thisObject = newObject;
-            } else Debug.Log("Found " + spawnDefaults[i].uniqueObject.name + " in scene. No need to spawn another.");
-            DontDestroyOnLoad(thisObject); // enables persistence
+            } else Debug.Log("Found " + thisObject.name + " in scene. No need to spawn another.");
         }
     }
 }

@@ -19,6 +19,7 @@ public class GameTime : MonoBehaviour
     int startingHr;
     public int days = 1; // starting days index at 1 rather than 0
     public int hrs;
+    public string currentPeriod;
     public int mins;
     public float secs;
     public bool isPaused = false; // for pausing
@@ -39,14 +40,10 @@ public class GameTime : MonoBehaviour
     int minsInHr = 60;
     [SerializeField]
     int hrsInDay = 24;
-    
-    void Awake()
-    {
-        hrs = startingHr;
-    }
 
     void Start()
     {
+        hrs = startingHr;
         UnPause();
     }
 
@@ -100,8 +97,7 @@ public class GameTime : MonoBehaviour
     /// </summary>
     void UpdateTimePrefabs()
     {
-        string currentPeriod;
-        int adjHrs = 0; // adjusting for am vs pm
+        int adjHrs = 12; // adjusting for am vs pm; starting at 12 prevents reading "0" at 12pm
         string minsString; // for adding a 0 before single-digit minutes
 
         if (hrs >= 12) // 12 oclock
@@ -110,23 +106,14 @@ public class GameTime : MonoBehaviour
         }
         else currentPeriod = AM; // between midnight and 12 is morning
 
+        // adjusting for AM/PM
         if (currentPeriod == AM) // during A.M. hours
         {
             adjHrs = hrs; // the hours aren't adjusted
-            
-            if (adjHrs >= 12) // when the clock strikes 12
-            {
-                currentPeriod = PM; // period becomes PM
-            }
         }
-        else if (currentPeriod == PM) // during P.M. hours
+        else if (currentPeriod == PM && hrs >= 13) // during P.M. hours, after the 12pm hour
         {
             adjHrs = hrs - 12; // subtract 12 to get the adjusted time
-
-            if (adjHrs >= 12)
-            {
-                currentPeriod = AM; // period becomes AM
-            }
         }
 
         // in case of 0:00, set to 12AM
@@ -136,7 +123,7 @@ public class GameTime : MonoBehaviour
             currentPeriod = AM;
         }
 
-        if (mins < 10) // if less than 10 minutes on the clock, 
+        if (mins < 10) // if less than 10 minutes on the clock, s
         {
             minsString = "0" + mins.ToString();
         }
@@ -149,10 +136,12 @@ public class GameTime : MonoBehaviour
     public void Pause()
     {
         isPaused = true;
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().enabled = false; // stops player movement
     }
 
     public void UnPause()
     {
-        isPaused=false;
+        isPaused = false;
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().enabled = true; // restarts player movement
     }
 }

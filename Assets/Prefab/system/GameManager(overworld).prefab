@@ -53,7 +53,7 @@ MonoBehaviour:
   dayRead: {fileID: 0}
   startingHr: 0
   days: 1
-  hrs: 0
+  hrs: 6
   currentPeriod: 
   mins: 0
   secs: 0

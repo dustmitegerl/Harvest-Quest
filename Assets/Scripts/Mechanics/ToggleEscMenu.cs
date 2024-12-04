@@ -7,9 +7,18 @@ public class ToggleEscMenu : MonoBehaviour
 {
     [SerializeField]
     GameObject escMenu;
+    [SerializeField]
+    GameObject currentCanvas;
     void Start()
     {
-        escMenu.SetActive(false);
+    }
+
+    void Update()
+    {
+        if (escMenu == null)
+        {
+            FindEscMenu();
+        }
     }
 
     void LateUpdate()
@@ -17,10 +26,18 @@ public class ToggleEscMenu : MonoBehaviour
         if (escMenu.activeInHierarchy == false && Input.GetKeyDown(KeyCode.Escape))
             {
                 Debug.Log("Escape key pressed");
+                FindEscMenu();
                 OpenEscMenu();
             }
     }
 
+    // maybe this is silly but i want this to work as soon as AppManager is dropped into a scene in which
+    // an Esc Menu has been added to the Canvas
+    public void FindEscMenu()
+    {
+        currentCanvas = GameObject.FindGameObjectWithTag("Canvas");
+        escMenu = currentCanvas.transform.Find("Esc Menu").gameObject;
+    }
     public void OpenEscMenu()
     {
         Debug.Log("Opening Esc Menu");

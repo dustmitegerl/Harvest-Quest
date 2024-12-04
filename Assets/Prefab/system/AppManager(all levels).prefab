@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: -9155641024805460559}
   - component: {fileID: 9049655688078759066}
   m_Layer: 0
-  m_Name: AppManager(main menu)
+  m_Name: AppManager(all levels)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58,4 +58,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   escMenu: {fileID: 2248264336709687466, guid: 4dfe6a364342ca042beae0b220c91cf2, type: 3}
-  currentCanvas: {fileID: 0}

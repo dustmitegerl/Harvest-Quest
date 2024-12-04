@@ -8,6 +8,7 @@ TagManager:
   - Plant
   - Level Loader
   - Game Manager
+  - Canvas
   layers:
   - Default
   - TransparentFX

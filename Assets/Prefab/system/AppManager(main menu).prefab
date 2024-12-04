@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 231765844413665272}
-  - component: {fileID: -2398159589736347458}
-  - component: {fileID: -8994001422567059554}
+  - component: {fileID: -9155641024805460559}
+  - component: {fileID: 9049655688078759066}
   m_Layer: 0
   m_Name: AppManager(main menu)
   m_TagString: Untagged
@@ -33,7 +33,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-2398159589736347458
+--- !u!114 &-9155641024805460559
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,10 +42,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4351264141534835910}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 042fe69dfd5dd9744a73156fa9f685ec, type: 3}
+  m_Script: {fileID: 11500000, guid: 514aa8d2931ab8345b4c3a718fad894a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-8994001422567059554
+--- !u!114 &9049655688078759066
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -54,6 +54,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 4351264141534835910}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e04be444cc4046f4ba552ef25d555ea1, type: 3}
+  m_Script: {fileID: 11500000, guid: 0ccfdfb5b40308c4b81cde41a21d56b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  escMenu: {fileID: 2248264336709687466, guid: 4dfe6a364342ca042beae0b220c91cf2, type: 3}
+  currentCanvas: {fileID: 0}

@@ -16,14 +16,14 @@ public class LevelLoader : MonoBehaviour
 
     GameTime gameTime;
     
-    void Start()
-    {
-        gameTime = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameTime>();
-    }
+
     public void LoadLevel(string levelName)
     {
         StartCoroutine(LoadNamedLevel(levelName));
-        
+        if (gameTime == null)
+        {
+            gameTime = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameTime>();
+        }
     }
 
     IEnumerator LoadNamedLevel(string levelName)

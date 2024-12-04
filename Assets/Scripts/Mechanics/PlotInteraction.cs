@@ -22,7 +22,7 @@ public class PlotInteraction : MonoBehaviour, Interactable
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player" && !collision.gameObject != null) // prevents an exception when entering battle
+        if (collision.gameObject.tag == "Player" && collision.gameObject != null) // prevents an exception when entering battle
         {
             battleInteraction.SetActive(false);
         }

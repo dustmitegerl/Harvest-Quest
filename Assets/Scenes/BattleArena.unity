@@ -713,9 +713,21 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8516417273902182035, guid: 073e7cbd577ceea41a468181ae1c28a4, type: 3}
+      propertyPath: iceCost
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8516417273902182035, guid: 073e7cbd577ceea41a468181ae1c28a4, type: 3}
       propertyPath: enemyHUD
       value: 
       objectReference: {fileID: 1712918791}
+    - target: {fileID: 8516417273902182035, guid: 073e7cbd577ceea41a468181ae1c28a4, type: 3}
+      propertyPath: fireCost
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8516417273902182035, guid: 073e7cbd577ceea41a468181ae1c28a4, type: 3}
+      propertyPath: healCost
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 8516417273902182035, guid: 073e7cbd577ceea41a468181ae1c28a4, type: 3}
       propertyPath: mainMenu
       value: 
@@ -773,6 +785,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1471043983}
+    - target: {fileID: 622485230467696125, guid: 4402a0f7597100c4b910cd9df53372c4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 721044638190435326, guid: 4402a0f7597100c4b910cd9df53372c4, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -809,6 +825,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1471043983}
+    - target: {fileID: 3020255512863898071, guid: 4402a0f7597100c4b910cd9df53372c4, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 109.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3020255512863898071, guid: 4402a0f7597100c4b910cd9df53372c4, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -148.29999
+      objectReference: {fileID: 0}
     - target: {fileID: 3201677616852551806, guid: 4402a0f7597100c4b910cd9df53372c4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -821,6 +845,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 322120734}
+    - target: {fileID: 5599269827678760458, guid: 4402a0f7597100c4b910cd9df53372c4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6381078545164826759, guid: 4402a0f7597100c4b910cd9df53372c4, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

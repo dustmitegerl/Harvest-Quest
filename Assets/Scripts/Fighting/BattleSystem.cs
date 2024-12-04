@@ -87,6 +87,11 @@ public class BattleSystem : MonoBehaviour
     {
         actionMenu.SetActive(false);
         skillsMenu.SetActive(true);
+
+        backButton.gameObject.SetActive(true);
+        backButton.interactable = true;
+
+        HideDialogueBox();
     }
 
     public void HideSkillsMenu()
@@ -169,7 +174,6 @@ public class BattleSystem : MonoBehaviour
     // Implementing Run Button
     IEnumerator PlayerRun() 
     {
-        //dialogueText.text = "Is it best to run?";
         yield return new WaitForSeconds(1f);
 
         bool escapeSuccessful = Random.Range(0, 2) == 0;
@@ -278,19 +282,10 @@ public class BattleSystem : MonoBehaviour
         if (state != BattleState.PLAYERTURN)
             return;
 
-        //attackButton.interactable = false;
-        //skillButton.interactable = false;
-
-        //skillsMenu.SetActive(!skillsMenu.activeSelf);
-        //StartCoroutine(PlayerSPAction());
-
         actionMenu.SetActive(false);
         skillsMenu.SetActive(true);
 
         HideDialogueBox();
-        //ShowDialogueBox("Unleash your skill and defeat the enemy:");
-        //dialogueBox.SetActive(false);
-
 
     }
 
@@ -305,14 +300,10 @@ public class BattleSystem : MonoBehaviour
             bool isDead = enemyUnit.TakeDamage(fireDamage);
             enemyHUD.SetHP(enemyUnit.currentHP);
 
-            dialogueText.text = playerUnit.unitName + " has used Fire.";
+            ShowDialogueBox(playerUnit.unitName + " has used Fire.");
 
             skillsMenu.SetActive(false);
             actionMenu.SetActive(true);
-
-            //ShowDialogueBox("Next move is yours");
-            //dialogueBox.SetActive(true);
-            
 
             if (isDead)
             {
@@ -328,8 +319,9 @@ public class BattleSystem : MonoBehaviour
         else 
         {
             ShowDialogueBox("Not enough SP for that attack!");
-            //dialogueText.text = "No SP for that attack";
-            //ShowDialogueBox(dialogueText.text);
+           
+            backButton.gameObject.SetActive(true);
+            backButton.interactable = true;
         }
     }
     // Creating Function to Ice Attack Button
@@ -343,15 +335,11 @@ public class BattleSystem : MonoBehaviour
             bool isDead = enemyUnit.TakeDamage(iceDamage);
             enemyHUD.SetHP(enemyUnit.currentHP);
 
-            dialogueText.text = playerUnit.unitName + " has used Ice.";
-            
-            ShowDialogueBox("The next move is yours");
-            
+            ShowDialogueBox(playerUnit.unitName + " has used Ice.");
+
             skillsMenu.SetActive(false);
             actionMenu.SetActive(true);
-            
-            //dialogueBox.SetActive(true);
-
+        
             if (isDead)
             {
                 state = BattleState.WON;
@@ -366,8 +354,17 @@ public class BattleSystem : MonoBehaviour
         else
         {
             ShowDialogueBox("Not enough SP for that attack!");
-            //dialogueText.text = "No SP for that attack";
-            //ShowDialogueBox (dialogueText.text);
+          
+            backButton.onClick.RemoveAllListeners();
+            backButton.onClick.AddListener(() =>
+            {
+                skillsMenu.SetActive(false);
+                actionMenu.SetActive(true);
+                ShowDialogueBox("Pick a Move");
+            });
+
+            backButton.gameObject.SetActive(true);
+            backButton.interactable = true;
         }
     }
     // Creating Function to Healing Button
@@ -393,8 +390,7 @@ public class BattleSystem : MonoBehaviour
         else 
         {
             dialogueText.text = "No SP for that skill";
-            //ShowDialogueBox(dialogueText.text);
-
+            
             backButton.gameObject.SetActive(true);
             backButton.interactable = true;
         }
@@ -422,10 +418,7 @@ public class BattleSystem : MonoBehaviour
         attackButton.interactable = true;
         skillButton.interactable = true;
         healButton.interactable = true;
-        backButton.interactable = true;
-
-        //backButton.gameObject.SetActive(true);
-
+      
         ShowDialogueBox("Pick a move");
     }
       

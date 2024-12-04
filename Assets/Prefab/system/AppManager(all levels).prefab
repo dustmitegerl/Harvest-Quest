@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 231765844413665272}
   - component: {fileID: -9155641024805460559}
   - component: {fileID: 9049655688078759066}
+  - component: {fileID: 6591332859831178317}
   m_Layer: 0
   m_Name: AppManager(all levels)
   m_TagString: Untagged
@@ -58,3 +59,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   escMenu: {fileID: 2248264336709687466, guid: 4dfe6a364342ca042beae0b220c91cf2, type: 3}
+  currentCanvas: {fileID: 0}
+--- !u!114 &6591332859831178317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4351264141534835910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e04be444cc4046f4ba552ef25d555ea1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

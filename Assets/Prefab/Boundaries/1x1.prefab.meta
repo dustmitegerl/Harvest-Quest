@@ -1,5 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream:Assets/Prefab/Boundaries/1x1.prefab.meta
 guid: ad5f1a448e045d647985df08ac2007f8
+=======
+<<<<<<< Updated upstream
+guid: ce857e462ac204545bcf3e97dec6293b
+=======
+guid: f7e74eb5aae864147ac185ce95754054
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes:Assets/Prefab/GameManager.prefab.meta
 PrefabImporter:
   externalObjects: {}
   userData: 

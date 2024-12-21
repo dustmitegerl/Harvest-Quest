@@ -1,7 +1,16 @@
 fileFormatVersion: 2
+<<<<<<<< Updated upstream:Assets/Prefab/time.meta
 guid: 751d9dee07e6bb14194485d55c6bd16b
 folderAsset: yes
+========
+<<<<<<< Updated upstream:Packages/com.merry-yellow.code-assist/Editor/csc.rsp.meta
+guid: 45ca2846d675c9a438e49991db89e437
+>>>>>>>> Stashed changes:Packages/com.merry-yellow.code-assist/Editor/csc.rsp.meta
 DefaultImporter:
+=======
+guid: 2d12d0fc1778a2c4d9bc26ef138a323c
+PrefabImporter:
+>>>>>>> Stashed changes:Assets/Prefab/Anti Duplicate Spawner.prefab.meta
   externalObjects: {}
   userData: 
   assetBundleName: 

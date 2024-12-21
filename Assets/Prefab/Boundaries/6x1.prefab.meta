@@ -1,6 +1,16 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream:Assets/Prefab/Boundaries/6x1.prefab.meta
 guid: 47f25073edd642c4eb8c2e1a9d27c5a4
 PrefabImporter:
+=======
+<<<<<<< Updated upstream:Packages/com.merry-yellow.code-assist/Editor/ExternalReferences/Meryel.UnityCodeAssist.MQTTnet.xml.meta
+guid: e27586c93b8421a4cbcc9ae3017db31f
+TextScriptImporter:
+=======
+guid: f58754159ff80e84da0bbd64910922b0
+PrefabImporter:
+>>>>>>> Stashed changes:Assets/Prefab/LemonFinal.prefab.meta
+>>>>>>> Stashed changes:Packages/com.merry-yellow.code-assist/Editor/ExternalReferences/Meryel.UnityCodeAssist.MQTTnet.xml.meta
   externalObjects: {}
   userData: 
   assetBundleName: 

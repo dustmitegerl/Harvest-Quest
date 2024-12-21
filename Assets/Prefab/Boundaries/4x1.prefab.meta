@@ -1,6 +1,16 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream:Assets/Prefab/Boundaries/4x1.prefab.meta
 guid: c6fb81eb7ada46347acf7f9dbe7e0a66
 PrefabImporter:
+=======
+<<<<<<< Updated upstream:Packages/com.merry-yellow.code-assist/CHANGELOG.md.meta
+guid: 1c541f26362738d45ad369a0458b7559
+TextScriptImporter:
+=======
+guid: 05340f7cb1326ff448be42904cf7a97c
+PrefabImporter:
+>>>>>>> Stashed changes:Assets/Prefab/BlacksmithHQ.prefab.meta
+>>>>>>> Stashed changes:Packages/com.merry-yellow.code-assist/CHANGELOG.md.meta
   externalObjects: {}
   userData: 
   assetBundleName: 

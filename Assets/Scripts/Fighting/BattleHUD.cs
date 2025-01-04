@@ -16,6 +16,13 @@ public class BattleHUD : MonoBehaviour
     public TextMeshProUGUI HPnumberText;
     public TextMeshProUGUI SPnumberText;
 
+    // To prevent the player from interacting with the HP and SP Bar Sliders
+    void Start()
+    {
+        hpSlider.interactable = false;
+        spSlider.interactable = false;
+    }
+
     // Creating a function that will use the involed element
 
     public void SetHUD(Unit unit) 

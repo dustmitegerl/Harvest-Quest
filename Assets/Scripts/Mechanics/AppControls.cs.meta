@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream:Assets/Scripts/Mechanics/AppControls.cs.meta
 guid: a8b45dbe324fcde40b7df4ac0c7e6427
+=======
+guid: b5c21b8257162ee48b7ac95d2bc91c4b
+>>>>>>> Stashed changes:Assets/Scripts/Mechanics/CloseGame.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

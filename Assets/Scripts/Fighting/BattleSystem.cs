@@ -351,26 +351,17 @@ public class BattleSystem : MonoBehaviour
         else 
         {
             ShowDialogueBox("Not enough SP for that attack!");
-<<<<<<< Updated upstream
+
            
             backButton.gameObject.SetActive(true);
             backButton.interactable = true;
-=======
+
             //dialogueText.text = "No SP for that attack";
             //ShowDialogueBox(dialogueText.text);
 
-            backButton.gameObject.SetActive(true);
-            backButton.interactable = true;
-
             state = BattleState.PLAYERTURN;
             skillsMenu.SetActive(true);
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+
         }
     }
 
@@ -404,7 +395,7 @@ public class BattleSystem : MonoBehaviour
         else
         {
             ShowDialogueBox("Not enough SP for that attack!");
-<<<<<<< Updated upstream
+
           
             backButton.onClick.RemoveAllListeners();
             backButton.onClick.AddListener(() =>
@@ -416,19 +407,12 @@ public class BattleSystem : MonoBehaviour
 
             backButton.gameObject.SetActive(true);
             backButton.interactable = true;
-=======
+
             //dialogueText.text = "No SP for that attack";
             //ShowDialogueBox (dialogueText.text);
 
             state = BattleState.PLAYERTURN;
             skillsMenu.SetActive(true);
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
         }
     }
     // Creating Function to Healing Button
@@ -454,28 +438,15 @@ public class BattleSystem : MonoBehaviour
         else 
         {
             dialogueText.text = "No SP for that skill";
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-            
+
             backButton.gameObject.SetActive(true);
             backButton.interactable = true;
-=======
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+
             //ShowDialogueBox(dialogueText.text);
 
             state = BattleState.PLAYERTURN;
             skillsMenu.SetActive(true);
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+
         }
     }
     // Creating a Function Run Button

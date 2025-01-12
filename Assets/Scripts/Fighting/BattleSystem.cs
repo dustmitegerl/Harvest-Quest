@@ -47,6 +47,8 @@ public class BattleSystem : MonoBehaviour
     public int healCost;
     public int healAmount;
 
+    public int enemyMagicDamage;
+
     // Starting the Battle State
     void Start()
     {
@@ -211,25 +213,55 @@ public class BattleSystem : MonoBehaviour
     {
         actionMenu.SetActive(false);
 
-        dialogueText.text = enemyUnit.unitName + " is making their moves.";
+        dialogueText.text = enemyUnit.unitName + " is making their move.";
         yield return new WaitForSeconds(1f);
 
-        bool isDead = playerUnit.TakeDamage(enemyUnit.damage);
-        playerHUD.SetHP(playerUnit.currentHP);
-
-        yield return new WaitForSeconds(1f);
-
-        if (isDead)
+        //Enemy is deciding how to attack the player
+        bool isMagiAttack = Random.Range(0, 2) == 0;
+        
+        if (isMagiAttack) 
         {
-            state = BattleState.LOST;
-            EndBattle();
-            Debug.Log("Enemy Won");
+            // Enemy is using Magic Attack
+            dialogueText.text = enemyUnit.unitName + " is using Pucker Blast.";
+            yield return new WaitForSeconds(1f);
+
+            bool isDead = playerUnit.TakeDamage(enemyUnit.enemyMagicDamage);
+            playerHUD.SetHP(playerUnit.currentHP);
+
+            if (isDead)
+            {
+                state = BattleState.LOST;
+                EndBattle();
+                Debug.Log("Enemy Won");
+            }
+            else
+            {
+                state = BattleState.PLAYERTURN;
+                PlayerTurn();
+                Debug.Log("Player takes the turn");
+            }
         }
-        else 
-        { 
-            state = BattleState.PLAYERTURN;
-            PlayerTurn();
-            Debug.Log("Player takes the turn");
+        else
+        {
+            // Enemy using melee attack
+            dialogueText.text = enemyUnit.unitName + " is making their moves.";
+            yield return new WaitForSeconds(1f);
+
+            bool isDead = playerUnit.TakeDamage(enemyUnit.damage);
+            playerHUD.SetHP(playerUnit.currentHP);
+
+            if (isDead)
+            {
+                state = BattleState.LOST;
+                EndBattle();
+                Debug.Log("Enemy Won");
+            }
+            else
+            {
+                state = BattleState.PLAYERTURN;
+                PlayerTurn();
+                Debug.Log("Player takes the turn");
+            }
         }
     }
 
@@ -319,11 +351,23 @@ public class BattleSystem : MonoBehaviour
         else 
         {
             ShowDialogueBox("Not enough SP for that attack!");
+<<<<<<< Updated upstream
            
             backButton.gameObject.SetActive(true);
             backButton.interactable = true;
+=======
+            //dialogueText.text = "No SP for that attack";
+            //ShowDialogueBox(dialogueText.text);
+
+            backButton.gameObject.SetActive(true);
+            backButton.interactable = true;
+
+            state = BattleState.PLAYERTURN;
+            skillsMenu.SetActive(true);
+>>>>>>> Stashed changes
         }
     }
+
     // Creating Function to Ice Attack Button
     public void OnIceSkill()
     {
@@ -354,6 +398,7 @@ public class BattleSystem : MonoBehaviour
         else
         {
             ShowDialogueBox("Not enough SP for that attack!");
+<<<<<<< Updated upstream
           
             backButton.onClick.RemoveAllListeners();
             backButton.onClick.AddListener(() =>
@@ -365,6 +410,13 @@ public class BattleSystem : MonoBehaviour
 
             backButton.gameObject.SetActive(true);
             backButton.interactable = true;
+=======
+            //dialogueText.text = "No SP for that attack";
+            //ShowDialogueBox (dialogueText.text);
+
+            state = BattleState.PLAYERTURN;
+            skillsMenu.SetActive(true);
+>>>>>>> Stashed changes
         }
     }
     // Creating Function to Healing Button
@@ -390,9 +442,16 @@ public class BattleSystem : MonoBehaviour
         else 
         {
             dialogueText.text = "No SP for that skill";
+<<<<<<< Updated upstream
             
             backButton.gameObject.SetActive(true);
             backButton.interactable = true;
+=======
+            //ShowDialogueBox(dialogueText.text);
+
+            state = BattleState.PLAYERTURN;
+            skillsMenu.SetActive(true);
+>>>>>>> Stashed changes
         }
     }
     // Creating a Function Run Button

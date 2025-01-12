@@ -18,6 +18,8 @@ public class Unit : MonoBehaviour
     public int maxSP;
     public int currentSP;
 
+    public int enemyMagicDamage;
+
     [SerializeField] int currentExperience, maxExperience, currentLevel;
 
     //Creating Take Damage

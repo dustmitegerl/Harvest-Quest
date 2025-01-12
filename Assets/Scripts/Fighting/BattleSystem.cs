@@ -365,6 +365,9 @@ public class BattleSystem : MonoBehaviour
             state = BattleState.PLAYERTURN;
             skillsMenu.SetActive(true);
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -420,6 +423,9 @@ public class BattleSystem : MonoBehaviour
             state = BattleState.PLAYERTURN;
             skillsMenu.SetActive(true);
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -450,10 +456,13 @@ public class BattleSystem : MonoBehaviour
             dialogueText.text = "No SP for that skill";
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             
             backButton.gameObject.SetActive(true);
             backButton.interactable = true;
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
             //ShowDialogueBox(dialogueText.text);
@@ -461,6 +470,9 @@ public class BattleSystem : MonoBehaviour
             state = BattleState.PLAYERTURN;
             skillsMenu.SetActive(true);
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes

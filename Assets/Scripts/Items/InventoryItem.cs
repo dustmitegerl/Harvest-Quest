@@ -4,35 +4,47 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-//Thanks to Pogle: Inventory Syste | Unity Tutorial (Youtube)
+//Thanks to Coco Code: Unity INVENTORY: A Definitive Tutorial (Youtube)
 
-public class InventoryItem : MonoBehaviour, IPointerClickHandler
+public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    Image itemIcon;
-    public CanvasGroup canvasGroup { get; private set; }
+    [Header("UI")]
+    public Image image;
+    public Text countText;
 
-    public Item myItem { get; set; }
-    public InventorySlot activeSlot { get; set; }
+    [HideInInspector] public Item item;
+    [HideInInspector] public int count = 1;
+    [HideInInspector] public Transform parentAfterDrag;
 
-    void Awake()
+    public void InitialiseItem(Item newItem)
     {
-        canvasGroup = GetComponent<CanvasGroup>();
-        itemIcon = GetComponent<Image>();
+        item = newItem;
+        image.sprite = newItem.image;
+        RefreshCount();
     }
 
-    public void Initialize(Item item, InventorySlot parent)
+    public void RefreshCount()
     {
-        activeSlot = parent;
-        activeSlot.myItem = this;
-        myItem = item;
-        itemIcon.sprite = item.sprites;
+        countText.text = count.ToString();
+        bool textActive = count > 1;
+        countText.gameObject.SetActive(textActive);
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    public void OnBeginDrag(PointerEventData eventData)
     {
-        if (eventData.button == PointerEventData.InputButton.Left)
-        {
-            Inventory.Singleton.SetCarriedItem(this);
-        }
+        image.raycastTarget = false;
+        parentAfterDrag = transform.parent;
+        transform.SetParent(transform.root);
+    }
+
+    public void OnDrag(PointerEventData eventData)
+    {
+        transform.position = Input.mousePosition;
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        image.raycastTarget = true;
+        transform.SetParent(parentAfterDrag);
     }
 }

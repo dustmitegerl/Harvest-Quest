@@ -1,41 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-//Thanks to Pogle: Inventory Syste | Unity Tutorial (Youtube)
-public enum SlotTag { None }
+//Thanks to Coco Code: Unity INVENTORY: A Definitive Tutorial (Youtube)
 
-public class InventorySlot : MonoBehaviour, IPointerClickHandler
+public class InventorySlot : MonoBehaviour, IDropHandler
 {
-    public InventoryItem myItem { get; set; }
+    public Image image;
+    public Color selectedColor, notSelectedColor;
 
-    public SlotTag myTag;
-
-    public void OnPointerClick(PointerEventData eventData)
+    private void Awake()
     {
-        if (eventData.button == PointerEventData.InputButton.Left)
-        {
-            if (Inventory.carriedItem == null) return;
-            if (myTag != SlotTag.None && Inventory.carriedItem.myItem.itemTag != myTag) return;
-            SetItem(Inventory.carriedItem);
-        }
+        Deselect();
     }
 
-    public void SetItem(InventoryItem item)
+    public void Select()
     {
-        Inventory.carriedItem = null;
+        image.color = selectedColor;
+    }
 
-        // Reset old slot
-        item.activeSlot.myItem = null;
+    public void Deselect()
+    {
+        image.color = notSelectedColor;
+    }
 
-        // Set current slot
-        myItem = item;
-        myItem.activeSlot = this;
-        myItem.transform.SetParent(transform);
-        myItem.canvasGroup.blocksRaycasts = true;
-
-        //if (myTag != SlotTag.None)
-        //{ Inventory.Singleton.EquipEquipment(myTag, myItem); }
+    //Drag and drop
+    public void OnDrop(PointerEventData eventData)
+    {
+        if(transform.childCount == 0)
+        {
+            InventoryItem inventoryItem = eventData.pointerDrag.GetComponent<InventoryItem>();
+            inventoryItem.parentAfterDrag = transform;
+        }
     }
 }

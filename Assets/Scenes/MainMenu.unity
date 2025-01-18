@@ -705,7 +705,7 @@ PrefabInstance:
     - target: {fileID: 3705642604415270499, guid: 224f6f3be9cd466468e0dc7c6eae078b, type: 3}
       propertyPath: spawnDefaults.Array.data[0].uniqueObject
       value: 
-      objectReference: {fileID: 4351264141534835910, guid: a11b961609b846947bf397b8a0bd4a5a, type: 3}
+      objectReference: {fileID: 4351264141534835910, guid: 8567a8bfcebdd7941a8097bba7eb782d, type: 3}
     - target: {fileID: 7871399498112744763, guid: 224f6f3be9cd466468e0dc7c6eae078b, type: 3}
       propertyPath: m_Name
       value: Anti Duplicate Spawner
@@ -1275,7 +1275,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2248264336709687466, guid: 4dfe6a364342ca042beae0b220c91cf2, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5835791503386108437, guid: 4dfe6a364342ca042beae0b220c91cf2, type: 3}
       propertyPath: m_Pivot.x

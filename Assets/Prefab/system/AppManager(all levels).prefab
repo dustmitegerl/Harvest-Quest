@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ccfdfb5b40308c4b81cde41a21d56b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  escMenu: {fileID: 2248264336709687466, guid: 4dfe6a364342ca042beae0b220c91cf2, type: 3}
+  escMenu: {fileID: 0}
   currentCanvas: {fileID: 0}
 --- !u!114 &6591332859831178317
 MonoBehaviour:

@@ -31,8 +31,7 @@ public class ToggleEscMenu : MonoBehaviour
             }
     }
 
-    // maybe this is silly but i want this to work as soon as AppManager is dropped into a scene in which
-    // an Esc Menu has been added to the Canvas
+    // find canvas and esc menu
     public void FindEscMenu()
     {
         currentCanvas = GameObject.FindGameObjectWithTag("Canvas");

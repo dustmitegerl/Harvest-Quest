@@ -554,7 +554,7 @@ GameObject:
   m_PrefabInstance: {fileID: 4948761104503628842}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< Updated upstream
-=======
+
 --- !u!224 &831001675 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5835791503386108437, guid: 4dfe6a364342ca042beae0b220c91cf2, type: 3}
@@ -1962,7 +1962,7 @@ PrefabInstance:
     m_RemovedGameObjects: []
 <<<<<<< Updated upstream
     m_AddedGameObjects: []
-=======
+
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 8421147613354709926, guid: 4402a0f7597100c4b910cd9df53372c4, type: 3}
       insertIndex: -1

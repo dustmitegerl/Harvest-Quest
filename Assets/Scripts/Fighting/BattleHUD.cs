@@ -5,9 +5,9 @@ using UnityEngine.UI;
 using TMPro;
 
 public class BattleHUD : MonoBehaviour
-{ 
+{
     // Reference to script: https://www.youtube.com/watch?v=_1pz_ohupPs
-    
+
     public TextMeshProUGUI nameText;
 
     public Slider hpSlider;
@@ -16,18 +16,11 @@ public class BattleHUD : MonoBehaviour
     public TextMeshProUGUI HPnumberText;
     public TextMeshProUGUI SPnumberText;
 
-    // To prevent the player from interacting with the HP and SP Bar Sliders
-    void Start()
-    {
-        hpSlider.interactable = false;
-        spSlider.interactable = false;
-    }
-
     // Creating a function that will use the involed element
 
-    public void SetHUD(Unit unit) 
+    public void SetHUD(Unit unit)
     {
-    
+
         nameText.text = unit.unitName;
         hpSlider.maxValue = unit.maxHP;
         hpSlider.value = unit.currentHP;
@@ -42,11 +35,11 @@ public class BattleHUD : MonoBehaviour
 
     //Setting the HP Value
 
-    public void SetHP(int hp) 
+    public void SetHP(int hp)
     {
         hpSlider.value = hp;
         HPnumberText.text = hp.ToString();
-        
+
     }
 
     //Setting the SP Value

@@ -103,7 +103,8 @@ MonoBehaviour:
   currentHP: 30
   maxSP: 0
   currentSP: 0
-  enemyMagicDamage: 5
+  battleHUD: {fileID: 0}
+  enemyMagicDamage: 0
   currentExperience: 0
   maxExperience: 0
   currentLevel: 0

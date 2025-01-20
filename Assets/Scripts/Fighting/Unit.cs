@@ -9,7 +9,7 @@ public class Unit : MonoBehaviour
     // Describing the Unit
 
     public string unitName;
-    
+
     public int damage;
 
     public int maxHP;
@@ -18,30 +18,28 @@ public class Unit : MonoBehaviour
     public int maxSP;
     public int currentSP;
 
-    public int enemyMagicDamage;
-
     [SerializeField] int currentExperience, maxExperience, currentLevel;
 
     //Creating Take Damage
 
-    public bool TakeDamage(int dmg) 
-    { 
+    public bool TakeDamage(int dmg)
+    {
         currentHP -= dmg;
 
-        if (currentHP < 0) 
+        if (currentHP < 0)
         {
             currentHP = 0;
         }
 
         return currentHP <= 0;
 
-            //return true;
+        //return true;
         //else
-            //return false;
+        //return false;
     }
 
     // Having enough SP for attack
-    public bool HasEnoughSP(int cost) 
+    public bool HasEnoughSP(int cost)
     {
         return currentSP >= cost;
     }
@@ -49,7 +47,7 @@ public class Unit : MonoBehaviour
     // Regenerating SP 
     public void RegenerateSP(int amount)
     {
-        currentSP = Mathf.Min(currentSP + amount, maxSP); 
+        currentSP = Mathf.Min(currentSP + amount, maxSP);
     }
 
     private void OnEnable()
@@ -67,7 +65,7 @@ public class Unit : MonoBehaviour
     private void HandleExperienceChange(int newExperience)
     {
         currentExperience += newExperience;
-        if(currentExperience >= maxExperience)
+        if (currentExperience >= maxExperience)
         {
             LevelUp();
         }
@@ -81,12 +79,13 @@ public class Unit : MonoBehaviour
         maxExperience += 50;
     }
 
-    public void Heal(int amount) 
+    public void Heal(int amount)
     {
         currentHP += amount;
-        if (currentHP > maxHP) 
+        if (currentHP > maxHP)
         {
             currentHP = maxHP;
         }
     }
 }
+

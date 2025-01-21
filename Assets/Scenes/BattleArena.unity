@@ -125,7 +125,6 @@ NavMeshSettings:
   m_NavMeshData: {fileID: 0}
 <<<<<<< Updated upstream
 
---- !u!114 &96808875 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3201677616852551806, guid: 4402a0f7597100c4b910cd9df53372c4, type: 3}
   m_PrefabInstance: {fileID: 4948761104503628842}

@@ -37,6 +37,7 @@ public class BattleSystem : MonoBehaviour
     public Button skillButton;
     public Button healButton;
     public Button backButton;
+    public Button MeleeButton;
  
     public int fireCost;
     public int fireDamage;
@@ -294,6 +295,32 @@ public class BattleSystem : MonoBehaviour
 
     }
 
+    //Create Melee Button Function
+    public void OnMeleeButton() 
+    {
+        bool isDead = enemyUnit.TakeDamage(playerUnit.damage);
+
+        enemyHUD.SetHP(enemyUnit.currentHP);
+        dialogueText.text = "The attack hit " + enemyUnit.unitName + "!";
+
+        skillsMenu.SetActive(false);
+        actionMenu.SetActive(true);
+        ShowDialogueBox("The next move is yours");
+
+        if (isDead)
+        {
+            state = BattleState.WON;
+            EndBattle();
+        }
+        else
+        {
+            
+            state = BattleState.ENEMYTURN;
+            StartCoroutine(EnemyTurn());
+        }
+            
+    }
+
     // Creating Function to Fire Attack Button
     public void OnFireSkill() 
     {
@@ -309,8 +336,8 @@ public class BattleSystem : MonoBehaviour
 
             skillsMenu.SetActive(false);
             actionMenu.SetActive(true);
-
-            //ShowDialogueBox("Next move is yours");
+            ShowDialogueBox("Next move is yours");
+            
             //dialogueBox.SetActive(true);
             
 
@@ -327,9 +354,8 @@ public class BattleSystem : MonoBehaviour
         }
         else 
         {
-            ShowDialogueBox("Not enough SP for that attack!");
-            //dialogueText.text = "No SP for that attack";
-            //ShowDialogueBox(dialogueText.text);
+            dialogueText.text = "No SP for that skill";
+            backButton.interactable = true;
         }
     }
     // Creating Function to Ice Attack Button
@@ -365,9 +391,11 @@ public class BattleSystem : MonoBehaviour
         }
         else
         {
-            ShowDialogueBox("Not enough SP for that attack!");
-            //dialogueText.text = "No SP for that attack";
-            //ShowDialogueBox (dialogueText.text);
+            dialogueText.text = "No SP for that skill";
+            //ShowDialogueBox(dialogueText.text);
+
+            //backButton.gameObject.SetActive(true);
+            backButton.interactable = true;
         }
     }
     // Creating Function to Healing Button
@@ -395,7 +423,7 @@ public class BattleSystem : MonoBehaviour
             dialogueText.text = "No SP for that skill";
             //ShowDialogueBox(dialogueText.text);
 
-            backButton.gameObject.SetActive(true);
+            //backButton.gameObject.SetActive(true);
             backButton.interactable = true;
         }
     }

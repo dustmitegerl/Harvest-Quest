@@ -323,6 +323,41 @@ public class BattleSystem : MonoBehaviour
 
     }
 
+<<<<<<< Updated upstream
+=======
+    //Create Inspect Button Function
+    public void OnInspectButton() 
+    {
+        dialogueText.text = "Strategy is the best choice. Read " + enemyUnit.unitName + " details carefully.";
+    }
+
+    //Create Melee Button Function
+    public void OnMeleeButton() 
+    {
+        bool isDead = enemyUnit.TakeDamage(playerUnit.damage);
+
+        enemyHUD.SetHP(enemyUnit.currentHP);
+        dialogueText.text = "The attack hit " + enemyUnit.unitName + "!";
+
+        skillsMenu.SetActive(false);
+        actionMenu.SetActive(true);
+        ShowDialogueBox("The next move is yours");
+
+        if (isDead)
+        {
+            state = BattleState.WON;
+            EndBattle();
+        }
+        else
+        {
+            
+            state = BattleState.ENEMYTURN;
+            StartCoroutine(EnemyTurn());
+        }
+            
+    }
+
+>>>>>>> Stashed changes
     // Creating Function to Fire Attack Button
     public void OnFireSkill()
     {

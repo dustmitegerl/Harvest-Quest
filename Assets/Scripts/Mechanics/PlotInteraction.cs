@@ -13,6 +13,9 @@ public class PlotInteraction : MonoBehaviour, Interactable
     [SerializeField] 
     Dialog dialog;
 
+    void Start()
+    {
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")

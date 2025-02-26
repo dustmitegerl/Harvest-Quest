@@ -46,36 +46,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxStackedItems: 10
   inventorySlots:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 6024103209012174294, guid: 27e4ebe4f48c194419a367bd2a16fc48, type: 3}
+  - {fileID: 6024103209012174294, guid: 27e4ebe4f48c194419a367bd2a16fc48, type: 3}
+  - {fileID: 6024103209012174294, guid: 27e4ebe4f48c194419a367bd2a16fc48, type: 3}
+  - {fileID: 6024103209012174294, guid: 27e4ebe4f48c194419a367bd2a16fc48, type: 3}
+  - {fileID: 6024103209012174294, guid: 27e4ebe4f48c194419a367bd2a16fc48, type: 3}
+  - {fileID: 6024103209012174294, guid: 27e4ebe4f48c194419a367bd2a16fc48, type: 3}
+  - {fileID: 6024103209012174294, guid: 27e4ebe4f48c194419a367bd2a16fc48, type: 3}
+  - {fileID: 6024103209012174294, guid: 27e4ebe4f48c194419a367bd2a16fc48, type: 3}
+  - {fileID: 6024103209012174294, guid: 27e4ebe4f48c194419a367bd2a16fc48, type: 3}
+  - {fileID: 6024103209012174294, guid: 27e4ebe4f48c194419a367bd2a16fc48, type: 3}
+  - {fileID: 6024103209012174294, guid: 27e4ebe4f48c194419a367bd2a16fc48, type: 3}
+  - {fileID: 6024103209012174294, guid: 27e4ebe4f48c194419a367bd2a16fc48, type: 3}
+  - {fileID: 6024103209012174294, guid: 27e4ebe4f48c194419a367bd2a16fc48, type: 3}
+  - {fileID: 6024103209012174294, guid: 27e4ebe4f48c194419a367bd2a16fc48, type: 3}
+  - {fileID: 6024103209012174294, guid: 27e4ebe4f48c194419a367bd2a16fc48, type: 3}
+  - {fileID: 6024103209012174294, guid: 27e4ebe4f48c194419a367bd2a16fc48, type: 3}
+  - {fileID: 6024103209012174294, guid: 27e4ebe4f48c194419a367bd2a16fc48, type: 3}
+  - {fileID: 6024103209012174294, guid: 27e4ebe4f48c194419a367bd2a16fc48, type: 3}
+  - {fileID: 6024103209012174294, guid: 27e4ebe4f48c194419a367bd2a16fc48, type: 3}
+  - {fileID: 6024103209012174294, guid: 27e4ebe4f48c194419a367bd2a16fc48, type: 3}
+  - {fileID: 6024103209012174294, guid: 27e4ebe4f48c194419a367bd2a16fc48, type: 3}
+  - {fileID: 6024103209012174294, guid: 27e4ebe4f48c194419a367bd2a16fc48, type: 3}
+  - {fileID: 6024103209012174294, guid: 27e4ebe4f48c194419a367bd2a16fc48, type: 3}
+  - {fileID: 6024103209012174294, guid: 27e4ebe4f48c194419a367bd2a16fc48, type: 3}
   inventoryItemPrefab: {fileID: 6389111926017829082, guid: a4f7761aee875524dae98a0853dab671, type: 3}

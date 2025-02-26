@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public enum BattleState { START, PLAYERTURN, ENEMYTURN, WON, LOST }
+public enum BattleState { START, PLAYERTURN, ENEMYTURN, PLAYERCOUNTER, WON, LOST }
 public class BattleSystem : MonoBehaviour
 {
     LevelLoader levelLoader;
@@ -38,6 +38,7 @@ public class BattleSystem : MonoBehaviour
     public Button healButton;
     public Button backButton;
     public Button MeleeButton;
+    public Button counterButton;
  
     public int fireCost;
     public int fireDamage;
@@ -208,10 +209,10 @@ public class BattleSystem : MonoBehaviour
     {
         actionMenu.SetActive(false);
 
-        dialogueText.text = enemyUnit.unitName + " is making their moves.";
+        dialogueText.text = enemyUnit.unitName + " is making their move.";
         yield return new WaitForSeconds(1f);
 
-        bool isDead = playerUnit.TakeDamage(enemyUnit.damage);
+        /*bool isDead = playerUnit.TakeDamage(enemyUnit.damage);
         playerHUD.SetHP(playerUnit.currentHP);
 
         yield return new WaitForSeconds(1f);
@@ -224,6 +225,53 @@ public class BattleSystem : MonoBehaviour
         }
         else 
         { 
+            state = BattleState.PLAYERTURN;
+            PlayerTurn();
+            Debug.Log("Player takes the turn");
+        }*/
+
+        bool isDead;
+
+        if (state == BattleState.PLAYERCOUNTER)
+        {
+            // Reduce damage taken
+            int reduceDamage = Mathf.Max(enemyUnit.damage / 2, 1);
+            isDead = playerUnit.TakeDamage(reduceDamage);
+            playerHUD.SetHP(playerUnit.currentHP);
+
+            dialogueText.text = playerUnit.unitName + " has block the attack and is ready to counter";
+            yield return new WaitForSeconds(1f);
+
+            // Player Countering an Attack
+            bool enemyDefeated = enemyUnit.TakeDamage(playerUnit.damage);
+            enemyHUD.SetHP(enemyUnit.currentHP);
+            dialogueText.text = enemyUnit.unitName + " was hit with a counter attack!";
+
+            yield return new WaitForSeconds(1f);
+
+            if (enemyDefeated)
+            {
+                state = BattleState.WON;
+                EndBattle();
+                yield break;
+            }
+        }
+        else 
+        {
+            // Regular Attacks
+            isDead = playerUnit.TakeDamage(enemyUnit.damage);
+            playerHUD.SetHP(playerUnit.currentHP);
+            yield return new WaitForSeconds(1f);
+        }
+
+        if (isDead)
+        {
+            state = BattleState.LOST;
+            EndBattle();
+            Debug.Log("Enemy Won");
+        }
+        else
+        {
             state = BattleState.PLAYERTURN;
             PlayerTurn();
             Debug.Log("Player takes the turn");
@@ -319,6 +367,24 @@ public class BattleSystem : MonoBehaviour
             StartCoroutine(EnemyTurn());
         }
             
+    }
+
+    // Creating Function to the Counter Button
+    public void OnCounterButton() 
+    {
+        if (state != BattleState.PLAYERTURN)
+            return;
+
+        actionMenu.SetActive(false);
+        skillsMenu.SetActive(false);
+
+        dialogueText.text = playerUnit.unitName + " is about to counter" + enemyUnit.unitName + " 's attack!";
+
+        //Counter State
+        state = BattleState.PLAYERCOUNTER;
+
+        // Ending Player's Turn
+        StartCoroutine(EnemyTurn());
     }
 
     // Creating Function to Fire Attack Button

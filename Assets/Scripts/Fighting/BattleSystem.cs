@@ -246,9 +246,49 @@ public class BattleSystem : MonoBehaviour
         }
         else if (isDefending)
         {
+
             dialogueText.text = enemyUnit.unitName + " attack was blocked.";
             yield return new WaitForSeconds(2f);
             isDefending = false;
+
+            // Reduce damage taken
+            int reduceDamage = Mathf.Max(enemyUnit.damage / 2, 1);
+            isDead = playerUnit.TakeDamage(reduceDamage);
+            playerHUD.SetHP(playerUnit.currentHP);
+
+            dialogueText.text = playerUnit.unitName + " has block the attack and is ready to counter";
+            Debug.Log("Player blocked attack.");
+            yield return new WaitForSeconds(1f);
+
+            // Player Countering an Attack
+            bool enemyDefeated = enemyUnit.TakeDamage(playerUnit.damage);
+            enemyHUD.SetHP(enemyUnit.currentHP);
+            dialogueText.text = enemyUnit.unitName + " was hit with a counter attack!";
+            Debug.Log("The player countered the attack.");
+
+            yield return new WaitForSeconds(1f);
+
+            if (enemyDefeated)
+            {
+                state = BattleState.WON;
+                EndBattle();
+                yield break;
+            }
+        }
+        else 
+        {
+            // Regular Attacks
+            isDead = playerUnit.TakeDamage(enemyUnit.damage);
+            playerHUD.SetHP(playerUnit.currentHP);
+            yield return new WaitForSeconds(1f);
+        }
+
+        if (isDead)
+        {
+            state = BattleState.LOST;
+            EndBattle();
+            Debug.Log("Enemy Won");
+
         }
         else
         {
@@ -323,8 +363,8 @@ public class BattleSystem : MonoBehaviour
 
     }
 
-<<<<<<< Updated upstream
-=======
+
+
     //Create Inspect Button Function
     public void OnInspectButton() 
     {
@@ -357,7 +397,7 @@ public class BattleSystem : MonoBehaviour
             
     }
 
->>>>>>> Stashed changes
+
     // Creating Function to Fire Attack Button
     public void OnFireSkill()
     {

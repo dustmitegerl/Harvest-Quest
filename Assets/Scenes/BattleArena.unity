@@ -5009,7 +5009,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -6461,39 +6461,13 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3020255512863898071, guid: 4402a0f7597100c4b910cd9df53372c4, type: 3}
   m_PrefabInstance: {fileID: 4948761104503628842}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+
 --- !u!224 &4948761104503628851 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8421147613354709926, guid: 4402a0f7597100c4b910cd9df53372c4, type: 3}
   m_PrefabInstance: {fileID: 4948761104503628842}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
+
 --- !u!224 &4948761104503628844 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2278997191240272710, guid: 4402a0f7597100c4b910cd9df53372c4, type: 3}

@@ -123,8 +123,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+
 <<<<<<< Updated upstream
 
 MonoBehaviour:
@@ -274,10 +273,7 @@ CanvasRenderer:
 
 =======
 >>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+
 --- !u!114 &143580070 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3995255124650487314, guid: 4402a0f7597100c4b910cd9df53372c4, type: 3}
@@ -3203,10 +3199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 751eeee5cd9399f4c8dbc3838a12f5ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+
 <<<<<<< Updated upstream
 --- !u!1 &1621197732
 =======
@@ -3231,10 +3224,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+
 <<<<<<< Updated upstream
   - component: {fileID: 1621197733}
   - component: {fileID: 1621197736}
@@ -3256,9 +3246,7 @@ GameObject:
   - component: {fileID: 1533131534}
   m_Layer: 0
   m_Name: SkillMenu_pg2
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+
 <<<<<<< Updated upstream
 >>>>>>> Stashed changes
 =======
@@ -3273,10 +3261,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+
 <<<<<<< Updated upstream
   m_IsActive: 1
 --- !u!224 &1621197733
@@ -3325,10 +3310,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+
 <<<<<<< Updated upstream
   m_GameObject: {fileID: 1621197732}
   m_Enabled: 1
@@ -3408,10 +3390,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+
 <<<<<<< Updated upstream
   m_Color: {r: 1, g: 1, b: 1, a: 0.94509804}
 =======
@@ -3435,10 +3414,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+
 <<<<<<< Updated upstream
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
 =======
@@ -3465,10 +3441,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+
 <<<<<<< Updated upstream
 --- !u!222 &1621197736
 =======
@@ -3491,10 +3464,7 @@ CanvasRenderer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+
 <<<<<<< Updated upstream
   m_GameObject: {fileID: 1621197732}
   m_CullTransparentMesh: 1
@@ -3548,10 +3518,7 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+
 <<<<<<< Updated upstream
   m_GameObject: {fileID: 1652334894}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
@@ -3687,9 +3654,7 @@ CanvasRenderer:
   m_SizeDelta: {x: -218.48999, y: -296.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1540757449
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+
 <<<<<<< Updated upstream
 >>>>>>> Stashed changes
 =======
@@ -3707,10 +3672,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+
 <<<<<<< Updated upstream
   - component: {fileID: 1659584839}
   - component: {fileID: 1659584842}
@@ -3732,9 +3694,7 @@ GameObject:
   - component: {fileID: 1540757451}
   m_Layer: 0
   m_Name: Forward.txt
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+
 <<<<<<< Updated upstream
 >>>>>>> Stashed changes
 =======
@@ -3750,10 +3710,7 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+
 <<<<<<< Updated upstream
 --- !u!224 &1659584839
 =======
@@ -3776,10 +3733,7 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+
 <<<<<<< Updated upstream
   m_GameObject: {fileID: 1659584838}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
@@ -4067,10 +4021,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+
 <<<<<<< Updated upstream
   m_Father: {fileID: 1621197733}
 =======
@@ -4094,10 +4045,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+
 <<<<<<< Updated upstream
 --- !u!114 &1699810864
 =======
@@ -4120,10 +4068,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+
 <<<<<<< Updated upstream
   m_GameObject: {fileID: 1699810862}
 =======
@@ -4154,10 +4099,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+
 <<<<<<< Updated upstream
   m_text: Items
 =======
@@ -4243,10 +4185,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+
 <<<<<<< Updated upstream
 --- !u!222 &1699810865
 =======
@@ -4269,10 +4208,7 @@ CanvasRenderer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+
 <<<<<<< Updated upstream
   m_GameObject: {fileID: 1699810862}
 =======
@@ -4552,9 +4488,7 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1711132335}
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+
 <<<<<<< Updated upstream
 >>>>>>> Stashed changes
 =======
@@ -5838,11 +5772,7 @@ PrefabInstance:
       objectReference: {fileID: 1471043983}
     - target: {fileID: 456246180102061611, guid: 4402a0f7597100c4b910cd9df53372c4, type: 3}
       propertyPath: m_AnchoredPosition.x
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+
 <<<<<<< Updated upstream
       value: -228.8
 =======
@@ -6088,10 +6018,7 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+
 <<<<<<< Updated upstream
     - target: {fileID: 6553407833518521683, guid: 4402a0f7597100c4b910cd9df53372c4, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -6128,9 +6055,7 @@ PrefabInstance:
     - target: {fileID: 7441620878925126006, guid: 4402a0f7597100c4b910cd9df53372c4, type: 3}
       propertyPath: m_fontSizeBase
       value: 13
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+
 <<<<<<< Updated upstream
 >>>>>>> Stashed changes
 =======
@@ -6252,11 +6177,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+
 <<<<<<< Updated upstream
     m_AddedGameObjects: []
 

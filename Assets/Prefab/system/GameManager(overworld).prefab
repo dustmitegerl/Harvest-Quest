@@ -51,15 +51,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clockRead: {fileID: 0}
   dayRead: {fileID: 0}
-  startingHr: 0
+  startingHr: 6
   days: 1
   hrs: 0
-  currentPeriod: 
   mins: 0
   secs: 0
   isPaused: 0
   AM: am
   PM: pm
+  currentPeriod: 
   timeSpeedModulator: 11
   secsInMin: 60
   minsInHr: 60

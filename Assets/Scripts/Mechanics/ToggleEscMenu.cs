@@ -7,9 +7,18 @@ public class ToggleEscMenu : MonoBehaviour
 {
     [SerializeField]
     GameObject escMenu;
+    [SerializeField]
+    GameObject currentCanvas;
     void Start()
     {
-        escMenu.SetActive(false);
+    }
+
+    void Update()
+    {
+        if (escMenu == null)
+        {
+            FindEscMenu();
+        }
     }
 
     void LateUpdate()
@@ -17,10 +26,17 @@ public class ToggleEscMenu : MonoBehaviour
         if (escMenu.activeInHierarchy == false && Input.GetKeyDown(KeyCode.Escape))
             {
                 Debug.Log("Escape key pressed");
+                FindEscMenu();
                 OpenEscMenu();
             }
     }
 
+    // find canvas and esc menu
+    public void FindEscMenu()
+    {
+        currentCanvas = GameObject.FindGameObjectWithTag("Canvas");
+        escMenu = currentCanvas.transform.Find("Esc Menu").gameObject;
+    }
     public void OpenEscMenu()
     {
         Debug.Log("Opening Esc Menu");

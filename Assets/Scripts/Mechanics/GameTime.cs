@@ -19,7 +19,6 @@ public class GameTime : MonoBehaviour
     int startingHr;
     public int days = 1; // starting days index at 1 rather than 0
     public int hrs;
-    public string currentPeriod;
     public int mins;
     public float secs;
     public bool isPaused = false; // for pausing
@@ -31,6 +30,8 @@ public class GameTime : MonoBehaviour
     string AM = "a.m.";
     [SerializeField]
     string PM = "p.m.";
+    [SerializeField]
+    string currentPeriod;
 
     [SerializeField]
     int timeSpeedModulator = 1; // used to change speed of seconds

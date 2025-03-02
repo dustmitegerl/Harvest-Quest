@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class TileManager : MonoBehaviour //Thanks to Game Dev with JacquelynneHei https://youtu.be/1NTNIm0tcXw?si=e01uhzdpnzFTxu-q
+public class TileManager : MonoBehaviour 
+    //Thanks to Game Dev with JacquelynneHei https://youtu.be/1NTNIm0tcXw?si=e01uhzdpnzFTxu-q
 {
     [SerializeField] private Tilemap interactableMap; 
     //Tiles that will be used to farm
@@ -15,12 +16,17 @@ public class TileManager : MonoBehaviour //Thanks to Game Dev with JacquelynneHe
     {//Will not see tiles that player will interact with
         foreach(var position in interactableMap.cellBounds.allPositionsWithin)
         {
-            interactableMap.SetTile(position, hiddenInteractableTile);
+            TileBase tile = interactableMap.GetTile(position);
+
+            if (tile != null && tile.name == "Interactable_Visible")
+            {
+                interactableMap.SetTile(position, hiddenInteractableTile);
+            }
         }
     }
 
     public bool IsInteractable(Vector3Int position)
-    {//Should show
+    {
         TileBase tile = interactableMap.GetTile(position);
 
         if(tile != null)

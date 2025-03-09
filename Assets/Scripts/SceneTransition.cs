@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneTransition : MonoBehaviour
 {
-    [SerializeField] int nextScene;
+    [SerializeField] int goingToScene;
     [SerializeField] float delayTime;
 
     private void OnTriggerEnter(Collider other)
@@ -13,16 +13,14 @@ public class SceneTransition : MonoBehaviour
         var hitTag = other.gameObject.tag;
 
         if (hitTag == "Player")
-
-            if (hitTag == "Player")
-            {
-                StartCoroutine(LoadDelay());
-            }
+        {
+            StartCoroutine(LoadDelay());
+        }
     }
 
     IEnumerator LoadDelay()
     {
         yield return new WaitForSeconds(delayTime);
-        SceneManager.LoadScene(nextScene);
+        SceneManager.LoadScene(goingToScene);
     }
 }

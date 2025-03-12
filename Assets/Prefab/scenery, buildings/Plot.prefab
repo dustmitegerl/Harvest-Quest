@@ -48,7 +48,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   plants: []
   levelLoader: {fileID: 0}
-  battleInteraction: {fileID: 0}
   dialog:
     lines: []
 --- !u!61 &7076612931929637429
@@ -83,7 +82,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.22939587, y: 0.20430613}
+  m_Offset: {x: 0.14701414, y: 0.14938521}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -94,7 +93,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.0267544, y: 3.0008879}
+  m_Size: {x: 3.960412, y: 3.879624}
   m_EdgeRadius: 0
 --- !u!114 &8368360820564873662
 MonoBehaviour:

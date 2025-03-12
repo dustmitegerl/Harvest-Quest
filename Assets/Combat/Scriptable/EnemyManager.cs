@@ -11,8 +11,8 @@ public class EnemyManager : MonoBehaviour
 
     private void Awake()
     {
-        
-       
+
+
         GenerateEnemyByName("Lemon", 1);
         GenerateEnemyByName("Lemon", 2);
         GenerateEnemyByName("Lemon", 3);
@@ -29,11 +29,11 @@ public class EnemyManager : MonoBehaviour
                 newEnemy.Level = level;
                 float levelModifier = (LEVEL_MODIFIER * newEnemy.Level);
 
-            newEnemy.MaxHealth = Mathf.RoundToInt(allEnemies[i].BaseHealth + (allEnemies[i].BaseHealth * levelModifier));
-            newEnemy.CurrHealth = newEnemy.MaxHealth; // Set CurrHealth to MaxHealth
-            newEnemy.Strength = Mathf.RoundToInt(allEnemies[i].BaseStr + (allEnemies[i].BaseStr * levelModifier));
-            newEnemy.Initiative = Mathf.RoundToInt(allEnemies[i].BaseInitiative + (allEnemies[i].BaseInitiative * levelModifier));
-            newEnemy.EnemyVisualPrefab = allEnemies[i].EnemyVisualPrefab;
+                newEnemy.MaxHealth = Mathf.RoundToInt(allEnemies[i].BaseHealth + (allEnemies[i].BaseHealth * levelModifier));
+                newEnemy.CurrHealth = newEnemy.MaxHealth; // Set CurrHealth to MaxHealth
+                newEnemy.Strength = Mathf.RoundToInt(allEnemies[i].BaseStr + (allEnemies[i].BaseStr * levelModifier));
+                newEnemy.Initiative = Mathf.RoundToInt(allEnemies[i].BaseInitiative + (allEnemies[i].BaseInitiative * levelModifier));
+                newEnemy.EnemyVisualPrefab = allEnemies[i].EnemyVisualPrefab;
 
                 currentEnemies.Add(newEnemy);
                 return;
@@ -55,7 +55,6 @@ public class Enemy
     public int MaxHealth;
     public int Strength;
     public int Initiative;
-     
+
     public GameObject EnemyVisualPrefab;
-    }
- 
+}

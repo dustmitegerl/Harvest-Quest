@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using JetBrains.Annotations;
 using Unity.VisualScripting;
+using UnityEngine.SceneManagement;
 
 public class BattleSys : MonoBehaviour
 {
@@ -70,7 +71,7 @@ public class BattleSys : MonoBehaviour
                         yield return StartCoroutine(AttackRoutine(i)); //wait for the attack to finish
                         break;
                     case BattleEntities.Action.Run: //if the action is run
-                                                    //run
+                        yield return StartCoroutine(RunRoutine()); // Run
                         break;
                     default:
                         Debug.LogError("Error - incorrect battle action");
@@ -118,6 +119,8 @@ public class BattleSys : MonoBehaviour
                     bottomText.text = WIN_MESSAGE;
                     yield return new WaitForSeconds(TURN_DURATION); //wait a few sec
                     Debug.Log("go back to overworld scene");
+                    SceneManager.LoadScene("Farm"); // Load the "Farm" scene
+                    yield break;
 
                 }
 
@@ -155,6 +158,28 @@ public class BattleSys : MonoBehaviour
                 // we won the battle
             }
 
+        }
+    }
+
+    private IEnumerator RunRoutine()
+    {
+        if (state == BattleState.Battle)
+        {
+            if (Random.Range(0, 101) >= 50)
+            {
+                bottomText.text = "You ran away!";
+                state = BattleState.Run;
+                allBattlers.Clear();
+                yield return new WaitForSeconds(TURN_DURATION); // Wait a few seconds
+                SceneManager.LoadScene("Farm");
+                yield break;
+            }
+            else
+            {
+                bottomText.text = "You failed to run away!";
+                yield return new WaitForSeconds(TURN_DURATION); // Wait a few seconds
+                state = BattleState.Battle; // Reset state to Battle if run fails
+            }
         }
     }
 
@@ -310,8 +335,26 @@ public class BattleSys : MonoBehaviour
         return enemies[Random.Range(0, enemies.Count)]; //return a random enemy member index
     }
 
+    public void SelectRunAction()
+{
+    state = BattleState.Run; // Set the state to Run
+    BattleEntities currentPlayerEntity = playerBattlers[currentPlayer]; // Local reference for current player
+    
+    currentPlayerEntity.BattleAction = BattleEntities.Action.Run; // Setting current member's action to run
+    
+    battleMenu.SetActive(false); // Disable battle menu
+    currentPlayer++; // Incrementing current player
 
-
+    if (currentPlayer >= playerBattlers.Count) // If current player is greater than or equal to player battlers count, end the current turn if we went through all players
+    {
+        StartCoroutine(BattleRoutine());
+    }
+    else
+    {
+        enemySelectionMenu.SetActive(false); // Disable enemy selection menu
+        ShowBattleMenu(); // Show battle menu
+    }
+}
 }
 
 
@@ -353,8 +396,6 @@ public class BattleEntities
     }
 
 }
-
-
 
 
 

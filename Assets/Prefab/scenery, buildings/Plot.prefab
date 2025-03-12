@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 115814423696558782}
   - component: {fileID: 5962605653763600835}
   - component: {fileID: 7076612931929637429}
+  - component: {fileID: 8368360820564873662}
   m_Layer: 6
   m_Name: Plot
   m_TagString: Untagged
@@ -26,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4758069741136998532}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 7.48, y: 3.28, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -95,3 +96,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.0267544, y: 3.0008879}
   m_EdgeRadius: 0
+--- !u!114 &8368360820564873662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4758069741136998532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55715eae58f404744b681d475920127b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialog:
+    lines:
+    - Press H to harvewst

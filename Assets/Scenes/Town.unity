@@ -133,11 +133,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 997558001612258954, guid: 5453ed72ce3080e4599c25db1eca3908, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.7045114
+      value: -0.1
       objectReference: {fileID: 0}
     - target: {fileID: 997558001612258954, guid: 5453ed72ce3080e4599c25db1eca3908, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.407299
+      value: -12.5
       objectReference: {fileID: 0}
     - target: {fileID: 997558001612258954, guid: 5453ed72ce3080e4599c25db1eca3908, type: 3}
       propertyPath: m_LocalPosition.z
@@ -30070,11 +30070,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7402093707945327263, guid: 088d7727360a3ee469491f6610ac392a, type: 3}
   m_PrefabInstance: {fileID: 887989834}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &921683191 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1022826587512330549, guid: 47f25073edd642c4eb8c2e1a9d27c5a4, type: 3}
-  m_PrefabInstance: {fileID: 1464813853}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &944122002
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31238,43 +31233,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1022826587512330549, guid: 47f25073edd642c4eb8c2e1a9d27c5a4, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1464813857}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47f25073edd642c4eb8c2e1a9d27c5a4, type: 3}
 --- !u!4 &1464813854 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 81013836577754878, guid: 47f25073edd642c4eb8c2e1a9d27c5a4, type: 3}
   m_PrefabInstance: {fileID: 1464813853}
   m_PrefabAsset: {fileID: 0}
---- !u!50 &1464813857
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 921683191}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!1001 &1497628945
 PrefabInstance:
   m_ObjectHideFlags: 0

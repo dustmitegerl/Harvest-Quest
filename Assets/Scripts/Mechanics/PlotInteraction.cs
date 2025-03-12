@@ -11,6 +11,7 @@ public class PlotInteraction : MonoBehaviour
 
     void Start()
     {
+        levelLoader = GameObject.FindGameObjectWithTag("Level Loader").GetComponent<LevelLoader>();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -25,7 +26,6 @@ public class PlotInteraction : MonoBehaviour
     public void StartBattle()
     {
         Debug.Log("starting battle");
-        levelLoader = GameObject.FindGameObjectWithTag("Level Loader").GetComponent<LevelLoader>();
         levelLoader.LoadLevel("BattleArena");
         
     }

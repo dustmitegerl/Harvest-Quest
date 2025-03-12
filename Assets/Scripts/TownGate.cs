@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class TownGate : MonoBehaviour
 {
     GameObject playerPrefab;
+    [SerializeField]
     LevelLoader levelLoader;
     [SerializeField]
     string currentScene;

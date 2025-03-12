@@ -18,6 +18,8 @@ public class Unit : MonoBehaviour
     public int maxSP;
     public int currentSP;
 
+    private int debuffTurnsRemaining = 0;
+    private int originalDamage;
     [SerializeField] int currentExperience, maxExperience, currentLevel;
 
     //Creating Take Damage
@@ -87,5 +89,41 @@ public class Unit : MonoBehaviour
             currentHP = maxHP;
         }
     }
+
+   /* public void DecreaseAttack(int amount)
+    {
+        damage -= amount;
+    }*/
+
+    public void ApplyAttackDebuff(int amount, int duration)
+    {
+        if (debuffTurnsRemaining == 0)
+        {
+            originalDamage = damage;
+        }
+
+        damage -= amount;
+        if (damage < 1) 
+        {
+            damage = 1;
+        }
+        
+        debuffTurnsRemaining = duration;
+    }
+
+    public void DecreaseDebuffTurns()
+    {
+        if(debuffTurnsRemaining > 0)
+        {
+            debuffTurnsRemaining --;
+
+            // Restoring to original attack number when ATK DOWN is finish
+            if(debuffTurnsRemaining == 0)
+            {
+                damage = originalDamage;
+            }
+        }
+    }
+
 }
 

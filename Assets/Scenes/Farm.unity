@@ -2646,9 +2646,45 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1907759756423295777, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.37
+      objectReference: {fileID: 0}
+    - target: {fileID: 1907759756423295777, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -7.65
+      objectReference: {fileID: 0}
     - target: {fileID: 2484003480034048082, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
       propertyPath: m_Name
       value: Farm Ground
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994635805909996791, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
+      propertyPath: dialog.lines.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994635805909996791, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
+      propertyPath: dialog.lines.Array.data[1]
+      value: That's all!
+      objectReference: {fileID: 0}
+    - target: {fileID: 6000990353136322428, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
+      propertyPath: m_Size.x
+      value: 3.8403783
+      objectReference: {fileID: 0}
+    - target: {fileID: 6000990353136322428, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
+      propertyPath: m_Size.y
+      value: 3.7712455
+      objectReference: {fileID: 0}
+    - target: {fileID: 6000990353136322428, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.14634728
+      objectReference: {fileID: 0}
+    - target: {fileID: 6000990353136322428, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.19876504
+      objectReference: {fileID: 0}
+    - target: {fileID: 6000990353136322428, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6249161277108458058, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2693,6 +2729,22 @@ PrefabInstance:
     - target: {fileID: 6286497272545154220, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
       propertyPath: m_Name
       value: Town Gate
+      objectReference: {fileID: 0}
+    - target: {fileID: 7191561794944906378, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7456103723871269107, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -8.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8173616541052335438, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 8173616541052335438, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -13.64
       objectReference: {fileID: 0}
     - target: {fileID: 8321225090488858061, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
       propertyPath: m_Layer

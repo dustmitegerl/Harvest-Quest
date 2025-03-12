@@ -8,7 +8,7 @@ public class NPC : MonoBehaviour, Interactable
 
     public void Interact()
     {
-        //Debug.Log("Interacting");
+        Debug.Log("Interacting");
         StartCoroutine(DialogManager.Instance.ShowDialog(dialog));
     }
 }

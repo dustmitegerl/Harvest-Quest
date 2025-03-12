@@ -25,7 +25,6 @@ public class DialogManager : MonoBehaviour
     public IEnumerator ShowDialog(Dialog dialog)
     {//Show the dialog like it was typing it out
         yield return new WaitForEndOfFrame();
-
         OnShowDialog?.Invoke();
 
         this.dialog = dialog;

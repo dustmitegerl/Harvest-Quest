@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Interact.unity
     guid: 052ee34a81c2c3346b7c48d235c400dd
+  - enabled: 1
+    path: Assets/Combat/Scriptable/BattleArena_Test.unity
+    guid: 59d440dc074b84f4d85d8e86771a6033
   m_configObjects: {}

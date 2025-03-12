@@ -19,6 +19,7 @@ public class PlotInteraction : MonoBehaviour
         {
             Debug.Log("player detected");
             if (Input.GetKeyDown(KeyCode.H)){
+                Debug.Log("Harvesting!");
                 StartBattle();
             }
         }

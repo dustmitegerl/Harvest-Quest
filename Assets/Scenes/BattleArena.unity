@@ -1349,11 +1349,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1114264353}
   m_CullTransparentMesh: 1
---- !u!1 &1210005270 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4663314294403357637, guid: 073e7cbd577ceea41a468181ae1c28a4, type: 3}
-  m_PrefabInstance: {fileID: 1246895144105834605}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1236019320 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 416377081520794891, guid: 4402a0f7597100c4b910cd9df53372c4, type: 3}
@@ -1391,36 +1386,12 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8516417273902182035, guid: 073e7cbd577ceea41a468181ae1c28a4, type: 3}
   m_PrefabInstance: {fileID: 1246895144105834605}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1210005270}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 751eeee5cd9399f4c8dbc3838a12f5ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1471043985
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1210005270}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0d514d47ae89de4ab1608b48c408a77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: 0
-  partySpawnPoints: []
-  enemySpawnPoints: []
-  allBattlers: []
-  enemyBattlers: []
-  playerBattlers: []
-  enemySelectionButtons: []
-  battleMenu: {fileID: 239756038}
-  enemySelectionMenu: {fileID: 0}
-  actionText: {fileID: 0}
-  bottomTextPopUp: {fileID: 827735555}
-  bottomText: {fileID: 143580070}
 --- !u!1 &1508787261
 GameObject:
   m_ObjectHideFlags: 0
@@ -2101,10 +2072,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4663314294403357637, guid: 073e7cbd577ceea41a468181ae1c28a4, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1471043985}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 073e7cbd577ceea41a468181ae1c28a4, type: 3}
 --- !u!1001 &4948761104503628842
 PrefabInstance:

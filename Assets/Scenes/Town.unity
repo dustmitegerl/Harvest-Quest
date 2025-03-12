@@ -29922,9 +29922,9 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 <<<<<<< Updated upstream
 --- !u!1001 &887989834
-=======
+
 --- !u!1001 &890969107
->>>>>>> Stashed changes
+
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -30032,7 +30032,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: AudioManager
       objectReference: {fileID: 0}
->>>>>>> Stashed changes
+
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -30374,7 +30374,7 @@ Transform:
 =======
   m_SourcePrefab: {fileID: 100100000, guid: 585c950dff31c884d9b291c4995bd243, type: 3}
 --- !u!1 &1119384193
->>>>>>> Stashed changes
+
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -30386,12 +30386,12 @@ GameObject:
   - component: {fileID: 1190535100}
   m_Layer: 0
   m_Name: HouseRow3
-=======
+
   - component: {fileID: 1119384194}
   - component: {fileID: 1119384195}
   m_Layer: 0
   m_Name: BG_Music_Town
->>>>>>> Stashed changes
+
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30399,9 +30399,9 @@ GameObject:
   m_IsActive: 1
 <<<<<<< Updated upstream
 --- !u!4 &1190535100
-=======
+
 --- !u!4 &1119384194
->>>>>>> Stashed changes
+
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -30635,7 +30635,7 @@ GameObject:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1119384195
 AudioSource:
->>>>>>> Stashed changes
+
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -31574,7 +31574,7 @@ Transform:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
->>>>>>> Stashed changes
+
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -31587,6 +31587,6 @@ SceneRoots:
   - {fileID: 2076377918}
   - {fileID: 1190535100}
   - {fileID: 1609663955}
-=======
+
   - {fileID: 1119384194}
->>>>>>> Stashed changes
+

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1506791000144849197}
-  - component: {fileID: 7562038433905616526}
+  - component: {fileID: 8622472406371566799}
   m_Layer: 0
   m_Name: Confiner
   m_TagString: Untagged
@@ -32,8 +32,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!60 &7562038433905616526
-PolygonCollider2D:
+--- !u!61 &8622472406371566799
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -64,7 +64,7 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -2.0006313, y: -6.4372177}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -74,12 +74,6 @@ PolygonCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -2.5351362, y: 20.107409}
-      - {x: -18.086697, y: 20.12063}
-      - {x: -18.099003, y: -7.1468596}
-      - {x: 10.118021, y: -7.0999117}
-      - {x: 10.118021, y: -7.334646}
-      - {x: 10.1526575, y: 20.073685}
-  m_UseDelaunayMesh: 0
+  serializedVersion: 2
+  m_Size: {x: 33.924072, y: 32.768517}
+  m_EdgeRadius: 0

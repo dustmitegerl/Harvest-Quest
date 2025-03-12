@@ -48,8 +48,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   plants: []
   levelLoader: {fileID: 0}
-  dialog:
-    lines: []
 --- !u!61 &7076612931929637429
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -109,4 +107,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialog:
     lines:
-    - Press H to harvewst
+    - Press H to harvest

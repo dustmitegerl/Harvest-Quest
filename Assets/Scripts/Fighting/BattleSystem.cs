@@ -39,6 +39,8 @@ public class BattleSystem : MonoBehaviour
     public Button backButton;
     public Button MeleeButton;
     public Button counterButton;
+
+    public Button atkdownButton;
  
     public int fireCost;
     public int fireDamage;
@@ -48,6 +50,12 @@ public class BattleSystem : MonoBehaviour
 
     public int healCost;
     public int healAmount;
+
+    public int attackDownSPCost;
+    public int attackDownAmount;
+    public int attackDownDuration;
+
+    public int shuffleSPCost;
 
     // Starting the Battle State
     void Start()
@@ -492,6 +500,73 @@ public class BattleSystem : MonoBehaviour
             //backButton.gameObject.SetActive(true);
             backButton.interactable = true;
         }
+    }
+
+    // Creating Attack Down Button
+    public void OnAttackDownButton()
+    {
+        if (state != BattleState.PLAYERTURN)
+        return;
+
+        if (playerUnit.currentSP <attackDownSPCost)
+        {
+            dialogueText.text = "Not enough SP!";
+            return;
+        }
+
+        // Reducing SP
+        playerUnit.currentSP -= attackDownSPCost;
+        playerHUD.SetSP(playerUnit.currentSP);
+
+        // Using the Attack Down to the enemy
+        enemyUnit.ApplyAttackDebuff(attackDownAmount, attackDownDuration);
+
+        enemyUnit.DecreaseDebuffTurns();
+        playerUnit.DecreaseDebuffTurns();
+
+            skillsMenu.SetActive(false);
+            actionMenu.SetActive(true);
+            
+        dialogueText.text = enemyUnit.unitName + " 's attack level went down for" + attackDownDuration + " turns!";
+        StartCoroutine(EnemyTurn());
+    }
+
+    // Creating Shuffle Button 
+    public void OnShuffleButton()
+    {
+        if (state != BattleState.PLAYERTURN)
+        return;
+
+        if(playerUnit.currentSP < shuffleSPCost)
+        {
+            dialogueText.text = "Not enough SP!";
+            return;
+        }
+
+        // Reducing SP
+        playerUnit.currentSP -= shuffleSPCost;
+        playerHUD.SetSP(playerUnit.currentSP);
+
+        // 50-50 Chance for enemy to lose a turn
+        bool enemySkipsTurn = Random.value < 0.5f;
+
+        if(enemySkipsTurn)
+        {
+            dialogueText.text = "The enemy is unable to think straight and loses their chance to strike.";
+            StartCoroutine(PlayerTurnAfterShuffle()); 
+        }
+        else
+        {
+            dialogueText.text = "The enemy do not lose their thoughts. Watch out for their attack!";
+            StartCoroutine(EnemyTurn());
+        }
+    }
+
+    IEnumerator PlayerTurnAfterShuffle()
+    {
+        yield return new WaitForSeconds(2f);
+        state = BattleState.PLAYERTURN;
+        PlayerTurn();
     }
     // Creating a Function Run Button
     public void OnRunButton() 

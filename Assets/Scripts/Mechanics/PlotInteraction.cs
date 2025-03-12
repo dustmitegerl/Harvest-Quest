@@ -8,8 +8,6 @@ public class PlotInteraction : MonoBehaviour
     public Plant[] plants;
     [SerializeField]
     LevelLoader levelLoader;
-    [SerializeField] 
-    Dialog dialog;
 
     void Start()
     {

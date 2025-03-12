@@ -15,6 +15,7 @@ public class GameController : MonoBehaviour
     private void Start()
     {
         worldCamera = Camera.main;
+        playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
         playerController.OnEncountered += StartBattle;
         //battleSystem.EndBattle += OverBattle;
 

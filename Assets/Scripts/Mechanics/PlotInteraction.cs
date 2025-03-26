@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlotInteraction : MonoBehaviour
 {
-    public Plant[] plants;
+    public PlantingSpot[] plantingSpots;
     [SerializeField]
     LevelLoader levelLoader;
 

@@ -2658,6 +2658,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Farm Ground
       objectReference: {fileID: 0}
+    - target: {fileID: 2484003480034048082, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4994635805909996791, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
       propertyPath: dialog.lines.Array.size
       value: 2
@@ -2729,6 +2733,10 @@ PrefabInstance:
     - target: {fileID: 6286497272545154220, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
       propertyPath: m_Name
       value: Town Gate
+      objectReference: {fileID: 0}
+    - target: {fileID: 7023752008420128370, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7191561794944906378, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
       propertyPath: m_Enabled

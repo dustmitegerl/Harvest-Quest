@@ -17,10 +17,6 @@ public class GameTime : MonoBehaviour
     /// </summary>
     [SerializeField]
     int startingHr;
-    public int days = 1; // starting days index at 1 rather than 0
-    public int hrs;
-    public int mins;
-    public float secs;
     public bool isPaused = false; // for pausing
 
     /// <summary>
@@ -44,7 +40,7 @@ public class GameTime : MonoBehaviour
 
     void Start()
     {
-        hrs = startingHr;
+        GameData.hrs = startingHr;
         UnPause();
         clockRead = GameObject.Find("Clock").GetComponent<TextMeshProUGUI>(); // find clock
         dayRead = GameObject.Find("Calendar").GetComponent<TextMeshProUGUI>(); // find calendar
@@ -66,24 +62,24 @@ public class GameTime : MonoBehaviour
     // largely taken from https://pastebin.com/6Yfhy50x
     void UpdateGameTime()
     {
-        secs += Time.fixedDeltaTime * timeSpeedModulator; // multiply time between fixed update by tick
+        GameData.secs += Time.fixedDeltaTime * timeSpeedModulator; // multiply time between fixed update by tick
 
-        if (secs >= secsInMin) // using adjustable time ratios
-        {    
-            secs = 0;
-            mins += 1;
+        if (GameData.secs >= secsInMin) // using adjustable time ratios
+        {
+            GameData.secs = 0;
+            GameData.mins += 1;
         }
 
-        if (mins >= minsInHr)
+        if (GameData.mins >= minsInHr)
         {
-            mins = 0;
-            hrs += 1;
+            GameData.mins = 0;
+            GameData.hrs += 1;
         }
 
-        if (hrs >= hrsInDay)
+        if (GameData.hrs >= hrsInDay)
         {
-            hrs = 0;
-            days += 1;
+            GameData.hrs = 0;
+            GameData.days += 1;
         }
     }
 
@@ -104,7 +100,7 @@ public class GameTime : MonoBehaviour
         int adjHrs = 12; // adjusting for am vs pm; starting at 12 prevents reading "0" at 12pm
         string minsString; // for adding a 0 before single-digit minutes
 
-        if (hrs >= 12) // 12 oclock
+        if (GameData.hrs >= 12) // 12 oclock
         {
             currentPeriod = PM; // strikes noon
         }
@@ -113,28 +109,28 @@ public class GameTime : MonoBehaviour
         // adjusting for AM/PM
         if (currentPeriod == AM) // during A.M. hours
         {
-            adjHrs = hrs; // the hours aren't adjusted
+            adjHrs = GameData.hrs; // the hours aren't adjusted
         }
-        else if (currentPeriod == PM && hrs >= 13) // during P.M. hours, after the 12pm hour
+        else if (currentPeriod == PM && GameData.hrs >= 13) // during P.M. hours, after the 12pm hour
         {
-            adjHrs = hrs - 12; // subtract 12 to get the adjusted time
+            adjHrs = GameData.hrs - 12; // subtract 12 to get the adjusted time
         }
 
         // in case of 0:00, set to 12AM
-        if (hrs == 0)
+        if (GameData.hrs == 0)
         {
             adjHrs = 12;
             currentPeriod = AM;
         }
 
-        if (mins < 10) // if less than 10 minutes on the clock, s
+        if (GameData.mins < 10) // if less than 10 minutes on the clock, s
         {
-            minsString = "0" + mins.ToString();
+            minsString = "0" + GameData.mins.ToString();
         }
-        else minsString = mins.ToString(); 
+        else minsString = GameData.mins.ToString(); 
 
         clockRead.SetText(adjHrs.ToString() + ":" + minsString + currentPeriod); // otherwise just adjust hours and print
-        dayRead.SetText("day " + days.ToString()); // set the day in the calendar object
+        dayRead.SetText("day " + GameData.days.ToString()); // set the day in the calendar object
     }
 
     public void Pause()

@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47554f096b8f8d546a8ab813472ceac0, type: 3}
+  m_Name: lemon
+  m_EditorClassIdentifier: 
+  stage1: {fileID: -277529602, guid: b484f255277c02a48acfefddda402f61, type: 3}
+  stage2: {fileID: 760378657, guid: b484f255277c02a48acfefddda402f61, type: 3}
+  stage3: {fileID: 21300000, guid: 220b27e1d67edb6418feb4f647cebdeb, type: 3}
+  stage4: {fileID: 21300000, guid: 8f30ce86af088e14e9512db39a9ec6ed, type: 3}
+  stageSpans: 0100000002000000020000000300000003000000

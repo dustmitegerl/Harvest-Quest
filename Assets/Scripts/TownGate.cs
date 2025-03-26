@@ -32,7 +32,7 @@ public class TownGate : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            Debug.Log("player detected");
+            Debug.Log("loading level: " + otherScene);
             levelLoader.LoadLevel(otherScene);
         }
     }

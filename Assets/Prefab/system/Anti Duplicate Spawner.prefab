@@ -45,9 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnDefaults:
-  - uniqueObject: {fileID: 0}
-    defaultLocation: {x: 0, y: 0}
-  - uniqueObject: {fileID: 0}
-    defaultLocation: {x: 0, y: 0}
-  - uniqueObject: {fileID: 0}
+  - uniqueObject: {fileID: 6189223903089929151, guid: a0789d2e05d164b43a313fef2299ac5b, type: 3}
     defaultLocation: {x: 0, y: 0}

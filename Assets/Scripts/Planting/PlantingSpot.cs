@@ -37,10 +37,10 @@ public class PlantingSpot : MonoBehaviour, IDropHandler
         Item item = inventoryItem.item;
         if (item.type.ToString() == "Seed")
         {
-            PlantSeed(item.name);
+            Sow(item.name);
         }
     }
-    void PlantSeed(string seedType) // plants seed
+    void Sow(string seedType) // plants seed
     {
         if (IsSpaceEmpty() == true) // checks if space is available
         {

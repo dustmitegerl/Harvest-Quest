@@ -10,6 +10,7 @@ public class PlantingSpot : MonoBehaviour, IDropHandler
     public string currentPlant; // used to find scriptable object of the plant type's stats
     public int plantStage = 0; // 0 = empty / seed planted; 1-3 = incomplete growth stages; 4 = ready to harvest; 5 = dead 
     bool isGrowing;
+    [SerializeField]
     SpriteRenderer spriteRenderer;
     PlantGrowthManager plantInfo;
     PlantingSO currentPlantInfo;
@@ -37,6 +38,7 @@ public class PlantingSpot : MonoBehaviour, IDropHandler
         Item item = inventoryItem.item;
         if (item.type.ToString() == "Seed")
         {
+            Debug.Log("Attempting to plant " + item.name);
             Sow(item.name);
         }
     }
@@ -47,6 +49,7 @@ public class PlantingSpot : MonoBehaviour, IDropHandler
             isGrowing = true;
             currentPlant = seedType;
             currentPlantInfo = plantInfo.GetPlantInfo(currentPlant);
+            Debug.Log("Getting planting information for " + currentPlantInfo.name);
         }
         else Debug.Log("Space is occupied");
     }

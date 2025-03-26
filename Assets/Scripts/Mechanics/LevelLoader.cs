@@ -8,12 +8,13 @@ public class LevelLoader : MonoBehaviour
     // reference to script: https://pavcreations.com/turn-based-battle-and-transition-from-a-game-world-unity/#preserving-world-state-data
 
     public static LevelLoader instance;
-    public string mainLevelName;
     [SerializeField]
-    //Animator transition;
+    string farmScene = "Farm";
     //[SerializeField]
+    //Animator transition;
+    [SerializeField]
     float transitionTime = 1f;
-
+    [SerializeField]
     GameTime gameTime;
     
 
@@ -33,10 +34,6 @@ public class LevelLoader : MonoBehaviour
         yield return new WaitForSeconds(transitionTime);
 
         SceneManager.LoadScene(levelName);
-        if (levelName == "BattleArena")
-        {
-            gameTime.Pause();
-        } else gameTime.UnPause();
 
         //transition.SetTrigger("End");
     }
@@ -50,7 +47,7 @@ public class LevelLoader : MonoBehaviour
 
     public void EndBattle() 
     { 
-      LevelLoader.instance.LoadLevel(mainLevelName);
+      LevelLoader.instance.LoadLevel(farmScene);
     }
 
 }

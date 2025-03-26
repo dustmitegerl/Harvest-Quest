@@ -696,6 +696,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47f25073edd642c4eb8c2e1a9d27c5a4, type: 3}
+--- !u!61 &388992793 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 1815638490032604467, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
+  m_PrefabInstance: {fileID: 1243876982}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &427436664
 GameObject:
   m_ObjectHideFlags: 0
@@ -2368,7 +2373,7 @@ PrefabInstance:
     - target: {fileID: 2612625110932902913, guid: 5c29543ff785f5c44ade50e6a9636b13, type: 3}
       propertyPath: m_BoundingShape2D
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 388992793}
     - target: {fileID: 3740243437311482537, guid: 5c29543ff785f5c44ade50e6a9636b13, type: 3}
       propertyPath: m_LocalPosition.x
       value: -10.5
@@ -3024,6 +3029,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Farm Ground
       objectReference: {fileID: 0}
+    - target: {fileID: 5974570242905520705, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
+      propertyPath: plantStage
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5974570242905520705, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
+      propertyPath: currentPlant
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6249161277108458058, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -3067,6 +3080,14 @@ PrefabInstance:
     - target: {fileID: 6286497272545154220, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
       propertyPath: m_Name
       value: Town Gate
+      objectReference: {fileID: 0}
+    - target: {fileID: 9218157525747312590, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8f30ce86af088e14e9512db39a9ec6ed, type: 3}
+    - target: {fileID: 9218157525747312590, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

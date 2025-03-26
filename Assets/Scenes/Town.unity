@@ -30153,7 +30153,7 @@ PrefabInstance:
     - target: {fileID: 2612625110932902913, guid: 5c29543ff785f5c44ade50e6a9636b13, type: 3}
       propertyPath: m_BoundingShape2D
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1332897141}
     - target: {fileID: 3740243437311482537, guid: 5c29543ff785f5c44ade50e6a9636b13, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.47
@@ -31780,6 +31780,11 @@ PrefabInstance:
 --- !u!4 &1332897140 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1506791000144849197, guid: 2f5cadf65ea45b84d9b50e0834e61b7b, type: 3}
+  m_PrefabInstance: {fileID: 1332897139}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &1332897141 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 8622472406371566799, guid: 2f5cadf65ea45b84d9b50e0834e61b7b, type: 3}
   m_PrefabInstance: {fileID: 1332897139}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1383249350

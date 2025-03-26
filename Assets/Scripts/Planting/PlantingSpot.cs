@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class PlantingSpot : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public string currentPlant;
+    public int plantStage = 0;
+    public int timeSincePlanted = 0;
+    
 }

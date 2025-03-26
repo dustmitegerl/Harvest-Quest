@@ -31,6 +31,8 @@ public class PartyManager : MonoBehaviour
                 newPartyMember.MaxExp = 100;
                 newPartyMember.MemberBattleVisualPrefab = allMembers[i].MemberBattleVisualPrefab;
                 newPartyMember.MemberOverworldVisualPrefab = allMembers[i].MemberOverworldVisualPrefab;
+                newPartyMember.Skills = allMembers[i].Skills;
+
 
                 currentParty.Add(newPartyMember);
                 return;
@@ -55,6 +57,11 @@ public class PartyMember
     public int Initiative;
     public int CurrExp;
     public int MaxExp;
+    public int CurrSP;
+    public int MaxSP;
+
     public GameObject MemberBattleVisualPrefab;
     public GameObject MemberOverworldVisualPrefab;
+    public Skill[] Skills;
+
 }

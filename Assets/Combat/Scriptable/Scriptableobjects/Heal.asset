@@ -9,11 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d35258f1d01fa2a44a63229c433d7a94, type: 3}
-  m_Name: Corn
+  m_Script: {fileID: 11500000, guid: e24e6965b25bb7f4aa9f7c3fdc6bc4c1, type: 3}
+  m_Name: Heal
   m_EditorClassIdentifier: 
-  EnemyName: Lemon
-  BaseHealth: 1
-  BaseStr: 1
-  BaseInitiative: 1
-  EnemyVisualPrefab: {fileID: 5288380385470459906, guid: 6973826a55170b1429dbfefbf5243992, type: 3}
+  SkillName: Heal
+  Description: Heal
+  SPCost: 1
+  DealsDamage: 0
+  DamageAmount: 0
+  Heals: 1
+  HealAmount: 10
+  TargetType: 2
+  ChanceToDebuff: 0
+  AnimationTrigger: 

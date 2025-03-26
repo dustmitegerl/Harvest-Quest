@@ -4,6 +4,8 @@ using UnityEngine;
 using TMPro;
 using JetBrains.Annotations;
 using Unity.VisualScripting;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class BattleSys : MonoBehaviour
@@ -30,6 +32,13 @@ public class BattleSys : MonoBehaviour
     [SerializeField] private TextMeshProUGUI actionText;
     [SerializeField] private GameObject bottomTextPopUp;
     [SerializeField] private TextMeshProUGUI bottomText;
+    [SerializeField] private GameObject[] skillButtons;
+    [SerializeField] private GameObject skillSelectionMenu; // like the Battle Menu
+
+    //[SerializeField] private Transform skillButtonContainer;
+    //[SerializeField] private GameObject skillButtonPrefab;
+    [SerializeField] private TextMeshProUGUI skillDescriptionText;
+
     private PartyManager partyManager;
     private EnemyManager enemyManager;
     private int currentPlayer;
@@ -42,13 +51,24 @@ public class BattleSys : MonoBehaviour
     {
 
 
-        partyManager = GameObject.FindFirstObjectByType<PartyManager>();
-        enemyManager = GameObject.FindFirstObjectByType<EnemyManager>();
+        //partyManager = GameObject.FindFirstObjectByType<PartyManager>();
+        //enemyManager = GameObject.FindFirstObjectByType<EnemyManager>();
+
+        //CreatePartyEntities();
+        //CreateEnemyEntities();
+        //ShowBattleMenu();
+
+        //AttackAction(allBattlers[0], allBattlers[1]);
+        partyManager = FindObjectOfType<PartyManager>();
+        enemyManager = FindObjectOfType<EnemyManager>();
 
         CreatePartyEntities();
         CreateEnemyEntities();
+
+        currentPlayer = 0;
         ShowBattleMenu();
-        //AttackAction(allBattlers[0], allBattlers[1]);
+
+
 
 
     }
@@ -94,22 +114,24 @@ public class BattleSys : MonoBehaviour
 
     private IEnumerator AttackRoutine(int i)
     {
-        //player turn
-        if (allBattlers[i].IsPlayer == true)
+        BattleEntities currAttacker = allBattlers[i];
+
+        // PLAYER TURN
+        if (currAttacker.IsPlayer)
         {
-            BattleEntities currAttacker = allBattlers[i];
-            if (allBattlers[currAttacker.Target].IsPlayer == true || currAttacker.Target >= allBattlers.Count)
+            if (currAttacker.Target < 0 || currAttacker.Target >= allBattlers.Count || allBattlers[currAttacker.Target].IsPlayer)
             {
                 currAttacker.SetTarget(GetRandomEnemy());
             }
+
             BattleEntities currTarget = allBattlers[currAttacker.Target];
-            AttackAction(currAttacker, currTarget); //attack slected enemy
-            yield return new WaitForSeconds(TURN_DURATION); //wait a few sec
+            AttackAction(currAttacker, currTarget);
+            yield return new WaitForSeconds(TURN_DURATION);
 
             if (currTarget.CurrHealth <= 0)
             {
                 bottomText.text = string.Format("{0} defeated {1}", currAttacker.Name, currTarget.Name);
-                yield return new WaitForSeconds(TURN_DURATION); //wait a few sec
+                yield return new WaitForSeconds(TURN_DURATION);
                 allBattlers.Remove(currTarget);
                 enemyBattlers.Remove(currTarget);
 
@@ -117,31 +139,44 @@ public class BattleSys : MonoBehaviour
                 {
                     state = BattleState.Won;
                     bottomText.text = WIN_MESSAGE;
-                    yield return new WaitForSeconds(TURN_DURATION); //wait a few sec
-                    Debug.Log("go back to overworld scene");
-                    SceneManager.LoadScene("Farm"); // Load the "Farm" scene
+                    yield return new WaitForSeconds(TURN_DURATION);
+                    SceneManager.LoadScene("Farm");
                     yield break;
-
                 }
-
-                //if no enemies remain
-                // we won the battle
             }
         }
-
-        if (allBattlers[i].IsPlayer == false)
+        // ENEMY TURN
+        else
         {
-            BattleEntities currAttacker = allBattlers[i];
             currAttacker.SetTarget(GetRandomPartyMember());
-            BattleEntities currTarget = allBattlers[currAttacker.Target];
 
-            AttackAction(currAttacker, currTarget); //attack slected enemy
-            yield return new WaitForSeconds(TURN_DURATION); //wait a few sec
+            Enemy matchingEnemyData = enemyManager.GetCurrentEnemies()
+                .Find(e => e.EnemyName == currAttacker.Name);
+
+            if (matchingEnemyData != null)
+            {
+                Skill chosen = Random.value > 0.7f && matchingEnemyData.SpecialSkill != null
+                    ? matchingEnemyData.SpecialSkill
+                    : matchingEnemyData.BasicSkill;
+
+                currAttacker.ChosenSkill = chosen;
+            }
+
+
+            // Assign a simple default skill for enemies
+            currAttacker.ChosenSkill = new Skill();
+            currAttacker.ChosenSkill.SkillName = "Enemy Claw";
+            currAttacker.ChosenSkill.DealsDamage = true;
+            currAttacker.ChosenSkill.DamageAmount = currAttacker.Strenght;
+
+            BattleEntities currTarget = allBattlers[currAttacker.Target];
+            AttackAction(currAttacker, currTarget);
+            yield return new WaitForSeconds(TURN_DURATION);
 
             if (currTarget.CurrHealth <= 0)
             {
                 bottomText.text = string.Format("{0} defeated {1}", currAttacker.Name, currTarget.Name);
-                yield return new WaitForSeconds(TURN_DURATION); //wait a few sec
+                yield return new WaitForSeconds(TURN_DURATION);
                 allBattlers.Remove(currTarget);
                 playerBattlers.Remove(currTarget);
 
@@ -149,17 +184,14 @@ public class BattleSys : MonoBehaviour
                 {
                     state = BattleState.Lost;
                     bottomText.text = LOSE_MESSAGE;
-                    yield return new WaitForSeconds(TURN_DURATION); //wait a few sec
-                    Debug.Log("gameover");
-
+                    yield return new WaitForSeconds(TURN_DURATION);
+                    Debug.Log("Game Over");
+                    yield break;
                 }
-
-                //if no enemies remain
-                // we won the battle
             }
-
         }
     }
+
 
     private IEnumerator RunRoutine()
     {
@@ -250,9 +282,75 @@ public class BattleSys : MonoBehaviour
     public void ShowBattleMenu()
     {
         actionText.text = playerBattlers[currentPlayer].Name + ACTION_MESSAGE;
-        SetEnemySelectionButtons();
+
+        PartyMember memberData = partyManager.GetCurrentParty()[currentPlayer];
+
+        for (int i = 0; i < skillButtons.Length; i++)
+        {
+            if (i < memberData.Skills.Length)
+            {
+                Skill skill = memberData.Skills[i];
+
+                skillButtons[i].SetActive(true);
+                skillButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = skill.SkillName;
+
+                int index = i; // capture index for closure
+                skillButtons[i].GetComponent<Button>().onClick.RemoveAllListeners();
+                skillButtons[i].GetComponent<Button>().onClick.AddListener(() => OnSkillSelected(skill));
+
+                // Optional: show description somewhere
+                EventTrigger trigger = skillButtons[i].GetComponent<EventTrigger>();
+                if (trigger != null)
+                {
+                    trigger.triggers.Clear();
+                    var entry = new EventTrigger.Entry
+                    {
+                        eventID = EventTriggerType.PointerEnter
+                    };
+                    entry.callback.AddListener((_) => skillDescriptionText.text = skill.Description);
+                    trigger.triggers.Add(entry);
+                }
+            }
+            else
+            {
+                skillButtons[i].SetActive(false); // hide unused buttons
+            }
+        }
+
         battleMenu.SetActive(true);
     }
+
+
+    private void OnSkillSelected(Skill selectedSkill)
+    {
+        skillSelectionMenu.SetActive(false);
+
+        BattleEntities entity = playerBattlers[currentPlayer];
+        entity.ChosenSkill = selectedSkill;
+
+        if (selectedSkill.TargetType == SkillTarget.OneEnemy)
+        {
+            ShowEnemySelectionMenu();
+        }
+        else
+        {
+            entity.SetTarget(-1);
+            entity.BattleAction = BattleEntities.Action.Attack;
+            currentPlayer++;
+
+            if (currentPlayer >= playerBattlers.Count)
+            {
+                StartCoroutine(BattleRoutine());
+            }
+            else
+            {
+                ShowBattleMenu();
+            }
+        }
+    }
+
+
+
 
     public void ShowEnemySelectionMenu()
     {
@@ -299,13 +397,111 @@ public class BattleSys : MonoBehaviour
 
     private void AttackAction(BattleEntities currAttacker, BattleEntities currTarget)
     {
-        int damage = currAttacker.Strenght; //get the damage value
-                                            //currAttacker.BattleVisuals.PlayAttackAnimation(); //play attack animation
-        currTarget.CurrHealth -= damage; //apply damage to the target
-                                         //currTarget.BattleVisuals.PlayHitAnimation(); //play hit animation
-        currTarget.UpdateUI(); //update the UI
-        bottomText.text = string.Format("{0} attacks {1} for {2} damage", currAttacker.Name, currTarget.Name, damage); //set the bottom text
+        Skill usedSkill = currAttacker.ChosenSkill;
+        string actionLine = currAttacker.Name + " uses " + usedSkill.SkillName;
+
+        if (usedSkill.RestoresSP)
+        {
+            currAttacker.CurrSP += usedSkill.SPRestoreAmount;
+            if (currAttacker.CurrSP > currAttacker.MaxSP)
+                currAttacker.CurrSP = currAttacker.MaxSP;
+
+            bottomText.text += $"\n{currAttacker.Name} restores {usedSkill.SPRestoreAmount} SP!";
+        }
+        else if (usedSkill.SPCost > 0)
+        {
+            currAttacker.CurrSP -= usedSkill.SPCost;
+            if (currAttacker.CurrSP < 0) currAttacker.CurrSP = 0;
+        }
+
+
+        if (currAttacker.BattleVisuals != null)
+        {
+            if (usedSkill.SkillName.ToLower().Contains("special"))
+                currAttacker.BattleVisuals.PlaySpecialAttackAnimation();
+            else
+                currAttacker.BattleVisuals.PlayAttackAnimation();
+        }
+
+
+        if (usedSkill.DealsDamage)
+        {
+            if (usedSkill.TargetType == SkillTarget.AllEnemies)
+            {
+                List<BattleEntities> enemiesToRemove = new List<BattleEntities>();
+
+                foreach (var enemy in enemyBattlers)
+                {
+                    enemy.CurrHealth -= usedSkill.DamageAmount;
+                    enemy.UpdateUI();
+
+                    if (enemy.CurrHealth <= 0)
+                    {
+                        enemiesToRemove.Add(enemy);
+                        bottomText.text = currAttacker.Name + " defeated " + enemy.Name + "!";
+                    }
+                }
+
+                foreach (var deadEnemy in enemiesToRemove)
+                {
+                    allBattlers.Remove(deadEnemy);
+                    enemyBattlers.Remove(deadEnemy);
+                    Destroy(deadEnemy.BattleVisuals.gameObject); // optional
+                }
+
+                bottomText.text = actionLine + " and hits all enemies for " + usedSkill.DamageAmount + " damage!";
+
+                if (enemyBattlers.Count <= 0)
+                {
+                    state = BattleState.Won;
+                    bottomText.text = WIN_MESSAGE;
+                    StartCoroutine(DelayedSceneLoad("Farm", TURN_DURATION));
+                    return;
+                }
+            }
+            else
+            {
+                currTarget.CurrHealth -= usedSkill.DamageAmount;
+                currTarget.UpdateUI();
+                bottomText.text = actionLine + " on " + currTarget.Name + " for " + usedSkill.DamageAmount + " damage!";
+
+                if (currTarget.CurrHealth <= 0)
+                {
+                    allBattlers.Remove(currTarget);
+                    enemyBattlers.Remove(currTarget);
+                    Destroy(currTarget.BattleVisuals.gameObject); // optional
+
+                    bottomText.text = currAttacker.Name + " defeated " + currTarget.Name + "!";
+
+                    if (enemyBattlers.Count <= 0)
+                    {
+                        state = BattleState.Won;
+                        bottomText.text = WIN_MESSAGE;
+                        StartCoroutine(DelayedSceneLoad("Farm", TURN_DURATION));
+                        return;
+                    }
+                }
+            }
+        }
+        else if (usedSkill.Heals)
+        {
+            // Basic healing logic (healing self for now)
+            BattleEntities healTarget = currAttacker;
+
+            healTarget.CurrHealth += usedSkill.HealAmount;
+            if (healTarget.CurrHealth > healTarget.MaxHealth)
+                healTarget.CurrHealth = healTarget.MaxHealth;
+
+            healTarget.UpdateUI();
+            bottomText.text = actionLine + " and heals " + healTarget.Name + " for " + usedSkill.HealAmount + " HP!";
+        }
+        else
+        {
+            bottomText.text = actionLine + ", but nothing happens.";
+        }
     }
+
+
 
     private int GetRandomPartyMember()
     {
@@ -336,26 +532,43 @@ public class BattleSys : MonoBehaviour
     }
 
     public void SelectRunAction()
-{
-    state = BattleState.Run; // Set the state to Run
-    BattleEntities currentPlayerEntity = playerBattlers[currentPlayer]; // Local reference for current player
-    
-    currentPlayerEntity.BattleAction = BattleEntities.Action.Run; // Setting current member's action to run
-    
-    battleMenu.SetActive(false); // Disable battle menu
-    currentPlayer++; // Incrementing current player
+    {
+        state = BattleState.Run; // Set the state to Run
+        BattleEntities currentPlayerEntity = playerBattlers[currentPlayer]; // Local reference for current player
 
-    if (currentPlayer >= playerBattlers.Count) // If current player is greater than or equal to player battlers count, end the current turn if we went through all players
-    {
-        StartCoroutine(BattleRoutine());
+        currentPlayerEntity.BattleAction = BattleEntities.Action.Run; // Setting current member's action to run
+
+        battleMenu.SetActive(false); // Disable battle menu
+        currentPlayer++; // Incrementing current player
+
+        if (currentPlayer >= playerBattlers.Count) // If current player is greater than or equal to player battlers count, end the current turn if we went through all players
+        {
+            StartCoroutine(BattleRoutine());
+        }
+        else
+        {
+            enemySelectionMenu.SetActive(false); // Disable enemy selection menu
+            ShowBattleMenu(); // Show battle menu
+        }
     }
-    else
+
+    public void SelectAttackAction()
     {
-        enemySelectionMenu.SetActive(false); // Disable enemy selection menu
-        ShowBattleMenu(); // Show battle menu
+        battleMenu.SetActive(false);
+        skillSelectionMenu.SetActive(true);
+        ShowBattleMenu();
     }
+
+    private IEnumerator DelayedSceneLoad(string sceneName, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        SceneManager.LoadScene(sceneName);
+    }
+
+
 }
-}
+
+
 
 
 
@@ -370,12 +583,18 @@ public class BattleEntities
     public int Initiative;
     public int Strenght;
     public int Level;
+    public int CurrSP;
+    public int MaxSP;
+
     public bool IsPlayer;
+    public Skill ChosenSkill;
+
     public BattleVisuals BattleVisuals;
     public int Target;
 
 
-    public void SetEntityValues(string name, int currHealth, int maxHealth, int initiative, int strenght, int level, bool isPlayer)
+    public void SetEntityValues(string name, int currHealth, int maxHealth, int initiative, int strenght, int level, bool isPlayer, int currSP = 10, int maxSP = 20)
+
     {
         Name = name;
         CurrHealth = currHealth;
@@ -384,6 +603,8 @@ public class BattleEntities
         Strenght = strenght;
         Level = level;
         IsPlayer = isPlayer;
+        CurrSP = currSP;
+        MaxSP = maxSP;
     }
     public void SetTarget(int target)
     {

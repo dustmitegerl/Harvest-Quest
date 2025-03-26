@@ -12,6 +12,8 @@ public class PartyMemberInfo : ScriptableObject
     public int BaseHealth;
     public int BaseStr;
     public int BaseInitiative;
+    public Skill[] Skills;
+
     public GameObject MemberBattleVisualPrefab;
     public GameObject MemberOverworldVisualPrefab;
 }

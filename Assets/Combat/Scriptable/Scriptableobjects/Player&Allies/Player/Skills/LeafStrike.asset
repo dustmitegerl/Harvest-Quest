@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SkillName: LeafStrike
   Description: a leaf strike
-  SPCost: 1
+  SPCost: 10
+  RestoresSP: 0
+  SPRestoreAmount: 0
   DealsDamage: 1
-  DamageAmount: 3
+  DamageAmount: 15
   Heals: 0
   HealAmount: 0
   TargetType: 0

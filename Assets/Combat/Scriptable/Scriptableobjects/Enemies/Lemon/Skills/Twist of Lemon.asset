@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e24e6965b25bb7f4aa9f7c3fdc6bc4c1, type: 3}
-  m_Name: Slash
+  m_Name: Twist of Lemon
   m_EditorClassIdentifier: 
-  SkillName: Slash
-  Description: Normal Slash Attack to recover SP
+  SkillName: Twist of Lemon
+  Description: Spins at an enemy to cause damage.
   SPCost: 0
-  RestoresSP: 1
-  SPRestoreAmount: 5
+  RestoresSP: 0
+  SPRestoreAmount: 0
   DealsDamage: 1
-  DamageAmount: 2
+  DamageAmount: 15
   Heals: 0
   HealAmount: 0
   TargetType: 0

@@ -52,6 +52,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   plantingSpots: []
   levelLoader: {fileID: 0}
+  battleArena: {fileID: 102900000, guid: 59d440dc074b84f4d85d8e86771a6033, type: 3}
 --- !u!61 &7076612931929637429
 BoxCollider2D:
   m_ObjectHideFlags: 0

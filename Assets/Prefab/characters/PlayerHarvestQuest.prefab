@@ -211,8 +211,8 @@ MonoBehaviour:
   damage: 7
   maxHP: 35
   currentHP: 35
-  maxSP: 20
-  currentSP: 20
+  maxSP: 50
+  currentSP: 50
   currentExperience: 0
   maxExperience: 100
   currentLevel: 1

@@ -10,17 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e24e6965b25bb7f4aa9f7c3fdc6bc4c1, type: 3}
-  m_Name: Slash
+  m_Name: FireTornado
   m_EditorClassIdentifier: 
-  SkillName: Slash
-  Description: 
-  SPCost: 5
-  RestoresSP: 0
-  SPRestoreAmount: 0
+  SkillName: FireTornado
+  Description: A fire Tornado
+  SPCost: 1
   DealsDamage: 1
-  DamageAmount: 10
+  DamageAmount: 5
   Heals: 0
   HealAmount: 0
-  TargetType: 0
+  TargetType: 1
   ChanceToDebuff: 0
   AnimationTrigger: 

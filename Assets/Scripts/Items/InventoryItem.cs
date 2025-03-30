@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using UnityEngine.EventSystems;
 
 //Thanks to Coco Code: Unity INVENTORY: A Definitive Tutorial (Youtube)
@@ -10,7 +11,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 {
     [Header("UI")]
     public Image image;
-    public Text countText;
+    public TMP_Text countText;
 
     [HideInInspector] public Item item;
     [HideInInspector] public int count = 1;

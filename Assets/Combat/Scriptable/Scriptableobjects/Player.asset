@@ -14,8 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MemberName: Player
   StartingLevel: 3
-  BaseHealth: 15
+  BaseHealth: 20
   BaseStr: 2
   BaseInitiative: 5
+  Skills:
+  - {fileID: 11400000, guid: 7750e6ddc225456448026dd26bcffa45, type: 2}
+  - {fileID: 11400000, guid: 6a079a2f4e92d184bb59ee5ec5d3fa55, type: 2}
+  - {fileID: 11400000, guid: 21b0487e45074664bbbe15fc9ce71532, type: 2}
+  - {fileID: 11400000, guid: a8b242fa984e4f542af2ae1aa9027407, type: 2}
   MemberBattleVisualPrefab: {fileID: 3345040700270541269, guid: 222175736d109a6408fa23fd2019caa1, type: 3}
   MemberOverworldVisualPrefab: {fileID: 3037191485019776758, guid: 5453ed72ce3080e4599c25db1eca3908, type: 3}

@@ -244,6 +244,8 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4826128384618702053, guid: ca8b6efde2d73fd49a419bc65cc10f75, type: 3}
   m_PrefabInstance: {fileID: 4839851901240205164}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< Updated upstream
+=======
 --- !u!1001 &238931171
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -296,11 +298,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Battle_Music
       objectReference: {fileID: 0}
+    - target: {fileID: 8678835147029982112, guid: ae2369452299e78468ec5fdd2a860248, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ae2369452299e78468ec5fdd2a860248, type: 3}
+>>>>>>> Stashed changes
 --- !u!1 &324097222 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4562615323230677222, guid: 7bc61b4339eb3dc49955bfe76f225079, type: 3}
@@ -2102,7 +2109,6 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 238931171}
   - {fileID: 4948761104503628842}
   - {fileID: 407044823}
   - {fileID: 1511538011}

@@ -2,7 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum SkillTarget { OneEnemy, AllEnemies, Self, AllAllies }
+public enum SkillTarget
+{
+    OneEnemy,     // single player
+    AllEnemies,   // all players
+    OneAlly,      // single enemy ally (for healing or buffs)
+    AllAllies,    // all enemy team
+    Self          // self-cast
+}
 
 [CreateAssetMenu(menuName = "New Skill")]
 public class Skill : ScriptableObject

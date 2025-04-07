@@ -1725,7 +1725,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 889481154016237640, guid: 7bc61b4339eb3dc49955bfe76f225079, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -148.29993
+      value: -148.29991
       objectReference: {fileID: 0}
     - target: {fileID: 1234055993098747713, guid: 7bc61b4339eb3dc49955bfe76f225079, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1753,7 +1753,7 @@ PrefabInstance:
       objectReference: {fileID: 159662091}
     - target: {fileID: 4413051499022462271, guid: 7bc61b4339eb3dc49955bfe76f225079, type: 3}
       propertyPath: m_text
-      value: Lemon
+      value: ' '
       objectReference: {fileID: 0}
     - target: {fileID: 4562615323230677222, guid: 7bc61b4339eb3dc49955bfe76f225079, type: 3}
       propertyPath: m_IsActive
@@ -1761,7 +1761,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4727533204472579905, guid: 7bc61b4339eb3dc49955bfe76f225079, type: 3}
       propertyPath: m_text
-      value: Lemon
+      value: ' '
       objectReference: {fileID: 0}
     - target: {fileID: 5064914420998710335, guid: 7bc61b4339eb3dc49955bfe76f225079, type: 3}
       propertyPath: m_Pivot.x
@@ -1845,7 +1845,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5147928125599549066, guid: 7bc61b4339eb3dc49955bfe76f225079, type: 3}
       propertyPath: m_text
-      value: Lemon
+      value: ' '
       objectReference: {fileID: 0}
     - target: {fileID: 5213587052953317466, guid: 7bc61b4339eb3dc49955bfe76f225079, type: 3}
       propertyPath: m_Name

@@ -23,4 +23,4 @@ MonoBehaviour:
   HealAmount: 0
   TargetType: 0
   ChanceToDebuff: 0
-  AnimationTrigger: 
+  AnimationTrigger: IS_ATTACK_PARAM

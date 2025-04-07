@@ -9,7 +9,7 @@ public class PartyManager : MonoBehaviour
 
     [SerializeField] private PartyMemberInfo defaultPartyMember;
 
-    private void Awake() 
+    private void Awake()
     {
         AddMemberToPartyByName(defaultPartyMember.MemberName);
     }
@@ -29,6 +29,13 @@ public class PartyManager : MonoBehaviour
                 newPartyMember.Initiative = allMembers[i].BaseInitiative;
                 newPartyMember.CurrExp = 0;
                 newPartyMember.MaxExp = 100;
+                newPartyMember.Intelligence = allMembers[i].BaseIntelligence;
+                newPartyMember.Defense = allMembers[i].BaseDefense;
+                newPartyMember.Resistance = allMembers[i].BaseResistance;
+
+                newPartyMember.CurrSP = allMembers[i].BaseSP;
+                newPartyMember.MaxSP = allMembers[i].BaseSP;
+
                 newPartyMember.MemberBattleVisualPrefab = allMembers[i].MemberBattleVisualPrefab;
                 newPartyMember.MemberOverworldVisualPrefab = allMembers[i].MemberOverworldVisualPrefab;
                 newPartyMember.Skills = allMembers[i].Skills;
@@ -51,17 +58,25 @@ public class PartyMember
 {
     public string MemberName;
     public int Level;
+
     public int CurrHealth;
     public int MaxHealth;
+
     public int Strength;
+    public int Intelligence;  
+    public int Defense;       
+    public int Resistance;   
+
     public int Initiative;
+
     public int CurrExp;
     public int MaxExp;
+
     public int CurrSP;
     public int MaxSP;
 
-    public GameObject MemberBattleVisualPrefab;
-    public GameObject MemberOverworldVisualPrefab;
     public Skill[] Skills;
 
+    public GameObject MemberBattleVisualPrefab;
+    public GameObject MemberOverworldVisualPrefab;
 }

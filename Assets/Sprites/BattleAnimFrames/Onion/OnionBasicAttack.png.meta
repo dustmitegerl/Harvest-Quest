@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 22151016f09d64248a726ae6d328a69c
+guid: b468ca376cefe33409833cc90b22eead
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: OnionFinalStageHit_0
+      name: OnionBasicAttack_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 32
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +124,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eccbfd5be1c9c904ba2d7e7d8288bc40
-      internalID: -1615090129
+      spriteID: f2c59a79c399d384787276be3530474c
+      internalID: 1319272471
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: OnionFinalStageHit_1
+      name: OnionBasicAttack_1
       rect:
         serializedVersion: 2
-        x: 32
+        x: 64
         y: 0
-        width: 32
-        height: 32
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,8 +145,113 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a7af44a9bca81c341bf442d31102ebbe
-      internalID: 1179238805
+      spriteID: 2490b7138011e80408abcd0ba8fede59
+      internalID: -373708504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OnionBasicAttack_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 339f8acffa2a89c4fb0a8603eafe00e0
+      internalID: -741053803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OnionBasicAttack_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 312fd6f99d80ad2479dc448b8dc7b8dd
+      internalID: -2033401579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OnionBasicAttack_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7462600903892c49b43508dccc1add8
+      internalID: 757183427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OnionBasicAttack_5
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ae1733bbdcf0c245a64649f9d5062c8
+      internalID: -481429027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OnionBasicAttack_6
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ea7bd656a4013d4e865cfc30df5779e
+      internalID: -2089942044
       vertices: []
       indices: 
       edges: []
@@ -162,8 +267,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      OnionFinalStageHit_0: -1615090129
-      OnionFinalStageHit_1: 1179238805
+      OnionBasicAttack_0: 1319272471
+      OnionBasicAttack_1: -373708504
+      OnionBasicAttack_2: -741053803
+      OnionBasicAttack_3: -2033401579
+      OnionBasicAttack_4: 757183427
+      OnionBasicAttack_5: -481429027
+      OnionBasicAttack_6: -2089942044
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

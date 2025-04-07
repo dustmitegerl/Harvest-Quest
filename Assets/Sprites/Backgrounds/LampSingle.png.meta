@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 22151016f09d64248a726ae6d328a69c
+guid: 5b5c5f0894f4f3a4298522ce186240d1
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: OnionFinalStageHit_0
+      name: LampSingle_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 32
+        width: 16
+        height: 90
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +124,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eccbfd5be1c9c904ba2d7e7d8288bc40
-      internalID: -1615090129
+      spriteID: 0cc1cf918019cec4a8adb86441d28349
+      internalID: -945174994
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: OnionFinalStageHit_1
+      name: LampSingle_1
       rect:
         serializedVersion: 2
-        x: 32
+        x: 16
         y: 0
-        width: 32
-        height: 32
+        width: 16
+        height: 90
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,8 +145,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a7af44a9bca81c341bf442d31102ebbe
-      internalID: 1179238805
+      spriteID: 36adcd302c7627b4ebee6f979cd8396f
+      internalID: -1190842118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LampSingle_2
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 16
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f03e7019affc1ea48928fadea78acf29
+      internalID: 508235427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LampSingle_3
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 16
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a7d7bb8474934d44afe44abc4fa44f9
+      internalID: -448659207
       vertices: []
       indices: 
       edges: []
@@ -162,8 +204,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      OnionFinalStageHit_0: -1615090129
-      OnionFinalStageHit_1: 1179238805
+      LampSingle_0: -945174994
+      LampSingle_1: -1190842118
+      LampSingle_2: 508235427
+      LampSingle_3: -448659207
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

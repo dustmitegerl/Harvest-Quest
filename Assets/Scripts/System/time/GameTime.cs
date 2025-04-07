@@ -19,7 +19,7 @@ public class GameTime : MonoBehaviour
     
 
     [SerializeField]
-    int timeSpeedModulator = 1; // used to change speed of seconds
+    float timeSpeedModulator = 1; // used to change speed of seconds
     [SerializeField]
     int secsInMin = 60;
     [SerializeField]

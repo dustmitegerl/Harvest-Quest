@@ -32,11 +32,11 @@ public class VolumeSettings : MonoBehaviour
 
  void SetMusicVolume(float value)
  {
-    mixer.SetFloat(MIXER_MUSIC, Mathf.Log10(value) * 20);
+    mixer.SetFloat(MIXER_MUSIC, Mathf.Log10(Mathf.Clamp(value, 0.0001f, 1f)) * 20);
  }
 
  void SetSoundVolume(float value)
  {
-    mixer.SetFloat(MIXER_SOUND, Mathf.Log10(value) * 20);
+    mixer.SetFloat(MIXER_SOUND, Mathf.Log10(Mathf.Clamp(value, 0.0001f, 1f)) * 20);
  }
 }

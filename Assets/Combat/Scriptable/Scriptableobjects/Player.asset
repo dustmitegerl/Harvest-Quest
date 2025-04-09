@@ -14,9 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MemberName: Player
   StartingLevel: 3
-  BaseHealth: 20
-  BaseStr: 2
+  BaseHealth: 200
+  BaseStr: 10
   BaseInitiative: 5
+  BaseIntelligence: 0
+  BaseDefense: 0
+  BaseResistance: 0
+  BaseSP: 20
   Skills:
   - {fileID: 11400000, guid: 7750e6ddc225456448026dd26bcffa45, type: 2}
   - {fileID: 11400000, guid: 6a079a2f4e92d184bb59ee5ec5d3fa55, type: 2}

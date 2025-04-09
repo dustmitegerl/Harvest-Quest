@@ -122,11 +122,13 @@ public class BattleSys : MonoBehaviour
             AttackAction(currAttacker, currTarget);
             yield return new WaitForSeconds(TURN_DURATION);
 
-            if (currTarget.CurrHealth <= 0)
+            if (currTarget != null && currTarget.CurrHealth <= 0)
             {
                 allBattlers.Remove(currTarget);
                 enemyBattlers.Remove(currTarget);
-                Destroy(currTarget.BattleVisuals.gameObject);
+                if (currTarget.BattleVisuals != null)
+                    StartCoroutine(SafeDestroy(currTarget.BattleVisuals));
+                currTarget.BattleVisuals = null;
 
                 bottomText.text = currAttacker.Name + " defeated " + currTarget.Name + "!";
 
@@ -145,9 +147,9 @@ public class BattleSys : MonoBehaviour
         {
             currAttacker.BattleAction = BattleEntities.Action.Attack;
 
-            // Skill selection
+            //  Match by startsWith in case of "Lemon 1"
             Skill chosen = null;
-            Enemy matchingEnemyData = enemyManager.GetCurrentEnemies().Find(e => e.EnemyName == currAttacker.Name);
+            Enemy matchingEnemyData = enemyManager.GetCurrentEnemies().Find(e => currAttacker.Name.StartsWith(e.EnemyName));
 
             if (matchingEnemyData != null)
             {
@@ -159,7 +161,6 @@ public class BattleSys : MonoBehaviour
                     chosen = matchingEnemyData.BasicSkill;
             }
 
-            // Fallback skill
             if (chosen == null)
             {
                 Debug.LogWarning($"{currAttacker.Name} has no skill assigned. Using fallback.");
@@ -172,25 +173,21 @@ public class BattleSys : MonoBehaviour
 
             currAttacker.ChosenSkill = chosen;
 
-            // === Targeting based on skill ===
             switch (chosen.TargetType)
             {
                 case SkillTarget.OneEnemy:
                     currAttacker.SetTarget(GetRandomPartyMember());
                     break;
-
                 case SkillTarget.AllEnemies:
                 case SkillTarget.AllAllies:
                 case SkillTarget.Self:
-                    currAttacker.SetTarget(-1); // No specific target needed
+                    currAttacker.SetTarget(-1);
                     break;
-
                 case SkillTarget.OneAlly:
                     currAttacker.SetTarget(GetRandomEnemy());
                     break;
             }
 
-            // Perform action
             BattleEntities currTarget = currAttacker.Target >= 0 && currAttacker.Target < allBattlers.Count
                 ? allBattlers[currAttacker.Target]
                 : null;
@@ -198,12 +195,13 @@ public class BattleSys : MonoBehaviour
             AttackAction(currAttacker, currTarget);
             yield return new WaitForSeconds(TURN_DURATION);
 
-            // Handle target death (only if it's a player and single-target)
             if (currTarget != null && currTarget.IsPlayer && currTarget.CurrHealth <= 0)
             {
                 allBattlers.Remove(currTarget);
                 playerBattlers.Remove(currTarget);
-                Destroy(currTarget.BattleVisuals.gameObject);
+                if (currTarget.BattleVisuals != null)
+                    StartCoroutine(SafeDestroy(currTarget.BattleVisuals));
+                currTarget.BattleVisuals = null;
 
                 bottomText.text = currAttacker.Name + " defeated " + currTarget.Name + "!";
 
@@ -223,6 +221,8 @@ public class BattleSys : MonoBehaviour
 
 
 
+
+
     private IEnumerator RunRoutine()
     {
         if (state == BattleState.Battle)
@@ -231,19 +231,34 @@ public class BattleSys : MonoBehaviour
             {
                 bottomText.text = "You ran away!";
                 state = BattleState.Run;
+
+                // Clean up visuals safely before leaving
+                foreach (var entity in allBattlers)
+                {
+                    if (entity.BattleVisuals != null)
+                    {
+                        Destroy(entity.BattleVisuals.gameObject);
+                        entity.BattleVisuals = null;
+                    }
+                }
+
                 allBattlers.Clear();
-                yield return new WaitForSeconds(TURN_DURATION); // Wait a few seconds
+                playerBattlers.Clear();
+                enemyBattlers.Clear();
+
+                yield return new WaitForSeconds(TURN_DURATION);
                 SceneManager.LoadScene("Farm");
                 yield break;
             }
             else
             {
                 bottomText.text = "You failed to run away!";
-                yield return new WaitForSeconds(TURN_DURATION); // Wait a few seconds
-                state = BattleState.Battle; // Reset state to Battle if run fails
+                yield return new WaitForSeconds(TURN_DURATION);
+                state = BattleState.Battle;
             }
         }
     }
+
 
 
 
@@ -310,7 +325,7 @@ public class BattleSys : MonoBehaviour
         {
             BattleEntities tempEntity = new BattleEntities();
 
-            // 🔢 Add numbering to avoid duplicate display names
+            // Add numbering to avoid duplicate display names
             string numberedName = currentEnemies[i].EnemyName + " " + (i + 1);
 
             tempEntity.SetEntityValues(
@@ -529,13 +544,17 @@ public class BattleSys : MonoBehaviour
             if (currAttacker.CurrSP < 0) currAttacker.CurrSP = 0;
         }
 
-        // Play animations
+        //  Play animation from skill OR fallback
         if (currAttacker.BattleVisuals != null)
         {
-            if (usedSkill.SkillName.ToLower().Contains("special"))
-                currAttacker.BattleVisuals.PlaySpecialAttackAnimation();
+            if (!string.IsNullOrEmpty(usedSkill.AnimationTrigger))
+            {
+                currAttacker.BattleVisuals.PlayCustomAnimation(usedSkill.AnimationTrigger);
+            }
             else
+            {
                 currAttacker.BattleVisuals.PlayAttackAnimation();
+            }
         }
 
         //  Damage
@@ -561,7 +580,9 @@ public class BattleSys : MonoBehaviour
                 {
                     allBattlers.Remove(dead);
                     enemyBattlers.Remove(dead);
-                    StartCoroutine(SafeDestroy(dead.BattleVisuals));
+                    if (dead.BattleVisuals != null)
+                        StartCoroutine(SafeDestroy(dead.BattleVisuals));
+                    dead.BattleVisuals = null;
                 }
 
                 if (enemyBattlers.Count <= 0)
@@ -583,10 +604,15 @@ public class BattleSys : MonoBehaviour
                 if (currTarget.CurrHealth <= 0)
                 {
                     allBattlers.Remove(currTarget);
-                    if (!currTarget.IsPlayer) enemyBattlers.Remove(currTarget);
-                    else playerBattlers.Remove(currTarget);
+                    if (!currTarget.IsPlayer)
+                        enemyBattlers.Remove(currTarget);
+                    else
+                        playerBattlers.Remove(currTarget);
 
-                    StartCoroutine(SafeDestroy(currTarget.BattleVisuals));
+                    if (currTarget.BattleVisuals != null)
+                        StartCoroutine(SafeDestroy(currTarget.BattleVisuals));
+                    currTarget.BattleVisuals = null;
+
                     bottomText.text = currAttacker.Name + " defeated " + currTarget.Name + "!";
 
                     if (enemyBattlers.Count <= 0)
@@ -611,7 +637,7 @@ public class BattleSys : MonoBehaviour
             }
         }
 
-        // Healing
+        //  Heal
         else if (usedSkill.Heals)
         {
             BattleEntities healTarget = currAttacker;
@@ -624,12 +650,13 @@ public class BattleSys : MonoBehaviour
             bottomText.text = actionLine + " and heals " + healTarget.Name + " for " + usedSkill.HealAmount + " HP!";
         }
 
-        // ❔ Nothing
+        //  Nothing
         else
         {
             bottomText.text = actionLine + ", but nothing happens.";
         }
     }
+
 
 
 
@@ -699,10 +726,17 @@ public class BattleSys : MonoBehaviour
 
     private IEnumerator SafeDestroy(BattleVisuals visuals, float delay = 0.1f)
     {
+        if (visuals == null) yield break;
+
         yield return new WaitForSeconds(delay);
+
         if (visuals != null)
+        {
+            // Optional: Play death animation here again before destroy
             Destroy(visuals.gameObject);
+        }
     }
+
 
 
 

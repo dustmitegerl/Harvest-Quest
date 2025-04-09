@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using TMPro;
 public class GlobalAchievements : MonoBehaviour
 {
     // reference to script: https://www.youtube.com/watch?v=-XuzwxkZ2Wk
@@ -13,17 +13,25 @@ public class GlobalAchievements : MonoBehaviour
     public bool achActive = false;
     public GameObject ach01Title;
     public GameObject ach01Desc;
-    // Acheivement 01 Specific
+    // Setting Up First Achievement 
     public GameObject ach01Image;
    
     public static int ach01Count;
-    public int ach01Trigger = 5;
+    public int ach01Trigger = 1;
     public int ach01Code;
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            PlayerPrefs.DeleteKey("Ach01");
+            ach01Count = 0;
+            Debug.Log("Achievement Reset!");
+        }
+
         ach01Code = PlayerPrefs.GetInt("Ach01");
+       
         if (ach01Count == ach01Trigger && ach01Code != 12345)
         {   
             StartCoroutine(Trigger01Ach());
@@ -37,8 +45,8 @@ public class GlobalAchievements : MonoBehaviour
         PlayerPrefs.SetInt("Ach01", ach01Code);
         achSound.Play();
         ach01Image.SetActive(true);
-        ach01Title.GetComponent<Text>().text = "Starting Here!";
-        ach01Desc.GetComponent<Text>().text = "Starting to play Harvest Quest!";
+        ach01Title.GetComponent<TextMeshProUGUI>().text = "Start Here!";
+        ach01Desc.GetComponent<TextMeshProUGUI>().text = "Starting to play Harvest Quest!";
         achNotes.SetActive(true);
         yield return new WaitForSeconds(7);
 

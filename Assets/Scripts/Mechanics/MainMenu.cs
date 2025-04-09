@@ -8,6 +8,7 @@ public class MainMenu : MonoBehaviour
     
     public void LoadNewGame()
     {
+        GlobalAchievements.ach01Count++;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 

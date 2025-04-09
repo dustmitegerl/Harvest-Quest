@@ -13,6 +13,9 @@ public class BattleVisuals : MonoBehaviour
     private int maxHealth;
     private int level;
 
+    private SpriteRenderer spriteRenderer;
+    private Color originalColor;
+
     private const string LEVEL_ABB = "Lvl: ";
 
     private const string IS_ATTACK_PARAM = "IsAttack";
@@ -25,6 +28,8 @@ public class BattleVisuals : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        originalColor = spriteRenderer.color;
     }
 
     public void SetStartingValues(int maxHealth, int currHealth, int level)
@@ -62,24 +67,62 @@ public class BattleVisuals : MonoBehaviour
     public void PlayAttackAnimation()
     {
         if (anim != null)
+        {
+            DebugTrigger(IS_ATTACK_PARAM);
             anim.SetTrigger(IS_ATTACK_PARAM);
+        }
     }
+
 
     public void PlayHitAnimation()
     {
         if (anim != null)
+        {
             anim.SetTrigger(IS_HIT_PARAM);
+        }
     }
 
     public void PlayDeathAnimation()
     {
         if (anim != null)
+        {
             anim.SetTrigger(IS_DEAD_PARAM);
+        }
     }
 
     public void PlaySpecialAttackAnimation()
     {
         if (anim != null)
+        {
             anim.SetTrigger(IS_SPECIAL_PARAM);
+        }
     }
+
+    public void DebugTrigger(string trigger)
+    {
+        //Debug.Log($"[Animator Triggered] {trigger}");
+    }
+
+    public void Highlight(bool on)
+    {
+        if (spriteRenderer != null)
+        {
+            if (on)
+                spriteRenderer.color = Color.yellow;
+            else
+                spriteRenderer.color = originalColor;
+        }
+    }
+
+    public void PlayCustomAnimation(string trigger)
+    {
+        DebugTrigger(trigger); 
+        if (anim != null)
+        {
+            anim.SetTrigger(trigger);
+        }
+    }
+
+
+
 }

@@ -22,7 +22,6 @@ public class Skill : ScriptableObject
     public bool RestoresSP; // If true, this skill gives SP instead of costing it
     public int SPRestoreAmount; // How much SP it restores
 
-
     [Header("Effect Type")]
     public bool DealsDamage;
     public int DamageAmount;
@@ -30,9 +29,15 @@ public class Skill : ScriptableObject
     public bool Heals;
     public int HealAmount;
 
+    [Header("Attack Type")]
+    public bool IsPhysicalAttack; // if true: scale w/ strength + defense, else: intelligence + resistance
+
+    [Header("Targeting")]
     public SkillTarget TargetType;
 
     [Header("Extra (Optional)")]
-    public float ChanceToDebuff;  // like poison, etc.
-    public string AnimationTrigger;
+    public float ChanceToDebuff;  // poison, etc. not used rn
+    public string AnimationTrigger; // custom anim call, used if needed
 }
+
+

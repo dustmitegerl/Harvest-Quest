@@ -6,9 +6,18 @@ using UnityEngine;
 public class EnemyInfo : ScriptableObject
 {
     public string EnemyName;
+
     public int BaseHealth;
     public int BaseStr;
     public int BaseInitiative;
+
+    public int BaseIntelligence;  
+    public int BaseDefense;      
+    public int BaseResistance;    
+
+    public int BaseSP = 20; // optional, probably not used much
+
+    public int StartingLevel = 1;
 
     public GameObject EnemyVisualPrefab;
 

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4911620600186646467}
   - component: {fileID: 3175381885957777939}
   - component: {fileID: 5926582563920948546}
+  - component: {fileID: 4550529955708704879}
   m_Layer: 6
   m_Name: BlacksmithHQ
   m_TagString: Untagged
@@ -159,6 +160,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.8387643, y: 1.26687}
   m_EdgeRadius: 0
+--- !u!114 &4550529955708704879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2137505348114698965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6443e1bce7167644b9aa4cbcf7e2abd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  items: []
+  friends: 0
 --- !u!1 &8736843065164682765
 GameObject:
   m_ObjectHideFlags: 0

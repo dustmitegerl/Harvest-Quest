@@ -740,8 +740,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Arrow keys, W/A/S/D: move selection\r\r\n\nEscape key: open or close in-game
-    menus\r\n\nShift key: backing out of submenus\n\nF key: Full screen\n\n\n\n\n\nAble
+  m_text: "Arrow keys, W/A/S/D: move selection\r\n\nSpacebar: select\r, progressing
+    dialogue\r\n\nEscape key: open or close in-game menus\r\n\nShift key: backing
+    out of submenus\n\nF key: Action\n\n1-9: select an inventory panel\r\n\n\n\n\n\nAble
     to navigate menus using point and click functionality.\r\n\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d9e565f592d7dd94dbb530e638a01649, type: 2}

@@ -9,6 +9,7 @@ TagManager:
   - Level Loader
   - Game Manager
   - Canvas
+  - OptionButton
   layers:
   - Default
   - TransparentFX

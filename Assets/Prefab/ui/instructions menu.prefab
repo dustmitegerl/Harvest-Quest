@@ -28,7 +28,7 @@ RectTransform:
   m_GameObject: {fileID: 533908339994266506}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.4313, y: 1.4313, z: 1.4313}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6158533602868155918}
@@ -36,7 +36,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -326}
+  m_AnchoredPosition: {x: 0, y: -279}
   m_SizeDelta: {x: 120.8769, y: 28.3818}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3621069758415594587
@@ -460,8 +460,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.51950073, y: 0.36331177}
-  m_SizeDelta: {x: 576.6403, y: 581.11}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3024379895866145582
 CanvasRenderer:
@@ -740,10 +740,33 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Arrow keys, W/A/S/D: move selection\r\n\nSpacebar: select\r, progressing
-    dialogue\r\n\nEscape key: open or close in-game menus\r\n\nShift key: backing
-    out of submenus\n\nF key: Action\n\n1-9: select an inventory panel\r\n\n\n\n\n\nAble
-    to navigate menus using point and click functionality.\r\n\n"
+  m_text: 'Arrow keys, W/A/S/D: movement
+
+
+
+    Escape key: open or close in-game
+    menus
+
+
+    Shift key: backing out of submenus
+
+
+    F key: Full screen
+
+
+    1-9:
+    select an inventory panel
+
+
+
+
+
+
+    Able to navigate menus using point and click
+    functionality.
+
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d9e565f592d7dd94dbb530e638a01649, type: 2}
   m_sharedMaterial: {fileID: 8814847473050241786, guid: d9e565f592d7dd94dbb530e638a01649, type: 2}

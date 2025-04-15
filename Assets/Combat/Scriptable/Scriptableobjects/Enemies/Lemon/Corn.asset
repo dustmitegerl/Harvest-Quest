@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d35258f1d01fa2a44a63229c433d7a94, type: 3}
-  m_Name: Lemon
+  m_Name: Corn
   m_EditorClassIdentifier: 
   EnemyName: Lemon
   BaseHealth: 30
@@ -22,5 +22,5 @@ MonoBehaviour:
   BaseSP: 20
   StartingLevel: 1
   EnemyVisualPrefab: {fileID: 5288380385470459906, guid: 6973826a55170b1429dbfefbf5243992, type: 3}
-  BasicSkill: {fileID: 11400000, guid: 396c3c9ccdcc7b444a25fd45f0c81c23, type: 2}
-  SpecialSkill: {fileID: 11400000, guid: 3c88b41beeff5204bb62f4965d04279e, type: 2}
+  BasicSkill: {fileID: 11400000, guid: 8008f82b542794d44bb993aace131158, type: 2}
+  SpecialSkill: {fileID: 11400000, guid: e01567fed05831d4d9bf04ddd977a218, type: 2}

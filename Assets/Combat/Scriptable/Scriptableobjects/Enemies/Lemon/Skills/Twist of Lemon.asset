@@ -21,6 +21,7 @@ MonoBehaviour:
   DamageAmount: 15
   Heals: 0
   HealAmount: 0
+  IsPhysicalAttack: 1
   TargetType: 0
   ChanceToDebuff: 0
   AnimationTrigger: 

@@ -50,10 +50,10 @@ public class PlayerMovement : MonoBehaviour
         anim.SetBool("isMoving", walking);
         //for the dialog
         if (Input.GetKeyDown(KeyCode.Space))
-            StartCoroutine(Interact());
+            Interact();
     }
 
-    IEnumerator Interact()
+    void Interact()
     {
         var facingDir = new Vector3(anim.GetFloat("moveX"), anim.GetFloat("moveY"));
         var interactPos = transform.position + facingDir;
@@ -61,7 +61,9 @@ public class PlayerMovement : MonoBehaviour
         var collider = Physics2D.OverlapCircle(interactPos, 0.5f, interactableLayer);
         if (collider != null)
         {
-            yield return collider.GetComponent<Interactable>()?.Interact(transform);
+            walking = false;
+            anim.SetBool("isMoving", walking);
+            collider.GetComponent<Interactable>()?.Interact();
         }
     }
 

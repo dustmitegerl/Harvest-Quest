@@ -20,6 +20,6 @@ public class UpdateCalendar : MonoBehaviour
         {
             dayRead = GetComponent<TextMeshProUGUI>(); // find calendar
         }
-        dayRead.SetText("day " + GameTime.days.ToString()); // set the day in the calendar object
+        dayRead.SetText("day " + GameData.days.ToString()); // set the day in the calendar object
     }
 }

@@ -63,6 +63,8 @@ public class PlayerMovement : MonoBehaviour
         var collider = Physics2D.OverlapCircle(interactPos, 0.5f, interactableLayer);
         if (collider != null)
         {
+            walking = false;
+            anim.SetBool("isMoving", walking);
             collider.GetComponent<Interactable>()?.Interact();
         }
     }

@@ -2,10 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class GameData
-{
-    public static int days = 1; // starting days index at 1 rather than 0
-    public static int hrs;
-    public static int mins;
-    public static float secs;
+// thanks to https://www.youtube.com/watch?v=aUi9aijvpgs&t=1211s
+[System.Serializable]
+public class GameData {
+    public long lastUpdated;
+    public int days;
+    public int hrs;
+    public int mins;
+    public float secs;
+
+    // the values defined in this constructor will be the default values
+    // the game starts with when there's no data to load
+    public GameData()
+    {
+
+    }
 }

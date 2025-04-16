@@ -17,9 +17,9 @@ MonoBehaviour:
   BaseHealth: 200
   BaseStr: 10
   BaseInitiative: 5
-  BaseIntelligence: 10
-  BaseDefense: 10
-  BaseResistance: 10
+  BaseIntelligence: 0
+  BaseDefense: 0
+  BaseResistance: 0
   BaseSP: 20
   Skills:
   - {fileID: 11400000, guid: 7750e6ddc225456448026dd26bcffa45, type: 2}

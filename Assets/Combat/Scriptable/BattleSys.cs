@@ -619,7 +619,7 @@ public class BattleSys : MonoBehaviour
                     {
                         state = BattleState.Won;
                         bottomText.text = WIN_MESSAGE;
-                        StartCoroutine(DelayedSceneLoad("Farm", TURN_DURATION));
+                        EndBattle();
                         return;
                     }
 
@@ -630,7 +630,7 @@ public class BattleSys : MonoBehaviour
                         battleMenu.SetActive(false);
                         skillSelectionMenu.SetActive(false);
                         enemySelectionMenu.SetActive(false);
-                        StartCoroutine(DelayedSceneLoad("Farm", TURN_DURATION));
+                        EndBattle();
                         return;
                     }
                 }
@@ -656,12 +656,12 @@ public class BattleSys : MonoBehaviour
             bottomText.text = actionLine + ", but nothing happens.";
         }
     }
-
-
-
-
-
-
+    
+    void EndBattle()
+    {
+        Destroy(enemyManager.gameObject);
+        StartCoroutine(DelayedSceneLoad("Farm", TURN_DURATION));
+    }
     private int GetRandomPartyMember()
     {
         List<int> partyMembers = new List<int>(); //create a temp list of party members type int

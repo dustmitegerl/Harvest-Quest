@@ -9,6 +9,8 @@ TagManager:
   - Level Loader
   - Game Manager
   - Canvas
+  - Planting Spot
+  - Plot
   layers:
   - Default
   - TransparentFX

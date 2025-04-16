@@ -51,8 +51,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   plantingSpots: []
+  harvestSelections: []
   levelLoader: {fileID: 0}
-  battleArena: {fileID: 102900000, guid: 59d440dc074b84f4d85d8e86771a6033, type: 3}
+  battleArenaName: BattleArena_Test
+  battleManager: {fileID: 7455405290053142266, guid: 12f6b791c776ed440a5883e4d52a105b, type: 3}
 --- !u!61 &7076612931929637429
 BoxCollider2D:
   m_ObjectHideFlags: 0

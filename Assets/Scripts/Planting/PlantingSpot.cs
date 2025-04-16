@@ -32,6 +32,7 @@ public class PlantingSpot : MonoBehaviour, IDropHandler
         }
         else return false;
     }
+
     public void OnDrop(PointerEventData eventData) // allows planting via dragging and dropping seed from inventory
     {
         InventoryItem inventoryItem = eventData.pointerDrag.GetComponent<InventoryItem>();

@@ -48,7 +48,7 @@ public class GlobalAchievements : MonoBehaviour
         ach01Title.GetComponent<TextMeshProUGUI>().text = "Start Here!";
         ach01Desc.GetComponent<TextMeshProUGUI>().text = "Starting to play Harvest Quest!";
         achNotes.SetActive(true);
-        yield return new WaitForSeconds(7);
+        yield return new WaitForSeconds(1);
 
         //Resetting UI
         achNotes.SetActive(false);

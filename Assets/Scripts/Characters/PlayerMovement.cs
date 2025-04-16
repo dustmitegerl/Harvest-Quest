@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask solidObjectLayer;
     public LayerMask interactableLayer;
     public LayerMask wallLayer;
-
+    
     public event Action OnEncountered;
 
     //private Rigidbody2D rb;
@@ -48,9 +48,11 @@ public class PlayerMovement : MonoBehaviour
             }
         }//Animation for the player's movement
         anim.SetBool("isMoving", walking);
+
         //for the dialog
         if (Input.GetKeyDown(KeyCode.Space))
             Interact();
+            
     }
 
     void Interact()

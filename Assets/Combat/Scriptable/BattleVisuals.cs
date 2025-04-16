@@ -100,7 +100,7 @@ public class BattleVisuals : MonoBehaviour
 
     public void DebugTrigger(string trigger)
     {
-        //Debug.Log($"[Animator Triggered] {trigger}");
+        Debug.Log($"[Animator Triggered] {trigger}");
     }
 
     public void Highlight(bool on)
@@ -113,16 +113,5 @@ public class BattleVisuals : MonoBehaviour
                 spriteRenderer.color = originalColor;
         }
     }
-
-    public void PlayCustomAnimation(string trigger)
-    {
-        DebugTrigger(trigger); 
-        if (anim != null)
-        {
-            anim.SetTrigger(trigger);
-        }
-    }
-
-
 
 }

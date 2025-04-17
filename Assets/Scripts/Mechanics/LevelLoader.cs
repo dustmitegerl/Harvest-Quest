@@ -6,12 +6,13 @@ using UnityEngine.SceneManagement;
 public class LevelLoader : MonoBehaviour
 {
     // reference to script: https://pavcreations.com/turn-based-battle-and-transition-from-a-game-world-unity/#preserving-world-state-data
-
+    // reference to script: https://www.youtube.com/watch?v=CE9VOZivb3I
     public static LevelLoader instance;
     [SerializeField]
     string farmScene = "Farm";
     //[SerializeField]
-    //Animator transition;
+    public Animator transition;
+    //public AudioSource transitionAudio;
     [SerializeField]
     float transitionTime = 1f;
     [SerializeField]
@@ -29,7 +30,9 @@ public class LevelLoader : MonoBehaviour
 
     IEnumerator LoadNamedLevel(string levelName)
     {
-        //transition.SetTrigger("Start");
+        //transitionAudio.Play();
+
+        transition.SetTrigger("Start");
 
         yield return new WaitForSeconds(transitionTime);
 
@@ -37,7 +40,6 @@ public class LevelLoader : MonoBehaviour
 
         //transition.SetTrigger("End");
     }
-
 
     void Awake()
     {
@@ -51,3 +53,5 @@ public class LevelLoader : MonoBehaviour
     }
 
 }
+
+

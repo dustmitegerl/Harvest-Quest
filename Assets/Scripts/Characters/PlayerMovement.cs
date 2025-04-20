@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask solidObjectLayer;
     public LayerMask interactableLayer;
     public LayerMask wallLayer;
-
+    
     public event Action OnEncountered;
 
     //private Rigidbody2D rb;
@@ -48,12 +48,14 @@ public class PlayerMovement : MonoBehaviour
             }
         }//Animation for the player's movement
         anim.SetBool("isMoving", walking);
+
         //for the dialog
         if (Input.GetKeyDown(KeyCode.Space))
-            StartCoroutine(Interact());
+            Interact();
+            
     }
 
-    IEnumerator Interact()
+    void Interact()
     {
         var facingDir = new Vector3(anim.GetFloat("moveX"), anim.GetFloat("moveY"));
         var interactPos = transform.position + facingDir;
@@ -63,7 +65,7 @@ public class PlayerMovement : MonoBehaviour
         {
             walking = false;
             anim.SetBool("isMoving", walking);
-            yield return collider.GetComponent<Interactable>()?.Interact(transform);
+            collider.GetComponent<Interactable>()?.Interact();
         }
     }
 

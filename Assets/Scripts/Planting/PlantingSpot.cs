@@ -5,8 +5,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class PlantingSpot : MonoBehaviour, IDropHandler
+public class PlantingSpot : MonoBehaviour, IDropHandler, IDataPersistence
 {
+    public string id;
     public string currentPlant; // used to find scriptable object of the plant type's stats
     public int plantStage = 0; // 0 = empty / seed planted; 1-3 = incomplete growth stages; 4 = ready to harvest; 5 = dead 
     bool isGrowing;
@@ -15,8 +16,22 @@ public class PlantingSpot : MonoBehaviour, IDropHandler
     PlantGrowthManager plantInfo;
     PlantingSO currentPlantInfo;
 
-    void Start()
+    [ContextMenu("Generate guid for id")]
+    void GenerateGuid()
     {
+        id = System.Guid.NewGuid().ToString();
+    }
+
+    void Start()
+    { 
+        // if lacking a GUID (which should be set in the Inspector)
+        if (id == null)
+        {   // Logs and assigns a new GUID
+            Debug.Log("A planting spot in " 
+                + transform.parent.name 
+                + " has a null id. Assigning new GUID.");
+        }
+        
         spriteRenderer = GetComponent<SpriteRenderer>();
         plantInfo = GetComponentInParent<PlantGrowthManager>();
     }
@@ -81,5 +96,22 @@ public class PlantingSpot : MonoBehaviour, IDropHandler
         {
             spriteRenderer.sprite = sprite;
         }
+    }
+
+    //load and save section
+    public void LoadData(GameData data)
+    {
+        foreach (PlantingSpot spot in data.plantingSpots)
+        {
+            if (spot.id == id)
+            {
+                currentPlant = spot.currentPlant;
+                plantStage = spot.plantStage;
+            }
+        }
+    }
+    public void SaveData(ref GameData data)
+    {
+        data.plantingSpots.Add(this);
     }
 }

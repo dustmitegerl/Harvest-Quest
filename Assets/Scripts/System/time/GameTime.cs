@@ -118,7 +118,7 @@ public class GameTime : MonoBehaviour, IDataPersistence
         hrs = data.hrs; 
         days = data.days;
     }
-    public void SaveData(GameData data)
+    public void SaveData(ref GameData data)
     {
         data.secs = secs; 
         data.mins = mins; 

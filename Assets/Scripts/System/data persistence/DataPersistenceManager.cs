@@ -19,6 +19,7 @@ public class DataPersistenceManager : MonoBehaviour
 
     [Header("Auto Saving Configuration")]
     [SerializeField] private float autoSaveTimeSeconds = 60f;
+    [SerializeField] public bool autoSaveOn;
 
     private GameData gameData;
     private List<IDataPersistence> dataPersistenceObjects;
@@ -45,7 +46,7 @@ public class DataPersistenceManager : MonoBehaviour
         {
             Debug.LogWarning("Data Persistence is currently disabled!");
         }
-
+        // this part bugs me, because it means that the save file won't be inside the game
         this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, useEncryption);
 
         InitializeSelectedProfileId();
@@ -156,7 +157,7 @@ public class DataPersistenceManager : MonoBehaviour
         // pass the data to other scripts so they can update it
         foreach (IDataPersistence dataPersistenceObj in dataPersistenceObjects)
         {
-            dataPersistenceObj.SaveData(gameData);
+            dataPersistenceObj.SaveData(ref gameData);
         }
 
         // timestamp the data so we know when it was last saved

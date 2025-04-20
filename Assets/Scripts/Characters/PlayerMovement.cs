@@ -1,8 +1,9 @@
 using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour, IDataPersistence
 {
     public float moveSpeed = 2f;
     private bool walking;
@@ -100,5 +101,18 @@ public class PlayerMovement : MonoBehaviour
                 OnEncountered();
             }
         }
+    }
+
+    // Save and Load Section
+    public void LoadData(GameData data)
+    {
+        if (data.playerPosition != null)
+        {
+            transform.position = data.playerPosition;
+        }
+    }
+    public void SaveData(ref GameData data)
+    {
+        data.playerPosition = transform.position;
     }
 }

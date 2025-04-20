@@ -913,7 +913,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Invntory
+  m_text: Inventory
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d9e565f592d7dd94dbb530e638a01649, type: 2}
   m_sharedMaterial: {fileID: 8814847473050241786, guid: d9e565f592d7dd94dbb530e638a01649, type: 2}
@@ -1146,7 +1146,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2248264336709687466, guid: 4dfe6a364342ca042beae0b220c91cf2, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2362694569342456390, guid: 4dfe6a364342ca042beae0b220c91cf2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -1266,11 +1266,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5835791503386108437, guid: 4dfe6a364342ca042beae0b220c91cf2, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 386.2
+      value: 396.61987
       objectReference: {fileID: 0}
     - target: {fileID: 5835791503386108437, guid: 4dfe6a364342ca042beae0b220c91cf2, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 393.83
+      value: 399.19995
       objectReference: {fileID: 0}
     - target: {fileID: 5835791503386108437, guid: 4dfe6a364342ca042beae0b220c91cf2, type: 3}
       propertyPath: m_LocalScale.x
@@ -1314,11 +1314,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5835791503386108437, guid: 4dfe6a364342ca042beae0b220c91cf2, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.0006713867
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5835791503386108437, guid: 4dfe6a364342ca042beae0b220c91cf2, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.00079345703
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5835791503386108437, guid: 4dfe6a364342ca042beae0b220c91cf2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1345,11 +1345,17 @@ PrefabInstance:
       value: Pause
       objectReference: {fileID: 0}
     - target: {fileID: 7597121795105811014, guid: 4dfe6a364342ca042beae0b220c91cf2, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7597121795105811014, guid: 4dfe6a364342ca042beae0b220c91cf2, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -181
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 1743165056025257742, guid: 4dfe6a364342ca042beae0b220c91cf2, type: 3}
+    - {fileID: 588074073854581030, guid: 4dfe6a364342ca042beae0b220c91cf2, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 5835791503386108437, guid: 4dfe6a364342ca042beae0b220c91cf2, type: 3}
       insertIndex: -1

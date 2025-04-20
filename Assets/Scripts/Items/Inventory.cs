@@ -4,21 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public enum ItemCategory { Fertillizers, Seeds, Weapons}
 public class Inventory : MonoBehaviour
 {
     [SerializeField] List<ItemSlot> slots;
-    [SerializeField] List<ItemSlot> seedSlots;
-    [SerializeField] List<ItemSlot> weaponSlots;
 
+    public List<ItemSlot> Slots => slots;
     List<List<ItemSlot>> allSlots;
 
     public event Action OnUpdated;
-
-    private void Awake()
-    {
-        allSlots = new List<List<ItemSlot>>() { slots, seedSlots, weaponSlots };
-    }
 
     public static List<string> ItemCategories { get; set; } = new List<string>()
     {
@@ -30,17 +23,31 @@ public class Inventory : MonoBehaviour
         return allSlots[categoryIndex];
     }
 
-    //public Item GetItem(int itemIndex, int)
+    public void RemoveItem(Item item, int category)
+    {
+        var currentSlots = GetSlotsByCategory(category);
+
+        var itemSlot = currentSlots.First(slot => slot.Item == item);
+        itemSlot.Count--;
+        if (itemSlot.Count == 0)
+            currentSlots.Remove(itemSlot);
+
+        OnUpdated?.Invoke();
+    }
+
+    public bool HasItem(Item item, int category)
+    {
+        var currentSlots = GetSlotsByCategory(category);
+
+        return currentSlots.Exists(slot => slot.Item == item);
+    }
 
     public static Inventory GetInventory()
     {
         return FindObjectOfType<Unit>().GetComponent<Inventory>();
     }
-
-    public void AddItem(Item item, int count = 1)
-    {
-        //int category = (int)GetCategoryFromItem(item);
-    }
+    
+    //OnUpdated?.Invoke();
 }
 
 [Serializable]
@@ -49,6 +56,14 @@ public class ItemSlot
     [SerializeField] Item item;
     [SerializeField] int count;
 
-    public Item Item => item;
-    public int Count => count;
+    public Item Item
+    {
+        get => item;
+        set => item = value;
+    }
+    public int Count
+    {
+        get => count;
+        set => count = value;
+    }
 }

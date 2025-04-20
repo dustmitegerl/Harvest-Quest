@@ -75,7 +75,7 @@ public class Unit : MonoBehaviour
         }
     }
 
-    private void LevelUp()
+    public void LevelUp()
     {
         //what ever you want to level up
 

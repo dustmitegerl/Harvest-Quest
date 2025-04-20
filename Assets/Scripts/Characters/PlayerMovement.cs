@@ -50,10 +50,10 @@ public class PlayerMovement : MonoBehaviour
         anim.SetBool("isMoving", walking);
         //for the dialog
         if (Input.GetKeyDown(KeyCode.Space))
-            Interact();
+            StartCoroutine(Interact());
     }
 
-    void Interact()
+    IEnumerator Interact()
     {
         var facingDir = new Vector3(anim.GetFloat("moveX"), anim.GetFloat("moveY"));
         var interactPos = transform.position + facingDir;
@@ -63,7 +63,7 @@ public class PlayerMovement : MonoBehaviour
         {
             walking = false;
             anim.SetBool("isMoving", walking);
-            collider.GetComponent<Interactable>()?.Interact();
+            yield return collider.GetComponent<Interactable>()?.Interact(transform);
         }
     }
 

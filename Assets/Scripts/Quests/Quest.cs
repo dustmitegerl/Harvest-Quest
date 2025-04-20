@@ -19,23 +19,23 @@ public class Quest
         yield return DialogManager.Instance.ShowDialog(Base.StartDialogue);
     }
 
-    public IEnumerator CompleteQuest()
+    public IEnumerator CompleteQuest(Transform player)
     {
         Status = QuestStatus.Completed;
 
         yield return DialogManager.Instance.ShowDialog(Base.CompleteDialogue);
 
         var inventory = Inventory.GetInventory();
-        if(Base.RequiredItem != null)
+        if (Base.RequiredItem != null)
         {
-            inventory.RemoveItem(Base.RequiredItem);
+            //inventory.RemoveItem(Base.RequiredItem);
         }
-
-        if(Base.RewardItem != null)
+        if (Base.RewardItem != null)
         {
-            inventory.AddItem(Base.RewardItem);
+            
+            //inventory.AddItem(Base.RewardItem);
 
-            DialogManager.Instance.ShowDialogText($"Player recieved {Base.RewardItem.name}");
+            yield return DialogManager.Instance.ShowDialogText($"Player recieved {Base.RewardItem.name}");
         }
     }
 
@@ -44,13 +44,10 @@ public class Quest
         var inventory = Inventory.GetInventory();
         if(Base.RequiredItem != null)
         {
-            if (!inventory.HasItem(Base.RequiredItem))
-            {
-                return false;
-            }
-
-            return true;
+            //if (!inventory.HasItem(Base.RequiredItem))
+                //return false;
         }
+        return true;
     }
 }
 

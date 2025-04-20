@@ -29,6 +29,8 @@ public class InventoryUI : MonoBehaviour
     private void Start()
     {
         UpdateItemList();
+
+        inventory.OnUpdated += UpdateItemList;
     }
 
     void UpdateItemList()
@@ -87,6 +89,8 @@ public class InventoryUI : MonoBehaviour
 
     void HandleScrolling()
     {
+        if(slotUIList.Count <= itemsInViewport) return;
+
         float scrollPos = Mathf.Clamp(selectedItem - itemsInViewport/2, 0, selectedItem) * slotUIList[0].Height;
         itemListRect.localPosition = new Vector2(itemListRect.localPosition.x, scrollPos);
     }

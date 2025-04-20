@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NPC : MonoBehaviour, Interactable
+public class Interaction : MonoBehaviour
 {
     [SerializeField] Dialog dialog;
 

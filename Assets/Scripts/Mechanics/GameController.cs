@@ -14,7 +14,7 @@ public class GameController : MonoBehaviour
     [SerializeField] InventoryUI inventoryUI;
 
     public GameState state;
-    GameState stateBeforePause;
+    GameState prevState;
 
     MenuController menuController;
 
@@ -35,13 +35,14 @@ public class GameController : MonoBehaviour
 
         DialogManager.Instance.OnShowDialog += () =>
         {
+            prevState = state;
             state = GameState.Dialog;
         };
 
         DialogManager.Instance.OnCloseDialog += () =>
         {
             if (state == GameState.Dialog)
-                state = GameState.FreeRoam;
+                state = prevState;
         };
 
         menuController.onBack += () =>
@@ -56,12 +57,12 @@ public class GameController : MonoBehaviour
     {
         if (pause)
         {
-            stateBeforePause = state;
+            prevState = state;
             state = GameState.Paused;
         }
         else
         {
-            state = stateBeforePause;
+            state = prevState;
         }
     }
 
@@ -127,27 +128,23 @@ public class GameController : MonoBehaviour
         {
             //Option
         }
-        else if (selectedItem == 2)
+        else if (state == GameState.Inventory)
         {
-            //Inventory
-            //InventoryUI.gameObject.SetActive(true);
-            state = GameState.Inventory;
+            Action onBack = () =>
+            {
+                inventoryUI.gameObject.SetActive(false);
+                state = GameState.FreeRoam;
+            };
+
+            inventoryUI.HandleUpdate(onBack);
         }
         else if (selectedItem == 3)
         {
             //Save
         }
-        else if (selectedItem == 4)
+        else if (state == GameState.Menu)
         {
-            //Escape
-            SceneManager.LoadScene("MainMenu");
-        }
-        else if (selectedItem == 5)
-        {
-            //Resume
-            //pauseMenuUI.SetActive(false);
-            Time.timeScale = 1f;
-            //IsPaused = false;
+            menuController.HandleUpdate();
         }
 
         state = GameState.FreeRoam;

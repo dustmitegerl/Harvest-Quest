@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Quests/Create a new quest")]
 public class QuestBase : ScriptableObject
 {
-    [SerializeField] new string name;
+    [SerializeField] string name;
     [SerializeField] string description;
 
     [SerializeField] Dialog startDialogue;
@@ -13,7 +13,7 @@ public class QuestBase : ScriptableObject
     [SerializeField] Dialog completeDialogue;
 
     [SerializeField] Item requiredItem;
-    [SerializeField] NPC rewardItem;
+    [SerializeField] Item rewardItem;
 
     public string Name => name;
     public string Description => description;
@@ -23,5 +23,5 @@ public class QuestBase : ScriptableObject
     public Dialog CompleteDialogue => completeDialogue;
 
     public Item RequiredItem => requiredItem;
-    public NPC RewardItem => rewardItem;
+    public Item RewardItem => rewardItem;
 }

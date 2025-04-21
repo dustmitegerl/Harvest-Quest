@@ -46,7 +46,9 @@ public class DataPersistenceManager : MonoBehaviour
         {
             Debug.LogWarning("Data Persistence is currently disabled!");
         }
-        // this part bugs me, because it means that the save file won't be inside the game
+        // this part bugs me, because it means that the save file won't be inside the game folder
+        // but it's necessary, because to write in a chosen folder, some users may require admin privileges
+        // and i'd have to create a multi-OS admin login prompt system to get the necessary pri
         this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, useEncryption);
 
         InitializeSelectedProfileId();
@@ -165,11 +167,6 @@ public class DataPersistenceManager : MonoBehaviour
 
         // save that data to a file using the data handler
         dataHandler.Save(gameData, selectedProfileId);
-    }
-
-    private void OnApplicationQuit()
-    {
-        SaveGame();
     }
 
     private List<IDataPersistence> FindAllDataPersistenceObjects()

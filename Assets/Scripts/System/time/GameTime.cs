@@ -54,6 +54,7 @@ public class GameTime : MonoBehaviour
         {
             GameData.secs = 0;
             GameData.mins += 1;
+            GameData.minsElapsed += 1;
         }
 
         if (GameData.mins >= minsInHr)
@@ -66,6 +67,7 @@ public class GameTime : MonoBehaviour
         {
             GameData.hrs = 0;
             GameData.days += 1;
+            GameData.minsElapsed=0;
         }
     }
 

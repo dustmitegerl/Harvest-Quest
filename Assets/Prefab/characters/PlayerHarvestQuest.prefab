@@ -213,6 +213,7 @@ MonoBehaviour:
   currentHP: 35
   maxSP: 50
   currentSP: 50
+  expYield: 0
   currentExperience: 0
   maxExperience: 100
   currentLevel: 1

@@ -5,7 +5,8 @@ using UnityEngine.UI;
 using TMPro;
 
 public class ExperienceManager : MonoBehaviour
-{//https://www.youtube.com/watch?v=zuLIZFNLOgA&t=262s
+{
+    //https://www.youtube.com/watch?v=zuLIZFNLOgA&t=262s
     public static ExperienceManager Instance;
 
     public delegate void ExperienceChangeHandler(int amount);

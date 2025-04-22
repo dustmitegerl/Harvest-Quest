@@ -65,7 +65,7 @@ public class PlayerMovement : MonoBehaviour
         {
             walking = false;
             anim.SetBool("isMoving", walking);
-            collider.GetComponent<Interactable>()?.Interact();
+            //collider.GetComponent<Interactable>()?.Interact();
         }
     }
 

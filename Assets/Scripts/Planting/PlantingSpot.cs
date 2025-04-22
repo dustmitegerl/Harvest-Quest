@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class PlantingSpot : MonoBehaviour, IDropHandler
+public class PlantingSpot : MonoBehaviour
 {
     public string currentPlant; // used to find scriptable object of the plant type's stats
     public int plantStage = 0; // 0 = empty / seed planted; 1-3 = incomplete growth stages; 4 = ready to harvest; 5 = dead 
@@ -32,16 +32,16 @@ public class PlantingSpot : MonoBehaviour, IDropHandler
         }
         else return false;
     }
-    public void OnDrop(PointerEventData eventData) // allows planting via dragging and dropping seed from inventory
-    {
-        InventoryItem inventoryItem = eventData.pointerDrag.GetComponent<InventoryItem>();
-        Item item = inventoryItem.item;
-        if (item.type.ToString() == "Seed")
-        {
-            Debug.Log("Attempting to plant " + item.name);
-            Sow(item.name);
-        }
-    }
+    //public void OnDrop(PointerEventData eventData) // allows planting via dragging and dropping seed from inventory
+    //{
+    //    Item Item = eventData.pointerDrag.GetComponent<Item>();
+    //    Item item = Item.item;
+    //    if (item.type.ToString() == "Seed")
+    //    {
+    //        Debug.Log("Attempting to plant " + item.name);
+    //        Sow(item.name);
+    //    }
+    //}
     void Sow(string seedType) // plants seed
     {
         if (IsSpaceEmpty() == true) // checks if space is available

@@ -28,7 +28,7 @@ RectTransform:
   m_GameObject: {fileID: 533908339994266506}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.4313, y: 1.4313, z: 1.4313}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6158533602868155918}
@@ -36,7 +36,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -326}
+  m_AnchoredPosition: {x: 0, y: -279}
   m_SizeDelta: {x: 120.8769, y: 28.3818}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3621069758415594587
@@ -460,8 +460,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.51950073, y: 0.36331177}
-  m_SizeDelta: {x: 576.6403, y: 581.11}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3024379895866145582
 CanvasRenderer:
@@ -510,6 +510,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5004195278334052453}
+  - component: {fileID: 2018169909037754977}
   m_Layer: 5
   m_Name: instructions menu
   m_TagString: Untagged
@@ -536,11 +537,24 @@ RectTransform:
   - {fileID: 829679089580232145}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2018169909037754977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2647523056718990663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f560d3e5954950345af120125904e54e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseMenuUI: {fileID: 0}
 --- !u!1 &4808757174344307198
 GameObject:
   m_ObjectHideFlags: 0
@@ -740,10 +754,33 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Arrow keys, W/A/S/D: move selection\r\n\nSpacebar: select\r, progressing
-    dialogue\r\n\nEscape key: open or close in-game menus\r\n\nShift key: backing
-    out of submenus\n\nF key: Action\n\n1-9: select an inventory panel\r\n\n\n\n\n\nAble
-    to navigate menus using point and click functionality.\r\n\n"
+  m_text: 'Arrow keys, W/A/S/D: movement
+
+
+
+    Escape key: open or close in-game
+    menus
+
+
+    Shift key: backing out of submenus
+
+
+    F key: Full screen
+
+
+    1-9:
+    select an inventory panel
+
+
+
+
+
+
+    Able to navigate menus using point and click
+    functionality.
+
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d9e565f592d7dd94dbb530e638a01649, type: 2}
   m_sharedMaterial: {fileID: 8814847473050241786, guid: d9e565f592d7dd94dbb530e638a01649, type: 2}

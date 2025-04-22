@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3145159194417299168}
   - component: {fileID: 8428809815481713975}
   - component: {fileID: 1617179201577881402}
+  - component: {fileID: 3761411776781475877}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -48,6 +49,7 @@ MonoBehaviour:
   playerController: {fileID: 0}
   battleSystem: {fileID: 0}
   worldCamera: {fileID: 0}
+  inventoryUI: {fileID: 0}
   state: 0
 --- !u!114 &1617179201577881402
 MonoBehaviour:
@@ -64,3 +66,16 @@ MonoBehaviour:
   dialogBox: {fileID: 0}
   dialogText: {fileID: 0}
   lettersPerSecond: 45
+--- !u!114 &3761411776781475877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5179791305528178011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8d90b9a6c5967a4f95cb0270ce7b976, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menu: {fileID: 0}

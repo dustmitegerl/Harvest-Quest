@@ -18,6 +18,8 @@ public class Unit : MonoBehaviour
     public int maxSP;
     public int currentSP;
 
+    public int expYield;
+
     private int debuffTurnsRemaining = 0;
     private int originalDamage;
     [SerializeField] int currentExperience, maxExperience, currentLevel;
@@ -73,7 +75,7 @@ public class Unit : MonoBehaviour
         }
     }
 
-    private void LevelUp()
+    public void LevelUp()
     {
         //what ever you want to level up
 

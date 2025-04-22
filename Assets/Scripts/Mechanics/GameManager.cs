@@ -21,6 +21,4 @@ public class GameManager : MonoBehaviour
 
         tileManager = GetComponent<TileManager>();
     }
-
-    public InventorySlot inventoryContainer;
 }

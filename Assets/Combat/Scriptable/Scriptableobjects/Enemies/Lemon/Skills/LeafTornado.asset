@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SkillName: LeafTornado
   Description: LeafTornadp
-  SPCost: 0
+  SPCost: 5
   RestoresSP: 0
   SPRestoreAmount: 0
   DealsDamage: 1

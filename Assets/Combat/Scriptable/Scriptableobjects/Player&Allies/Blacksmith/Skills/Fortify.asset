@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e24e6965b25bb7f4aa9f7c3fdc6bc4c1, type: 3}
-  m_Name: FireTornado
+  m_Name: Fortify
   m_EditorClassIdentifier: 
-  SkillName: FireTornado
-  Description: Fire Magic that damages all Enemies
-  SPCost: 20
+  SkillName: Fortify
+  Description: Raise the Defence of all Allies.
+  SPCost: 15
   RestoresSP: 0
   SPRestoreAmount: 0
-  DealsDamage: 1
-  DamageAmount: 10
+  DealsDamage: 0
+  DamageAmount: 0
   Heals: 0
   HealAmount: 0
   IsPhysicalAttack: 0
-  TargetType: 1
+  TargetType: 3
   ChanceToDebuff: 0
   AnimationTrigger: 

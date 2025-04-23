@@ -8,8 +8,6 @@ public class LightControl : MonoBehaviour
     [SerializeField] private Light2D worldLight;
     [SerializeField] private Gradient gradient;
     [SerializeField] private float dayPercentage;
-    [SerializeField] float crackOfDawn;
-    [SerializeField] float endOfDusk;
     GameTime gameTime;
 
     void Update()
@@ -26,11 +24,7 @@ public class LightControl : MonoBehaviour
     private void SetLight ()
     {
         dayPercentage = gameTime.GetPercentOfDay();
-        if (dayPercentage < endOfDusk && dayPercentage > crackOfDawn)
-        {
-            worldLight.color = gradient.Evaluate(dayPercentage);
-        }
-        else worldLight.color = gradient.Evaluate(1);
+        worldLight.color = gradient.Evaluate(dayPercentage);
     }
    
 }

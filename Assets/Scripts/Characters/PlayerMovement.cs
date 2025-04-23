@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     public LayerMask solidObjectLayer;
     public LayerMask interactableLayer;
     public LayerMask wallLayer;
-
+    
     public event Action OnEncountered;
 
     //private Rigidbody2D rb;
@@ -49,9 +49,11 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             }
         }//Animation for the player's movement
         anim.SetBool("isMoving", walking);
+
         //for the dialog
         if (Input.GetKeyDown(KeyCode.Space))
             Interact();
+            
     }
 
     void Interact()
@@ -64,7 +66,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         {
             walking = false;
             anim.SetBool("isMoving", walking);
-            collider.GetComponent<Interactable>()?.Interact();
+            //collider.GetComponent<Interactable>()?.Interact();
         }
     }
 

@@ -41,16 +41,17 @@ public class PlantingSpot : MonoBehaviour, IDropHandler, IDataPersistence
     {
         plantStage = Mathf.Clamp(plantStage, 0, 5); // limits plant growth stage range 
     }
-
+    public bool IsSpaceEmpty()
+    {
+        if (transform.childCount == 0)
+        {
+            return true;
+        }
+        else return false;
+    }
     public void OnDrop(PointerEventData eventData) // allows planting via dragging and dropping seed from inventory
     {
-        InventoryItem inventoryItem = eventData.pointerDrag.GetComponent<InventoryItem>();
-        Item item = inventoryItem.item;
-        if (item.type.ToString() == "Seed")
-        {
-            Debug.Log("Attempting to plant " + item.name);
-            Sow(item.name);
-        }
+        // handle drag-and-drop here, call Sow(seed)
     }
     void Sow(string seedType) // plants seed
     {

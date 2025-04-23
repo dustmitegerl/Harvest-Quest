@@ -8,12 +8,13 @@ public class MainMenu : MonoBehaviour
     
     public void LoadNewGame()
     {
+        GlobalAchievements.ach01Count++;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void QuitGame()
     {
-        Debug.Log("You've exitted the game!");
+        Debug.Log("You've exited the game!");
         Application.Quit();
     }
 }

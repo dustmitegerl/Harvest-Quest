@@ -58198,11 +58198,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4475544046581793412, guid: 5453ed72ce3080e4599c25db1eca3908, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.013145842
+      value: -0.0094161555
       objectReference: {fileID: 0}
     - target: {fileID: 4475544046581793412, guid: 5453ed72ce3080e4599c25db1eca3908, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.099688
+      value: 2.099675
       objectReference: {fileID: 0}
     - target: {fileID: 7924080173493702890, guid: 5453ed72ce3080e4599c25db1eca3908, type: 3}
       propertyPath: orthographic size

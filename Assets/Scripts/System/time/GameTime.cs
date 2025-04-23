@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using JetBrains.Annotations;
+using TMPro.Examples;
 
 public class GameTime : MonoBehaviour, IDataPersistence
 {
@@ -106,6 +107,15 @@ public class GameTime : MonoBehaviour, IDataPersistence
         int totalMins = GetTotalMins();
         float totalSecs = totalMins + secsInMin;
         return totalSecs;
+    }
+
+    public float GetPercentOfDay()
+    {
+        int hrOfDay = hrs;
+        float minsToday = hrOfDay * minsInHr + mins;
+        float minsInDay = minsInHr * hrsInDay;
+        float percentOfDay = minsToday / minsInDay;
+        return percentOfDay;
     }
 
     /// <summary>

@@ -1,15 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlotInteraction : MonoBehaviour
 {
-    public PlantingSpot[] plantingSpots;
+    public List<PlantingSpot> plantingSpots;
+    [SerializeField]
+    public List<PlantingSpot> harvestSelections;
     [SerializeField]
     LevelLoader levelLoader;
     [SerializeField]
     string battleArenaName = "BattleArena_Test";
     bool inRange = false;
+    [SerializeField]
+    GameObject enemyManager;
     void Start()
     {
         levelLoader = GameObject.FindGameObjectWithTag("Level Loader").GetComponent<LevelLoader>();
@@ -40,5 +45,16 @@ public class PlotInteraction : MonoBehaviour
         levelLoader.LoadLevel(battleArenaName);
         
     }
-
+    public void UpdatePlotStatus()
+    {
+        PlantingSpot[] spotArray = gameObject.GetComponentsInChildren<PlantingSpot>();
+    }
+    public void Harvest()
+    {
+        Instantiate(enemyManager, null);
+        foreach (PlantingSpot selectedPlant in harvestSelections)
+        {
+            enemyManager.GetComponent<EnemyManager>().GenerateEnemyByName(selectedPlant.name, 0);
+        }
+    }
 }

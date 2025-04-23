@@ -127,4 +127,6 @@ MonoBehaviour:
     m_NumColorKeys: 8
     m_NumAlphaKeys: 2
   dayPercentage: 0
-  MinutesHolder: 0
+  gameTime: {fileID: 0}
+  crackOfDawn: 5
+  endOfDusk: 19

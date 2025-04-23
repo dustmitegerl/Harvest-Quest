@@ -15,6 +15,7 @@ public class DataPersistenceManager : MonoBehaviour
 
     [Header("File Storage Config")]
     [SerializeField] private string fileName;
+    [SerializeField] string fileExtension = ".harvestquest";
     [SerializeField] private bool useEncryption;
 
     [Header("Auto Saving Configuration")]
@@ -48,33 +49,10 @@ public class DataPersistenceManager : MonoBehaviour
         }
         // this part bugs me, because it means that the save file won't be inside the game folder
         // but it's necessary, because to write in a chosen folder, some users may require admin privileges
-        // and i'd have to create a multi-OS admin login prompt system to get the necessary pri
-        this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, useEncryption);
+        // and i'd have to create a multi-OS admin login prompt system to get the necessary permissions
+        this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, fileExtension, useEncryption);
 
         InitializeSelectedProfileId();
-    }
-
-    private void OnEnable()
-    {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    private void OnDisable()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
-
-    public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        this.dataPersistenceObjects = FindAllDataPersistenceObjects();
-        LoadGame();
-
-        // start up the auto saving coroutine
-        if (autoSaveCoroutine != null)
-        {
-            StopCoroutine(autoSaveCoroutine);
-        }
-        autoSaveCoroutine = StartCoroutine(AutoSave());
     }
 
     public void ChangeSelectedProfileId(string newProfileId)
@@ -104,12 +82,13 @@ public class DataPersistenceManager : MonoBehaviour
             Debug.LogWarning("Overrode selected profile id with test id: " + testSelectedProfileId);
         }
     }
-
+    [ContextMenu("New Game")]
     public void NewGame()
     {
         this.gameData = new GameData();
     }
 
+    [ContextMenu("Load Game")]
     public void LoadGame()
     {
         // return right away if data persistence is disabled
@@ -120,12 +99,6 @@ public class DataPersistenceManager : MonoBehaviour
 
         // load any saved data from a file using the data handler
         this.gameData = dataHandler.Load(selectedProfileId);
-
-        // start a new game if the data is null and we're configured to initialize data for debugging purposes
-        if (this.gameData == null && initializeDataIfNull)
-        {
-            NewGame();
-        }
 
         // if no data can be loaded, don't continue
         if (this.gameData == null)
@@ -140,7 +113,7 @@ public class DataPersistenceManager : MonoBehaviour
             dataPersistenceObj.LoadData(gameData);
         }
     }
-
+    [ContextMenu("Save Game")]
     public void SaveGame()
     {
         // return right away if data persistence is disabled
@@ -152,7 +125,7 @@ public class DataPersistenceManager : MonoBehaviour
         // if we don't have any data to save, log a warning here
         if (this.gameData == null)
         {
-            Debug.LogWarning("No data was found. A New Game needs to be started before data can be saved.");
+            Debug.LogWarning("No data was found. There must be an issue with the data persistence system (this, GameData, and IDataPersistence");
             return;
         }
 

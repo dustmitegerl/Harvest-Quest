@@ -8,6 +8,7 @@ using UnityEngine.EventSystems;
 public class PlantingSpot : MonoBehaviour, IDropHandler, IDataPersistence
 {
     public string id;
+    public bool isEmpty;
     public string currentPlant; // used to find scriptable object of the plant type's stats
     public int plantStage = 0; // 0 = empty / seed planted; 1-3 = incomplete growth stages; 4 = ready to harvest; 5 = dead 
     bool isGrowing;
@@ -25,11 +26,12 @@ public class PlantingSpot : MonoBehaviour, IDropHandler, IDataPersistence
     void Start()
     { 
         // if lacking a GUID (which should be set in the Inspector)
-        if (id == null)
+        if (id == "")
         {   // Logs and assigns a new GUID
             Debug.Log("A planting spot in " 
                 + transform.parent.name 
                 + " has a null id. Assigning new GUID.");
+            GenerateGuid();
         }
         
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -38,14 +40,6 @@ public class PlantingSpot : MonoBehaviour, IDropHandler, IDataPersistence
     void Update()
     {
         plantStage = Mathf.Clamp(plantStage, 0, 5); // limits plant growth stage range 
-    }
-    public bool IsSpaceEmpty()
-    {
-        if (transform.childCount == 0)
-        {
-            return true;
-        }
-        else return false;
     }
 
     public void OnDrop(PointerEventData eventData) // allows planting via dragging and dropping seed from inventory
@@ -60,7 +54,7 @@ public class PlantingSpot : MonoBehaviour, IDropHandler, IDataPersistence
     }
     void Sow(string seedType) // plants seed
     {
-        if (IsSpaceEmpty() == true) // checks if space is available
+        if (isEmpty) // checks if space is available
         {
             isGrowing = true;
             currentPlant = seedType;

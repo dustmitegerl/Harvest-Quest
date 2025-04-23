@@ -9,14 +9,16 @@ public class FileDataHandler
 {
     private string dataDirPath = "";
     private string dataFileName = "";
+    string fileExtension;
     private bool useEncryption = false;
     private readonly string encryptionCodeWord = "word";
     private readonly string backupExtension = ".bak";
 
-    public FileDataHandler(string dataDirPath, string dataFileName, bool useEncryption)
+    public FileDataHandler(string dataDirPath, string dataFileName, string fileExtension, bool useEncryption)
     {
         this.dataDirPath = dataDirPath;
         this.dataFileName = dataFileName;
+        this.fileExtension = fileExtension;
         this.useEncryption = useEncryption;
     }
 
@@ -29,7 +31,7 @@ public class FileDataHandler
         }
 
         // use Path.Combine to account for different OS's having different path separators
-        string fullPath = Path.Combine(dataDirPath, profileId, dataFileName);
+        string fullPath = Path.Combine(dataDirPath, profileId, dataFileName, fileExtension);
         GameData loadedData = null;
         if (File.Exists(fullPath))
         {

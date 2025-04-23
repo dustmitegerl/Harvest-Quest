@@ -11,10 +11,7 @@ public class LightControl : MonoBehaviour
     [SerializeField] float crackOfDawn;
     [SerializeField] float endOfDusk;
     GameTime gameTime;
-    void Start()
-    {
-        gameTime = GameObject.FindWithTag("Game Manager").GetComponent<GameTime>(); 
-    }
+
     void Update()
     {
         if (gameTime == null)

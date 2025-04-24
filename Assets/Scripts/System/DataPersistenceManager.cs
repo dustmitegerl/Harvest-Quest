@@ -10,6 +10,9 @@ public class DataPersistenceManager : MonoBehaviour
 
     private GameData gameData;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes

@@ -9,6 +9,9 @@ public class DataPersistenceManager : MonoBehaviour
 { //Reference: https://m.youtube.com/watch?v=aUi9aijvpgs&pp=0gcJCdgAo7VqN5tD
 
     private GameData gameData;
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     public static DataPersistenceManager instance { get; private set; }
 

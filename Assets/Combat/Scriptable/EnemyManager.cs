@@ -5,20 +5,23 @@ using UnityEngine;
 public class EnemyManager : MonoBehaviour
 {
     [SerializeField] private EnemyInfo[] allEnemies;
-    [SerializeField] private List<Enemy> currentEnemies;
+    public List<Enemy> currentEnemies;
 
     private const float LEVEL_MODIFIER = 0.5f;
 
     private void Awake()
     {
-
-
-        GenerateEnemyByName("Lemon", 1);
-        GenerateEnemyByName("Lemon", 2);
-        GenerateEnemyByName("Lemon", 3);
+        DontDestroyOnLoad(gameObject);
+        // for demo
+        if (currentEnemies == null)
+        {
+            GenerateEnemyByName("Lemon", 1);
+            GenerateEnemyByName("Lemon", 2);
+            GenerateEnemyByName("Lemon", 3);
+        }
     }
 
-    private void GenerateEnemyByName(string enemyName, int level)
+    public void GenerateEnemyByName(string enemyName, int level)
     {
         for (int i = 0; i < allEnemies.Length; i++)
         {

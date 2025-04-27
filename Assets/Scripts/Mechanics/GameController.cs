@@ -16,14 +16,14 @@ public class GameController : MonoBehaviour
     public GameState state;
     GameState prevState;
 
-    MenuController menuController;
+    //MenuController menuController;
 
     public static GameController Instance { get; private set; }
     private void Awake()
     {
         Instance = this;
 
-        menuController = GetComponent<MenuController>();
+        //menuController = GetComponent<MenuController>();
     }
 
     private void Start()
@@ -45,12 +45,12 @@ public class GameController : MonoBehaviour
                 state = prevState;
         };
 
-        menuController.onBack += () =>
+        /*menuController.onBack += () =>
         {
             state = GameState.FreeRoam;
         };
 
-        menuController.onMenuSelected += OnMenuSelected;
+        menuController.onMenuSelected += OnMenuSelected;*/
     }
 
     public void PauseGame(bool pause)
@@ -88,11 +88,11 @@ public class GameController : MonoBehaviour
         {
             playerController.HandleUpdate();
 
-            if (Input.GetKeyDown(KeyCode.Escape))
+            /*if (Input.GetKeyDown(KeyCode.Escape))
             {
                 menuController.OpenMenu();
                 state = GameState.Menu;
-            }
+            }*/
         }
         else if (state == GameState.Battle)
         {
@@ -102,10 +102,10 @@ public class GameController : MonoBehaviour
         {
             DialogManager.Instance.HandleUpdate();
         }
-        else if (state == GameState.Menu)
+       /* else if (state == GameState.Menu)
         {
             menuController.HandleUpdate();
-        }
+        }*/
         else if(state == GameState.Inventory)
         {
             Action onBack = () =>
@@ -142,10 +142,10 @@ public class GameController : MonoBehaviour
         {
             //Save
         }
-        else if (state == GameState.Menu)
+        /*else if (state == GameState.Menu)
         {
             menuController.HandleUpdate();
-        }
+        }*/
 
         state = GameState.FreeRoam;
     }

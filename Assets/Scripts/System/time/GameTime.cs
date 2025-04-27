@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using JetBrains.Annotations;
+using TMPro.Examples;
 
-public class GameTime : MonoBehaviour
+public class GameTime : MonoBehaviour, IDataPersistence
 {
     /// <summary>
     /// game timekeeping
@@ -12,14 +13,18 @@ public class GameTime : MonoBehaviour
     [SerializeField]
     int startingHr;
     public bool isPaused = false; // for pausing
+    public static int days = 1; // starting days index at 1 rather than 0
+    public static int hrs;
+    public static int mins;
+    public static float secs;
 
     /// <summary>
     /// clock's visual stuff
     /// </summary>
-    
+
 
     [SerializeField]
-    int timeSpeedModulator = 1; // used to change speed of seconds
+    float timeSpeedModulator = 1; // used to change speed of seconds
     [SerializeField]
     int secsInMin = 60;
     [SerializeField]
@@ -29,7 +34,7 @@ public class GameTime : MonoBehaviour
 
     void Start()
     {
-        GameData.hrs = startingHr;
+        hrs = startingHr;
         UnPause();
     }
 
@@ -48,29 +53,29 @@ public class GameTime : MonoBehaviour
     // largely taken from https://pastebin.com/6Yfhy50x
     void UpdateGameTime()
     {
-        GameData.secs += Time.fixedDeltaTime * timeSpeedModulator; // multiply time between fixed update by tick
+        secs += Time.fixedDeltaTime * timeSpeedModulator; // multiply time between fixed update by tick
 
-        if (GameData.secs >= secsInMin) // using adjustable time ratios
+        if (secs >= secsInMin) // using adjustable time ratios
         {
-            GameData.secs = 0;
-            GameData.mins += 1;
-            GameData.minsElapsed += 1;
+            secs = 0;
+            mins += 1;
         }
 
-        if (GameData.mins >= minsInHr)
+        if (mins >= minsInHr)
         {
-            GameData.mins = 0;
-            GameData.hrs += 1;
+            mins = 0;
+            hrs += 1;
         }
 
-        if (GameData.hrs >= hrsInDay)
+        if (hrs >= hrsInDay)
         {
-            GameData.hrs = 0;
-            GameData.days += 1;
-            GameData.minsElapsed=0;
+            hrs = 0;
+            days += 1;
         }
     }
-
+    /// <summary>
+    /// Pause and Unpause
+    /// </summary>
     public void Pause()
     {
         isPaused = true;
@@ -81,5 +86,53 @@ public class GameTime : MonoBehaviour
     {
         isPaused = false;
         GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().enabled = true; // restarts player movement
+    }
+
+    /// <summary>
+    /// get time totals
+    /// </summary>
+    public int GetTotalHrs()
+    {
+        int totalHrs = days * hrsInDay + hrs;
+        return totalHrs;
+    }
+    public int GetTotalMins()
+    {
+        int totalHrs = GetTotalHrs();
+        int totalMins = totalHrs * minsInHr + mins;
+        return totalMins;
+    }
+    public float GetTotalSecs()
+    {
+        int totalMins = GetTotalMins();
+        float totalSecs = totalMins + secsInMin;
+        return totalSecs;
+    }
+
+    public float GetPercentOfDay()
+    {
+        int hrOfDay = hrs;
+        float minsToday = hrOfDay * minsInHr + mins;
+        float minsInDay = minsInHr * hrsInDay;
+        float percentOfDay = minsToday / minsInDay;
+        return percentOfDay;
+    }
+
+    /// <summary>
+    /// Load and Save
+    /// </summary>
+    public void LoadData(GameData data)
+    {
+        secs = data.secs; 
+        mins = data.mins; 
+        hrs = data.hrs; 
+        days = data.days;
+    }
+    public void SaveData(ref GameData data)
+    {
+        data.secs = secs; 
+        data.mins = mins; 
+        data.hrs = hrs; 
+        data.days = days;
     }
 }

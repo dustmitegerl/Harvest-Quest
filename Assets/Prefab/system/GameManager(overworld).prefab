@@ -49,17 +49,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: beb506f725d8a244984ee770720d6538, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clockRead: {fileID: 0}
-  dayRead: {fileID: 0}
-  startingHr: 6
-  days: 1
-  hrs: 0
-  mins: 0
-  secs: 0
+  startingHr: 3
   isPaused: 0
-  AM: am
-  PM: pm
-  currentPeriod: 
   timeSpeedModulator: 11
   secsInMin: 60
   minsInHr: 60

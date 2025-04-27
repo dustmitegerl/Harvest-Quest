@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FireTornado
   m_EditorClassIdentifier: 
   SkillName: FireTornado
-  Description: A fire Tornado
+  Description: Fire Magic that damages all Enemies
   SPCost: 20
   RestoresSP: 0
   SPRestoreAmount: 0
@@ -21,6 +21,7 @@ MonoBehaviour:
   DamageAmount: 10
   Heals: 0
   HealAmount: 0
+  IsPhysicalAttack: 0
   TargetType: 1
   ChanceToDebuff: 0
   AnimationTrigger: 

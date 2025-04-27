@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6240432929644383669}
   - component: {fileID: 2268550742269764776}
+  - component: {fileID: 1517008535121062287}
   m_Layer: 0
   m_Name: Tractor
   m_TagString: Untagged
@@ -47,6 +48,24 @@ Grid:
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
+--- !u!114 &1517008535121062287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2159008728978569852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 603c1048dc79cb3488e489f3c8ac6b72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialog:
+    lines:
+    - The tractor is broken.
+    - Need to repair it ASAP!!
+  questToStart: {fileID: 0}
+  questToComplete: {fileID: 0}
 --- !u!1 &4504403499561853451
 GameObject:
   m_ObjectHideFlags: 0
@@ -541,7 +560,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7402093707945327263, guid: 088d7727360a3ee469491f6610ac392a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.5
+      value: -1.27
       objectReference: {fileID: 0}
     - target: {fileID: 7402093707945327263, guid: 088d7727360a3ee469491f6610ac392a, type: 3}
       propertyPath: m_LocalPosition.z

@@ -56,7 +56,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             
     }
 
-    void Interact()
+    public void Interact()
     {
         var facingDir = new Vector3(anim.GetFloat("moveX"), anim.GetFloat("moveY"));
         var interactPos = transform.position + facingDir;

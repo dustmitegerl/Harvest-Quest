@@ -49,9 +49,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: beb506f725d8a244984ee770720d6538, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHr: 3
+  startingHr: 6
   isPaused: 0
-  timeSpeedModulator: 11
+  timeSpeedModulator: 60
   secsInMin: 60
   minsInHr: 60
   hrsInDay: 24

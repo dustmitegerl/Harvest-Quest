@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47554f096b8f8d546a8ab813472ceac0, type: 3}
   m_Name: onion
   m_EditorClassIdentifier: 
-  stage1: {fileID: -277529602, guid: b484f255277c02a48acfefddda402f61, type: 3}
-  stage2: {fileID: 760378657, guid: b484f255277c02a48acfefddda402f61, type: 3}
-  stage3: {fileID: 21300000, guid: 745a8577f9e7c0643b5825a9c63f21f0, type: 3}
-  stage4: {fileID: 21300000, guid: 70e2aadbe7aaebb44a54bb6827053f33, type: 3}
+  stageSprites:
+  - {fileID: -277529602, guid: b484f255277c02a48acfefddda402f61, type: 3}
+  - {fileID: 760378657, guid: b484f255277c02a48acfefddda402f61, type: 3}
+  - {fileID: 21300000, guid: 9aa9d0586eca32c408f98891ff9d298d, type: 3}
+  - {fileID: 21300000, guid: 70e2aadbe7aaebb44a54bb6827053f33, type: 3}
   stageSpans: 0100000002000000020000000300000002000000

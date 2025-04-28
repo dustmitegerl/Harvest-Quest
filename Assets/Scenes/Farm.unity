@@ -1122,7 +1122,8 @@ PrefabInstance:
       propertyPath: playerController
       value: 
       objectReference: {fileID: 891358395}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3761411776781475877, guid: 4b54ddaab342ea64cbcb2700232cd33b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1274,7 +1275,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3705642604415270499, guid: 224f6f3be9cd466468e0dc7c6eae078b, type: 3}
       propertyPath: spawnDefaults.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3705642604415270499, guid: 224f6f3be9cd466468e0dc7c6eae078b, type: 3}
       propertyPath: spawnDefaults.Array.data[0].uniqueObject
@@ -1284,6 +1285,10 @@ PrefabInstance:
       propertyPath: spawnDefaults.Array.data[1].uniqueObject
       value: 
       objectReference: {fileID: 4351264141534835910, guid: 8567a8bfcebdd7941a8097bba7eb782d, type: 3}
+    - target: {fileID: 3705642604415270499, guid: 224f6f3be9cd466468e0dc7c6eae078b, type: 3}
+      propertyPath: spawnDefaults.Array.data[2].uniqueObject
+      value: 
+      objectReference: {fileID: 4626478623126283178, guid: ce11a56b085915740803c803d15ec3ad, type: 3}
     - target: {fileID: 7871399498112744763, guid: 224f6f3be9cd466468e0dc7c6eae078b, type: 3}
       propertyPath: m_Name
       value: Anti Duplicate Spawner

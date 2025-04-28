@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47554f096b8f8d546a8ab813472ceac0, type: 3}
   m_Name: strawberry
   m_EditorClassIdentifier: 
-  stage1: {fileID: -277529602, guid: b484f255277c02a48acfefddda402f61, type: 3}
-  stage2: {fileID: 760378657, guid: b484f255277c02a48acfefddda402f61, type: 3}
-  stage3: {fileID: 21300000, guid: 816a24c21af086b4ca54313434437a8a, type: 3}
-  stage4: {fileID: 21300000, guid: 1c4fcdcce1064d54588d50661ca62b9b, type: 3}
+  stageSprites:
+  - {fileID: -277529602, guid: b484f255277c02a48acfefddda402f61, type: 3}
+  - {fileID: 760378657, guid: b484f255277c02a48acfefddda402f61, type: 3}
+  - {fileID: 21300000, guid: 816a24c21af086b4ca54313434437a8a, type: 3}
+  - {fileID: 21300000, guid: 1c4fcdcce1064d54588d50661ca62b9b, type: 3}
   stageSpans: 0100000002000000020000000200000002000000

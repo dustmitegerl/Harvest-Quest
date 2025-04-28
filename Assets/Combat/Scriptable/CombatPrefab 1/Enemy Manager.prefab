@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2943838982872917802}
   - component: {fileID: 7092114979249848862}
+  - component: {fileID: -6417103278572489167}
   m_Layer: 0
   m_Name: Enemy Manager
   m_TagString: Untagged
@@ -46,3 +47,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allEnemies: []
   currentEnemies: []
+--- !u!114 &-6417103278572489167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7455405290053142266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e04be444cc4046f4ba552ef25d555ea1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

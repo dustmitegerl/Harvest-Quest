@@ -190,7 +190,7 @@ public class BattleSystem : MonoBehaviour
             Debug.Log("Player ran from battle.");
 
             yield return new WaitForSeconds(1f);
-            levelLoader.EndBattle();
+            levelLoader.LoadLevel("Farm");
         }
         else 
         {
@@ -294,13 +294,13 @@ public class BattleSystem : MonoBehaviour
         {
             dialogueText.text = "You were victorious!";
             Destroy(enemyUnit.gameObject);
-            levelLoader.EndBattle();
+            levelLoader.LoadLevel("Farm");
         }
         else if (state == BattleState.LOST) 
         {
             dialogueText.text = "The enemy has ended your story.";
             Destroy(playerUnit.gameObject);
-            levelLoader.EndBattle();
+            levelLoader.LoadLevel("Farm");
         }
     }
     // Creating Player Turn Function

@@ -21352,9 +21352,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1566510950610570504, guid: c3a18b117e165434591469a7729a1011, type: 3}
+      propertyPath: id
+      value: nene
+      objectReference: {fileID: 0}
     - target: {fileID: 4758069741136998532, guid: c3a18b117e165434591469a7729a1011, type: 3}
       propertyPath: m_Name
       value: Plot NE
+      objectReference: {fileID: 0}
+    - target: {fileID: 7177346797548224264, guid: c3a18b117e165434591469a7729a1011, type: 3}
+      propertyPath: id
+      value: nenw
+      objectReference: {fileID: 0}
+    - target: {fileID: 7525456809212072061, guid: c3a18b117e165434591469a7729a1011, type: 3}
+      propertyPath: id
+      value: nese
+      objectReference: {fileID: 0}
+    - target: {fileID: 7662636362338881340, guid: c3a18b117e165434591469a7729a1011, type: 3}
+      propertyPath: id
+      value: nesw
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -21538,9 +21554,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1566510950610570504, guid: c3a18b117e165434591469a7729a1011, type: 3}
+      propertyPath: id
+      value: nwne
+      objectReference: {fileID: 0}
     - target: {fileID: 4758069741136998532, guid: c3a18b117e165434591469a7729a1011, type: 3}
       propertyPath: m_Name
       value: Plot NW
+      objectReference: {fileID: 0}
+    - target: {fileID: 5665414495982690951, guid: c3a18b117e165434591469a7729a1011, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5665414495982690951, guid: c3a18b117e165434591469a7729a1011, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7076612931929637429, guid: c3a18b117e165434591469a7729a1011, type: 3}
       propertyPath: m_Size.x
@@ -21561,6 +21589,18 @@ PrefabInstance:
     - target: {fileID: 7076612931929637429, guid: c3a18b117e165434591469a7729a1011, type: 3}
       propertyPath: m_IncludeLayers.m_Bits
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 7177346797548224264, guid: c3a18b117e165434591469a7729a1011, type: 3}
+      propertyPath: id
+      value: nwnw
+      objectReference: {fileID: 0}
+    - target: {fileID: 7525456809212072061, guid: c3a18b117e165434591469a7729a1011, type: 3}
+      propertyPath: id
+      value: nwse
+      objectReference: {fileID: 0}
+    - target: {fileID: 7662636362338881340, guid: c3a18b117e165434591469a7729a1011, type: 3}
+      propertyPath: id
+      value: nwsw
       objectReference: {fileID: 0}
     - target: {fileID: 8368360820564873662, guid: c3a18b117e165434591469a7729a1011, type: 3}
       propertyPath: dialog.lines.Array.size
@@ -22198,9 +22238,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1566510950610570504, guid: c3a18b117e165434591469a7729a1011, type: 3}
+      propertyPath: id
+      value: swne
+      objectReference: {fileID: 0}
     - target: {fileID: 4758069741136998532, guid: c3a18b117e165434591469a7729a1011, type: 3}
       propertyPath: m_Name
       value: Plot SW
+      objectReference: {fileID: 0}
+    - target: {fileID: 7177346797548224264, guid: c3a18b117e165434591469a7729a1011, type: 3}
+      propertyPath: id
+      value: swnw
+      objectReference: {fileID: 0}
+    - target: {fileID: 7525456809212072061, guid: c3a18b117e165434591469a7729a1011, type: 3}
+      propertyPath: id
+      value: swse
+      objectReference: {fileID: 0}
+    - target: {fileID: 7662636362338881340, guid: c3a18b117e165434591469a7729a1011, type: 3}
+      propertyPath: id
+      value: swsw
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -22322,9 +22378,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1566510950610570504, guid: c3a18b117e165434591469a7729a1011, type: 3}
+      propertyPath: id
+      value: sene
+      objectReference: {fileID: 0}
     - target: {fileID: 4758069741136998532, guid: c3a18b117e165434591469a7729a1011, type: 3}
       propertyPath: m_Name
       value: Plot SE
+      objectReference: {fileID: 0}
+    - target: {fileID: 7177346797548224264, guid: c3a18b117e165434591469a7729a1011, type: 3}
+      propertyPath: id
+      value: senw
+      objectReference: {fileID: 0}
+    - target: {fileID: 7525456809212072061, guid: c3a18b117e165434591469a7729a1011, type: 3}
+      propertyPath: id
+      value: sese
+      objectReference: {fileID: 0}
+    - target: {fileID: 7662636362338881340, guid: c3a18b117e165434591469a7729a1011, type: 3}
+      propertyPath: id
+      value: sesw
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

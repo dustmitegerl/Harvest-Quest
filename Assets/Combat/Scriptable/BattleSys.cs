@@ -10,7 +10,7 @@ using UnityEngine.SceneManagement;
 
 public class BattleSys : MonoBehaviour
 {
-
+    #region fields
     [SerializeField] private enum BattleState { Start, Selection, Battle, Won, Lost, Run }
 
     [Header("Battle State")]
@@ -42,15 +42,18 @@ public class BattleSys : MonoBehaviour
     private PartyManager partyManager;
     private EnemyManager enemyManager;
     private int currentPlayer;
+    LevelLoader levelLoader;
 
     private const string ACTION_MESSAGE = "'s Action:";
     private const string WIN_MESSAGE = "You won the battle!";
     private const string LOSE_MESSAGE = "You lost the battle!";
     private const int TURN_DURATION = 2; //turn duration
+    #endregion
     void Start()
     {
         partyManager = FindObjectOfType<PartyManager>();
         enemyManager = FindObjectOfType<EnemyManager>();
+        levelLoader = FindAnyObjectByType<LevelLoader>();
 
         CreatePartyEntities();
         CreateEnemyEntities();
@@ -59,7 +62,6 @@ public class BattleSys : MonoBehaviour
         state = BattleState.Battle;
         ShowBattleMenu();
     }
-
 
     private IEnumerator BattleRoutine()
     {
@@ -101,10 +103,8 @@ public class BattleSys : MonoBehaviour
             enemySelectionMenu.SetActive(false);
         }
 
-
         yield return null;
     }
-
 
     private IEnumerator AttackRoutine(int i)
     {
@@ -134,7 +134,7 @@ public class BattleSys : MonoBehaviour
                 {
                     state = BattleState.Won;
                     bottomText.text = WIN_MESSAGE;
-                    StartCoroutine(DelayedSceneLoad("Farm", TURN_DURATION));
+                    EndBattle();
                     yield break;
                 }
             }
@@ -214,14 +214,12 @@ public class BattleSys : MonoBehaviour
                     battleMenu.SetActive(false);
                     skillSelectionMenu.SetActive(false);
                     enemySelectionMenu.SetActive(false);
-                    StartCoroutine(DelayedSceneLoad("Farm", TURN_DURATION));
+                    EndBattle();
                     yield break;
                 }
             }
         }
     }
-
-
 
     private IEnumerator RunRoutine()
     {
@@ -244,15 +242,6 @@ public class BattleSys : MonoBehaviour
             }
         }
     }
-
-
-
-    //kill enenmy
-
-
-    //enemies turn
-
-
 
     private void CreatePartyEntities()
     {
@@ -301,7 +290,6 @@ public class BattleSys : MonoBehaviour
         }
     }
 
-
     private void CreateEnemyEntities()
     {
         List<Enemy> currentEnemies = enemyManager.GetCurrentEnemies();
@@ -345,8 +333,6 @@ public class BattleSys : MonoBehaviour
             enemyBattlers.Add(tempEntity);
         }
     }
-
-
 
     public void ShowBattleMenu()
     {
@@ -411,8 +397,6 @@ public class BattleSys : MonoBehaviour
         battleMenu.SetActive(true);
     }
 
-
-
     private void OnSkillSelected(Skill selectedSkill)
     {
         skillSelectionMenu.SetActive(false);
@@ -441,9 +425,6 @@ public class BattleSys : MonoBehaviour
         }
     }
 
-
-
-
     public void ShowEnemySelectionMenu()
     {
         battleMenu.SetActive(false); //disable action menu
@@ -451,7 +432,6 @@ public class BattleSys : MonoBehaviour
 
         SetEnemySelectionButtons();
     }
-
 
     private void SetEnemySelectionButtons()
     {
@@ -485,7 +465,6 @@ public class BattleSys : MonoBehaviour
             }
         }
     }
-
 
     public void SelectEnemy(int currentEnemy)
 
@@ -568,8 +547,7 @@ public class BattleSys : MonoBehaviour
                 {
                     state = BattleState.Won;
                     bottomText.text = WIN_MESSAGE;
-                    StartCoroutine(DelayedSceneLoad("Farm", TURN_DURATION));
-                    return;
+                    EndBattle();
                 }
             }
             else if (currTarget != null)
@@ -593,8 +571,7 @@ public class BattleSys : MonoBehaviour
                     {
                         state = BattleState.Won;
                         bottomText.text = WIN_MESSAGE;
-                        StartCoroutine(DelayedSceneLoad("Farm", TURN_DURATION));
-                        return;
+                        EndBattle();
                     }
 
                     if (playerBattlers.Count <= 0)
@@ -604,8 +581,7 @@ public class BattleSys : MonoBehaviour
                         battleMenu.SetActive(false);
                         skillSelectionMenu.SetActive(false);
                         enemySelectionMenu.SetActive(false);
-                        StartCoroutine(DelayedSceneLoad("Farm", TURN_DURATION));
-                        return;
+                        EndBattle();
                     }
                 }
             }
@@ -631,9 +607,11 @@ public class BattleSys : MonoBehaviour
         }
     }
 
-
-
-
+    void EndBattle()
+    {
+        Destroy(enemyManager.gameObject);
+        levelLoader.LoadLevel("Farm");
+    }
 
     private int GetRandomPartyMember()
     {
@@ -690,13 +668,6 @@ public class BattleSys : MonoBehaviour
         skillSelectionMenu.SetActive(true);
         //ShowBattleMenu();
     }
-
-    private IEnumerator DelayedSceneLoad(string sceneName, float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        SceneManager.LoadScene(sceneName);
-    }
-
     private IEnumerator SafeDestroy(BattleVisuals visuals, float delay = 0.1f)
     {
         yield return new WaitForSeconds(delay);
@@ -704,13 +675,7 @@ public class BattleSys : MonoBehaviour
             Destroy(visuals.gameObject);
     }
 
-
-
 }
-
-
-
-
 
 [System.Serializable]
 public class BattleEntities
@@ -773,12 +738,3 @@ public class BattleEntities
         BattleVisuals.ChangeHealth(CurrHealth);
     }
 }
-
-
-
-
-
-
-
-
-

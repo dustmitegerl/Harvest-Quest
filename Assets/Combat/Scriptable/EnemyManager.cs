@@ -11,7 +11,6 @@ public class EnemyManager : MonoBehaviour
 
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
         // for demo
         if (currentEnemies == null)
         {
@@ -69,6 +68,8 @@ public class EnemyManager : MonoBehaviour
 public class Enemy
 {
     public string EnemyName;
+
+    public string spotID;
 
     public int CurrHealth;
     public int MaxHealth;

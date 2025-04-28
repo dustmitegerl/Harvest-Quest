@@ -5,15 +5,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class PlantingSpot : MonoBehaviour, IDropHandler, IDataPersistence
+public class PlantingSpot : MonoBehaviour, IDropHandler
 {
     public string id;
     public bool isEmpty;
     public string currentPlant; // used to find scriptable object of the plant type's stats
     public int plantStage = 0; // 0 = empty / seed planted; 1-3 = incomplete growth stages; 4 = ready to harvest; 5 = dead 
-    bool isGrowing;
+    public int level = 0;
+    public float daysTilEvolve;
+    public bool isGrowing = false;
     [SerializeField]
     SpriteRenderer spriteRenderer;
+    [SerializeField]
     PlantGrowthManager plantInfo;
     PlantingSO currentPlantInfo;
 
@@ -30,8 +33,7 @@ public class PlantingSpot : MonoBehaviour, IDropHandler, IDataPersistence
         {   // Logs and assigns a new GUID
             Debug.Log("A planting spot in " 
                 + transform.parent.name 
-                + " has a null id. Assigning new GUID.");
-            GenerateGuid();
+                + " has a null id");
         }
         
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -65,48 +67,22 @@ public class PlantingSpot : MonoBehaviour, IDropHandler, IDataPersistence
         else Debug.Log("Space is occupied");
     }
 
+    [ContextMenu("Evolve Plant")]
     void PlantEvolve()
     {
-        Sprite sprite;
-        plantStage += 1;
-        if (plantStage == 1)
+        if (plantStage <= 4)
         {
-            sprite = currentPlantInfo.stage1;
+            plantStage += 1;
+            spriteRenderer.sprite = currentPlantInfo.stageSprites[plantStage - 1];
         }
-        else if (plantStage == 2)
+        else
         {
-            sprite = currentPlantInfo.stage2;
-        }
-        else if (plantStage == 3)
-        {
-            sprite = currentPlantInfo.stage3;
-        }
-        else if (plantStage == 4)
-        {
-            sprite = currentPlantInfo.stage4;
-        }
-        else sprite = null;
-
-        if (sprite != null)
-        {
-            spriteRenderer.sprite = sprite;
+            Debug.Log("Plant is already ready to harvest!");
         }
     }
 
-    //load and save section
-    public void LoadData(GameData data)
+    public void Harvest()
     {
-        foreach (PlantingSpot spot in data.plantingSpots)
-        {
-            if (spot.id == id)
-            {
-                currentPlant = spot.currentPlant;
-                plantStage = spot.plantStage;
-            }
-        }
-    }
-    public void SaveData(ref GameData data)
-    {
-        data.plantingSpots.Add(this);
+ 
     }
 }

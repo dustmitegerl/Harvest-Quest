@@ -12,9 +12,11 @@ public class PlotInteraction : MonoBehaviour
     LevelLoader levelLoader;
     [SerializeField]
     string battleArenaName = "BattleArena_Test";
-    bool inRange = false;
     [SerializeField]
-    GameObject enemyManager;
+    GameObject enemyManagerPrefab;
+    //[SerializeField]
+    //GameObject partyManager;
+    bool inRange = false;
     void Start()
     {
         levelLoader = GameObject.FindGameObjectWithTag("Level Loader").GetComponent<LevelLoader>();
@@ -42,6 +44,15 @@ public class PlotInteraction : MonoBehaviour
     public void StartBattle()
     {
         Debug.Log("starting battle");
+        enemyManagerPrefab = Instantiate(enemyManagerPrefab);
+        EnemyManager enemyManager = enemyManagerPrefab.GetComponent<EnemyManager>();
+        foreach (PlantingSpot spot in plantingSpots)
+        {
+            if (spot.plantStage == 4)
+            {
+                enemyManager.GenerateEnemyByName(spot.currentPlant, spot.level);
+            }
+        }
         levelLoader.LoadLevel(battleArenaName);
         
     }
@@ -51,10 +62,10 @@ public class PlotInteraction : MonoBehaviour
     }
     public void Harvest()
     {
-        Instantiate(enemyManager, null);
+        Instantiate(enemyManagerPrefab, null);
         foreach (PlantingSpot selectedPlant in harvestSelections)
         {
-            enemyManager.GetComponent<EnemyManager>().GenerateEnemyByName(selectedPlant.name, 0);
+            enemyManagerPrefab.GetComponent<EnemyManager>().GenerateEnemyByName(selectedPlant.name, 0);
         }
     }
 }

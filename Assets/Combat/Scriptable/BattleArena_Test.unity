@@ -570,22 +570,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7092114979249848862, guid: 12f6b791c776ed440a5883e4d52a105b, type: 3}
-      propertyPath: allEnemies.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7092114979249848862, guid: 12f6b791c776ed440a5883e4d52a105b, type: 3}
-      propertyPath: allEnemies.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: 4e92f680f440fac468dbfff2886a3480, type: 2}
-    - target: {fileID: 7092114979249848862, guid: 12f6b791c776ed440a5883e4d52a105b, type: 3}
-      propertyPath: allEnemies.Array.data[1]
-      value: 
-      objectReference: {fileID: 11400000, guid: eaa183284f62a4b4094d87b2ddd2c546, type: 2}
-    - target: {fileID: 7092114979249848862, guid: 12f6b791c776ed440a5883e4d52a105b, type: 3}
-      propertyPath: allEnemies.Array.data[2]
-      value: 
-      objectReference: {fileID: 11400000, guid: 4e92f680f440fac468dbfff2886a3480, type: 2}
     - target: {fileID: 7455405290053142266, guid: 12f6b791c776ed440a5883e4d52a105b, type: 3}
       propertyPath: m_Name
       value: Enemy Manager

@@ -1275,16 +1275,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3705642604415270499, guid: 224f6f3be9cd466468e0dc7c6eae078b, type: 3}
       propertyPath: spawnDefaults.Array.size
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3705642604415270499, guid: 224f6f3be9cd466468e0dc7c6eae078b, type: 3}
       propertyPath: spawnDefaults.Array.data[0].uniqueObject
       value: 
-      objectReference: {fileID: 6189223903089929151, guid: a0789d2e05d164b43a313fef2299ac5b, type: 3}
+      objectReference: {fileID: 4351264141534835910, guid: 8567a8bfcebdd7941a8097bba7eb782d, type: 3}
     - target: {fileID: 3705642604415270499, guid: 224f6f3be9cd466468e0dc7c6eae078b, type: 3}
       propertyPath: spawnDefaults.Array.data[1].uniqueObject
       value: 
-      objectReference: {fileID: 4351264141534835910, guid: 8567a8bfcebdd7941a8097bba7eb782d, type: 3}
+      objectReference: {fileID: 6189223903089929151, guid: a0789d2e05d164b43a313fef2299ac5b, type: 3}
     - target: {fileID: 3705642604415270499, guid: 224f6f3be9cd466468e0dc7c6eae078b, type: 3}
       propertyPath: spawnDefaults.Array.data[2].uniqueObject
       value: 

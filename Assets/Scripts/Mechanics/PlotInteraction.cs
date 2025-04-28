@@ -12,10 +12,10 @@ public class PlotInteraction : MonoBehaviour
     LevelLoader levelLoader;
     [SerializeField]
     string battleArenaName = "BattleArena_Test";
-    [SerializeField]
-    GameObject enemyManagerPrefab;
     //[SerializeField]
-    //GameObject partyManager;
+    //GameObject enemyManagerPrefab;
+    //[SerializeField]
+    //GameObject partyManagerPrefab;
     bool inRange = false;
     void Start()
     {
@@ -44,15 +44,15 @@ public class PlotInteraction : MonoBehaviour
     public void StartBattle()
     {
         Debug.Log("starting battle");
-        enemyManagerPrefab = Instantiate(enemyManagerPrefab);
-        EnemyManager enemyManager = enemyManagerPrefab.GetComponent<EnemyManager>();
-        foreach (PlantingSpot spot in plantingSpots)
-        {
-            if (spot.plantStage == 4)
-            {
-                enemyManager.GenerateEnemyByName(spot.currentPlant, spot.level);
-            }
-        }
+        //enemyManagerPrefab = Instantiate(enemyManagerPrefab);
+        //EnemyManager enemyManager = enemyManagerPrefab.GetComponent<EnemyManager>();
+        //foreach (PlantingSpot spot in plantingSpots)
+        //{
+        //    if (spot.plantStage == 4)
+        //    {
+        //        enemyManager.GenerateEnemyByName(spot.currentPlant, spot.level);
+        //    }
+        //}
         levelLoader.LoadLevel(battleArenaName);
         
     }
@@ -60,12 +60,12 @@ public class PlotInteraction : MonoBehaviour
     {
         PlantingSpot[] spotArray = gameObject.GetComponentsInChildren<PlantingSpot>();
     }
-    public void Harvest()
-    {
-        Instantiate(enemyManagerPrefab, null);
-        foreach (PlantingSpot selectedPlant in harvestSelections)
-        {
-            enemyManagerPrefab.GetComponent<EnemyManager>().GenerateEnemyByName(selectedPlant.name, 0);
-        }
-    }
+    //public void Harvest()
+    //{
+    //    Instantiate(enemyManagerPrefab, null);
+    //    foreach (PlantingSpot selectedPlant in harvestSelections)
+    //    {
+    //        enemyManagerPrefab.GetComponent<EnemyManager>().GenerateEnemyByName(selectedPlant.name, 0);
+    //    }
+    //}
 }

@@ -12,12 +12,14 @@ public class EnemyManager : MonoBehaviour
     private void Awake()
     {
         // for demo
-        if (currentEnemies == null)
+        if (currentEnemies.Count == 0)
         {
+            Debug.Log("current enemies list is empty.");
             GenerateEnemyByName("Lemon", 1);
             GenerateEnemyByName("Lemon", 2);
             GenerateEnemyByName("Lemon", 3);
         }
+ 
     }
 
     public void GenerateEnemyByName(string enemyName, int level)

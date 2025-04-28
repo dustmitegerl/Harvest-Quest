@@ -12,7 +12,6 @@ public class FarmManager : MonoBehaviour, IDataPersistence
     void Start()
     {
         UpdateSpotData();
-        
     }
 
     // Update is called once per frame
@@ -27,13 +26,13 @@ public class FarmManager : MonoBehaviour, IDataPersistence
         foreach (GameObject spot in existingSpots)
         {
             PlantingSpot thisSpot = spot.GetComponent<PlantingSpot>();
-            PlantingSpot newSpot = new PlantingSpot();
-            newSpot.id = thisSpot.id;
-            newSpot.currentPlant = thisSpot.currentPlant;
-            newSpot.plantStage = thisSpot.plantStage;
-            newSpot.level = thisSpot.level;
-            newSpot.isGrowing = thisSpot.isGrowing;
-            spotData.Add(newSpot);
+            PlantingSpot spotDatum = gameObject.AddComponent<PlantingSpot>();
+            spotDatum.id = thisSpot.id;
+            spotDatum.currentPlant = thisSpot.currentPlant;
+            spotDatum.plantStage = thisSpot.plantStage;
+            spotDatum.level = thisSpot.level;
+            spotDatum.isGrowing = thisSpot.isGrowing;
+            spotData.Add(spotDatum);
         }
     }
     public void UpdateSpotFromData()

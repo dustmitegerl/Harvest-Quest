@@ -567,6 +567,7 @@ PrefabInstance:
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b54ddaab342ea64cbcb2700232cd33b, type: 3}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 --- !u!1 &668954161
 GameObject:
@@ -627,6 +628,8 @@ Transform:
   m_PrefabInstance: {fileID: 8451498756842130856}
   m_PrefabAsset: {fileID: 0}
 >>>>>>> main
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 --- !u!1001 &672911090
@@ -1121,6 +1124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 --- !u!4 &957072687 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8430085806698369332, guid: c4fe29152cfcb5c4cb690410cbe9c7da, type: 3}
@@ -1212,6 +1216,8 @@ Transform:
   m_PrefabInstance: {fileID: 1598886149785306921}
   m_PrefabAsset: {fileID: 0}
 =======
+=======
+>>>>>>> Stashed changes
 --- !u!1 &1019175709 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7689028355620528720, guid: 4dd9f78c9c2df804c9fb87915d1cec16, type: 3}
@@ -1232,6 +1238,9 @@ MonoBehaviour:
   dialog:
     lines:
     - HI
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 --- !u!60 &1332897142 stripped
 PolygonCollider2D:
@@ -39491,6 +39500,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
+<<<<<<< Updated upstream
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 758d418bacc4fa94abff969f5c909535, type: 3}
 --- !u!1 &6471277173149260831
@@ -46644,6 +46654,8 @@ PrefabInstance:
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 758d418bacc4fa94abff969f5c909535, type: 3}
 =======
+=======
+>>>>>>> Stashed changes
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7689028355620528720, guid: 4dd9f78c9c2df804c9fb87915d1cec16, type: 3}
       insertIndex: -1

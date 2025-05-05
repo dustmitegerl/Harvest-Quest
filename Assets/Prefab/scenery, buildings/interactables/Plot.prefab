@@ -54,7 +54,6 @@ MonoBehaviour:
   harvestSelections: []
   levelLoader: {fileID: 0}
   battleArenaName: BattleArena_Test
-  enemyManagerPrefab: {fileID: 7455405290053142266, guid: 12f6b791c776ed440a5883e4d52a105b, type: 3}
 --- !u!61 &7076612931929637429
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -127,13 +126,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: ne spot
       objectReference: {fileID: 0}
+    - target: {fileID: 978332701711666649, guid: 750cd0bdc479bab4697a4ccc78ce6721, type: 3}
+      propertyPath: id
+      value: nene
+      objectReference: {fileID: 0}
     - target: {fileID: 1287065605983848592, guid: 750cd0bdc479bab4697a4ccc78ce6721, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.19
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1287065605983848592, guid: 750cd0bdc479bab4697a4ccc78ce6721, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.23
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 1287065605983848592, guid: 750cd0bdc479bab4697a4ccc78ce6721, type: 3}
       propertyPath: m_LocalPosition.z
@@ -189,13 +192,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: se spot
       objectReference: {fileID: 0}
+    - target: {fileID: 978332701711666649, guid: 750cd0bdc479bab4697a4ccc78ce6721, type: 3}
+      propertyPath: id
+      value: nese
+      objectReference: {fileID: 0}
     - target: {fileID: 1287065605983848592, guid: 750cd0bdc479bab4697a4ccc78ce6721, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.19
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1287065605983848592, guid: 750cd0bdc479bab4697a4ccc78ce6721, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.77
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1287065605983848592, guid: 750cd0bdc479bab4697a4ccc78ce6721, type: 3}
       propertyPath: m_LocalPosition.z
@@ -251,13 +258,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: sw spot
       objectReference: {fileID: 0}
+    - target: {fileID: 978332701711666649, guid: 750cd0bdc479bab4697a4ccc78ce6721, type: 3}
+      propertyPath: id
+      value: nesw
+      objectReference: {fileID: 0}
     - target: {fileID: 1287065605983848592, guid: 750cd0bdc479bab4697a4ccc78ce6721, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.84
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 1287065605983848592, guid: 750cd0bdc479bab4697a4ccc78ce6721, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.77
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1287065605983848592, guid: 750cd0bdc479bab4697a4ccc78ce6721, type: 3}
       propertyPath: m_LocalPosition.z
@@ -313,13 +324,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: nw spot
       objectReference: {fileID: 0}
+    - target: {fileID: 978332701711666649, guid: 750cd0bdc479bab4697a4ccc78ce6721, type: 3}
+      propertyPath: id
+      value: nenw
+      objectReference: {fileID: 0}
     - target: {fileID: 1287065605983848592, guid: 750cd0bdc479bab4697a4ccc78ce6721, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.84
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 1287065605983848592, guid: 750cd0bdc479bab4697a4ccc78ce6721, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.23
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 1287065605983848592, guid: 750cd0bdc479bab4697a4ccc78ce6721, type: 3}
       propertyPath: m_LocalPosition.z

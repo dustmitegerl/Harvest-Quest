@@ -560,11 +560,13 @@ PrefabInstance:
       propertyPath: playerController
       value: 
       objectReference: {fileID: 1956283667}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3761411776781475877, guid: 4b54ddaab342ea64cbcb2700232cd33b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b54ddaab342ea64cbcb2700232cd33b, type: 3}
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 --- !u!1 &668954161
 GameObject:
@@ -625,6 +627,8 @@ Transform:
   m_PrefabInstance: {fileID: 8451498756842130856}
   m_PrefabAsset: {fileID: 0}
 >>>>>>> main
+=======
+>>>>>>> Stashed changes
 --- !u!1001 &672911090
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -889,6 +893,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1380663122358637917, guid: f0574542ab15e4649a11404532241008, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3426693386557764294, guid: f0574542ab15e4649a11404532241008, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -936,6 +944,10 @@ PrefabInstance:
     - target: {fileID: 3941090972631313267, guid: f0574542ab15e4649a11404532241008, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4145475382625411574, guid: f0574542ab15e4649a11404532241008, type: 3}
+      propertyPath: m_text
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4239957550454803659, guid: f0574542ab15e4649a11404532241008, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1108,6 +1120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< Updated upstream
 --- !u!4 &957072687 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8430085806698369332, guid: c4fe29152cfcb5c4cb690410cbe9c7da, type: 3}
@@ -1198,6 +1211,28 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5183960475167470618, guid: 6c120df5c200fdb4fa91c3908266f714, type: 3}
   m_PrefabInstance: {fileID: 1598886149785306921}
   m_PrefabAsset: {fileID: 0}
+=======
+--- !u!1 &1019175709 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7689028355620528720, guid: 4dd9f78c9c2df804c9fb87915d1cec16, type: 3}
+  m_PrefabInstance: {fileID: 7314357866721760759}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1019175711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1019175709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55715eae58f404744b681d475920127b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialog:
+    lines:
+    - HI
+>>>>>>> Stashed changes
 --- !u!60 &1332897142 stripped
 PolygonCollider2D:
   m_CorrespondingSourceObject: {fileID: 3311327367945650951, guid: 2f5cadf65ea45b84d9b50e0834e61b7b, type: 3}
@@ -12505,6 +12540,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
+<<<<<<< Updated upstream
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 088d7727360a3ee469491f6610ac392a, type: 3}
 --- !u!1839735485 &6373707609955751882
@@ -46607,12 +46643,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 758d418bacc4fa94abff969f5c909535, type: 3}
+=======
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7689028355620528720, guid: 4dd9f78c9c2df804c9fb87915d1cec16, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1019175711}
+  m_SourcePrefab: {fileID: 100100000, guid: 4dd9f78c9c2df804c9fb87915d1cec16, type: 3}
+>>>>>>> Stashed changes
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 672911090}
-  - {fileID: 668954163}
   - {fileID: 2869303949886204625}
   - {fileID: 1502291653832468144}
   - {fileID: 954207870}

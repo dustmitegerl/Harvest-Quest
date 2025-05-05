@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class PlantingSpot : MonoBehaviour, IDropHandler
+public class PlantingSpot : MonoBehaviour
 {
     public string id;
     public bool isEmpty;
@@ -18,6 +18,7 @@ public class PlantingSpot : MonoBehaviour, IDropHandler
     SpriteRenderer spriteRenderer;
     [SerializeField]
     PlantGrowthManager plantInfo;
+    [SerializeField]
     PlantingSO currentPlantInfo;
 
     [ContextMenu("Generate guid for id")]
@@ -51,11 +52,8 @@ public class PlantingSpot : MonoBehaviour, IDropHandler
         }
         else return false;
     }
-    public void OnDrop(PointerEventData eventData) // allows planting via dragging and dropping seed from inventory
-    {
-        // handle drag-and-drop here, call Sow(seed)
-    }
-    void Sow(string seedType) // plants seed
+    
+    public void Sow(string seedType) // plants seed
     {
         if (isEmpty) // checks if space is available
         {

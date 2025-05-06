@@ -12,12 +12,12 @@ public class NPCController : MonoBehaviour, Interactable
     Quest activeQuest;
 
     ItemGiver itemGiver;
-    FrienshipGiver friendshipGiver;
+    FriendGiver friendGiver;
 
     private void Awake()
     {
         itemGiver = GetComponent<ItemGiver>();
-        friendshipGiver = GetComponent<FrienshipGiver>();
+        friendGiver = GetComponent<FriendGiver>();
     }
 
     public IEnumerator Interact(Transform initiator)
@@ -35,9 +35,9 @@ public class NPCController : MonoBehaviour, Interactable
         {
             yield return itemGiver.GiveItem(initiator.GetComponent<Unit>());
         }
-        else if (friendshipGiver != null && friendshipGiver.CanBeGiven())
+        else if (friendGiver != null && friendGiver.CanBeGiven())
         {
-            yield return friendshipGiver.GiveFriendship(initiator.GetComponent<Unit>());
+            yield return friendGiver.GiveFriend(initiator.GetComponent<Unit>());
         }
         else if (questToStart != null)
         {

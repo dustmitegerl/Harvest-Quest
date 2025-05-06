@@ -65,9 +65,6 @@ public class InventoryUI : MonoBehaviour
 
         if (prevSelection != selectedItem)
             UpdateItemSelection();
-
-        if (Input.GetKeyDown(KeyCode.RightAlt))
-            onBack?.Invoke();
     }
 
     void UpdateItemSelection()

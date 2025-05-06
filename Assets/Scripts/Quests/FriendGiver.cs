@@ -2,29 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FrienshipGiver : MonoBehaviour
+public class FriendGiver : MonoBehaviour
 {
-    [SerializeField] ProgressBar friendshipToGive;
+    [SerializeField] NPCController friendToHelp;
     [SerializeField] Dialog dialog;
 
     bool used = false;
 
-    public IEnumerator GiveFriendship(Unit player)
+    public IEnumerator GiveFriend(Unit player)
     {
         yield return DialogManager.Instance.ShowDialog(dialog);
 
-        //player.GetComponent<ExperienceManager>().AddExperience(friendshipToGive);
+        //player.GetComponent<Inventory>().AddItem(friendToHelp, count);
 
         used = true;
 
-        //string dialogText = $"Player recieved {friendshipToGive.Base.Name}";
+        string dialogText = $"Player recieved friend";
 
-        //yield return DialogManager.Instance.ShowDialogText(dialogText);
+        yield return DialogManager.Instance.ShowDialogText(dialogText);
     }
 
     public bool CanBeGiven()
     {
-        return friendshipToGive != null && !used;
+        return friendToHelp != null && !used;
     }
 
     public object CaptureState()

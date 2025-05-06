@@ -46,5 +46,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allEnemies:
   - {fileID: 11400000, guid: 4e92f680f440fac468dbfff2886a3480, type: 2}
-  - {fileID: 11400000, guid: eaa183284f62a4b4094d87b2ddd2c546, type: 2}
   currentEnemies: []
+  demoEnemies:
+  - enemyInfo: {fileID: 11400000, guid: 4e92f680f440fac468dbfff2886a3480, type: 2}
+    level: 1
+  - enemyInfo: {fileID: 11400000, guid: 4e92f680f440fac468dbfff2886a3480, type: 2}
+    level: 2

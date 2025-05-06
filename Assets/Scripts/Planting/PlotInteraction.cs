@@ -1,19 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlotInteraction : MonoBehaviour
 {
-    public List<PlantingSpot> plantingSpots;
+    public PlantingSpot[] plantingSpots;
     [SerializeField]
-    public List<PlantingSpot> readyForHarvest;
+    public PlantingSpot[] readyForHarvest;
     [SerializeField]
     LevelLoader levelLoader;
     [SerializeField]
     string battleArenaName = "BattleArena_Test";
-    //[SerializeField]
-    //GameObject enemyManagerPrefab;
+    [SerializeField]
+    GameObject enemyManagerPrefab;
     //[SerializeField]
     //GameObject partyManagerPrefab;
     bool inRange = false;
@@ -61,13 +62,18 @@ public class PlotInteraction : MonoBehaviour
             StartBattle();
         }
     }
-
-    //public void Harvest()
-    //{
-    //    Instantiate(enemyManagerPrefab, null);
-    //    foreach (PlantingSpot selectedPlant in harvestSelections)
-    //    {
-    //        enemyManagerPrefab.GetComponent<EnemyManager>().GenerateEnemyByName(selectedPlant.name, 0);
-    //    }
-    //}
+    [ContextMenu("Load planting spots")]
+    public void UpdateSpots()
+    {
+        plantingSpots = GetComponentsInChildren<PlantingSpot>();
+        readyForHarvest = plantingSpots.Where(plantingSpot => plantingSpot.plantStage == 4).ToArray();
+    }
+    public void Harvest()
+    {
+        Instantiate(enemyManagerPrefab, null);
+        foreach (PlantingSpot plant in readyForHarvest)
+        {
+            enemyManagerPrefab.GetComponent<EnemyManager>().GenerateEnemyByName(plant.name, 0);
+        }
+    }
 }

@@ -28,6 +28,10 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     // Update is called once per frame
     public void HandleUpdate()
     {
+        if (this == null)
+        {
+            return;
+        }
         if (!walking)
         {//Player's movement
             movement.x = Input.GetAxisRaw("Horizontal");

@@ -13,5 +13,9 @@ public class Dialog
         {
             return lines;
         }
+        set
+        {
+            lines = value;
+        }
     }
 }

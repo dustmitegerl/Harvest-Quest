@@ -17,7 +17,7 @@ public class PlantingSpot : MonoBehaviour
     [SerializeField]
     SpriteRenderer spriteRenderer;
     [SerializeField]
-    PlantGrowthManager plantInfo;
+    PlantGrowthInfo plantInfo;
     [SerializeField]
     PlantingSO currentPlantInfo;
 
@@ -38,7 +38,7 @@ public class PlantingSpot : MonoBehaviour
         }
         
         spriteRenderer = GetComponent<SpriteRenderer>();
-        plantInfo = GetComponentInParent<PlantGrowthManager>();
+        plantInfo = GetComponentInParent<PlantGrowthInfo>();
     }
     void Update()
     {

@@ -49,6 +49,7 @@ MonoBehaviour:
   battleSystem: {fileID: 0}
   worldCamera: {fileID: 0}
   inventoryUI: {fileID: 0}
+  actionKey: 99
   state: 0
 --- !u!114 &1617179201577881402
 MonoBehaviour:

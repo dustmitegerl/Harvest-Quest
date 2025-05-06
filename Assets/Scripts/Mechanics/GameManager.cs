@@ -11,8 +11,6 @@ public class GameManager : MonoBehaviour
 
     public TileManager tileManager;
 
-    public Vector3 playerLastPositionInFarm;
-
 
     private void Awake()
     {
@@ -28,11 +26,4 @@ public class GameManager : MonoBehaviour
         tileManager = GetComponent<TileManager>();
     }
 
-    //private void FixedUpdate()
-    //{
-    //    while (Scene.name == "Farm")
-    //    {
-
-    //    }
-    //}
 }

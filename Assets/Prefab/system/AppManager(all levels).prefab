@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 231765844413665272}
   - component: {fileID: -9155641024805460559}
-  - component: {fileID: 6591332859831178317}
   - component: {fileID: -1775852431830073339}
   m_Layer: 0
   m_Name: AppManager(all levels)
@@ -46,18 +45,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 514aa8d2931ab8345b4c3a718fad894a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6591332859831178317
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4351264141534835910}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e04be444cc4046f4ba552ef25d555ea1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &-1775852431830073339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75,6 +62,7 @@ MonoBehaviour:
   overrideSelectedProfileId: 0
   testSelectedProfileId: test
   fileName: bob
+  fileExtension: .harvestquest
   useEncryption: 0
   autoSaveTimeSeconds: 60
   autoSaveOn: 0

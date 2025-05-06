@@ -7,7 +7,7 @@ public class PlotInteraction : MonoBehaviour
 {
     public List<PlantingSpot> plantingSpots;
     [SerializeField]
-    public List<PlantingSpot> harvestSelections;
+    public List<PlantingSpot> readyForHarvest;
     [SerializeField]
     LevelLoader levelLoader;
     [SerializeField]
@@ -17,17 +17,10 @@ public class PlotInteraction : MonoBehaviour
     //[SerializeField]
     //GameObject partyManagerPrefab;
     bool inRange = false;
-    void Start()
-    {
-        levelLoader = GameObject.FindGameObjectWithTag("Level Loader").GetComponent<LevelLoader>();
-    }
+
     private void Update()
     {
-        if (inRange && Input.GetKeyDown(KeyCode.H))
-        {
-            Debug.Log("Harvesting!");
-            StartBattle();
-        }
+        HandleInput();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -53,13 +46,22 @@ public class PlotInteraction : MonoBehaviour
         //        enemyManager.GenerateEnemyByName(spot.currentPlant, spot.level);
         //    }
         //}
-        levelLoader.LoadLevel(battleArenaName);
+        LevelLoader.Instance.LoadLevel(battleArenaName);
         
     }
     public void UpdatePlotStatus()
     {
         PlantingSpot[] spotArray = gameObject.GetComponentsInChildren<PlantingSpot>();
     }
+
+    public void HandleInput() {
+        if (inRange && Input.GetKeyDown(GameController.Instance.actionKey))
+        {
+            Debug.Log("Harvesting!");
+            StartBattle();
+        }
+    }
+
     //public void Harvest()
     //{
     //    Instantiate(enemyManagerPrefab, null);

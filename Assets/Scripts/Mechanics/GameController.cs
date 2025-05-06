@@ -12,7 +12,7 @@ public class GameController : MonoBehaviour
     [SerializeField] BattleSystem battleSystem;
     [SerializeField] Camera worldCamera;
     [SerializeField] InventoryUI inventoryUI;
-
+    public KeyCode actionKey;
     public GameState state;
     GameState prevState;
 
@@ -52,7 +52,6 @@ public class GameController : MonoBehaviour
 
         menuController.onMenuSelected += OnMenuSelected;*/
     }
-
     public void PauseGame(bool pause)
     {
         if (pause)
@@ -84,6 +83,19 @@ public class GameController : MonoBehaviour
 
     private void Update()
     {
+        if (worldCamera == null)
+        {
+            worldCamera = Camera.main;
+        }
+        if (playerController == null)
+        {
+            try { 
+                playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>(); 
+            } 
+            catch { 
+                return; 
+            }
+        }
         if (state == GameState.FreeRoam)
         {
             playerController.HandleUpdate();

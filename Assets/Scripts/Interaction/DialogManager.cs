@@ -12,11 +12,22 @@ public class DialogManager : MonoBehaviour
     public event Action OnShowDialog;
     public event Action OnCloseDialog;
 
-    public static DialogManager Instance { get; private set; }
+    #region making it a singleton
+    private static DialogManager _instance;
+    public static DialogManager Instance { get { return _instance; } }
     private void Awake()
     {
-        Instance = this;
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            _instance = this;
+            DontDestroyOnLoad(this);
+        }
     }
+    #endregion
 
     public bool IsShowing { get; private set; }
 

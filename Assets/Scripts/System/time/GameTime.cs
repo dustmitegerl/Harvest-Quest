@@ -10,19 +10,21 @@ public class GameTime : MonoBehaviour, IDataPersistence
     /// <summary>
     /// game timekeeping
     /// </summary>
+    public bool isPaused = false; // for pausing
+    [HeaderAttribute("time that days start (/when the player wakes up)")]
     [SerializeField]
     int startingHr;
-    public bool isPaused = false; // for pausing
-    public static int days = 1; // starting days index at 1 rather than 0
-    public static int hrs;
-    public static int mins;
-    public static float secs;
+    [HeaderAttribute("length of naps, in hours")]
+    [SerializeField]
+    int napHrs;
+    [HeaderAttribute("earliest hour (in 24hr cycle) that player is allowed to sleep through the night")]
+    public int bedTime;
+    public int days = 1; // starting days index at 1 rather than 0
+    public int hrs;
+    public int mins;
+    public float secs;
 
-    /// <summary>
-    /// clock's visual stuff
-    /// </summary>
-
-
+    [HeaderAttribute("time proportions")]
     [SerializeField]
     float timeSpeedModulator = 1; // used to change speed of seconds
     [SerializeField]
@@ -31,6 +33,23 @@ public class GameTime : MonoBehaviour, IDataPersistence
     int minsInHr = 60;
     [SerializeField]
     int hrsInDay = 24;
+
+    #region making it a singleton
+    private static GameTime _instance;
+    public static GameTime Instance { get { return _instance; } }
+    private void Awake()
+    {
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            _instance = this;
+            DontDestroyOnLoad(this);
+        }
+    }
+    #endregion
 
     void Start()
     {
@@ -57,22 +76,39 @@ public class GameTime : MonoBehaviour, IDataPersistence
 
         if (secs >= secsInMin) // using adjustable time ratios
         {
-            secs = 0;
+            secs -= secsInMin;
             mins += 1;
         }
 
         if (mins >= minsInHr)
         {
-            mins = 0;
+            mins -= minsInHr;
             hrs += 1;
         }
 
         if (hrs >= hrsInDay)
         {
-            hrs = 0;
+            hrs -= hrsInDay;
             days += 1;
         }
     }
+
+    // Nap: move time forward a set amount
+    public void Nap()
+    {
+        LevelLoader.Instance.LoadLevel("Farm");
+        hrs += napHrs;
+    }
+    // Sleep: move time forward to the next day
+    public void Sleep()
+    {
+        LevelLoader.Instance.LoadLevel("Farm");
+        days = +1; // go to next day
+        hrs = startingHr; // wake at startingHr
+        mins = 0; // ^
+        secs = 0; // ^
+    }
+
     /// <summary>
     /// Pause and Unpause
     /// </summary>

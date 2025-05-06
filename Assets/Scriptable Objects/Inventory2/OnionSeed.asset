@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcf0c4a4fa8096a4d984188475296c7b, type: 3}
   m_Name: OnionSeed
   m_EditorClassIdentifier: 
-  mname: OnionSeed
+  names: Onion Seed
   description: Seed to plant onions.
   icon: {fileID: 561764488, guid: d37d53db226b5824cb9ca4f7ea179164, type: 3}
   Fertillizers: 0

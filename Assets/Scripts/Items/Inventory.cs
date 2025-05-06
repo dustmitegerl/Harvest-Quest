@@ -15,7 +15,7 @@ public class Inventory : MonoBehaviour
 
     public static List<string> ItemCategories { get; set; } = new List<string>()
     {
-        "Fertillizers", "Seeds", "Weapons"
+        "Fertillizers", "Seeds", "Plants"
     };
 
     public List<ItemSlot> GetSlotsByCategory(int categoryIndex)

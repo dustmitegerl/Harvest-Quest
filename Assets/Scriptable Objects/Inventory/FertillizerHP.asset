@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcf0c4a4fa8096a4d984188475296c7b, type: 3}
   m_Name: FertillizerHP
   m_EditorClassIdentifier: 
-  mname: FertillizerHP
+  names: Fertillizer HP
   description: Fertillizer that elevates the plants health.
   icon: {fileID: 1316037624, guid: e40387e501195b54f8ef67ba689b42b6, type: 3}
   Fertillizers: 1

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcf0c4a4fa8096a4d984188475296c7b, type: 3}
   m_Name: BroccoliSeed
   m_EditorClassIdentifier: 
-  mname: BroccoliSeeds
+  names: Broccoli Seed
   description: Seeds to plant broccoli.
   icon: {fileID: 1501514859, guid: d37d53db226b5824cb9ca4f7ea179164, type: 3}
   Fertillizers: 0

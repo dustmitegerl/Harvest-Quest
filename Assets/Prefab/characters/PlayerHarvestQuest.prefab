@@ -301,7 +301,7 @@ MonoBehaviour:
     count: 2
   - item: {fileID: 11400000, guid: 575f95707e812324eb6a2f08eafa8477, type: 2}
     count: 4
-  - item: {fileID: 11400000, guid: 62bd6fb4b5001aa45bf0b65e7d15495d, type: 2}
+  - item: {fileID: 11400000, guid: 6b3003c3a2475444698874882dc2df3d, type: 2}
     count: 2
   - item: {fileID: 11400000, guid: 43d1b1cc43a64994eae73953fa3eb026, type: 2}
     count: 4
@@ -309,11 +309,11 @@ MonoBehaviour:
     count: 6
   - item: {fileID: 11400000, guid: 8a9c4bb672c916e4ea4e0e65748671e5, type: 2}
     count: 1
-  - item: {fileID: 11400000, guid: db2176c515cc9924193741d90fc42ebf, type: 2}
+  - item: {fileID: 11400000, guid: d4e081c14a00bbd42a10d0c5cf1d8190, type: 2}
     count: 5
-  - item: {fileID: 11400000, guid: c3578938d34a8d64a9dd24e320de973f, type: 2}
+  - item: {fileID: 11400000, guid: ca5b95a2e45a71841bb7eda4338eb3f7, type: 2}
     count: 4
-  - item: {fileID: 11400000, guid: 4fde4eda47a3e8344883c6af47295591, type: 2}
+  - item: {fileID: 11400000, guid: 05c2546b4f4146048ba0eb87f578e020, type: 2}
     count: 2
 --- !u!1 &5032535505117605350
 GameObject:
@@ -326,8 +326,8 @@ GameObject:
   - component: {fileID: 4475544046581793412}
   - component: {fileID: 7924080173493702890}
   - component: {fileID: 8363974995146353045}
-  - component: {fileID: 8381687639433796840}
-  - component: {fileID: 2921390050121206261}
+  - component: {fileID: 3273224013983134028}
+  - component: {fileID: 4406095780789351210}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -344,7 +344,7 @@ Transform:
   m_GameObject: {fileID: 5032535505117605350}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -12.5}
+  m_LocalPosition: {x: -0.025459379, y: 1.7409623, z: -12.5}
   m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -409,7 +409,7 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5032535505117605350}
   m_Enabled: 1
---- !u!114 &8381687639433796840
+--- !u!114 &3273224013983134028
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -443,7 +443,7 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &2921390050121206261
+--- !u!114 &4406095780789351210
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

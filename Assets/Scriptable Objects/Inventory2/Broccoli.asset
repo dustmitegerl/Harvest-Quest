@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bcf0c4a4fa8096a4d984188475296c7b, type: 3}
-  m_Name: StrawberrySeed
+  m_Name: Broccoli
   m_EditorClassIdentifier: 
-  names: Strawberry Seed
-  description: Seed to plant strawberries.
-  icon: {fileID: 1448750232, guid: d37d53db226b5824cb9ca4f7ea179164, type: 3}
+  names: Broccoli
+  description: Final plant Broccoli
+  icon: {fileID: 21300000, guid: e59b9af6091156642a12048ca3322ef3, type: 3}
   Fertillizers: 0
-  Seeds: 1
-  Plants: 0
+  Seeds: 0
+  Plants: 1
   Tools: 0

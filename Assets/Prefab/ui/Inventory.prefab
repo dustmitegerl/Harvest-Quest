@@ -34,8 +34,8 @@ RectTransform:
   - {fileID: 636555322275455832}
   - {fileID: 8336987910975719425}
   - {fileID: 5283302268488366858}
-  - {fileID: 888405248090582690}
   - {fileID: 6997417924188349433}
+  - {fileID: 888405248090582690}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -55,6 +55,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6471732c43c0f864cbd81c4502e44c63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainMenuCanvas: {fileID: 0}
+  instructionCanvas: {fileID: 0}
+  optionCanvas: {fileID: 0}
+  quitCanvas: {fileID: 0}
+  saveCanvas: {fileID: 0}
+  pauseFirstButton: {fileID: 0}
+  instructionFirstButton: {fileID: 0}
+  optionButton: {fileID: 0}
+  quitButton: {fileID: 0}
+  saveButton: {fileID: 0}
+  instructionClosed: {fileID: 0}
+  optionClosed: {fileID: 0}
+  quitClosed: {fileID: 0}
+  saveClosed: {fileID: 0}
 --- !u!114 &2952295134257625301
 MonoBehaviour:
   m_ObjectHideFlags: 0

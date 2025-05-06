@@ -66,7 +66,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         {
             walking = false;
             anim.SetBool("isMoving", walking);
-            //collider.GetComponent<Interactable>()?.Interact();
+            collider.GetComponent<Interaction>().Interact();
         }
     }
 

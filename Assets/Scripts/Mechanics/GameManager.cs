@@ -26,11 +26,4 @@ public class GameManager : MonoBehaviour
         tileManager = GetComponent<TileManager>();
     }
 
-    //private void FixedUpdate()
-    //{
-    //    while (Scene.name == "Farm")
-    //    {
-
-    //    }
-    //}
 }

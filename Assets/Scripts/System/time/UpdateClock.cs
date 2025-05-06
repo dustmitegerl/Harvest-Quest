@@ -28,7 +28,7 @@ public class UpdateClock : MonoBehaviour
         int adjHrs = 12; // adjusting for am vs pm; starting at 12 prevents reading "0" at 12pm
         string minsString; // for adding a 0 before single-digit minutes
 
-        if (GameTime.hrs >= 12) // 12 oclock
+        if (GameTime.Instance.hrs >= 12) // 12 oclock
         {
             currentPeriod = PM; // strikes noon
         }
@@ -37,25 +37,25 @@ public class UpdateClock : MonoBehaviour
         // adjusting for AM/PM
         if (currentPeriod == AM) // during A.M. hours
         {
-            adjHrs = GameTime.hrs; // the hours aren't adjusted
+            adjHrs = GameTime.Instance.hrs; // the hours aren't adjusted
         }
-        else if (currentPeriod == PM && GameTime.hrs >= 13) // during P.M. hours, after the 12pm hour
+        else if (currentPeriod == PM && GameTime.Instance.hrs >= 13) // during P.M. hours, after the 12pm hour
         {
-            adjHrs = GameTime.hrs - 12; // subtract 12 to get the adjusted time
+            adjHrs = GameTime.Instance.hrs - 12; // subtract 12 to get the adjusted time
         }
 
         // in case of 0:00, set to 12AM
-        if (GameTime.hrs == 0)
+        if (GameTime.Instance.hrs == 0)
         {
             adjHrs = 12;
             currentPeriod = AM;
         }
 
-        if (GameTime.mins < 10) // if less than 10 minutes on the clock, s
+        if (GameTime.Instance.mins < 10) // if less than 10 minutes on the clock, s
         {
-            minsString = "0" + GameTime.mins.ToString();
+            minsString = "0" + GameTime.Instance.mins.ToString();
         }
-        else minsString = GameTime.mins.ToString();
+        else minsString = GameTime.Instance.mins.ToString();
 
         clockRead.SetText(adjHrs.ToString() + ":" + minsString + currentPeriod); // otherwise just adjust hours and print
     }

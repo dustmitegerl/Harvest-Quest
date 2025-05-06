@@ -63,7 +63,7 @@ public class HomeSleep : MonoBehaviour
     }
     Time GetTime()
     {
-        if (GameTime.hrs >= GameTime.Instance.bedTime)
+        if (GameTime.Instance.hrs >= GameTime.Instance.bedTime)
         {
             return Time.SLEEPTIME;
         }

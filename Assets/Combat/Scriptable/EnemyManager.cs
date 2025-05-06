@@ -1,25 +1,54 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro.Examples;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
+[System.Serializable]
+public struct DemoEnemy { public string name; public int level; }
 public class EnemyManager : MonoBehaviour
 {
     [SerializeField] private EnemyInfo[] allEnemies;
     public List<Enemy> currentEnemies;
-
+    [HeaderAttribute("For setting up demo. Names must match Enemy Info names, case-sensitive.")]
+    public DemoEnemy[] demoEnemies;
     private const float LEVEL_MODIFIER = 0.5f;
-
+    #region making it a singleton
+    private static EnemyManager _instance;
+    public static EnemyManager Instance { get { return _instance; } }
     private void Awake()
     {
-        // for demo
-        if (currentEnemies.Count == 0)
+        if (_instance != null && _instance != this)
         {
-            Debug.Log("current enemies list is empty.");
-            GenerateEnemyByName("Lemon", 1);
-            GenerateEnemyByName("Lemon", 2);
-            GenerateEnemyByName("Lemon", 3);
+            Destroy(this.gameObject);
         }
- 
+        else
+        {
+            _instance = this;
+            DontDestroyOnLoad(this);
+        }
+    }
+    #endregion
+
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name.ToLower().Contains("battle") && currentEnemies.Count == 0)
+        {
+            GenerateDemo();
+        }
+        else { Destroy(gameObject); }
+    }
+    // for demo
+    void GenerateDemo()
+    {
+        Debug.Log("Current enemies list is empty. Generating demo.");
+        foreach (DemoEnemy enemy in demoEnemies)
+        {
+            GenerateEnemyByName(enemy.name, enemy.level);
+        }
     }
 
     public void GenerateEnemyByName(string enemyName, int level)

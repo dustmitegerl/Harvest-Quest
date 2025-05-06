@@ -19,10 +19,10 @@ public class GameTime : MonoBehaviour, IDataPersistence
     int napHrs;
     [HeaderAttribute("earliest hour (in 24hr cycle) that player is allowed to sleep through the night")]
     public int bedTime;
-    public static int days = 1; // starting days index at 1 rather than 0
-    public static int hrs;
-    public static int mins;
-    public static float secs;
+    public int days = 1; // starting days index at 1 rather than 0
+    public int hrs;
+    public int mins;
+    public float secs;
 
     [HeaderAttribute("time proportions")]
     [SerializeField]

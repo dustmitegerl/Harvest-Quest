@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5294214743295910256}
   - component: {fileID: 4438540733039707594}
   m_Layer: 0
-  m_Name: GameManager(overworld)
+  m_Name: TimeManager
   m_TagString: Game Manager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

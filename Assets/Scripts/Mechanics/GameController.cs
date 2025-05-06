@@ -12,7 +12,7 @@ public class GameController : MonoBehaviour
     [SerializeField] BattleSystem battleSystem;
     [SerializeField] Camera worldCamera;
     [SerializeField] InventoryUI inventoryUI;
-
+    public KeyCode actionKey;
     public GameState state;
     GameState prevState;
 
@@ -52,7 +52,6 @@ public class GameController : MonoBehaviour
 
         menuController.onMenuSelected += OnMenuSelected;*/
     }
-
     public void PauseGame(bool pause)
     {
         if (pause)
@@ -80,5 +79,86 @@ public class GameController : MonoBehaviour
         state = GameState.FreeRoam;
         battleSystem.gameObject.SetActive(false);
         worldCamera.gameObject.SetActive(true);
+    }
+
+    private void Update()
+    {
+        if (worldCamera == null)
+        {
+            worldCamera = Camera.main;
+        }
+        if (playerController == null)
+        {
+            try { 
+                playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>(); 
+            } 
+            catch { 
+                return; 
+            }
+        }
+        if (state == GameState.FreeRoam)
+        {
+            playerController.HandleUpdate();
+
+            /*if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                menuController.OpenMenu();
+                state = GameState.Menu;
+            }*/
+        }
+        else if (state == GameState.Battle)
+        {
+            //battleSystem.HandleUpdate();
+        }
+        else if (state == GameState.Dialog)
+        {
+            DialogManager.Instance.HandleUpdate();
+        }
+       /* else if (state == GameState.Menu)
+        {
+            menuController.HandleUpdate();
+        }*/
+        else if(state == GameState.Inventory)
+        {
+            Action onBack = () =>
+            {
+                inventoryUI.gameObject.SetActive(false);
+                state = GameState.FreeRoam;
+            };
+
+            inventoryUI.HandleUpdate(onBack);
+        }
+    }
+
+    void OnMenuSelected(int selectedItem)
+    {
+        if(selectedItem == 0)
+        {
+            //Instruction
+        }
+        else if (selectedItem == 1)
+        {
+            //Option
+        }
+        else if (state == GameState.Inventory)
+        {
+            Action onBack = () =>
+            {
+                inventoryUI.gameObject.SetActive(false);
+                state = GameState.FreeRoam;
+            };
+
+            inventoryUI.HandleUpdate(onBack);
+        }
+        else if (selectedItem == 3)
+        {
+            //Save
+        }
+        /*else if (state == GameState.Menu)
+        {
+            menuController.HandleUpdate();
+        }*/
+
+        state = GameState.FreeRoam;
     }
 }

@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     
     public event Action OnEncountered;
 
-    //private Rigidbody2D rb;
+    private Rigidbody2D rb;
     private Animator anim;
 
     private Vector2 movement;
@@ -21,12 +21,12 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
     void Start()
     {//Animation will happen once movement start
-        //rb = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
-    public void HandleUpdate()
+    public void Update()
     {
         if (!walking)
         {//Player's movement

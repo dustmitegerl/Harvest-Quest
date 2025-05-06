@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class MenuManager : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private GameObject quitCanvas;
 
     [SerializeField] private PlayerMovement player;
+
+    public GameObject pauseFirstButton, instructionFirstButton, inventoryButton, optionButton, quitButton, instructionClosed, inventoryClosed, optionClosed, quitClosed;
 
     private bool isPaused;
 
@@ -51,6 +54,11 @@ public class MenuManager : MonoBehaviour
 
         player.enabled = false;
 
+        //Clear selected object
+        EventSystem.current.SetSelectedGameObject(null);
+        //Set a new selected object
+        EventSystem.current.SetSelectedGameObject(pauseFirstButton);
+
         OpenMainMenu();
     }
 
@@ -76,6 +84,11 @@ public class MenuManager : MonoBehaviour
         optionCanvas.SetActive(false);
         //saveCanvas.SetActive(false);
         quitCanvas.SetActive(false);
+
+        //Clear selected object
+        EventSystem.current.SetSelectedGameObject(null);
+        //Set a new selected object
+        EventSystem.current.SetSelectedGameObject(pauseFirstButton);
     }
 
     private void OpenSettingsHandle()
@@ -85,6 +98,11 @@ public class MenuManager : MonoBehaviour
         inventoryCanvas.SetActive(false);
         optionCanvas.SetActive(true);
         quitCanvas.SetActive(false);
+
+        //Clear selected object
+        EventSystem.current.SetSelectedGameObject(null);
+        //Set a new selected object
+        EventSystem.current.SetSelectedGameObject(optionButton);
     }
 
     private void OpenInstructionHandle()
@@ -94,6 +112,11 @@ public class MenuManager : MonoBehaviour
         inventoryCanvas.SetActive(false);
         optionCanvas.SetActive(false);
         quitCanvas.SetActive(false);
+
+        //Clear selected object
+        EventSystem.current.SetSelectedGameObject(null);
+        //Set a new selected object
+        EventSystem.current.SetSelectedGameObject(instructionFirstButton);
     }
 
     private void OpenInventoryHandle()
@@ -103,6 +126,11 @@ public class MenuManager : MonoBehaviour
         inventoryCanvas.SetActive(true);
         optionCanvas.SetActive(false);
         quitCanvas.SetActive(false);
+
+        //Clear selected object
+        EventSystem.current.SetSelectedGameObject(null);
+        //Set a new selected object
+        EventSystem.current.SetSelectedGameObject(inventoryButton);
     }
 
     private void OpenQuitHandle()
@@ -112,6 +140,11 @@ public class MenuManager : MonoBehaviour
         inventoryCanvas.SetActive(false);
         optionCanvas.SetActive(false);
         quitCanvas.SetActive(true);
+
+        //Clear selected object
+        EventSystem.current.SetSelectedGameObject(null);
+        //Set a new selected object
+        EventSystem.current.SetSelectedGameObject(quitButton);
     }
 
     private void CloseAllMenus()
@@ -122,6 +155,26 @@ public class MenuManager : MonoBehaviour
         optionCanvas.SetActive(false);
         //saveCanvas.SetActive(false);
         quitCanvas.SetActive(false);
+
+        //Clear selected object
+        EventSystem.current.SetSelectedGameObject(null);
+        //Set a new selected object
+        EventSystem.current.SetSelectedGameObject(optionClosed);
+
+        //Clear selected object
+        EventSystem.current.SetSelectedGameObject(null);
+        //Set a new selected object
+        EventSystem.current.SetSelectedGameObject(instructionClosed);
+
+        //Clear selected object
+        EventSystem.current.SetSelectedGameObject(null);
+        //Set a new selected object
+        EventSystem.current.SetSelectedGameObject(inventoryClosed);
+
+        //Clear selected object
+        EventSystem.current.SetSelectedGameObject(null);
+        //Set a new selected object
+        EventSystem.current.SetSelectedGameObject(quitClosed);
     }
 
     #endregion

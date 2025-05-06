@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using TMPro.Examples;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -14,11 +15,7 @@ public class PlantingSpot : MonoBehaviour
     public int level = 0;
     public float daysTilEvolve;
     public bool isGrowing = false;
-    [SerializeField]
     SpriteRenderer spriteRenderer;
-    [SerializeField]
-    PlantGrowthInfo plantInfo;
-    [SerializeField]
     PlantingSO currentPlantInfo;
 
     [ContextMenu("Generate guid for id")]
@@ -38,7 +35,6 @@ public class PlantingSpot : MonoBehaviour
         }
         
         spriteRenderer = GetComponent<SpriteRenderer>();
-        plantInfo = GetComponentInParent<PlantGrowthInfo>();
     }
     void Update()
     {
@@ -46,7 +42,7 @@ public class PlantingSpot : MonoBehaviour
     }
     public bool IsSpaceEmpty()
     {
-        if (transform.childCount == 0)
+        if (currentPlant == "")
         {
             return true;
         }
@@ -59,8 +55,7 @@ public class PlantingSpot : MonoBehaviour
         {
             isGrowing = true;
             currentPlant = seedType;
-            currentPlantInfo = plantInfo.GetPlantInfo(currentPlant);
-            Debug.Log("Getting planting information for " + currentPlantInfo.name);
+            GetPlantInfo();
         }
         else Debug.Log("Space is occupied");
     }
@@ -68,17 +63,35 @@ public class PlantingSpot : MonoBehaviour
     [ContextMenu("Evolve Plant")]
     void PlantEvolve()
     {
-        if (plantStage <= 4)
+        isEmpty = IsSpaceEmpty(); // check to make sure it isn't empty
+        if (!isEmpty)
         {
-            plantStage += 1;
+            if (plantStage <= 4)
+            {
+                plantStage += 1;
+                
+            }
+            else
+            {
+                Debug.Log("Plant is already ready to harvest!");
+            }
+        }
+        else Debug.Log("can't evolve " + gameObject.name + " because it is empty");
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        if (currentPlantInfo == null)
+        {
+            GetPlantInfo();
+        }
+        if (spriteRenderer != null)
+        {
             spriteRenderer.sprite = currentPlantInfo.stageSprites[plantStage - 1];
         }
-        else
-        {
-            Debug.Log("Plant is already ready to harvest!");
-        }
     }
-
+    void GetPlantInfo()
+    {
+        currentPlantInfo = FarmManager.Instance.GetPlantInfo(currentPlant);
+        Debug.Log("Getting planting information for " + currentPlantInfo.name);
+    }
     public void Harvest()
     {
  

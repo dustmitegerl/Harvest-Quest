@@ -126,7 +126,7 @@ public class BattleSys : MonoBehaviour
             {
                 allBattlers.Remove(currTarget);
                 enemyBattlers.Remove(currTarget);
-                Destroy(currTarget.BattleVisuals.gameObject);
+                
 
                 bottomText.text = currAttacker.Name + " defeated " + currTarget.Name + "!";
 

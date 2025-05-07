@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e24e6965b25bb7f4aa9f7c3fdc6bc4c1, type: 3}
   m_Name: Sweet Relief
   m_EditorClassIdentifier: 
-  SkillName: 
+  SkillName: Sweet Relief
   Description: Heals a single Enemy.
   SPCost: 0
   RestoresSP: 0
@@ -20,7 +20,7 @@ MonoBehaviour:
   DealsDamage: 0
   DamageAmount: 0
   Heals: 1
-  HealAmount: 10
+  HealAmount: 20
   IsPhysicalAttack: 0
   TargetType: 0
   ChanceToDebuff: 0

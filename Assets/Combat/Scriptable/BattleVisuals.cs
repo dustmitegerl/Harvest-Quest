@@ -114,4 +114,14 @@ public class BattleVisuals : MonoBehaviour
         }
     }
 
+    public void PlayAnimation(string triggerName)
+{
+    if (anim != null && !string.IsNullOrEmpty(triggerName))
+    {
+        anim.SetTrigger(triggerName);
+        DebugTrigger(triggerName);
+    }
+}
+
+
 }

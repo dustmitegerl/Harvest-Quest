@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f97f3cc93a3b6d04a8fa62cc4003fa3f, type: 3}
+  m_Name: ShopKeeper
+  m_EditorClassIdentifier: 
+  MemberName: ShopKeeper
+  StartingLevel: 3
+  BaseHealth: 50
+  BaseStr: 10
+  BaseInitiative: 3
+  BaseIntelligence: 20
+  BaseDefense: 10
+  BaseResistance: 10
+  BaseSP: 80
+  Skills:
+  - {fileID: 11400000, guid: 055bb62a7bdb95640ae49fcfbee9c75e, type: 2}
+  - {fileID: 11400000, guid: 84bc415d86daa16489215058ea58e080, type: 2}
+  - {fileID: 11400000, guid: b20c546658f7ff34da5db5735d9909b3, type: 2}
+  - {fileID: 11400000, guid: 8af52038c142b7541918c9f3ebca2d1c, type: 2}
+  MemberBattleVisualPrefab: {fileID: 3024522295698539319, guid: 72b47068223b56142b25c47403e3f84c, type: 3}
+  MemberOverworldVisualPrefab: {fileID: 7587111250537864920, guid: a5849d8dc263ead46bc3c72414721f2f, type: 3}

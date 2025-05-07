@@ -14,17 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MemberName: BlackSmith
   StartingLevel: 0
-  BaseHealth: 70
+  BaseHealth: 80
   BaseStr: 15
-  BaseInitiative: 3
+  BaseInitiative: 4
   BaseIntelligence: 5
-  BaseDefense: 15
+  BaseDefense: 20
   BaseResistance: 5
-  BaseSP: 20
+  BaseSP: 30
   Skills:
   - {fileID: 11400000, guid: baf568c628d2e92478669912977c98a4, type: 2}
-  - {fileID: 11400000, guid: e326ea454b1fb614b8f64d8701f32ba5, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
-  MemberBattleVisualPrefab: {fileID: 0}
-  MemberOverworldVisualPrefab: {fileID: 0}
+  - {fileID: 11400000, guid: 05a6a394742dc3747a90d9794f06e493, type: 2}
+  - {fileID: 11400000, guid: 9d029ad37e52c1747a16c62e0f31bbd6, type: 2}
+  - {fileID: 11400000, guid: 93b09c522682d3045bbccd076a801d54, type: 2}
+  MemberBattleVisualPrefab: {fileID: 2205692998541293068, guid: 8002748bc2d005e4dbdba9754125b735, type: 3}
+  MemberOverworldVisualPrefab: {fileID: 7749065504913115042, guid: 13a8747750432ab469913077ac51ecf5, type: 3}

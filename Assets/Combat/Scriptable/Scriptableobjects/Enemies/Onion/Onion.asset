@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d35258f1d01fa2a44a63229c433d7a94, type: 3}
+  m_Name: Onion
+  m_EditorClassIdentifier: 
+  EnemyName: Onion
+  BaseHealth: 50
+  BaseStr: 5
+  BaseInitiative: 4
+  BaseIntelligence: 20
+  BaseDefense: 10
+  BaseResistance: 15
+  BaseSP: 20
+  StartingLevel: 1
+  EnemyVisualPrefab: {fileID: 2803478007934262862, guid: 577b65f5406d45447b9cabc023e19f77, type: 3}
+  BasicSkill: {fileID: 11400000, guid: e757bc2f8699fcf4eb424ab5d304b150, type: 2}
+  SpecialSkill: {fileID: 11400000, guid: 4ef5533332a3c20408110dae78150569, type: 2}

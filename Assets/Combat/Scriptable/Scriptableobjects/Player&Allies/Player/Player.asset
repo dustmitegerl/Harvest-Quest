@@ -20,7 +20,7 @@ MonoBehaviour:
   BaseIntelligence: 10
   BaseDefense: 10
   BaseResistance: 10
-  BaseSP: 20
+  BaseSP: 60
   Skills:
   - {fileID: 11400000, guid: 7750e6ddc225456448026dd26bcffa45, type: 2}
   - {fileID: 11400000, guid: 6a079a2f4e92d184bb59ee5ec5d3fa55, type: 2}

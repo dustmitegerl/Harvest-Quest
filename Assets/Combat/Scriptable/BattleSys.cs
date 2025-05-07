@@ -10,7 +10,7 @@ using UnityEngine.SceneManagement;
 
 public class BattleSys : MonoBehaviour
 {
-    #region fields
+
     [SerializeField] private enum BattleState { Start, Selection, Battle, Won, Lost, Run }
 
     [Header("Battle State")]
@@ -42,18 +42,15 @@ public class BattleSys : MonoBehaviour
     private PartyManager partyManager;
     private EnemyManager enemyManager;
     private int currentPlayer;
-    LevelLoader levelLoader;
 
     private const string ACTION_MESSAGE = "'s Action:";
     private const string WIN_MESSAGE = "You won the battle!";
     private const string LOSE_MESSAGE = "You lost the battle!";
     private const int TURN_DURATION = 2; //turn duration
-    #endregion
     void Start()
     {
         partyManager = FindObjectOfType<PartyManager>();
         enemyManager = FindObjectOfType<EnemyManager>();
-        levelLoader = FindAnyObjectByType<LevelLoader>();
 
         CreatePartyEntities();
         CreateEnemyEntities();
@@ -62,6 +59,7 @@ public class BattleSys : MonoBehaviour
         state = BattleState.Battle;
         ShowBattleMenu();
     }
+
 
     private IEnumerator BattleRoutine()
     {
@@ -103,123 +101,120 @@ public class BattleSys : MonoBehaviour
             enemySelectionMenu.SetActive(false);
         }
 
+
         yield return null;
     }
 
+
     private IEnumerator AttackRoutine(int i)
+{
+    BattleEntities currAttacker = allBattlers[i];
+
+    // === PLAYER TURN ===
+    if (currAttacker.IsPlayer)
     {
-        BattleEntities currAttacker = allBattlers[i];
-
-        // === PLAYER TURN ===
-        if (currAttacker.IsPlayer)
+        if (currAttacker.Target < 0 || currAttacker.Target >= allBattlers.Count || allBattlers[currAttacker.Target].IsPlayer)
         {
-            if (currAttacker.Target < 0 || currAttacker.Target >= allBattlers.Count || allBattlers[currAttacker.Target].IsPlayer)
-            {
-                currAttacker.SetTarget(GetRandomEnemy());
-            }
-
-            BattleEntities currTarget = allBattlers[currAttacker.Target];
-            AttackAction(currAttacker, currTarget);
-            yield return new WaitForSeconds(TURN_DURATION);
-
-            if (currTarget.CurrHealth <= 0)
-            {
-                allBattlers.Remove(currTarget);
-                enemyBattlers.Remove(currTarget);
-                
-
-                bottomText.text = currAttacker.Name + " defeated " + currTarget.Name + "!";
-
-                if (enemyBattlers.Count <= 0)
-                {
-                    state = BattleState.Won;
-                    bottomText.text = WIN_MESSAGE;
-                    EndBattle();
-                    yield break;
-                }
-            }
+            currAttacker.SetTarget(GetRandomEnemy());
         }
 
-        // === ENEMY TURN ===
-        else
+        BattleEntities currTarget = allBattlers[currAttacker.Target];
+        AttackAction(currAttacker, currTarget);
+        yield return new WaitForSeconds(TURN_DURATION);
+
+        if (currTarget.CurrHealth <= 0)
         {
-            currAttacker.BattleAction = BattleEntities.Action.Attack;
+            allBattlers.Remove(currTarget);
+            enemyBattlers.Remove(currTarget);
 
-            // Skill selection
-            Skill chosen = null;
-            Enemy matchingEnemyData = enemyManager.GetCurrentEnemies().Find(e => e.EnemyName == currAttacker.Name);
+            if (currTarget.BattleVisuals != null)
+                StartCoroutine(SafeDestroy(currTarget.BattleVisuals));
 
-            if (matchingEnemyData != null)
+            bottomText.text = currAttacker.Name + " defeated " + currTarget.Name + "!";
+
+            if (enemyBattlers.Count <= 0)
             {
-                bool useSpecial = Random.value > 0.7f && matchingEnemyData.SpecialSkill != null;
-
-                if (useSpecial)
-                    chosen = matchingEnemyData.SpecialSkill;
-                else if (matchingEnemyData.BasicSkill != null)
-                    chosen = matchingEnemyData.BasicSkill;
-            }
-
-            // Fallback skill
-            if (chosen == null)
-            {
-                Debug.LogWarning($"{currAttacker.Name} has no skill assigned. Using fallback.");
-                chosen = ScriptableObject.CreateInstance<Skill>();
-                chosen.SkillName = "Enemy Claw";
-                chosen.DealsDamage = true;
-                chosen.DamageAmount = currAttacker.Strength;
-                chosen.TargetType = SkillTarget.OneEnemy;
-            }
-
-            currAttacker.ChosenSkill = chosen;
-
-            // === Targeting based on skill ===
-            switch (chosen.TargetType)
-            {
-                case SkillTarget.OneEnemy:
-                    currAttacker.SetTarget(GetRandomPartyMember());
-                    break;
-
-                case SkillTarget.AllEnemies:
-                case SkillTarget.AllAllies:
-                case SkillTarget.Self:
-                    currAttacker.SetTarget(-1); // No specific target needed
-                    break;
-
-                case SkillTarget.OneAlly:
-                    currAttacker.SetTarget(GetRandomEnemy());
-                    break;
-            }
-
-            // Perform action
-            BattleEntities currTarget = currAttacker.Target >= 0 && currAttacker.Target < allBattlers.Count
-                ? allBattlers[currAttacker.Target]
-                : null;
-
-            AttackAction(currAttacker, currTarget);
-            yield return new WaitForSeconds(TURN_DURATION);
-
-            // Handle target death (only if it's a player and single-target)
-            if (currTarget != null && currTarget.IsPlayer && currTarget.CurrHealth <= 0)
-            {
-                allBattlers.Remove(currTarget);
-                playerBattlers.Remove(currTarget);
-                Destroy(currTarget.BattleVisuals.gameObject);
-
-                bottomText.text = currAttacker.Name + " defeated " + currTarget.Name + "!";
-
-                if (playerBattlers.Count <= 0)
-                {
-                    state = BattleState.Lost;
-                    bottomText.text = LOSE_MESSAGE;
-                    battleMenu.SetActive(false);
-                    skillSelectionMenu.SetActive(false);
-                    enemySelectionMenu.SetActive(false);
-                    EndBattle();
-                    yield break;
-                }
+                state = BattleState.Won;
+                bottomText.text = WIN_MESSAGE;
+                StartCoroutine(DelayedSceneLoad("Farm", TURN_DURATION));
+                yield break;
             }
         }
     }
+    // === ENEMY TURN ===
+    else
+    {
+        currAttacker.BattleAction = BattleEntities.Action.Attack;
+
+        Skill chosen = null;
+        Enemy matchingEnemyData = enemyManager.GetCurrentEnemies().Find(e => e.EnemyName == currAttacker.Name);
+
+        if (matchingEnemyData != null)
+        {
+            bool useSpecial = Random.value > 0.7f && matchingEnemyData.SpecialSkill != null;
+            chosen = useSpecial ? matchingEnemyData.SpecialSkill : matchingEnemyData.BasicSkill;
+        }
+
+        if (chosen == null)
+        {
+            Debug.LogWarning($"{currAttacker.Name} has no skill assigned. Using fallback.");
+            chosen = ScriptableObject.CreateInstance<Skill>();
+            chosen.SkillName = "Enemy Claw";
+            chosen.DealsDamage = true;
+            chosen.DamageAmount = currAttacker.Strength;
+            chosen.TargetType = SkillTarget.OneEnemy;
+        }
+
+        currAttacker.ChosenSkill = chosen;
+
+        switch (chosen.TargetType)
+        {
+            case SkillTarget.OneEnemy:
+                currAttacker.SetTarget(GetRandomPartyMember());
+                break;
+            case SkillTarget.AllEnemies:
+            case SkillTarget.AllAllies:
+            case SkillTarget.Self:
+                currAttacker.SetTarget(-1);
+                break;
+            case SkillTarget.OneAlly:
+                currAttacker.SetTarget(GetRandomEnemy());
+                break;
+        }
+
+        BattleEntities currTarget = currAttacker.Target >= 0 && currAttacker.Target < allBattlers.Count
+            ? allBattlers[currAttacker.Target]
+            : null;
+
+        AttackAction(currAttacker, currTarget);
+        yield return new WaitForSeconds(TURN_DURATION);
+
+        if (currTarget != null && currTarget.IsPlayer && currTarget.CurrHealth <= 0)
+        {
+            allBattlers.Remove(currTarget);
+            playerBattlers.Remove(currTarget);
+
+            if (currTarget.BattleVisuals != null)
+                StartCoroutine(SafeDestroy(currTarget.BattleVisuals));
+
+            bottomText.text = currAttacker.Name + " defeated " + currTarget.Name + "!";
+
+            if (playerBattlers.Count <= 0)
+            {
+                state = BattleState.Lost;
+                bottomText.text = LOSE_MESSAGE;
+                battleMenu.SetActive(false);
+                skillSelectionMenu.SetActive(false);
+                enemySelectionMenu.SetActive(false);
+                StartCoroutine(DelayedSceneLoad("Farm", TURN_DURATION));
+                yield break;
+            }
+        }
+    }
+}
+
+
+
 
     private IEnumerator RunRoutine()
     {
@@ -243,52 +238,79 @@ public class BattleSys : MonoBehaviour
         }
     }
 
+
+
+    //kill enenmy
+
+
+    //enemies turn
+
+
+
     private void CreatePartyEntities()
+{
+    List<PartyMember> currentParty = partyManager.GetCurrentParty();
+
+    for (int i = 0; i < currentParty.Count; i++)
     {
-        // grab the current party list
-        List<PartyMember> currentParty = partyManager.GetCurrentParty();
+        PartyMember member = currentParty[i];
 
-        for (int i = 0; i < currentParty.Count; i++)
+        if (member == null)
         {
-            // create a new BattleEntity for each party member
-            BattleEntities tempEntity = new BattleEntities();
-
-            // feed in the expanded stats  
-            tempEntity.SetEntityValues(
-                currentParty[i].MemberName,
-                currentParty[i].CurrHealth,
-                currentParty[i].MaxHealth,
-                currentParty[i].Initiative,
-                currentParty[i].Strength,
-                currentParty[i].Intelligence,
-                currentParty[i].Defense,
-                currentParty[i].Resistance,
-                currentParty[i].Level,
-                true,
-                currentParty[i].CurrSP,
-                currentParty[i].MaxSP
-            );
-
-            // spawn their visuals
-            BattleVisuals tempBattleVisuals = Instantiate(
-                currentParty[i].MemberBattleVisualPrefab,
-                partySpawnPoints[i].position,
-                Quaternion.identity
-            ).GetComponent<BattleVisuals>();
-
-            // set visuals
-            tempBattleVisuals.SetStartingValues(
-                currentParty[i].MaxHealth,
-                currentParty[i].MaxHealth,
-                currentParty[i].Level
-            );
-
-            tempEntity.BattleVisuals = tempBattleVisuals;
-
-            allBattlers.Add(tempEntity);
-            playerBattlers.Add(tempEntity);
+            Debug.LogError($"Party member at index {i} is null.");
+            continue;
         }
+
+        if (member.MemberBattleVisualPrefab == null)
+        {
+            Debug.LogError($"Battle visual prefab missing for {member.MemberName}. Skipping.");
+            continue;
+        }
+
+        if (i >= partySpawnPoints.Length)
+        {
+            Debug.LogError($"Not enough party spawn points. Index {i} out of range.");
+            continue;
+        }
+
+        BattleEntities tempEntity = new BattleEntities();
+
+        tempEntity.SetEntityValues(
+            member.MemberName,
+            member.CurrHealth,
+            member.MaxHealth,
+            member.Initiative,
+            member.Strength,
+            member.Intelligence,
+            member.Defense,
+            member.Resistance,
+            member.Level,
+            true,
+            member.CurrSP,
+            member.MaxSP
+        );
+
+        GameObject visualObj = Instantiate(
+            member.MemberBattleVisualPrefab,
+            partySpawnPoints[i].position,
+            Quaternion.identity
+        );
+
+        BattleVisuals visuals = visualObj.GetComponent<BattleVisuals>();
+        if (visuals == null)
+        {
+            Debug.LogError($"Missing BattleVisuals component on {member.MemberName}'s prefab.");
+            continue;
+        }
+
+        visuals.SetStartingValues(member.MaxHealth, member.CurrHealth, member.Level);
+        tempEntity.BattleVisuals = visuals;
+
+        allBattlers.Add(tempEntity);
+        playerBattlers.Add(tempEntity);
     }
+}
+
 
     private void CreateEnemyEntities()
     {
@@ -334,31 +356,34 @@ public class BattleSys : MonoBehaviour
         }
     }
 
+
+
     public void ShowBattleMenu()
     {
-        // Skip any dead players
+        // skip dead players
         while (currentPlayer < playerBattlers.Count && playerBattlers[currentPlayer].CurrHealth <= 0)
         {
             currentPlayer++;
         }
 
-        // If all players are dead or we've gone past the list, trigger enemy turn
+        // if no players left, go to enemy turn
         if (currentPlayer >= playerBattlers.Count)
         {
             StartCoroutine(BattleRoutine());
             return;
         }
 
+        // don’t open menu unless we’re in battle state
         if (state != BattleState.Battle)
         {
-            Debug.LogWarning("Tried to show battle menu while not in battle state.");
+            Debug.LogWarning("Tried to open menu when not in battle");
             return;
         }
 
-        // Set UI title
+        // set the title like "Corn's Action:"
         actionText.text = playerBattlers[currentPlayer].Name + ACTION_MESSAGE;
 
-        // Pull current player's skills
+        // grab the current player's actual skill list
         PartyMember memberData = partyManager.GetCurrentParty()[currentPlayer];
 
         for (int i = 0; i < skillButtons.Length; i++)
@@ -367,35 +392,64 @@ public class BattleSys : MonoBehaviour
             {
                 Skill skill = memberData.Skills[i];
 
+                // turn on the button and set name
                 skillButtons[i].SetActive(true);
                 skillButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = skill.SkillName;
 
-                int index = i; // capture index for closure
-                skillButtons[i].GetComponent<Button>().onClick.RemoveAllListeners();
-                skillButtons[i].GetComponent<Button>().onClick.AddListener(() => OnSkillSelected(skill));
+                int index = i; // lock in current index for this button
+                Button btn = skillButtons[i].GetComponent<Button>();
 
-                // Show description on hover
+                btn.onClick.RemoveAllListeners();
+                btn.onClick.AddListener(() => OnSkillSelected(skill));
+
+                // hover setup for skill description
                 EventTrigger trigger = skillButtons[i].GetComponent<EventTrigger>();
                 if (trigger != null)
                 {
                     trigger.triggers.Clear();
-                    var entry = new EventTrigger.Entry
+
+                    // when we hover, set the description
+                    var enter = new EventTrigger.Entry { eventID = EventTriggerType.PointerEnter };
+                    enter.callback.AddListener((_) =>
                     {
-                        eventID = EventTriggerType.PointerEnter
-                    };
-                    entry.callback.AddListener((_) => skillDescriptionText.text = skill.Description);
-                    trigger.triggers.Add(entry);
+                        //Debug.Log("Hovered on skill: " + skill.SkillName);
+                        if (skillDescriptionText != null)
+                        {
+                            //Debug.Log("Skill Desc Text is working");
+                            skillDescriptionText.text = skill.Description;
+                            skillDescriptionText.gameObject.SetActive(true); // make sure it's turned on
+                        }
+                        else
+                        {
+                            //Debug.LogWarning("skillDescriptionText is NULL");
+                        }
+                    });
+
+                    // when we stop hovering, clear it (optional)
+                    var exit = new EventTrigger.Entry { eventID = EventTriggerType.PointerExit };
+                    exit.callback.AddListener((_) =>
+                    {
+                        skillDescriptionText.text = "";
+                        skillDescriptionText.gameObject.SetActive(false);
+                    });
+
+                    trigger.triggers.Add(enter);
+                    trigger.triggers.Add(exit);
                 }
             }
             else
             {
-                skillButtons[i].SetActive(false); // hide unused buttons
+                skillButtons[i].SetActive(false); // button not used for this character
             }
         }
 
-        // Show menu
         battleMenu.SetActive(true);
     }
+
+
+
+
+
 
     private void OnSkillSelected(Skill selectedSkill)
     {
@@ -425,6 +479,9 @@ public class BattleSys : MonoBehaviour
         }
     }
 
+
+
+
     public void ShowEnemySelectionMenu()
     {
         battleMenu.SetActive(false); //disable action menu
@@ -433,38 +490,50 @@ public class BattleSys : MonoBehaviour
         SetEnemySelectionButtons();
     }
 
-    private void SetEnemySelectionButtons()
+
+   private void SetEnemySelectionButtons()
+{
+    for (int i = 0; i < enemySelectionButtons.Length; i++)
+        enemySelectionButtons[i].SetActive(false);
+
+    for (int j = 0; j < enemyBattlers.Count; j++)
     {
-        for (int i = 0; i < enemySelectionButtons.Length; i++)
+        enemySelectionButtons[j].SetActive(true);
+        enemySelectionButtons[j].GetComponentInChildren<TextMeshProUGUI>().text = enemyBattlers[j].Name;
+
+        int index = j;
+
+        Button btn = enemySelectionButtons[j].GetComponent<Button>();
+        btn.onClick.RemoveAllListeners();
+        btn.onClick.AddListener(() => SelectEnemy(index));
+
+        // Hover FX
+        EventTrigger trigger = enemySelectionButtons[j].GetComponent<EventTrigger>();
+        if (trigger == null)
+            trigger = enemySelectionButtons[j].AddComponent<EventTrigger>();
+
+        trigger.triggers.Clear();
+
+        var enter = new EventTrigger.Entry { eventID = EventTriggerType.PointerEnter };
+        enter.callback.AddListener((_) =>
         {
-            enemySelectionButtons[i].SetActive(false);
-        }
+            if (enemyBattlers[index] != null)
+                enemyBattlers[index].BattleVisuals.Highlight(true);
+        });
 
-        for (int j = 0; j < enemyBattlers.Count; j++)
+        var exit = new EventTrigger.Entry { eventID = EventTriggerType.PointerExit };
+        exit.callback.AddListener((_) =>
         {
-            enemySelectionButtons[j].SetActive(true);
+            if (enemyBattlers[index] != null)
+                enemyBattlers[index].BattleVisuals.Highlight(false);
+        });
 
-            enemySelectionButtons[j].GetComponentInChildren<TextMeshProUGUI>().text = enemyBattlers[j].Name;
-
-
-            int index = j; // closure fix
-
-            // Add hover highlight
-            EventTrigger trigger = enemySelectionButtons[j].GetComponent<EventTrigger>();
-            if (trigger != null)
-            {
-                trigger.triggers.Clear();
-
-                var enter = new EventTrigger.Entry { eventID = EventTriggerType.PointerEnter };
-                enter.callback.AddListener((_) => enemyBattlers[index].BattleVisuals.Highlight(true));
-                trigger.triggers.Add(enter);
-
-                var exit = new EventTrigger.Entry { eventID = EventTriggerType.PointerExit };
-                exit.callback.AddListener((_) => enemyBattlers[index].BattleVisuals.Highlight(false));
-                trigger.triggers.Add(exit);
-            }
-        }
+        trigger.triggers.Add(enter);
+        trigger.triggers.Add(exit);
     }
+}
+
+
 
     public void SelectEnemy(int currentEnemy)
 
@@ -489,129 +558,149 @@ public class BattleSys : MonoBehaviour
     }
 
     private void AttackAction(BattleEntities currAttacker, BattleEntities currTarget)
+{
+    Skill usedSkill = currAttacker.ChosenSkill;
+    string actionLine = currAttacker.Name + " uses " + usedSkill.SkillName;
+
+    // SP logic
+    if (usedSkill.RestoresSP)
     {
-        Skill usedSkill = currAttacker.ChosenSkill;
-        string actionLine = currAttacker.Name + " uses " + usedSkill.SkillName;
+        currAttacker.CurrSP += usedSkill.SPRestoreAmount;
+        if (currAttacker.CurrSP > currAttacker.MaxSP)
+            currAttacker.CurrSP = currAttacker.MaxSP;
 
-        // SP cost / regen
-        if (usedSkill.RestoresSP)
-        {
-            currAttacker.CurrSP += usedSkill.SPRestoreAmount;
-            if (currAttacker.CurrSP > currAttacker.MaxSP)
-                currAttacker.CurrSP = currAttacker.MaxSP;
+        bottomText.text += $"\n{currAttacker.Name} restores {usedSkill.SPRestoreAmount} SP!";
+    }
+    else if (usedSkill.SPCost > 0)
+    {
+        currAttacker.CurrSP -= usedSkill.SPCost;
+        if (currAttacker.CurrSP < 0) currAttacker.CurrSP = 0;
+    }
 
-            bottomText.text += $"\n{currAttacker.Name} restores {usedSkill.SPRestoreAmount} SP!";
-        }
-        else if (usedSkill.SPCost > 0)
-        {
-            currAttacker.CurrSP -= usedSkill.SPCost;
-            if (currAttacker.CurrSP < 0) currAttacker.CurrSP = 0;
-        }
+    // Animation
+    if (currAttacker.BattleVisuals != null)
+    {
+        if (!string.IsNullOrEmpty(usedSkill.AnimationTrigger))
+            currAttacker.BattleVisuals.PlayAnimation(usedSkill.AnimationTrigger);
+        else if (usedSkill.SkillName.ToLower().Contains("special"))
+            currAttacker.BattleVisuals.PlaySpecialAttackAnimation();
+        else
+            currAttacker.BattleVisuals.PlayAttackAnimation();
+    }
 
-        // Play animations
-        if (currAttacker.BattleVisuals != null)
+    // === Damage ===
+    if (usedSkill.DealsDamage)
+    {
+        if (usedSkill.TargetType == SkillTarget.AllEnemies)
         {
-            if (usedSkill.SkillName.ToLower().Contains("special"))
-                currAttacker.BattleVisuals.PlaySpecialAttackAnimation();
-            else
-                currAttacker.BattleVisuals.PlayAttackAnimation();
-        }
-
-        //  Damage
-        if (usedSkill.DealsDamage)
-        {
-            if (usedSkill.TargetType == SkillTarget.AllEnemies)
+            List<BattleEntities> toRemove = new();
+            foreach (var enemy in enemyBattlers)
             {
-                List<BattleEntities> enemiesToRemove = new();
+                int damage = Mathf.Max(0, usedSkill.DamageAmount + currAttacker.Strength - enemy.Defense);
+                enemy.CurrHealth -= damage;
+                enemy.UpdateUI();
+                bottomText.text = $"{currAttacker.Name} hits {enemy.Name} for {damage}!";
 
-                foreach (var enemy in enemyBattlers)
-                {
-                    int damage = Mathf.Max(0, usedSkill.DamageAmount + currAttacker.Strength - enemy.Defense);
-                    enemy.CurrHealth -= damage;
-                    enemy.UpdateUI();
+                if (enemy.CurrHealth <= 0)
+                    toRemove.Add(enemy);
+            }
 
-                    bottomText.text = $"{currAttacker.Name} hits {enemy.Name} for {damage} damage!";
+            foreach (var dead in toRemove)
+            {
+                allBattlers.Remove(dead);
+                enemyBattlers.Remove(dead);
+                StartCoroutine(SafeDestroy(dead.BattleVisuals));
+            }
 
-                    if (enemy.CurrHealth <= 0)
-                        enemiesToRemove.Add(enemy);
-                }
+            if (enemyBattlers.Count <= 0)
+            {
+                state = BattleState.Won;
+                bottomText.text = WIN_MESSAGE;
+                StartCoroutine(DelayedSceneLoad("Farm", TURN_DURATION));
+                return;
+            }
+        }
+        else if (currTarget != null)
+        {
+            int damage = Mathf.Max(0, usedSkill.DamageAmount + currAttacker.Strength - currTarget.Defense);
+            currTarget.CurrHealth -= damage;
+            currTarget.UpdateUI();
+            bottomText.text = actionLine + " on " + currTarget.Name + " for " + damage + " damage!";
 
-                foreach (var dead in enemiesToRemove)
-                {
-                    allBattlers.Remove(dead);
-                    enemyBattlers.Remove(dead);
-                    StartCoroutine(SafeDestroy(dead.BattleVisuals));
-                }
+            if (currTarget.CurrHealth <= 0)
+            {
+                allBattlers.Remove(currTarget);
+                if (!currTarget.IsPlayer) enemyBattlers.Remove(currTarget);
+                else playerBattlers.Remove(currTarget);
+                StartCoroutine(SafeDestroy(currTarget.BattleVisuals));
+
+                bottomText.text = currAttacker.Name + " defeated " + currTarget.Name + "!";
 
                 if (enemyBattlers.Count <= 0)
                 {
                     state = BattleState.Won;
                     bottomText.text = WIN_MESSAGE;
-                    EndBattle();
+                    StartCoroutine(DelayedSceneLoad("Farm", TURN_DURATION));
+                    return;
                 }
-            }
-            else if (currTarget != null)
-            {
-                int damage = Mathf.Max(0, usedSkill.DamageAmount + currAttacker.Strength - currTarget.Defense);
-                currTarget.CurrHealth -= damage;
-                currTarget.UpdateUI();
 
-                bottomText.text = actionLine + " on " + currTarget.Name + " for " + damage + " damage!";
-
-                if (currTarget.CurrHealth <= 0)
+                if (playerBattlers.Count <= 0)
                 {
-                    allBattlers.Remove(currTarget);
-                    if (!currTarget.IsPlayer) enemyBattlers.Remove(currTarget);
-                    else playerBattlers.Remove(currTarget);
-
-                    StartCoroutine(SafeDestroy(currTarget.BattleVisuals));
-                    bottomText.text = currAttacker.Name + " defeated " + currTarget.Name + "!";
-
-                    if (enemyBattlers.Count <= 0)
-                    {
-                        state = BattleState.Won;
-                        bottomText.text = WIN_MESSAGE;
-                        EndBattle();
-                    }
-
-                    if (playerBattlers.Count <= 0)
-                    {
-                        state = BattleState.Lost;
-                        bottomText.text = LOSE_MESSAGE;
-                        battleMenu.SetActive(false);
-                        skillSelectionMenu.SetActive(false);
-                        enemySelectionMenu.SetActive(false);
-                        EndBattle();
-                    }
+                    state = BattleState.Lost;
+                    bottomText.text = LOSE_MESSAGE;
+                    StartCoroutine(DelayedSceneLoad("Farm", TURN_DURATION));
+                    return;
                 }
             }
         }
-
-        // Healing
-        else if (usedSkill.Heals)
-        {
-            BattleEntities healTarget = currAttacker;
-
-            healTarget.CurrHealth += usedSkill.HealAmount;
-            if (healTarget.CurrHealth > healTarget.MaxHealth)
-                healTarget.CurrHealth = healTarget.MaxHealth;
-
-            healTarget.UpdateUI();
-            bottomText.text = actionLine + " and heals " + healTarget.Name + " for " + usedSkill.HealAmount + " HP!";
-        }
-
-        // ❔ Nothing
-        else
-        {
-            bottomText.text = actionLine + ", but nothing happens.";
-        }
     }
 
-    void EndBattle()
+    // === Heal ===
+    else if (usedSkill.Heals)
     {
-        Destroy(enemyManager.gameObject);
-        levelLoader.LoadLevel("Farm");
+        BattleEntities healTarget = currAttacker;
+        healTarget.CurrHealth += usedSkill.HealAmount;
+        if (healTarget.CurrHealth > healTarget.MaxHealth)
+            healTarget.CurrHealth = healTarget.MaxHealth;
+
+        healTarget.UpdateUI();
+        bottomText.text = actionLine + " and heals " + healTarget.Name + " for " + usedSkill.HealAmount + " HP!";
     }
+
+    // === Debuff ===
+    if (usedSkill.AppliesDebuff && currTarget != null)
+    {
+        switch (usedSkill.TargetStatName.ToLower())
+        {
+            case "defense":
+                currTarget.Defense = Mathf.Max(0, currTarget.Defense - usedSkill.DebuffAmount);
+                bottomText.text += $"\n{currTarget.Name}'s Defense dropped!";
+                break;
+            case "resistance":
+                currTarget.Resistance = Mathf.Max(0, currTarget.Resistance - usedSkill.DebuffAmount);
+                bottomText.text += $"\n{currTarget.Name}'s Resistance dropped!";
+                break;
+            case "initiative":
+            case "speed":
+                currTarget.Initiative = Mathf.Max(0, currTarget.Initiative - usedSkill.DebuffAmount);
+                bottomText.text += $"\n{currTarget.Name} slowed down!";
+                break;
+            default:
+                Debug.LogWarning("Unknown debuff stat: " + usedSkill.TargetStatName);
+                break;
+        }
+    }
+
+    // === Nothing ===
+    if (!usedSkill.DealsDamage && !usedSkill.Heals && !usedSkill.AppliesDebuff)
+    {
+        bottomText.text = actionLine + ", but nothing happened.";
+    }
+}
+
+
+
+
 
     private int GetRandomPartyMember()
     {
@@ -668,6 +757,13 @@ public class BattleSys : MonoBehaviour
         skillSelectionMenu.SetActive(true);
         //ShowBattleMenu();
     }
+
+    private IEnumerator DelayedSceneLoad(string sceneName, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        SceneManager.LoadScene(sceneName);
+    }
+
     private IEnumerator SafeDestroy(BattleVisuals visuals, float delay = 0.1f)
     {
         yield return new WaitForSeconds(delay);
@@ -675,7 +771,13 @@ public class BattleSys : MonoBehaviour
             Destroy(visuals.gameObject);
     }
 
+
+
 }
+
+
+
+
 
 [System.Serializable]
 public class BattleEntities
@@ -738,3 +840,12 @@ public class BattleEntities
         BattleVisuals.ChangeHealth(CurrHealth);
     }
 }
+
+
+
+
+
+
+
+
+

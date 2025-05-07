@@ -16,8 +16,6 @@ GameObject:
   - component: {fileID: 6718740423815525231}
   - component: {fileID: -5380860584421605747}
   - component: {fileID: 1900830614517605683}
-  - component: {fileID: 1942741642500294949}
-  - component: {fileID: 7326330342829654944}
   m_Layer: 0
   m_Name: PlayerHarvestQuest
   m_TagString: Player
@@ -127,7 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e7f0dd0a8a83fa49a8d581bb408804f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCam: {fileID: 5032535505117605350}
+  mainCam: {fileID: 0}
   overWorldName: Interact
   battleArenaName: BattleArena
   currentSceneName: 
@@ -245,76 +243,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
---- !u!114 &1942741642500294949
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3037191485019776758}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 549ee61edb255a24fbcef61372f8e0f6, type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Player
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
---- !u!114 &7326330342829654944
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3037191485019776758}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7b969494113d314092009dc238bdff5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  slots:
-  - item: {fileID: 11400000, guid: 4fde4eda47a3e8344883c6af47295591, type: 2}
-    count: 2
-  - item: {fileID: 11400000, guid: 9d41d9e91dc7e7d44a0c2f3928f9eeba, type: 2}
-    count: 3
-  - item: {fileID: 11400000, guid: 025c6fe206ce59b458f77571bcce92f0, type: 2}
-    count: 5
-  - item: {fileID: 11400000, guid: 0c95d8e215ec78f4da1c8a5d029f22e0, type: 2}
-    count: 1
-  - item: {fileID: 11400000, guid: c6f4b8c197e0c9e498f7dd6dec3fbd20, type: 2}
-    count: 2
-  - item: {fileID: 11400000, guid: 575f95707e812324eb6a2f08eafa8477, type: 2}
-    count: 4
-  - item: {fileID: 11400000, guid: 62bd6fb4b5001aa45bf0b65e7d15495d, type: 2}
-    count: 2
-  - item: {fileID: 11400000, guid: 43d1b1cc43a64994eae73953fa3eb026, type: 2}
-    count: 4
-  - item: {fileID: 11400000, guid: 0002084ab748d7d49a01be7bfb1809f9, type: 2}
-    count: 6
-  - item: {fileID: 11400000, guid: 8a9c4bb672c916e4ea4e0e65748671e5, type: 2}
-    count: 1
-  - item: {fileID: 11400000, guid: db2176c515cc9924193741d90fc42ebf, type: 2}
-    count: 5
-  - item: {fileID: 11400000, guid: c3578938d34a8d64a9dd24e320de973f, type: 2}
-    count: 4
-  - item: {fileID: 11400000, guid: 4fde4eda47a3e8344883c6af47295591, type: 2}
-    count: 2
+  m_Constraints: 0
 --- !u!1 &5032535505117605350
 GameObject:
   m_ObjectHideFlags: 0
@@ -326,8 +255,6 @@ GameObject:
   - component: {fileID: 4475544046581793412}
   - component: {fileID: 7924080173493702890}
   - component: {fileID: 8363974995146353045}
-  - component: {fileID: 8381687639433796840}
-  - component: {fileID: 2921390050121206261}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -344,7 +271,7 @@ Transform:
   m_GameObject: {fileID: 5032535505117605350}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -12.5}
+  m_LocalPosition: {x: -0.625, y: -0.625, z: -12.5}
   m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -385,7 +312,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 4.8
+  orthographic size: 5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -409,81 +336,3 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5032535505117605350}
   m_Enabled: 1
---- !u!114 &8381687639433796840
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5032535505117605350}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72ece51f2901e7445ab60da3685d6b5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ShowDebugText: 0
-  m_ShowCameraFrustum: 1
-  m_IgnoreTimeScale: 0
-  m_WorldUpOverride: {fileID: 0}
-  m_UpdateMethod: 2
-  m_BlendUpdateMethod: 1
-  m_DefaultBlend:
-    m_Style: 1
-    m_Time: 2
-    m_CustomCurve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-  m_CustomBlends: {fileID: 0}
-  m_CameraCutEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_CameraActivatedEvent:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!114 &2921390050121206261
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5032535505117605350}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_RenderShadows: 1
-  m_RequiresDepthTextureOption: 2
-  m_RequiresOpaqueTextureOption: 2
-  m_CameraType: 0
-  m_Cameras: []
-  m_RendererIndex: -1
-  m_VolumeLayerMask:
-    serializedVersion: 2
-    m_Bits: 1
-  m_VolumeTrigger: {fileID: 0}
-  m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
-  m_Antialiasing: 0
-  m_AntialiasingQuality: 2
-  m_StopNaN: 0
-  m_Dithering: 0
-  m_ClearDepth: 1
-  m_AllowXRRendering: 1
-  m_AllowHDROutput: 1
-  m_UseScreenCoordOverride: 0
-  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
-  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
-  m_RequiresDepthTexture: 0
-  m_RequiresColorTexture: 0
-  m_Version: 2
-  m_TaaSettings:
-    quality: 3
-    frameInfluence: 0.1
-    jitterScale: 1
-    mipBias: 0
-    varianceClampScale: 0.9
-    contrastAdaptiveSharpening: 0

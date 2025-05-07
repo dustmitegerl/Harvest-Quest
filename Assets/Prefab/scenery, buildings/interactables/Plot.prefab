@@ -51,10 +51,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   plantingSpots: []
-  readyForHarvest: []
+  harvestSelections: []
   levelLoader: {fileID: 0}
   battleArenaName: BattleArena_Test
-  enemyManagerPrefab: {fileID: 0}
 --- !u!61 &7076612931929637429
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -114,7 +113,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialog:
     lines:
-    - Press C to harvest
+    - Press H to harvest
 --- !u!1001 &1742577497268748497
 PrefabInstance:
   m_ObjectHideFlags: 0

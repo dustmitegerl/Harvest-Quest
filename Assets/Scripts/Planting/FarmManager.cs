@@ -1,30 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using TMPro.Examples;
 using UnityEngine;
 
 public class FarmManager : MonoBehaviour, IDataPersistence
 {
-    public PlantingSO[] plantingSOs;
     public List<PlantingSpot> spotData;
     GameObject[] existingSpots;
-    #region making it a singleton
-    private static FarmManager _instance;
-    public static FarmManager Instance { get { return _instance; } }
-    private void Awake()
-    {
-        if (_instance != null && _instance != this)
-        {
-            Destroy(this.gameObject);
-        }
-        else
-        {
-            _instance = this;
-            DontDestroyOnLoad(this);
-        }
-    }
-    #endregion
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,23 +19,7 @@ public class FarmManager : MonoBehaviour, IDataPersistence
     {
         
     }
-    public PlantingSO GetPlantInfo(string plantName)
-    {
-        foreach (PlantingSO species in plantingSOs)
-        {
-            if (species.name.ToLower() == plantName.ToLower())
-            {
-                return species;
-            }
-            else
-            {
-                Debug.Log("failed to retrieve plant info");
-                return null;
-            }
-        }
-        Debug.Log("couldn't find plantingSOs");
-        return null;
-    }
+
     public void UpdateSpotData()
     {
         existingSpots = GameObject.FindGameObjectsWithTag("Planting Spot");

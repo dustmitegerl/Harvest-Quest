@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3145159194417299168}
   - component: {fileID: 8428809815481713975}
-  - component: {fileID: 1617179201577881402}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -51,18 +50,3 @@ MonoBehaviour:
   inventoryUI: {fileID: 0}
   actionKey: 99
   state: 0
---- !u!114 &1617179201577881402
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5179791305528178011}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d71aa38c2c565304d83da24539a5969b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogBox: {fileID: 0}
-  dialogText: {fileID: 0}
-  lettersPerSecond: 45

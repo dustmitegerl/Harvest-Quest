@@ -552,6 +552,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5db95c4c6d5974458cf6745b1070787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!60 &358405329 stripped
+PolygonCollider2D:
+  m_CorrespondingSourceObject: {fileID: 3456575191556274894, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
+  m_PrefabInstance: {fileID: 1024088384}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &427436664
 GameObject:
   m_ObjectHideFlags: 0
@@ -731,7 +736,7 @@ PrefabInstance:
     - target: {fileID: 2612625110932902913, guid: 5c29543ff785f5c44ade50e6a9636b13, type: 3}
       propertyPath: m_BoundingShape2D
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 358405329}
     - target: {fileID: 3740243437311482537, guid: 5c29543ff785f5c44ade50e6a9636b13, type: 3}
       propertyPath: m_LocalPosition.x
       value: -10.5

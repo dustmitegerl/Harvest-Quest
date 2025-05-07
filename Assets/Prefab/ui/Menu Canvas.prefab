@@ -6259,17 +6259,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7301a732b9a0812499e74ba93c410321, type: 3}
---- !u!114 &269529422991580336 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2690063141585516021, guid: 7301a732b9a0812499e74ba93c410321, type: 3}
-  m_PrefabInstance: {fileID: 2803642198661179717}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3da1c7be978a4be49962b1421b505799, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &7908589054882112651 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5415713112075849166, guid: 7301a732b9a0812499e74ba93c410321, type: 3}
@@ -6538,7 +6527,7 @@ PrefabInstance:
     - target: {fileID: 2952295134257625301, guid: cf206a1b1226475458b2a81cc4bbc78e, type: 3}
       propertyPath: itemSlotUI
       value: 
-      objectReference: {fileID: 269529422991580336}
+      objectReference: {fileID: 2690063141585516021, guid: 7301a732b9a0812499e74ba93c410321, type: 3}
     - target: {fileID: 3467117291430941938, guid: cf206a1b1226475458b2a81cc4bbc78e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FriendGiver : MonoBehaviour
 {
-    [SerializeField] NPCController friendToHelp;
+    [SerializeField] PartyManager friendToHelp;
     [SerializeField] Dialog dialog;
 
     bool used = false;
@@ -13,7 +13,7 @@ public class FriendGiver : MonoBehaviour
     {
         yield return DialogManager.Instance.ShowDialog(dialog);
 
-        //player.GetComponent<Inventory>().AddItem(friendToHelp, count);
+        //player.GetComponent<PartyManager>().AddMemberToPartyByName(friendToHelp);
 
         used = true;
 

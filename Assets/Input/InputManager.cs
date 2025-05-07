@@ -7,6 +7,8 @@ public class InputManager : MonoBehaviour
 {
     public static InputManager instance;
 
+    public static PlayerInput instances;
+
     public bool MenuOpenCloseInput {  get; private set; }
 
     private PlayerInput playerInput;

@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class InventoryUI : MonoBehaviour
@@ -72,8 +74,8 @@ public class InventoryUI : MonoBehaviour
         for (int i = 0; i < slotUIList.Count; i++)
         {
             if (i == selectedItem)
-                slotUIList[i].NameText.color = GlobalSettings.i.HighlightedColor;
-            else
+               //slotUIList[i].NameText.color = GlobalSettings.i.HighlightedColor;
+            //else
                 slotUIList[i].NameText.color = Color.blue;
         }
 
@@ -81,14 +83,14 @@ public class InventoryUI : MonoBehaviour
         itemIcon.sprite = item.Icon;
         itemDescription.text = item.Description;
 
-        //HandleScrolling();
+        HandleScrolling();
     }
 
-    /*void HandleScrolling()
+    void HandleScrolling()
     {
         if(slotUIList.Count <= itemsInViewport) return;
 
         float scrollPos = Mathf.Clamp(selectedItem - itemsInViewport/2, 0, selectedItem) * slotUIList[0].Height;
         itemListRect.localPosition = new Vector2(itemListRect.localPosition.x, scrollPos);
-    }*/
+    }
 }

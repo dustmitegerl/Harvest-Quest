@@ -10,18 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e24e6965b25bb7f4aa9f7c3fdc6bc4c1, type: 3}
-  m_Name: Sweet Relief
+  m_Name: Forge Fire
   m_EditorClassIdentifier: 
-  SkillName: Sweet Relief
-  Description: Heals a single Enemy.
-  SPCost: 0
+  SkillName: Forge Fire
+  Description: Deals Magical Fire Damage to a single Enemy
+  SPCost: 5
   RestoresSP: 0
   SPRestoreAmount: 0
-  DealsDamage: 0
-  DamageAmount: 0
-  Heals: 1
-  HealAmount: 20
+  DealsDamage: 1
+  DamageAmount: 25
+  Heals: 0
+  HealAmount: 0
   IsPhysicalAttack: 0
   TargetType: 0
   ChanceToDebuff: 0
   AnimationTrigger: 
+  AppliesDebuff: 0
+  TargetStatName: 
+  DebuffAmount: 0

@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: Onion
   m_EditorClassIdentifier: 
   EnemyName: Onion
-  BaseHealth: 1
-  BaseStr: 1
-  BaseInitiative: 1
-  BaseIntelligence: 1
-  BaseDefense: 1
-  BaseResistance: 1
+  BaseHealth: 50
+  BaseStr: 5
+  BaseInitiative: 4
+  BaseIntelligence: 20
+  BaseDefense: 10
+  BaseResistance: 15
   BaseSP: 20
   StartingLevel: 1
-  EnemyVisualPrefab: {fileID: 5288380385470459906, guid: 447de0c3ca418924791da8726a4394a5, type: 3}
-  BasicSkill: {fileID: 0}
-  SpecialSkill: {fileID: 0}
+  EnemyVisualPrefab: {fileID: 2803478007934262862, guid: 577b65f5406d45447b9cabc023e19f77, type: 3}
+  BasicSkill: {fileID: 11400000, guid: e757bc2f8699fcf4eb424ab5d304b150, type: 2}
+  SpecialSkill: {fileID: 11400000, guid: 4ef5533332a3c20408110dae78150569, type: 2}

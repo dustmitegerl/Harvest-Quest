@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: Strawberry
   m_EditorClassIdentifier: 
   EnemyName: Strawberry
-  BaseHealth: 0
-  BaseStr: 0
-  BaseInitiative: 0
-  BaseIntelligence: 0
-  BaseDefense: 0
-  BaseResistance: 0
+  BaseHealth: 40
+  BaseStr: 5
+  BaseInitiative: 5
+  BaseIntelligence: 10
+  BaseDefense: 5
+  BaseResistance: 15
   BaseSP: 20
   StartingLevel: 1
-  EnemyVisualPrefab: {fileID: 0}
-  BasicSkill: {fileID: 11400000, guid: 7c302ac59514a434f995b401fae34671, type: 2}
+  EnemyVisualPrefab: {fileID: 972861017402312197, guid: 07b1ee268ac236749aa939a279a5263f, type: 3}
+  BasicSkill: {fileID: 11400000, guid: 580ab028d6b332e43ac12d7ddecf680a, type: 2}
   SpecialSkill: {fileID: 11400000, guid: 7c302ac59514a434f995b401fae34671, type: 2}

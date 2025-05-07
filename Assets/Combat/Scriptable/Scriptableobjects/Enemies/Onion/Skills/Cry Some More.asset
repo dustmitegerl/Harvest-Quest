@@ -10,18 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e24e6965b25bb7f4aa9f7c3fdc6bc4c1, type: 3}
-  m_Name: Sweet Relief
+  m_Name: Cry Some More
   m_EditorClassIdentifier: 
-  SkillName: Sweet Relief
-  Description: Heals a single Enemy.
+  SkillName: Cry Some More
+  Description: Deals magical damage to a single enemy with a chance to lower resistance.
   SPCost: 0
   RestoresSP: 0
   SPRestoreAmount: 0
-  DealsDamage: 0
-  DamageAmount: 0
-  Heals: 1
-  HealAmount: 20
+  DealsDamage: 1
+  DamageAmount: 10
+  Heals: 0
+  HealAmount: 0
   IsPhysicalAttack: 0
   TargetType: 0
-  ChanceToDebuff: 0
+  ChanceToDebuff: 30
   AnimationTrigger: 
+  AppliesDebuff: 1
+  TargetStatName: Resistance
+  DebuffAmount: 5

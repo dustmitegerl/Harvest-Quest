@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e24e6965b25bb7f4aa9f7c3fdc6bc4c1, type: 3}
   m_Name: Stawberry Strike
   m_EditorClassIdentifier: 
-  SkillName: 
+  SkillName: Stawberry Strike
   Description: Physical Attack on single Enemy
   SPCost: 0
   RestoresSP: 0

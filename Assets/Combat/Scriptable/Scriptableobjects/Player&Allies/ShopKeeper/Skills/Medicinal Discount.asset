@@ -10,17 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e24e6965b25bb7f4aa9f7c3fdc6bc4c1, type: 3}
-  m_Name: Heal
+  m_Name: Medicinal Discount
   m_EditorClassIdentifier: 
-  SkillName: Heal
-  Description: Heal
-  SPCost: 10
+  SkillName: Medi-Discount
+  Description: Heals the entire party for 20 HP
+  SPCost: 20
   RestoresSP: 0
   SPRestoreAmount: 0
   DealsDamage: 0
   DamageAmount: 0
   Heals: 1
-  HealAmount: 15
-  TargetType: 2
+  HealAmount: 20
+  IsPhysicalAttack: 0
+  TargetType: 3
   ChanceToDebuff: 0
   AnimationTrigger: 

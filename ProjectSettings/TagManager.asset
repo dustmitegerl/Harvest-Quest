@@ -11,6 +11,7 @@ TagManager:
   - Canvas
   - Planting Spot
   - Plot
+  - Interaction Prompt
   layers:
   - Default
   - TransparentFX

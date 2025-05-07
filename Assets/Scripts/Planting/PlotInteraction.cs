@@ -9,7 +9,6 @@ public class PlotInteraction : MonoBehaviour
     [SerializeField] public List<PlantingSpot> readyForHarvest;
     [SerializeField] private LevelLoader levelLoader;
     [SerializeField] private string battleArenaName = "BattleArena_Test";
-    [SerializeField] private GameObject interactionPrompt; // UI Text for "Press E"
     
     private bool inRange = false;
 
@@ -24,8 +23,6 @@ public class PlotInteraction : MonoBehaviour
         {
             Debug.Log("player detected");
             inRange = true;
-            if (interactionPrompt != null)
-                interactionPrompt.SetActive(true);
         }
     }
 
@@ -34,8 +31,6 @@ public class PlotInteraction : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             inRange = false;
-            if (interactionPrompt != null)
-                interactionPrompt.SetActive(false);
         }
     }
 
@@ -56,8 +51,6 @@ public class PlotInteraction : MonoBehaviour
         if (inRange && Input.GetKeyDown(GameController.Instance.actionKey))
         {
             Debug.Log("Harvesting!");
-            if (interactionPrompt != null)
-                interactionPrompt.SetActive(false);
             StartBattle();
         }
     }

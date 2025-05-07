@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5962605653763600835}
   - component: {fileID: 7076612931929637429}
   - component: {fileID: 8368360820564873662}
+  - component: {fileID: 1017978082462149051}
   m_Layer: 6
   m_Name: Plot
   m_TagString: Untagged
@@ -114,6 +115,19 @@ MonoBehaviour:
   dialog:
     lines:
     - Press C to harvest
+--- !u!114 &1017978082462149051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4758069741136998532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c78139ec6d27bd49999c95f43ebcf5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionPrompt: {fileID: 7857729189848664492, guid: 91ff993500ed7104a9cb47bb4e47860e, type: 3}
 --- !u!1001 &1742577497268748497
 PrefabInstance:
   m_ObjectHideFlags: 0

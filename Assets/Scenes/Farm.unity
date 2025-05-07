@@ -790,6 +790,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c29543ff785f5c44ade50e6a9636b13, type: 3}
+--- !u!1 &709875617 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 441804649010800622, guid: 10bec964f709e2f4096e21f2df38511a, type: 3}
+  m_PrefabInstance: {fileID: 1837924789}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &891358392
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -989,10 +994,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1567912733723299876, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
+      propertyPath: interactionPrompt
+      value: 
+      objectReference: {fileID: 709875617}
     - target: {fileID: 2470961252343615027, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
       propertyPath: interactionPrompt
       value: 
-      objectReference: {fileID: 2091395757}
+      objectReference: {fileID: 0}
     - target: {fileID: 2484003480034048082, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
       propertyPath: m_Name
       value: Farm Ground
@@ -1000,11 +1009,15 @@ PrefabInstance:
     - target: {fileID: 3773308469991181198, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
       propertyPath: interactionPrompt
       value: 
-      objectReference: {fileID: 2091395757}
+      objectReference: {fileID: 0}
+    - target: {fileID: 4562837695464516850, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
+      propertyPath: interactionPrompt
+      value: 
+      objectReference: {fileID: 709875617}
     - target: {fileID: 5286561578042853468, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
       propertyPath: interactionPrompt
       value: 
-      objectReference: {fileID: 2091395757}
+      objectReference: {fileID: 0}
     - target: {fileID: 6249161277108458058, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1048,11 +1061,22 @@ PrefabInstance:
     - target: {fileID: 7191561794944906378, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
       propertyPath: interactionPrompt
       value: 
-      objectReference: {fileID: 2091395757}
+      objectReference: {fileID: 0}
+    - target: {fileID: 7548745338074862582, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
+      propertyPath: interactionPrompt
+      value: 
+      objectReference: {fileID: 709875617}
+    - target: {fileID: 9139322923145270859, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
+      propertyPath: interactionPrompt
+      value: 
+      objectReference: {fileID: 709875617}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 103577474209628525, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1333650399}
   m_SourcePrefab: {fileID: 100100000, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
 --- !u!1001 &1026135306
 PrefabInstance:
@@ -1168,6 +1192,24 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce11a56b085915740803c803d15ec3ad, type: 3}
+--- !u!1 &1333650394 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 103577474209628525, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
+  m_PrefabInstance: {fileID: 1024088384}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1333650399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1333650394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c78139ec6d27bd49999c95f43ebcf5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionPrompt: {fileID: 709875617}
 --- !u!1001 &1450453510
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1324,13 +1366,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2856071857940177822, guid: 10bec964f709e2f4096e21f2df38511a, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 891358395}
-    - target: {fileID: 3493443682769708191, guid: 10bec964f709e2f4096e21f2df38511a, type: 3}
-      propertyPath: m_text
-      value: Press [C] to Interact
+    - target: {fileID: 441804649010800622, guid: 10bec964f709e2f4096e21f2df38511a, type: 3}
+      propertyPath: m_TagString
+      value: Interaction Prompt
       objectReference: {fileID: 0}
     - target: {fileID: 3982552425146830406, guid: 10bec964f709e2f4096e21f2df38511a, type: 3}
       propertyPath: m_Pivot.x
@@ -1764,11 +1802,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a0789d2e05d164b43a313fef2299ac5b, type: 3}
---- !u!1 &2091395757 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 512316196978366251, guid: 10bec964f709e2f4096e21f2df38511a, type: 3}
-  m_PrefabInstance: {fileID: 1837924789}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2115763061580064744
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1902,6 +1935,7 @@ SceneRoots:
   - {fileID: 3281386769557230294}
   - {fileID: 891358392}
   - {fileID: 1024088384}
+  - {fileID: 1837924789}
   - {fileID: 427436665}
   - {fileID: 142908636}
   - {fileID: 614154137}
@@ -1910,7 +1944,6 @@ SceneRoots:
   - {fileID: 428059132}
   - {fileID: 2054002127}
   - {fileID: 1026135306}
-  - {fileID: 1837924789}
   - {fileID: 1884700059}
   - {fileID: 528892205}
   - {fileID: 1223664661}

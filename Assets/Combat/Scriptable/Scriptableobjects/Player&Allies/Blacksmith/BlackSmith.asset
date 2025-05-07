@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BlackSmith
   m_EditorClassIdentifier: 
   MemberName: BlackSmith
-  StartingLevel: 0
+  StartingLevel: 1
   BaseHealth: 70
   BaseStr: 15
   BaseInitiative: 3
@@ -26,5 +26,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e326ea454b1fb614b8f64d8701f32ba5, type: 2}
   - {fileID: 0}
   - {fileID: 0}
-  MemberBattleVisualPrefab: {fileID: 0}
-  MemberOverworldVisualPrefab: {fileID: 0}
+  MemberBattleVisualPrefab: {fileID: 2205692998541293068, guid: 8002748bc2d005e4dbdba9754125b735, type: 3}
+  MemberOverworldVisualPrefab: {fileID: 2205692998541293068, guid: 8002748bc2d005e4dbdba9754125b735, type: 3}

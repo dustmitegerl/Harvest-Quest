@@ -248,51 +248,68 @@ public class BattleSys : MonoBehaviour
 
 
     private void CreatePartyEntities()
+{
+    List<PartyMember> currentParty = partyManager.GetCurrentParty();
+
+    for (int i = 0; i < currentParty.Count; i++)
     {
-        // grab the current party list
-        List<PartyMember> currentParty = partyManager.GetCurrentParty();
+        PartyMember member = currentParty[i];
 
-        for (int i = 0; i < currentParty.Count; i++)
+        if (member == null)
         {
-            // create a new BattleEntity for each party member
-            BattleEntities tempEntity = new BattleEntities();
-
-            // feed in the expanded stats  
-            tempEntity.SetEntityValues(
-                currentParty[i].MemberName,
-                currentParty[i].CurrHealth,
-                currentParty[i].MaxHealth,
-                currentParty[i].Initiative,
-                currentParty[i].Strength,
-                currentParty[i].Intelligence,
-                currentParty[i].Defense,
-                currentParty[i].Resistance,
-                currentParty[i].Level,
-                true,
-                currentParty[i].CurrSP,
-                currentParty[i].MaxSP
-            );
-
-            // spawn their visuals
-            BattleVisuals tempBattleVisuals = Instantiate(
-                currentParty[i].MemberBattleVisualPrefab,
-                partySpawnPoints[i].position,
-                Quaternion.identity
-            ).GetComponent<BattleVisuals>();
-
-            // set visuals
-            tempBattleVisuals.SetStartingValues(
-                currentParty[i].MaxHealth,
-                currentParty[i].MaxHealth,
-                currentParty[i].Level
-            );
-
-            tempEntity.BattleVisuals = tempBattleVisuals;
-
-            allBattlers.Add(tempEntity);
-            playerBattlers.Add(tempEntity);
+            Debug.LogError($"Party member at index {i} is null.");
+            continue;
         }
+
+        if (member.MemberBattleVisualPrefab == null)
+        {
+            Debug.LogError($"Battle visual prefab missing for {member.MemberName}. Skipping.");
+            continue;
+        }
+
+        if (i >= partySpawnPoints.Length)
+        {
+            Debug.LogError($"Not enough party spawn points. Index {i} out of range.");
+            continue;
+        }
+
+        BattleEntities tempEntity = new BattleEntities();
+
+        tempEntity.SetEntityValues(
+            member.MemberName,
+            member.CurrHealth,
+            member.MaxHealth,
+            member.Initiative,
+            member.Strength,
+            member.Intelligence,
+            member.Defense,
+            member.Resistance,
+            member.Level,
+            true,
+            member.CurrSP,
+            member.MaxSP
+        );
+
+        GameObject visualObj = Instantiate(
+            member.MemberBattleVisualPrefab,
+            partySpawnPoints[i].position,
+            Quaternion.identity
+        );
+
+        BattleVisuals visuals = visualObj.GetComponent<BattleVisuals>();
+        if (visuals == null)
+        {
+            Debug.LogError($"Missing BattleVisuals component on {member.MemberName}'s prefab.");
+            continue;
+        }
+
+        visuals.SetStartingValues(member.MaxHealth, member.CurrHealth, member.Level);
+        tempEntity.BattleVisuals = visuals;
+
+        allBattlers.Add(tempEntity);
+        playerBattlers.Add(tempEntity);
     }
+}
 
 
     private void CreateEnemyEntities()

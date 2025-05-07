@@ -11,11 +11,25 @@ public class PartyManager : MonoBehaviour
 
     private void Awake()
     {
-        AddMemberToPartyByName(defaultPartyMember.MemberName);
+        // Clear current party to avoid duplicates on reloads
+        currentParty.Clear();
+
+        // Add all members at game start
+        foreach (var member in allMembers)
+        {
+            AddMemberToPartyByName(member.MemberName);
+        }
     }
 
-    public void AddMemberToPartyByName(string memberName) //look through all scriptable object to look for the actual member
+    public void AddMemberToPartyByName(string memberName)
     {
+        // Don’t add same member twice
+        foreach (var p in currentParty)
+        {
+            if (p.MemberName == memberName)
+                return;
+        }
+
         for (int i = 0; i < allMembers.Length; i++)
         {
             if (allMembers[i].MemberName == memberName)
@@ -40,7 +54,6 @@ public class PartyManager : MonoBehaviour
                 newPartyMember.MemberOverworldVisualPrefab = allMembers[i].MemberOverworldVisualPrefab;
                 newPartyMember.Skills = allMembers[i].Skills;
 
-
                 currentParty.Add(newPartyMember);
                 return;
             }
@@ -63,9 +76,9 @@ public class PartyMember
     public int MaxHealth;
 
     public int Strength;
-    public int Intelligence;  
-    public int Defense;       
-    public int Resistance;   
+    public int Intelligence;
+    public int Defense;
+    public int Resistance;
 
     public int Initiative;
 

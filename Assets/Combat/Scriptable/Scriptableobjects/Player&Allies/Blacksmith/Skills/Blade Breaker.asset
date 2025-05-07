@@ -10,18 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e24e6965b25bb7f4aa9f7c3fdc6bc4c1, type: 3}
-  m_Name: Fire Tornado
+  m_Name: Blade Breaker
   m_EditorClassIdentifier: 
-  SkillName: Fire Tornado
-  Description: Fire Magic that damages all Enemies
-  SPCost: 20
+  SkillName: Blade Breaker
+  Description: Deals Physical damage to a single Emeny. 50% chance to lower their
+    Attack.
+  SPCost: 0
   RestoresSP: 0
   SPRestoreAmount: 0
   DealsDamage: 1
-  DamageAmount: 10
+  DamageAmount: 15
   Heals: 0
   HealAmount: 0
   IsPhysicalAttack: 0
-  TargetType: 1
-  ChanceToDebuff: 0
+  TargetType: 0
+  ChanceToDebuff: 50
   AnimationTrigger: 
+  AppliesDebuff: 1
+  TargetStatName: Strength
+  DebuffAmount: 5

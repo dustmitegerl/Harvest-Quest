@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e24e6965b25bb7f4aa9f7c3fdc6bc4c1, type: 3}
-  m_Name: Sour Shot
+  m_Name: Forge Fire
   m_EditorClassIdentifier: 
-  SkillName: Sour Shot
-  Description: Shoots acidic Lemon Juice at an enemy.
-  SPCost: 10
+  SkillName: Forge Fire
+  Description: Deals Magical Fire Damage to a single Enemy
+  SPCost: 5
   RestoresSP: 0
   SPRestoreAmount: 0
   DealsDamage: 1
-  DamageAmount: 10
+  DamageAmount: 25
   Heals: 0
   HealAmount: 0
   IsPhysicalAttack: 0
   TargetType: 0
-  ChanceToDebuff: 50
+  ChanceToDebuff: 0
   AnimationTrigger: 
-  AppliesDebuff: 1
-  TargetStatName: Resistance
-  DebuffAmount: 5
+  AppliesDebuff: 0
+  TargetStatName: 
+  DebuffAmount: 0

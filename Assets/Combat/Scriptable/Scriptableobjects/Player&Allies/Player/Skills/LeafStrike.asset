@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LeafStrike
   m_EditorClassIdentifier: 
   SkillName: Leaf Strike
-  Description: 'Strike an enemy with '
+  Description: Strike an enemy with Earthen Magic.
   SPCost: 10
   RestoresSP: 0
   SPRestoreAmount: 0
@@ -25,3 +25,6 @@ MonoBehaviour:
   TargetType: 0
   ChanceToDebuff: 0
   AnimationTrigger: 
+  AppliesDebuff: 0
+  TargetStatName: 
+  DebuffAmount: 0

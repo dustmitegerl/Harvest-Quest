@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Hammer Strike
   m_EditorClassIdentifier: 
   SkillName: 
-  Description: Damange an Enemy and lower their Defence.
-  SPCost: 10
+  Description: Damange an Enemy and lower their Defence. 50% chance to lower their
+    Defense.
+  SPCost: 0
   RestoresSP: 0
   SPRestoreAmount: 0
   DealsDamage: 0
@@ -23,5 +24,8 @@ MonoBehaviour:
   HealAmount: 0
   IsPhysicalAttack: 1
   TargetType: 0
-  ChanceToDebuff: 100
+  ChanceToDebuff: 50
   AnimationTrigger: 
+  AppliesDebuff: 1
+  TargetStatName: Defense
+  DebuffAmount: 0

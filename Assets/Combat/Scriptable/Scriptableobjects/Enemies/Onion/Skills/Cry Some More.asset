@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e24e6965b25bb7f4aa9f7c3fdc6bc4c1, type: 3}
-  m_Name: Sour Shot
+  m_Name: Cry Some More
   m_EditorClassIdentifier: 
-  SkillName: Sour Shot
-  Description: Shoots acidic Lemon Juice at an enemy.
-  SPCost: 10
+  SkillName: Cry Some More
+  Description: Deals magical damage to a single enemy with a chance to lower resistance.
+  SPCost: 0
   RestoresSP: 0
   SPRestoreAmount: 0
   DealsDamage: 1
@@ -23,7 +23,7 @@ MonoBehaviour:
   HealAmount: 0
   IsPhysicalAttack: 0
   TargetType: 0
-  ChanceToDebuff: 50
+  ChanceToDebuff: 30
   AnimationTrigger: 
   AppliesDebuff: 1
   TargetStatName: Resistance

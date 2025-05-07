@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2133773251135251797}
   - component: {fileID: 2133340008138963269}
+  - component: {fileID: -894113159228497147}
   m_Layer: 0
   m_Name: FarmManager
   m_TagString: Untagged
@@ -44,9 +45,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da2d4a5efe38ce04685edfea7fc68508, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plantingSOs:
-  - {fileID: 11400000, guid: a45cf97105183dd42aaa59e7e6c80a6e, type: 2}
-  - {fileID: 11400000, guid: 99392bfcfd504f749a1a29aa565fe576, type: 2}
-  - {fileID: 11400000, guid: e242811570d9c1046ac76aa4e6c06ea8, type: 2}
-  - {fileID: 11400000, guid: 8c3f6b29fd5e4784591cdf1c7fb7bcde, type: 2}
-  spotData: []
+  plantingSpots: []
+--- !u!114 &-894113159228497147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4626478623126283178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e04be444cc4046f4ba552ef25d555ea1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

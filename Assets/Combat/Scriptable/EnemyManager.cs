@@ -4,12 +4,12 @@ using TMPro.Examples;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 [System.Serializable]
-public struct DemoEnemy { public EnemyInfo enemyInfo; public int level; }
+public struct DemoEnemy { public string name; public int level; }
 public class EnemyManager : MonoBehaviour
 {
     [SerializeField] private EnemyInfo[] allEnemies;
     public List<Enemy> currentEnemies;
-    [HeaderAttribute("For setting up demo")]
+    [HeaderAttribute("For setting up demo. Names must match Enemy Info names, case-sensitive.")]
     public DemoEnemy[] demoEnemies;
     private const float LEVEL_MODIFIER = 0.5f;
     #region making it a singleton
@@ -47,7 +47,7 @@ public class EnemyManager : MonoBehaviour
         Debug.Log("Current enemies list is empty. Generating demo.");
         foreach (DemoEnemy enemy in demoEnemies)
         {
-            GenerateEnemyByName(enemy.enemyInfo.EnemyName, enemy.level);
+            GenerateEnemyByName(enemy.name, enemy.level);
         }
     }
 

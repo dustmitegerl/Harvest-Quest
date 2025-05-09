@@ -871,6 +871,10 @@ PrefabInstance:
       propertyPath: orthographic size
       value: 4.8
       objectReference: {fileID: 0}
+    - target: {fileID: 8477055804273525705, guid: 5453ed72ce3080e4599c25db1eca3908, type: 3}
+      propertyPath: m_DefaultControlScheme
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1275,6 +1279,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a56adfa93e56d644b181435d243dd0b, type: 3}
+--- !u!1 &1521806416 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1544087374027936997, guid: 10bec964f709e2f4096e21f2df38511a, type: 3}
+  m_PrefabInstance: {fileID: 1837924789}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1636647179
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1366,10 +1375,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 441804649010800622, guid: 10bec964f709e2f4096e21f2df38511a, type: 3}
-      propertyPath: m_TagString
-      value: Interaction Prompt
-      objectReference: {fileID: 0}
+    - target: {fileID: 2856071857940177822, guid: 10bec964f709e2f4096e21f2df38511a, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 891358395}
+    - target: {fileID: 2856071857940177822, guid: 10bec964f709e2f4096e21f2df38511a, type: 3}
+      propertyPath: quitClosed
+      value: 
+      objectReference: {fileID: 1521806416}
     - target: {fileID: 3982552425146830406, guid: 10bec964f709e2f4096e21f2df38511a, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1453,6 +1466,10 @@ PrefabInstance:
     - target: {fileID: 4210443313385663399, guid: 10bec964f709e2f4096e21f2df38511a, type: 3}
       propertyPath: m_Name
       value: Menu Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 4944216526054370702, guid: 10bec964f709e2f4096e21f2df38511a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e24e6965b25bb7f4aa9f7c3fdc6bc4c1, type: 3}
   m_Name: Perfect Slash
   m_EditorClassIdentifier: 
-  SkillName: 
+  SkillName: Perfect Slah
   Description: Deals heavy Physical damage to one Enemy.
   SPCost: 15
   RestoresSP: 0
@@ -28,3 +28,6 @@ MonoBehaviour:
   AppliesDebuff: 0
   TargetStatName: 
   DebuffAmount: 0
+  AppliesBuff: 0
+  BuffTargetStat: 
+  BuffAmount: 0

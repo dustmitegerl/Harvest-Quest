@@ -15,8 +15,8 @@ MonoBehaviour:
   SkillName: Bargin Bash
   Description: Damages all Enemies for small Physical Damage
   SPCost: 0
-  RestoresSP: 0
-  SPRestoreAmount: 0
+  RestoresSP: 1
+  SPRestoreAmount: 10
   DealsDamage: 1
   DamageAmount: 15
   Heals: 0
@@ -28,3 +28,6 @@ MonoBehaviour:
   AppliesDebuff: 0
   TargetStatName: 
   DebuffAmount: 0
+  AppliesBuff: 0
+  BuffTargetStat: 
+  BuffAmount: 0

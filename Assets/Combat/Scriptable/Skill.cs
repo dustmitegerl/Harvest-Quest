@@ -39,10 +39,15 @@ public class Skill : ScriptableObject
     public float ChanceToDebuff;  // poison, etc. not used rn
     public string AnimationTrigger; // custom anim call, used if needed
     
-    [Header("Debuff Settings")]
+    [Header("Debuff/buff Settings")]
     public bool AppliesDebuff;
     public string TargetStatName; // e.g. "Defense", "Speed"
     public int DebuffAmount;
+
+    public bool AppliesBuff;
+    public string BuffTargetStat;
+    public int BuffAmount;
+
 
 }
 

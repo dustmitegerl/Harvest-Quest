@@ -9,8 +9,14 @@ public class BattleVisuals : MonoBehaviour
     [SerializeField] private Slider healthBar;
     [SerializeField] private TextMeshProUGUI LevelText;
 
+    [Header("SP Stuff")]
+    [SerializeField] private Slider spBar;
+    [SerializeField] private TextMeshProUGUI spText;
+
     private int currHealth;
     private int maxHealth;
+    private int currSP;
+    private int maxSP;
     private int level;
 
     private SpriteRenderer spriteRenderer;
@@ -58,6 +64,23 @@ public class BattleVisuals : MonoBehaviour
         UpdateHealthBar();
     }
 
+    public void ChangeSP(int currSP, int maxSP)
+    {
+        this.currSP = currSP;
+        this.maxSP = maxSP;
+
+        if (spBar != null)
+        {
+            spBar.maxValue = maxSP;
+            spBar.value = currSP;
+        }
+
+        if (spText != null)
+        {
+            spText.text = $"{currSP} / {maxSP}";
+        }
+    }
+
     public void UpdateHealthBar()
     {
         healthBar.maxValue = maxHealth;
@@ -72,7 +95,6 @@ public class BattleVisuals : MonoBehaviour
             anim.SetTrigger(IS_ATTACK_PARAM);
         }
     }
-
 
     public void PlayHitAnimation()
     {
@@ -100,28 +122,23 @@ public class BattleVisuals : MonoBehaviour
 
     public void DebugTrigger(string trigger)
     {
-        Debug.Log($"[Animator Triggered] {trigger}");
+       // Debug.Log($"[Animator Triggered] {trigger}");
     }
 
     public void Highlight(bool on)
     {
         if (spriteRenderer != null)
         {
-            if (on)
-                spriteRenderer.color = Color.yellow;
-            else
-                spriteRenderer.color = originalColor;
+            spriteRenderer.color = on ? Color.yellow : originalColor;
         }
     }
 
     public void PlayAnimation(string triggerName)
-{
-    if (anim != null && !string.IsNullOrEmpty(triggerName))
     {
-        anim.SetTrigger(triggerName);
-        DebugTrigger(triggerName);
+        if (anim != null && !string.IsNullOrEmpty(triggerName))
+        {
+            anim.SetTrigger(triggerName);
+            DebugTrigger(triggerName);
+        }
     }
-}
-
-
 }

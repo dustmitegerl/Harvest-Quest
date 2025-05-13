@@ -18,8 +18,8 @@ MonoBehaviour:
   BaseStr: 15
   BaseInitiative: 4
   BaseIntelligence: 5
-  BaseDefense: 20
-  BaseResistance: 5
+  BaseDefense: 10
+  BaseResistance: 2
   BaseSP: 30
   Skills:
   - {fileID: 11400000, guid: baf568c628d2e92478669912977c98a4, type: 2}

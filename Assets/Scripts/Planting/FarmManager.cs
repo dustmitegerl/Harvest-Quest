@@ -66,3 +66,7 @@ public class FarmManager : MonoBehaviour, IDataPersistence
 
     }
 }
+
+public class PlantingSpotData { 
+    
+}

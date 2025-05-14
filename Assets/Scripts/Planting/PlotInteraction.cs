@@ -9,8 +9,8 @@ public class PlotInteraction : MonoBehaviour
     [SerializeField] public List<PlantingSpot> readyForHarvest;
     [SerializeField] private LevelLoader levelLoader;
     [SerializeField] private string battleArenaName = "BattleArena_Test";
-    [SerializeField] GameObject enemyManager;
     private bool inRange = false;
+    [SerializeField] GameObject enemyManager;
 
     private void Update()
     {
@@ -42,11 +42,12 @@ public class PlotInteraction : MonoBehaviour
     public IEnumerator StartBattle()
     {
         Instantiate(enemyManager);
+        EnemyManager instance = EnemyManager.Instance;
         foreach (PlantingSpot plant in readyForHarvest)
         {
-            enemyManager.GetComponent<EnemyManager>().GenerateEnemyByName(plant.currentPlant, plant.level);
+            instance.GenerateEnemyByName(plant.currentPlant, plant.level);
         }
-        yield return new WaitForSeconds(1); 
+        yield return new WaitForEndOfFrame(); 
         Debug.Log("starting battle");
         LevelLoader.Instance.LoadLevel(battleArenaName);
     }

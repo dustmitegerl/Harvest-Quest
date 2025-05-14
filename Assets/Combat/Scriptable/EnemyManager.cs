@@ -21,7 +21,6 @@ public class EnemyManager : MonoBehaviour
         if (_instance != null && _instance != this)
         {
             Debug.Log("enemy manager found. deleting this one");
-            currentEnemies.Clear();
             Destroy(this.gameObject);
         }
         else
@@ -38,9 +37,9 @@ public class EnemyManager : MonoBehaviour
     }
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (!scene.name.ToLower().Contains("battle"))
-        { 
-            Destroy(gameObject); 
+        if (scene.name.ToLower().Contains("farm"))
+        {
+            currentEnemies.Clear();
         }
     }
     // for demo

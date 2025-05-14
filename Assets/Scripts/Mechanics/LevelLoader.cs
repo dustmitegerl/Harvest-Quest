@@ -30,6 +30,10 @@ public class LevelLoader : MonoBehaviour
     #endregion
     public void LoadLevel(string levelName)
     {
+        if (GameObject.Find("Interaction Prompt") != null)
+        {
+            GameObject.Find("Interaction Prompt").gameObject.SetActive(false);
+        }
         StartCoroutine(LoadNamedLevel(levelName));
     }
 

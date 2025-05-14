@@ -41,6 +41,7 @@ public class PlotInteraction : MonoBehaviour
 
     public IEnumerator StartBattle()
     {
+        GameController.Instance.SetLastPos(GameObject.FindGameObjectWithTag("Player").transform.position);
         Instantiate(enemyManager);
         EnemyManager instance = EnemyManager.Instance;
         foreach (PlantingSpot plant in readyForHarvest)

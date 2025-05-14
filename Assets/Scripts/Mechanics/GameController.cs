@@ -17,16 +17,27 @@ public class GameController : MonoBehaviour
     GameState prevState;
     //MenuController menuController;
     #region player position
-    string lastScene;
+    public string currentScene;
+    [SerializeField] string lastScene;
+    Vector3 lastPos;
     #endregion
 
-    public static GameController Instance { get; private set; }
+    #region making it a singleton
+    private static GameController _instance;
+    public static GameController Instance { get { return _instance; } }
     private void Awake()
     {
-        Instance = this;
-
-        //menuController = GetComponent<MenuController>();
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            _instance = this;
+            DontDestroyOnLoad(this);
+        }
     }
+    #endregion
 
     void OnEnable()
     {
@@ -34,18 +45,39 @@ public class GameController : MonoBehaviour
     }
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name.ToLower().Contains("farm"))
+        currentScene = scene.name;
+        if (scene.name.ToLower().Contains("farm") && lastScene != null)
         {
-            
+            GameObject playerPrefab = GameObject.FindGameObjectWithTag("Player");
+            if (lastScene.ToLower().Contains("farm"))
+            {
+                return;
+            }
+            else if (lastScene.ToLower().Contains("town"))
+            {
+                Vector3 gateLocation = GameObject.Find("Town Gate").transform.position;
+                Vector3 offset = new Vector3(0, 3, 0);
+                if (playerPrefab != null)
+                {
+                    playerPrefab.transform.position = gateLocation - offset;
+                }
+            }
+            else if (lastScene.ToLower().Contains("battle")){
+                playerPrefab.transform.position = lastPos;
+            }
         }
-    }
-    private void SpawnPlayer()
-    {
-
+        else if (lastScene == null || lastScene.ToLower().Contains("menu"))
+        {
+            return;
+        }
     }
     public void SetLastScene()
     {
         lastScene = SceneManager.GetActiveScene().name;
+    }
+    public void SetLastPos(Vector3 pos)
+    {
+        lastPos = pos;
     }
     private void Start()
     {

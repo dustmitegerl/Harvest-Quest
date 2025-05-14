@@ -24,7 +24,6 @@ public class DialogManager : MonoBehaviour
         else
         {
             _instance = this;
-            DontDestroyOnLoad(this);
         }
     }
     #endregion
@@ -48,7 +47,7 @@ public class DialogManager : MonoBehaviour
             CloseDialog();
         }
     }
-
+    
     public void CloseDialog()
     {
         dialogBox.SetActive(false);

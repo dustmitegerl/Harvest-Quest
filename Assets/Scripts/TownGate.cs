@@ -32,6 +32,7 @@ public class TownGate : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            GameController.Instance.SetLastScene();
             Debug.Log("loading level: " + otherScene);
             levelLoader.LoadLevel(otherScene);
         }

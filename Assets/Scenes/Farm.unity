@@ -284,6 +284,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1380663122358637917, guid: f0574542ab15e4649a11404532241008, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6606986583704769101, guid: f0574542ab15e4649a11404532241008, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -194.90002
@@ -3455,6 +3459,10 @@ PrefabInstance:
     - target: {fileID: 6760653332178413227, guid: 933ca4f046834584287e2ce8e9b82a53, type: 3}
       propertyPath: m_Name
       value: DialogManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 6760653332178413227, guid: 933ca4f046834584287e2ce8e9b82a53, type: 3}
+      propertyPath: m_TagString
+      value: Dialog Manager
       objectReference: {fileID: 0}
     - target: {fileID: 7174372061026989255, guid: 933ca4f046834584287e2ce8e9b82a53, type: 3}
       propertyPath: dialogBox

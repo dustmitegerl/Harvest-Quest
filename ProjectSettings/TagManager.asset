@@ -12,6 +12,7 @@ TagManager:
   - Planting Spot
   - Plot
   - Interaction Prompt
+  - Dialog Manager
   layers:
   - Default
   - TransparentFX

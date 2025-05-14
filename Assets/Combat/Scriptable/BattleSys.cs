@@ -61,6 +61,7 @@ public class BattleSys : MonoBehaviour
         currentPlayer = 0;
         state = BattleState.Battle;
         ShowBattleMenu();
+        GameController.Instance.SetLastScene();
     }
 
 

@@ -15,8 +15,10 @@ public class GameController : MonoBehaviour
     public KeyCode actionKey;
     public GameState state;
     GameState prevState;
-
     //MenuController menuController;
+    #region player position
+    string lastScene;
+    #endregion
 
     public static GameController Instance { get; private set; }
     private void Awake()
@@ -26,6 +28,25 @@ public class GameController : MonoBehaviour
         //menuController = GetComponent<MenuController>();
     }
 
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name.ToLower().Contains("farm"))
+        {
+            
+        }
+    }
+    private void SpawnPlayer()
+    {
+
+    }
+    public void SetLastScene()
+    {
+        lastScene = SceneManager.GetActiveScene().name;
+    }
     private void Start()
     {
         worldCamera = Camera.main;

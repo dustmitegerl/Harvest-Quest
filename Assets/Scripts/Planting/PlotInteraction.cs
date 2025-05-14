@@ -9,12 +9,17 @@ public class PlotInteraction : MonoBehaviour
     [SerializeField] public List<PlantingSpot> readyForHarvest;
     [SerializeField] private LevelLoader levelLoader;
     [SerializeField] private string battleArenaName = "BattleArena_Test";
-    
+    [SerializeField] GameObject enemyManager;
     private bool inRange = false;
 
     private void Update()
     {
         HandleInput();
+    }
+
+    public void LateUpdate()
+    {
+        UpdatePlotStatus();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -34,8 +39,14 @@ public class PlotInteraction : MonoBehaviour
         }
     }
 
-    public void StartBattle()
+    public IEnumerator StartBattle()
     {
+        Instantiate(enemyManager);
+        foreach (PlantingSpot plant in readyForHarvest)
+        {
+            enemyManager.GetComponent<EnemyManager>().GenerateEnemyByName(plant.currentPlant, plant.level);
+        }
+        yield return new WaitForSeconds(1); 
         Debug.Log("starting battle");
         LevelLoader.Instance.LoadLevel(battleArenaName);
     }
@@ -43,6 +54,17 @@ public class PlotInteraction : MonoBehaviour
     public void UpdatePlotStatus()
     {
         PlantingSpot[] spotArray = gameObject.GetComponentsInChildren<PlantingSpot>();
+        foreach (PlantingSpot spot in spotArray)
+        {
+            if (!readyForHarvest.Contains(spot) && spot.plantStage == 4)
+            {
+                readyForHarvest.Add(spot);
+            }
+            else if (readyForHarvest.Contains(spot) && spot.plantStage != 4)
+            {
+                readyForHarvest.Remove(spot);
+            }
+        }
         // You can use this to refresh harvesting logic if needed
     }
 
@@ -51,7 +73,7 @@ public class PlotInteraction : MonoBehaviour
         if (inRange && Input.GetKeyDown(GameController.Instance.actionKey))
         {
             Debug.Log("Harvesting!");
-            StartBattle();
+            StartCoroutine(StartBattle());
         }
     }
 }

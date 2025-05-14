@@ -44,47 +44,17 @@ public class FarmManager : MonoBehaviour, IDataPersistence
             {
                 return species;
             }
-            else
-            {
-                Debug.Log("failed to retrieve plant info");
-                return null;
-            }
         }
-        Debug.Log("couldn't find plantingSOs");
+        Debug.Log("couldn't find " + plantName + " in plantiingSOs");
         return null;
     }
     public void UpdateSpotData()
     {
-        existingSpots = GameObject.FindGameObjectsWithTag("Planting Spot");
-        foreach (GameObject spot in existingSpots)
-        {
-            PlantingSpot thisSpot = spot.GetComponent<PlantingSpot>();
-            PlantingSpot spotDatum = gameObject.AddComponent<PlantingSpot>();
-            spotDatum.id = thisSpot.id;
-            spotDatum.currentPlant = thisSpot.currentPlant;
-            spotDatum.plantStage = thisSpot.plantStage;
-            spotDatum.level = thisSpot.level;
-            spotDatum.isGrowing = thisSpot.isGrowing;
-            spotData.Add(spotDatum);
-        }
+        
     }
     public void UpdateSpotFromData()
     {
-        existingSpots = GameObject.FindGameObjectsWithTag("Planting Spot");
-        foreach (GameObject spot in existingSpots)
-        {
-            PlantingSpot thisSpot = spot.GetComponent<PlantingSpot>();
-            foreach (PlantingSpot spotDatum in spotData)
-            {
-                if (thisSpot.id == spotDatum.id)
-                {
-                    thisSpot.currentPlant = spotDatum.currentPlant;
-                    thisSpot.plantStage = spotDatum.plantStage;
-                    thisSpot.level = spotDatum.level;
-                    thisSpot.isGrowing = spotDatum.isGrowing;
-                }
-            }
-        }
+        
     }
     public void LoadData(GameData data)
     {

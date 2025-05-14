@@ -86,6 +86,8 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         transform.position = newPos;
 
         walking = false;
+
+        AudioManager.instance.WalkingSFX();
     }
 
     private bool Walkable(Vector3 newPos)

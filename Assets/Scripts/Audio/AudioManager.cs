@@ -1,4 +1,4 @@
-//using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -6,9 +6,13 @@ using UnityEngine.Audio;
 public class AudioManager : MonoBehaviour
 {
 //reference to script: https://www.youtube.com/watch?v=pbuJUaO-wpY
+// reference for adding music and sfx: https://www.youtube.com/watch?v=eNi67i5my84
   public static AudioManager instance;
 
  [SerializeField] AudioMixer mixer;
+
+ [SerializeField] AudioSource walkingSource;
+ [SerializeField] List<AudioClip> walkingClip = new List<AudioClip>();
 
   public const string MUSIC_KEY = "musicVolume";
   public const string SOUND_KEY = "soundVolume";
@@ -26,10 +30,15 @@ public class AudioManager : MonoBehaviour
         Destroy(gameObject);
     }
 
-    
     LoadVolume();
   }
 
+public void WalkingSFX()
+    {
+      AudioClip clip = walkingClip[Random.Range(0, walkingClip.Count)];
+      walkingSource.PlayOneShot(clip);
+    }
+  
   //Volume is saved in volume settings
   void LoadVolume()
   {

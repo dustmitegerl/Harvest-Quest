@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class NPCBase : ScriptableObject
 {
-    [SerializeField] string name;
+    [SerializeField] new string name;
 
     [SerializeField] string description;
     [SerializeField] Sprite backSprite;

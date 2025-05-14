@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Watering Heal
   m_EditorClassIdentifier: 
   SkillName: Watering Heal
-  Description: Use your Watering Can to heal 15 HP of one ally.
+  Description: Use your Watering Can to heal 15 HP of one ally
   SPCost: 10
   RestoresSP: 0
   SPRestoreAmount: 0
@@ -25,3 +25,9 @@ MonoBehaviour:
   TargetType: 2
   ChanceToDebuff: 0
   AnimationTrigger: 
+  AppliesDebuff: 0
+  TargetStatName: 
+  DebuffAmount: 0
+  AppliesBuff: 0
+  BuffTargetStat: 
+  BuffAmount: 0

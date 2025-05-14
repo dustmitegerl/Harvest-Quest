@@ -15,10 +15,10 @@ MonoBehaviour:
   MemberName: ShopKeeper
   StartingLevel: 3
   BaseHealth: 50
-  BaseStr: 10
+  BaseStr: 5
   BaseInitiative: 3
   BaseIntelligence: 20
-  BaseDefense: 10
+  BaseDefense: 5
   BaseResistance: 10
   BaseSP: 80
   Skills:

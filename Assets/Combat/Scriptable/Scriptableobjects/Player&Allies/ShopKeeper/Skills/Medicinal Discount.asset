@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SkillName: Medi-Discount
   Description: Heals the entire party for 20 HP
-  SPCost: 20
+  SPCost: 15
   RestoresSP: 0
   SPRestoreAmount: 0
   DealsDamage: 0
@@ -25,3 +25,9 @@ MonoBehaviour:
   TargetType: 3
   ChanceToDebuff: 0
   AnimationTrigger: 
+  AppliesDebuff: 0
+  TargetStatName: 
+  DebuffAmount: 0
+  AppliesBuff: 0
+  BuffTargetStat: 
+  BuffAmount: 0

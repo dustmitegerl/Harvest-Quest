@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Vitamin Boost
   m_EditorClassIdentifier: 
   SkillName: Vitamin Boost
-  Description: Heals self by 15 PH
+  Description: Heals self by 15 HP
   SPCost: 0
   RestoresSP: 0
   SPRestoreAmount: 0
@@ -28,3 +28,6 @@ MonoBehaviour:
   AppliesDebuff: 0
   TargetStatName: 
   DebuffAmount: 0
+  AppliesBuff: 0
+  BuffTargetStat: 
+  BuffAmount: 0

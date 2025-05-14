@@ -17,7 +17,7 @@ MonoBehaviour:
   BaseStr: 5
   BaseInitiative: 5
   BaseIntelligence: 10
-  BaseDefense: 5
+  BaseDefense: 10
   BaseResistance: 15
   BaseSP: 20
   StartingLevel: 1

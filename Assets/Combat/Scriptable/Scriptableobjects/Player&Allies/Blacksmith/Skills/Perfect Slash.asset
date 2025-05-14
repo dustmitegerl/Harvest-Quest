@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Perfect Slash
   m_EditorClassIdentifier: 
   SkillName: Perfect Slah
-  Description: Deals heavy Physical damage to one Enemy.
-  SPCost: 15
+  Description: Deals heavy Physical damage to one Enemy
+  SPCost: 20
   RestoresSP: 0
   SPRestoreAmount: 0
   DealsDamage: 1

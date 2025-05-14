@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: Hammer Strike
   m_EditorClassIdentifier: 
   SkillName: Hammer Strike
-  Description: Damange an Enemy and lower their Defence. 50% chance to lower their
-    Defense.
+  Description: Deals physical damage to an Enemy. 50% chance to lower their Defense.
   SPCost: 0
   RestoresSP: 0
   SPRestoreAmount: 0
@@ -28,4 +27,7 @@ MonoBehaviour:
   AnimationTrigger: 
   AppliesDebuff: 1
   TargetStatName: Defense
-  DebuffAmount: 0
+  DebuffAmount: 5
+  AppliesBuff: 0
+  BuffTargetStat: 
+  BuffAmount: 0

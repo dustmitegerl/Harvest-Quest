@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyName: Broccoli
   BaseHealth: 60
-  BaseStr: 20
+  BaseStr: 10
   BaseInitiative: 1
   BaseIntelligence: 1
-  BaseDefense: 20
+  BaseDefense: 15
   BaseResistance: 10
   BaseSP: 20
   StartingLevel: 1
   EnemyVisualPrefab: {fileID: 8769501468479694713, guid: abf7f89e6a9356d4ebbd39965df72da2, type: 3}
-  BasicSkill: {fileID: 11400000, guid: c561e1bdd4cb11f43844603fd1c66bfc, type: 2}
+  BasicSkill: {fileID: 11400000, guid: 93f5713552b665e4c8b863f3fd723a0e, type: 2}
   SpecialSkill: {fileID: 11400000, guid: 17d5e99c97a44214898cfde1228c3821, type: 2}

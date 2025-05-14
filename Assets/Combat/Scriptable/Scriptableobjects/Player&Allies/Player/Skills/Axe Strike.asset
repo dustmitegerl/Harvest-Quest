@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Axe Strike
   m_EditorClassIdentifier: 
   SkillName: Axe Strike
-  Description: Deals Physical damage to a single Enemy.
+  Description: Deals Physical damage to a single Enemy
   SPCost: 0
   RestoresSP: 1
   SPRestoreAmount: 20

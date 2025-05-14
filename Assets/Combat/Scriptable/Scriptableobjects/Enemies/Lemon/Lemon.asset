@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Lemon
   m_EditorClassIdentifier: 
   EnemyName: Lemon
-  BaseHealth: 30
+  BaseHealth: 50
   BaseStr: 5
   BaseInitiative: 3
   BaseIntelligence: 10
-  BaseDefense: 5
+  BaseDefense: 10
   BaseResistance: 10
   BaseSP: 20
   StartingLevel: 1

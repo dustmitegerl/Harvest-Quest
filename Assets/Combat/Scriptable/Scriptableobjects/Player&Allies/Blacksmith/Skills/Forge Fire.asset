@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SkillName: Forge Fire
   Description: Deals Magical Fire Damage to a single Enemy
-  SPCost: 5
+  SPCost: 15
   RestoresSP: 0
   SPRestoreAmount: 0
   DealsDamage: 1
@@ -28,3 +28,6 @@ MonoBehaviour:
   AppliesDebuff: 0
   TargetStatName: 
   DebuffAmount: 0
+  AppliesBuff: 0
+  BuffTargetStat: 
+  BuffAmount: 0

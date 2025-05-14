@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Fortify
   m_EditorClassIdentifier: 
   SkillName: Fortify
-  Description: Raise the Defence of all Allies.
-  SPCost: 15
+  Description: Raise the Defence of a single Ally
+  SPCost: 5
   RestoresSP: 0
   SPRestoreAmount: 0
   DealsDamage: 0
@@ -22,6 +22,12 @@ MonoBehaviour:
   Heals: 0
   HealAmount: 0
   IsPhysicalAttack: 0
-  TargetType: 3
+  TargetType: 2
   ChanceToDebuff: 0
   AnimationTrigger: 
+  AppliesDebuff: 0
+  TargetStatName: 
+  DebuffAmount: 0
+  AppliesBuff: 1
+  BuffTargetStat: Defense
+  BuffAmount: 5

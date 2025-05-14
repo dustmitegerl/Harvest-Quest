@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e24e6965b25bb7f4aa9f7c3fdc6bc4c1, type: 3}
   m_Name: Over Charge
   m_EditorClassIdentifier: 
-  SkillName: Over Charge
-  Description: Lowers the Resistance of a single Enemy
+  SkillName: Over-Charge
+  Description: Raises the Resistance of a single Ally
   SPCost: 5
   RestoresSP: 0
   SPRestoreAmount: 0
@@ -22,12 +22,12 @@ MonoBehaviour:
   Heals: 0
   HealAmount: 0
   IsPhysicalAttack: 0
-  TargetType: 0
+  TargetType: 2
   ChanceToDebuff: 100
   AnimationTrigger: 
-  AppliesDebuff: 1
+  AppliesDebuff: 0
   TargetStatName: Resistance
   DebuffAmount: 5
-  AppliesBuff: 0
-  BuffTargetStat: 
-  BuffAmount: 0
+  AppliesBuff: 1
+  BuffTargetStat: Resistance
+  BuffAmount: 5

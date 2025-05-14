@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SkillName: Blade Breaker
   Description: Deals Physical damage to a single Emeny. 50% chance to lower their
-    Attack.
+    Attack
   SPCost: 0
   RestoresSP: 0
   SPRestoreAmount: 0
@@ -29,3 +29,6 @@ MonoBehaviour:
   AppliesDebuff: 1
   TargetStatName: Strength
   DebuffAmount: 5
+  AppliesBuff: 0
+  BuffTargetStat: 
+  BuffAmount: 0

@@ -16,8 +16,8 @@ GameObject:
   - component: {fileID: 6718740423815525231}
   - component: {fileID: -5380860584421605747}
   - component: {fileID: 1900830614517605683}
-  - component: {fileID: 8477055804273525705}
   - component: {fileID: 2515322634432156843}
+  - component: {fileID: 8477055804273525705}
   m_Layer: 0
   m_Name: PlayerHarvestQuest
   m_TagString: Player
@@ -246,36 +246,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &8477055804273525705
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3037191485019776758}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 549ee61edb255a24fbcef61372f8e0f6, type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Player
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!114 &2515322634432156843
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -321,6 +291,36 @@ MonoBehaviour:
     count: 1
   - item: {fileID: 11400000, guid: c3578938d34a8d64a9dd24e320de973f, type: 2}
     count: 4
+--- !u!114 &8477055804273525705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3037191485019776758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 549ee61edb255a24fbcef61372f8e0f6, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &5032535505117605350
 GameObject:
   m_ObjectHideFlags: 0
@@ -332,8 +332,8 @@ GameObject:
   - component: {fileID: 4475544046581793412}
   - component: {fileID: 7924080173493702890}
   - component: {fileID: 8363974995146353045}
-  - component: {fileID: 6853108848763791984}
-  - component: {fileID: 2772358757776906373}
+  - component: {fileID: 2541172919682926190}
+  - component: {fileID: 6122418670725554950}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -415,7 +415,7 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5032535505117605350}
   m_Enabled: 1
---- !u!114 &6853108848763791984
+--- !u!114 &2541172919682926190
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -449,7 +449,7 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &2772358757776906373
+--- !u!114 &6122418670725554950
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

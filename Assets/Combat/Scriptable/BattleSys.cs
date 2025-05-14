@@ -53,7 +53,7 @@ public class BattleSys : MonoBehaviour
     void Start()
     {
         partyManager = FindObjectOfType<PartyManager>();
-        enemyManager = FindObjectOfType<EnemyManager>();
+        enemyManager = EnemyManager.Instance;
 
         CreatePartyEntities();
         CreateEnemyEntities();
@@ -90,7 +90,7 @@ public class BattleSys : MonoBehaviour
                 }
             }
         }
-        // if no win or lost reapeat the loop by opening battle menu
+        // if no win or lost repeat the loop by opening battle menu
         if (state == BattleState.Battle)
         {
             bottomTextPopUp.SetActive(false);
@@ -890,7 +890,7 @@ else if (usedSkill.Heals)
 
     public void SelectRunAction()
     {
-        state = BattleState.Run; // Set the state to Run
+        //state = BattleState.Run; // Set the state to Run
         BattleEntities currentPlayerEntity = playerBattlers[currentPlayer]; // Local reference for current player
 
         currentPlayerEntity.BattleAction = BattleEntities.Action.Run; // Setting current member's action to run

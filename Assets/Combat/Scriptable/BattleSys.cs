@@ -34,6 +34,9 @@ public class BattleSys : MonoBehaviour
     [SerializeField] private TextMeshProUGUI bottomText;
     [SerializeField] private GameObject[] skillButtons;
     [SerializeField] private GameObject skillSelectionMenu; // like the Battle Menu
+    [SerializeField] private GameObject allySelectionMenu;
+    [SerializeField] private GameObject[] allySelectionButtons;
+
 
     //[SerializeField] private Transform skillButtonContainer;
     //[SerializeField] private GameObject skillButtonPrefab;
@@ -109,38 +112,74 @@ public class BattleSys : MonoBehaviour
     private IEnumerator AttackRoutine(int i)
 {
     BattleEntities currAttacker = allBattlers[i];
+    if (currAttacker.IsPlayer && currAttacker.ChosenSkill == null)
+    {
+        Debug.LogWarning(currAttacker.Name + " has no skill selected. Skipping turn.");
+        yield break;
+    }
+
+
 
     // === PLAYER TURN ===
-    if (currAttacker.IsPlayer)
+if (currAttacker.IsPlayer)
+{
+    Skill skill = currAttacker.ChosenSkill;
+
+    if (skill == null)
     {
-        if (currAttacker.Target < 0 || currAttacker.Target >= allBattlers.Count || allBattlers[currAttacker.Target].IsPlayer)
+        Debug.LogWarning(currAttacker.Name + " has no skill selected. Skipping turn.");
+        yield break;
+    }
+
+    BattleEntities currTarget = null;
+
+    // Handle targeting based on skill type
+    if (skill.TargetType == SkillTarget.OneEnemy || skill.TargetType == SkillTarget.OneAlly)
+    {
+        if (currAttacker.Target < 0 || currAttacker.Target >= allBattlers.Count)
         {
-            currAttacker.SetTarget(GetRandomEnemy());
+            int fallbackTarget = (skill.TargetType == SkillTarget.OneEnemy) ? GetRandomEnemy() : GetRandomPartyMember();
+            currAttacker.SetTarget(fallbackTarget);
         }
 
-        BattleEntities currTarget = allBattlers[currAttacker.Target];
-        AttackAction(currAttacker, currTarget);
-        yield return new WaitForSeconds(TURN_DURATION);
+        currTarget = allBattlers[currAttacker.Target];
+    }
 
-        if (currTarget.CurrHealth <= 0)
-        {
-            allBattlers.Remove(currTarget);
+    AttackAction(currAttacker, currTarget);
+    yield return new WaitForSeconds(TURN_DURATION);
+
+    // Handle death only if target exists and died
+    if (currTarget != null && currTarget.CurrHealth <= 0)
+    {
+        allBattlers.Remove(currTarget);
+        if (currTarget.IsPlayer)
+            playerBattlers.Remove(currTarget);
+        else
             enemyBattlers.Remove(currTarget);
 
-            if (currTarget.BattleVisuals != null)
-                StartCoroutine(SafeDestroy(currTarget.BattleVisuals));
+        if (currTarget.BattleVisuals != null)
+            StartCoroutine(SafeDestroy(currTarget.BattleVisuals));
 
-            bottomText.text = currAttacker.Name + " defeated " + currTarget.Name + "!";
+        bottomText.text = currAttacker.Name + " defeated " + currTarget.Name + "!";
 
-            if (enemyBattlers.Count <= 0)
-            {
-                state = BattleState.Won;
-                bottomText.text = WIN_MESSAGE;
-                StartCoroutine(DelayedSceneLoad("Farm", TURN_DURATION));
-                yield break;
-            }
+        if (enemyBattlers.Count <= 0)
+        {
+            state = BattleState.Won;
+            bottomText.text = WIN_MESSAGE;
+            StartCoroutine(DelayedSceneLoad("Farm", TURN_DURATION));
+            yield break;
+        }
+
+        if (playerBattlers.Count <= 0)
+        {
+            state = BattleState.Lost;
+            bottomText.text = LOSE_MESSAGE;
+            StartCoroutine(DelayedSceneLoad("Farm", TURN_DURATION));
+            yield break;
         }
     }
+}
+
     // === ENEMY TURN ===
     else
     {
@@ -320,7 +359,7 @@ public class BattleSys : MonoBehaviour
         {
             BattleEntities tempEntity = new BattleEntities();
 
-            // 🔢 Add numbering to avoid duplicate display names
+            //  Add numbering to avoid duplicate display names
             string numberedName = currentEnemies[i].EnemyName + " " + (i + 1);
 
             tempEntity.SetEntityValues(
@@ -451,44 +490,46 @@ public class BattleSys : MonoBehaviour
 
 
 
-    private void OnSkillSelected(Skill selectedSkill)
+   private void OnSkillSelected(Skill selectedSkill)
+{
+    skillSelectionMenu.SetActive(false);
+
+    BattleEntities entity = playerBattlers[currentPlayer];
+    entity.ChosenSkill = selectedSkill;
+
+    switch (selectedSkill.TargetType)
     {
-        skillSelectionMenu.SetActive(false);
-
-        BattleEntities entity = playerBattlers[currentPlayer];
-        entity.ChosenSkill = selectedSkill;
-
-        if (selectedSkill.TargetType == SkillTarget.OneEnemy)
-        {
+        case SkillTarget.OneEnemy:
             ShowEnemySelectionMenu();
-        }
-        else
-        {
+            break;
+
+        case SkillTarget.OneAlly:
+            ShowAllySelectionMenu();
+            break;
+
+        default: // e.g. AllAllies, Self
             entity.SetTarget(-1);
             entity.BattleAction = BattleEntities.Action.Attack;
             currentPlayer++;
-
             if (currentPlayer >= playerBattlers.Count)
-            {
                 StartCoroutine(BattleRoutine());
-            }
             else
-            {
                 ShowBattleMenu();
-            }
-        }
+            break;
     }
+}
 
 
+ 
+public void ShowEnemySelectionMenu()
+{
+    battleMenu.SetActive(false); //disable action menu
+    enemySelectionMenu.SetActive(true); //enable selection menu
 
+    SetEnemySelectionButtons();
+}
 
-    public void ShowEnemySelectionMenu()
-    {
-        battleMenu.SetActive(false); //disable action menu
-        enemySelectionMenu.SetActive(true); //enable selection menu
-
-        SetEnemySelectionButtons();
-    }
+    
 
 
    private void SetEnemySelectionButtons()
@@ -501,13 +542,12 @@ public class BattleSys : MonoBehaviour
         enemySelectionButtons[j].SetActive(true);
         enemySelectionButtons[j].GetComponentInChildren<TextMeshProUGUI>().text = enemyBattlers[j].Name;
 
-        int index = j;
+        int capturedIndex = j; // 🔒 LOCK THE INDEX
 
         Button btn = enemySelectionButtons[j].GetComponent<Button>();
         btn.onClick.RemoveAllListeners();
-        btn.onClick.AddListener(() => SelectEnemy(index));
+        btn.onClick.AddListener(() => SelectEnemy(capturedIndex));
 
-        // Hover FX
         EventTrigger trigger = enemySelectionButtons[j].GetComponent<EventTrigger>();
         if (trigger == null)
             trigger = enemySelectionButtons[j].AddComponent<EventTrigger>();
@@ -517,15 +557,15 @@ public class BattleSys : MonoBehaviour
         var enter = new EventTrigger.Entry { eventID = EventTriggerType.PointerEnter };
         enter.callback.AddListener((_) =>
         {
-            if (enemyBattlers[index] != null)
-                enemyBattlers[index].BattleVisuals.Highlight(true);
+            if (enemyBattlers.Count > capturedIndex && enemyBattlers[capturedIndex] != null)
+                enemyBattlers[capturedIndex].BattleVisuals.Highlight(true);
         });
 
         var exit = new EventTrigger.Entry { eventID = EventTriggerType.PointerExit };
         exit.callback.AddListener((_) =>
         {
-            if (enemyBattlers[index] != null)
-                enemyBattlers[index].BattleVisuals.Highlight(false);
+            if (enemyBattlers.Count > capturedIndex && enemyBattlers[capturedIndex] != null)
+                enemyBattlers[capturedIndex].BattleVisuals.Highlight(false);
         });
 
         trigger.triggers.Add(enter);
@@ -535,47 +575,108 @@ public class BattleSys : MonoBehaviour
 
 
 
-    public void SelectEnemy(int currentEnemy)
+public void SelectAlly(int index)
+{
+    BattleEntities selected = playerBattlers[index];
+    if (selected == null) return;
 
+    BattleEntities currentEntity = playerBattlers[currentPlayer];
+
+    // Set correct index in allBattlers
+    int globalIndex = allBattlers.IndexOf(selected);
+    currentEntity.SetTarget(globalIndex);
+
+    currentEntity.BattleAction = BattleEntities.Action.Attack;
+    currentPlayer++;
+
+    allySelectionMenu.SetActive(false);
+
+    if (currentPlayer >= playerBattlers.Count)
+        StartCoroutine(BattleRoutine());
+    else
+        ShowBattleMenu();
+}
+
+
+
+
+   public void SelectEnemy(int currentEnemy)
+{
+    if (currentEnemy < 0 || currentEnemy >= enemyBattlers.Count)
     {
-        BattleEntities currentPlayerEntity = playerBattlers[currentPlayer]; //local reference for current player
-        currentPlayerEntity.SetTarget(allBattlers.IndexOf(enemyBattlers[currentEnemy])); //setting current members target
-
-        currentPlayerEntity.BattleAction = BattleEntities.Action.Attack; //setting current members action
-        currentPlayer++; //incrementing current player
-
-        if (currentPlayer >= playerBattlers.Count) //if current player is greater than or equal to player battlers count pretty much end the current turn if we went through all players
-        {
-            StartCoroutine(BattleRoutine());
-
-        }
-        else
-        {
-            enemySelectionMenu.SetActive(false); //disable enemy selection menu
-            ShowBattleMenu(); //show battle menu
-        }
-
+        Debug.LogError($"Tried to select enemy at invalid index {currentEnemy}. Enemy count: {enemyBattlers.Count}");
+        return;
     }
+
+    BattleEntities selectedEnemy = enemyBattlers[currentEnemy];
+    if (selectedEnemy == null)
+    {
+        Debug.LogError("Selected enemy is null.");
+        return;
+    }
+
+    BattleEntities currentPlayerEntity = playerBattlers[currentPlayer];
+    if (currentPlayerEntity == null)
+    {
+        Debug.LogError("Current player entity is null.");
+        return;
+    }
+
+    currentPlayerEntity.SetTarget(allBattlers.IndexOf(selectedEnemy));
+    currentPlayerEntity.BattleAction = BattleEntities.Action.Attack;
+    currentPlayer++;
+
+    enemySelectionMenu.SetActive(false);
+
+    if (currentPlayer >= playerBattlers.Count)
+        StartCoroutine(BattleRoutine());
+    else
+        ShowBattleMenu();
+}
+
+
+
 
     private void AttackAction(BattleEntities currAttacker, BattleEntities currTarget)
 {
+    if (currAttacker == null)
+    {
+        Debug.LogError("currAttacker is null in AttackAction()");
+        return;
+    }
+
+    if (currAttacker.ChosenSkill == null)
+    {
+        Debug.LogError(currAttacker.Name + " has no selected skill in AttackAction()");
+        bottomText.text = currAttacker.Name + " skipped their turn (no skill selected).";
+        return;
+    }
+
     Skill usedSkill = currAttacker.ChosenSkill;
     string actionLine = currAttacker.Name + " uses " + usedSkill.SkillName;
 
-    // SP logic
+    // === SP LOGIC ===
     if (usedSkill.RestoresSP)
-    {
-        currAttacker.CurrSP += usedSkill.SPRestoreAmount;
-        if (currAttacker.CurrSP > currAttacker.MaxSP)
-            currAttacker.CurrSP = currAttacker.MaxSP;
+{
+    currAttacker.CurrSP += usedSkill.SPRestoreAmount;
+    if (currAttacker.CurrSP > currAttacker.MaxSP)
+        currAttacker.CurrSP = currAttacker.MaxSP;
 
-        bottomText.text += $"\n{currAttacker.Name} restores {usedSkill.SPRestoreAmount} SP!";
-    }
+    bottomText.text += $"\n{currAttacker.Name} restores {usedSkill.SPRestoreAmount} SP!";
+    currAttacker.BattleVisuals?.ChangeSP(currAttacker.CurrSP, currAttacker.MaxSP);
+}
+
     else if (usedSkill.SPCost > 0)
     {
         currAttacker.CurrSP -= usedSkill.SPCost;
-        if (currAttacker.CurrSP < 0) currAttacker.CurrSP = 0;
+        if (currAttacker.CurrSP < 0)
+            currAttacker.CurrSP = 0;
+
+        currAttacker.BattleVisuals?.ChangeSP(currAttacker.CurrSP, currAttacker.MaxSP);
     }
+
+  
+
 
     // Animation
     if (currAttacker.BattleVisuals != null)
@@ -655,17 +756,74 @@ public class BattleSys : MonoBehaviour
         }
     }
 
-    // === Heal ===
-    else if (usedSkill.Heals)
+  // === Heal ===
+else if (usedSkill.Heals)
+{
+    if (usedSkill.TargetType == SkillTarget.AllAllies)
     {
-        BattleEntities healTarget = currAttacker;
-        healTarget.CurrHealth += usedSkill.HealAmount;
-        if (healTarget.CurrHealth > healTarget.MaxHealth)
-            healTarget.CurrHealth = healTarget.MaxHealth;
+        List<BattleEntities> targets = currAttacker.IsPlayer ? playerBattlers : enemyBattlers;
 
-        healTarget.UpdateUI();
-        bottomText.text = actionLine + " and heals " + healTarget.Name + " for " + usedSkill.HealAmount + " HP!";
+        bottomText.text = actionLine + " and heals the team!";
+        foreach (var ally in targets)
+        {
+            if (ally == null || ally.CurrHealth <= 0) continue;
+
+            ally.CurrHealth += usedSkill.HealAmount;
+            if (ally.CurrHealth > ally.MaxHealth)
+                ally.CurrHealth = ally.MaxHealth;
+
+            ally.UpdateUI();
+        }
     }
+    else
+    {
+        // Single target heal (like OneAlly or Self)
+        BattleEntities healTarget = currTarget ?? currAttacker;
+
+        if (healTarget != null && currAttacker.IsPlayer == healTarget.IsPlayer)
+        {
+            healTarget.CurrHealth += usedSkill.HealAmount;
+            if (healTarget.CurrHealth > healTarget.MaxHealth)
+                healTarget.CurrHealth = healTarget.MaxHealth;
+
+            healTarget.UpdateUI();
+            bottomText.text = actionLine + " and heals " + healTarget.Name + " for " + usedSkill.HealAmount + " HP!";
+        }
+        else
+        {
+            bottomText.text = actionLine + ", but it failed (wrong target).";
+        }
+    }
+}
+
+
+    // === Buff ===
+    else if (usedSkill.AppliesBuff)
+{
+    BattleEntities buffTarget = currTarget ?? currAttacker;
+
+    if (buffTarget.IsPlayer == currAttacker.IsPlayer)
+    {
+        // example logic
+        switch (usedSkill.TargetStatName.ToLower())
+        {
+            case "strength":
+                buffTarget.Strength += usedSkill.BuffAmount;
+                bottomText.text += $"\n{buffTarget.Name}'s Strength increased!";
+                break;
+            // Add other cases if needed
+        }
+
+        buffTarget.UpdateUI();
+    }
+    else
+    {
+        bottomText.text += "\nBuff failed (invalid target).";
+    }
+
+    return;
+}
+
 
     // === Debuff ===
     if (usedSkill.AppliesDebuff && currTarget != null)
@@ -771,6 +929,57 @@ public class BattleSys : MonoBehaviour
             Destroy(visuals.gameObject);
     }
 
+    private void SetAllySelectionButtons()
+{
+    for (int i = 0; i < allySelectionButtons.Length; i++)
+        allySelectionButtons[i].SetActive(false);
+
+   for (int j = 0; j < playerBattlers.Count; j++)
+{
+    allySelectionButtons[j].SetActive(true);
+    allySelectionButtons[j].GetComponentInChildren<TextMeshProUGUI>().text = playerBattlers[j].Name;
+
+    int capturedIndex = j;
+
+    Button btn = allySelectionButtons[j].GetComponent<Button>();
+    btn.onClick.RemoveAllListeners();
+    btn.onClick.AddListener(() => SelectAlly(capturedIndex));
+
+    // Optional hover effect
+    EventTrigger trigger = allySelectionButtons[j].GetComponent<EventTrigger>();
+    if (trigger == null)
+        trigger = allySelectionButtons[j].AddComponent<EventTrigger>();
+
+    trigger.triggers.Clear();
+
+    var enter = new EventTrigger.Entry { eventID = EventTriggerType.PointerEnter };
+    enter.callback.AddListener((_) =>
+    {
+        if (playerBattlers[capturedIndex] != null)
+            playerBattlers[capturedIndex].BattleVisuals.Highlight(true);
+    });
+
+    var exit = new EventTrigger.Entry { eventID = EventTriggerType.PointerExit };
+    exit.callback.AddListener((_) =>
+    {
+        if (playerBattlers[capturedIndex] != null)
+            playerBattlers[capturedIndex].BattleVisuals.Highlight(false);
+    });
+
+    trigger.triggers.Add(enter);
+    trigger.triggers.Add(exit);
+}
+
+}
+public void ShowAllySelectionMenu()
+{
+    battleMenu.SetActive(false);
+    allySelectionMenu.SetActive(true);
+    SetAllySelectionButtons();
+}
+
+
+
 
 
 }
@@ -840,6 +1049,9 @@ public class BattleEntities
         BattleVisuals.ChangeHealth(CurrHealth);
     }
 }
+
+
+
 
 
 

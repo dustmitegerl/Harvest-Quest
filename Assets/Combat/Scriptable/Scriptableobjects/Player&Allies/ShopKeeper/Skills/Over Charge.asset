@@ -28,3 +28,6 @@ MonoBehaviour:
   AppliesDebuff: 1
   TargetStatName: Resistance
   DebuffAmount: 5
+  AppliesBuff: 0
+  BuffTargetStat: 
+  BuffAmount: 0

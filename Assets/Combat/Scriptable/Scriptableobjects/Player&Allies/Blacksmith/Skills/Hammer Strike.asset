@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e24e6965b25bb7f4aa9f7c3fdc6bc4c1, type: 3}
   m_Name: Hammer Strike
   m_EditorClassIdentifier: 
-  SkillName: 
+  SkillName: Hammer Strike
   Description: Damange an Enemy and lower their Defence. 50% chance to lower their
     Defense.
   SPCost: 0
   RestoresSP: 0
   SPRestoreAmount: 0
-  DealsDamage: 0
+  DealsDamage: 1
   DamageAmount: 15
   Heals: 0
   HealAmount: 0

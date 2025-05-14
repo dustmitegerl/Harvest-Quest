@@ -1,4 +1,4 @@
-using System.Collections;
+//using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -26,9 +26,11 @@ public class AudioManager : MonoBehaviour
         Destroy(gameObject);
     }
 
+    
     LoadVolume();
   }
 
+  //Volume is saved in volume settings
   void LoadVolume()
   {
     float musicVolume = PlayerPrefs.GetFloat(MUSIC_KEY, 1f);

@@ -51,7 +51,7 @@ public class PlotInteraction : MonoBehaviour
         Debug.Log("starting battle");
         LevelLoader.Instance.LoadLevel(battleArenaName);
     }
-
+    [ContextMenu("update plot status")]
     public void UpdatePlotStatus()
     {
         PlantingSpot[] spotArray = gameObject.GetComponentsInChildren<PlantingSpot>();

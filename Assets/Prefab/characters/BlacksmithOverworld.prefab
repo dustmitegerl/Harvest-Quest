@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 4657242157973188493}
   - component: {fileID: 8139977913467793955}
   - component: {fileID: 2693952041677102973}
+  - component: {fileID: -5210772301880090922}
+  - component: {fileID: 2339359652751019548}
   m_Layer: 0
   m_Name: BlacksmithOverworld
   m_TagString: Untagged
@@ -106,3 +108,35 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-5210772301880090922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7749065504913115042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 603c1048dc79cb3488e489f3c8ac6b72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialog:
+    lines: []
+  questToStart: {fileID: 0}
+  questToComplete: {fileID: 11400000, guid: 11a94238aa0ed2d4fb0b45fd7acb0825, type: 2}
+--- !u!114 &2339359652751019548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7749065504913115042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 673b3b97c6ca4144d91c0b9f905a92a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  friendToHelp: {fileID: 11400000, guid: ef121c3155a91d545b01b3a4949d2386, type: 2}
+  dialog:
+    lines:
+    - I'm ready to help you in battle!

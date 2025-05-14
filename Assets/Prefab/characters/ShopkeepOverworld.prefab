@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 7794823993958364002}
   - component: {fileID: 1281989629365505337}
   - component: {fileID: 1877706493995551579}
+  - component: {fileID: 2897640185482243860}
+  - component: {fileID: 5447373833520264510}
   m_Layer: 0
   m_Name: ShopkeepOverworld
   m_TagString: Untagged
@@ -106,3 +108,35 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2897640185482243860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7587111250537864920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 603c1048dc79cb3488e489f3c8ac6b72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialog:
+    lines: []
+  questToStart: {fileID: 0}
+  questToComplete: {fileID: 11400000, guid: cdf00cefe4559f04eb9981443b754666, type: 2}
+--- !u!114 &5447373833520264510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7587111250537864920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 673b3b97c6ca4144d91c0b9f905a92a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  friendToHelp: {fileID: 11400000, guid: d71a735ec8cc8504ca4048e082592715, type: 2}
+  dialog:
+    lines:
+    - I'm ready to help you in battle!

@@ -11,12 +11,10 @@ public class NPCController : MonoBehaviour, Interactable
 
     Quest activeQuest;
 
-    ItemGiver itemGiver;
     FriendGiver friendGiver;
 
     private void Awake()
     {
-        itemGiver = GetComponent<ItemGiver>();
         friendGiver = GetComponent<FriendGiver>();
     }
 
@@ -31,11 +29,7 @@ public class NPCController : MonoBehaviour, Interactable
             Debug.Log($"{quest.Base.Name} completed");
         }
 
-        if (itemGiver != null && itemGiver.CanBeGiven())
-        {
-            yield return itemGiver.GiveItem(initiator.GetComponent<Unit>());
-        }
-        else if (friendGiver != null && friendGiver.CanBeGiven())
+        if (friendGiver != null && friendGiver.CanBeGiven())
         {
             yield return friendGiver.GiveFriend(initiator.GetComponent<Unit>());
         }

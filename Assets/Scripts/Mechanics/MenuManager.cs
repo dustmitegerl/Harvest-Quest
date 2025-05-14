@@ -11,10 +11,11 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private GameObject optionCanvas;
     //[SerializeField] private GameObject saveCanvas;
     [SerializeField] private GameObject quitCanvas;
+    [SerializeField] private GameObject creditCanvas;
 
     [SerializeField] private PlayerMovement player;
 
-    public GameObject pauseFirstButton, instructionFirstButton, inventoryButton, optionButton, quitButton, instructionClosed, inventoryClosed, optionClosed, quitClosed;
+    public GameObject pauseFirstButton, instructionFirstButton, inventoryButton, optionButton, quitButton, creditButton, instructionClosed, inventoryClosed, optionClosed, quitClosed, creditClosed;
 
     private bool isPaused;
 
@@ -155,6 +156,7 @@ public class MenuManager : MonoBehaviour
         optionCanvas.SetActive(false);
         //saveCanvas.SetActive(false);
         quitCanvas.SetActive(false);
+        creditCanvas.SetActive(false);
 
         //Clear selected object
         EventSystem.current.SetSelectedGameObject(null);

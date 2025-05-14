@@ -11,7 +11,10 @@ public class PlantingSpot : MonoBehaviour
     public string id;
     public bool isEmpty;
     public string currentPlant; // used to find scriptable object of the plant type's stats
+    [HeaderAttribute("0=empty/just planted; 4=ready; 5=dead")]
+    [Range(0, 5)]
     public int plantStage = 0; // 0 = empty / seed planted; 1-3 = incomplete growth stages; 4 = ready to harvest; 5 = dead 
+    [HeaderAttribute("1=regular; 2,etc=composted")]
     public int level = 0;
     public float daysTilEvolve;
     public bool isGrowing = false;
@@ -33,12 +36,10 @@ public class PlantingSpot : MonoBehaviour
                 + transform.parent.name 
                 + " has a null id");
         }
-        
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        UpdateSprite();
     }
     void Update()
     {
-        plantStage = Mathf.Clamp(plantStage, 0, 5); // limits plant growth stage range 
     }
     public bool IsSpaceEmpty()
     {
@@ -77,12 +78,17 @@ public class PlantingSpot : MonoBehaviour
             }
         }
         else Debug.Log("can't evolve " + gameObject.name + " because it is empty");
+        UpdateSprite();
+    }
+    public void UpdateSprite()
+    {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        if (currentPlantInfo == null)
+        if (currentPlantInfo == null && currentPlant !="")
         {
             GetPlantInfo();
+            
         }
-        if (spriteRenderer != null)
+        if (currentPlantInfo != null && spriteRenderer != null && plantStage > 0)
         {
             spriteRenderer.sprite = currentPlantInfo.stageSprites[plantStage - 1];
         }
@@ -90,7 +96,6 @@ public class PlantingSpot : MonoBehaviour
     void GetPlantInfo()
     {
         currentPlantInfo = FarmManager.Instance.GetPlantInfo(currentPlant);
-        Debug.Log("Getting planting information for " + currentPlantInfo.name);
     }
     public void Harvest()
     {

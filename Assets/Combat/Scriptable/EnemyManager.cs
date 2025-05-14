@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro.Examples;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -19,6 +20,7 @@ public class EnemyManager : MonoBehaviour
     {
         if (_instance != null && _instance != this)
         {
+            Debug.Log("enemy manager found. deleting this one");
             Destroy(this.gameObject);
         }
         else
@@ -35,11 +37,10 @@ public class EnemyManager : MonoBehaviour
     }
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name.ToLower().Contains("battle") && currentEnemies.Count == 0)
+        if (scene.name.ToLower().Contains("farm"))
         {
-            GenerateDemo();
+            currentEnemies.Clear();
         }
-        else { Destroy(gameObject); }
     }
     // for demo
     void GenerateDemo()
@@ -55,8 +56,9 @@ public class EnemyManager : MonoBehaviour
     {
         for (int i = 0; i < allEnemies.Length; i++)
         {
-            if (enemyName == allEnemies[i].EnemyName)
+            if (enemyName.ToLower() == allEnemies[i].EnemyName.ToLower())
             {
+                Debug.Log("Generating enemy: " + allEnemies[i].EnemyName);
                 Enemy newEnemy = new Enemy();
                 newEnemy.EnemyName = allEnemies[i].EnemyName;
                 newEnemy.Level = level;
@@ -84,7 +86,7 @@ public class EnemyManager : MonoBehaviour
                 newEnemy.EnemyVisualPrefab = allEnemies[i].EnemyVisualPrefab;
 
                 currentEnemies.Add(newEnemy);
-                return;
+                Debug.Log(currentEnemies.Count.ToString() + " enemies loaded");
             }
         }
     }

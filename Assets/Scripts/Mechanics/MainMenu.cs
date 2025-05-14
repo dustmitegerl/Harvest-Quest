@@ -10,9 +10,8 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private GameObject instructionCanvas;
     [SerializeField] private GameObject optionCanvas;
     [SerializeField] private GameObject quitCanvas;
-    [SerializeField] private GameObject saveCanvas;
 
-    public GameObject pauseFirstButton, instructionFirstButton, optionButton, quitButton, saveButton, instructionClosed, optionClosed, quitClosed, saveClosed;
+    public GameObject pauseFirstButton, instructionFirstButton, optionButton, quitButton, instructionClosed, optionClosed, quitClosed;
 
     private void Start()
     {
@@ -88,26 +87,6 @@ public class MainMenu : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(null);
         //Set a new selected object
         EventSystem.current.SetSelectedGameObject(quitClosed);
-    }
-
-    public void OpenSave() 
-    { 
-        saveCanvas.SetActive(true);
-
-        //Clear selected object
-        EventSystem.current.SetSelectedGameObject(null);
-        //Set a new selected object
-        EventSystem.current.SetSelectedGameObject(saveButton);
-    }
-
-    public void CloseSave() 
-    { 
-        saveCanvas.SetActive(false);
-
-        //Clear selected object
-        EventSystem.current.SetSelectedGameObject(null);
-        //Set a new selected object
-        EventSystem.current.SetSelectedGameObject(saveClosed);
     }
 
     public void QuitGame()

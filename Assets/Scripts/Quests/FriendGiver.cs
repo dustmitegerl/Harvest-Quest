@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FriendGiver : MonoBehaviour
 {
-    [SerializeField] NPCController friendToHelp;
+    [SerializeField] PartyMemberInfo friendToHelp;
     [SerializeField] Dialog dialog;
 
     bool used = false;

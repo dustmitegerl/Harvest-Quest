@@ -5,6 +5,7 @@ using UnityEngine;
 public class SoundEffectLibrary : MonoBehaviour
 {
     //referene to script: https://youtu.be/rAX_r0yBwzQ?si=Gc0FJe1N6o1QkeVZ
+    //reference to script: https://www.youtube.com/watch?v=RgUA6hGnrF8
     [SerializeField] private SoundEffectGroup[] soundEffectGroups;
     private Dictionary<string, List<AudioClip>> soundDictionary;
     

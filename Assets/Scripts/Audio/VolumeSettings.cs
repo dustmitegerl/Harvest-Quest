@@ -15,15 +15,17 @@ public class VolumeSettings : MonoBehaviour
 
  void Awake()
  {
-    musicSlider.onValueChanged.AddListener(SetMusicVolume);
-    soundSlider.onValueChanged.AddListener(SetSoundVolume);
+   musicSlider.value = PlayerPrefs.GetFloat(AudioManager.MUSIC_KEY, 1f);
+   soundSlider.value = PlayerPrefs.GetFloat(AudioManager.SOUND_KEY, 1f);
+    
+   musicSlider.onValueChanged.AddListener(SetMusicVolume);
+   soundSlider.onValueChanged.AddListener(SetSoundVolume);
  }
 
- void Start()
+ /*void Start()
  {
-    musicSlider.value = PlayerPrefs.GetFloat(AudioManager.MUSIC_KEY, 1f);
-    soundSlider.value = PlayerPrefs.GetFloat(AudioManager.SOUND_KEY, 1f);
- }
+    
+ }*/ 
  void OnDisable()
  {
     PlayerPrefs.SetFloat(AudioManager.MUSIC_KEY, musicSlider.value);

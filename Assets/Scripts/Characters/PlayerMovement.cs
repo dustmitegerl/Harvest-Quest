@@ -77,7 +77,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     IEnumerator Move(Vector3 newPos)
     {
         walking = true;
-
+        
         while ((newPos - transform.position).sqrMagnitude > Mathf.Epsilon)
         {
             transform.position = Vector3.MoveTowards(transform.position, newPos, moveSpeed * Time.deltaTime);
@@ -86,8 +86,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         transform.position = newPos;
 
         walking = false;
-
-        AudioManager.instance.WalkingSFX();
+        
     }
 
     private bool Walkable(Vector3 newPos)

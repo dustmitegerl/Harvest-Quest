@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class SoundEffectManager : MonoBehaviour
 {
     //referene to script: https://youtu.be/rAX_r0yBwzQ?si=Gc0FJe1N6o1QkeVZ
+    //refence to script: https://www.youtube.com/watch?v=RgUA6hGnrF8
     private static SoundEffectManager Instance;
 
     private static AudioSource audioSource;

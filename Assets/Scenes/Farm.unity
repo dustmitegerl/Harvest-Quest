@@ -889,26 +889,18 @@ PrefabInstance:
       propertyPath: interactionPrompt
       value: 
       objectReference: {fileID: 709875617}
-    - target: {fileID: 2470961252343615027, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
-      propertyPath: interactionPrompt
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 2484003480034048082, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
       propertyPath: m_Name
       value: Farm Ground
       objectReference: {fileID: 0}
-    - target: {fileID: 3773308469991181198, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
+    - target: {fileID: 4248059721397779941, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
       propertyPath: interactionPrompt
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 709875617}
     - target: {fileID: 4562837695464516850, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
       propertyPath: interactionPrompt
       value: 
       objectReference: {fileID: 709875617}
-    - target: {fileID: 5286561578042853468, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
-      propertyPath: interactionPrompt
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 6249161277108458058, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -949,10 +941,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7191561794944906378, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
-      propertyPath: interactionPrompt
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 7548745338074862582, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
       propertyPath: interactionPrompt
       value: 
@@ -964,10 +952,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 103577474209628525, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1333650399}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
 --- !u!1001 &1026135306
 PrefabInstance:
@@ -1083,24 +1068,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce11a56b085915740803c803d15ec3ad, type: 3}
---- !u!1 &1333650394 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 103577474209628525, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
-  m_PrefabInstance: {fileID: 1024088384}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1333650399
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1333650394}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c78139ec6d27bd49999c95f43ebcf5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactionPrompt: {fileID: 709875617}
 --- !u!1001 &1450453510
 PrefabInstance:
   m_ObjectHideFlags: 0

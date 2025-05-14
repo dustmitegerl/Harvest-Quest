@@ -55,6 +55,7 @@ MonoBehaviour:
   readyForHarvest: []
   levelLoader: {fileID: 0}
   battleArenaName: BattleArena_Test
+  enemyManager: {fileID: 7455405290053142266, guid: 12f6b791c776ed440a5883e4d52a105b, type: 3}
 --- !u!61 &7076612931929637429
 BoxCollider2D:
   m_ObjectHideFlags: 0

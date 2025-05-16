@@ -1073,6 +1073,10 @@ PrefabInstance:
       propertyPath: currentPlant
       value: broccoli
       objectReference: {fileID: 0}
+    - target: {fileID: 705704927359538638, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1035705414274954391, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
       propertyPath: level
       value: 1
@@ -1125,9 +1129,21 @@ PrefabInstance:
       propertyPath: currentPlant
       value: strawberry
       objectReference: {fileID: 0}
+    - target: {fileID: 2427901953677486334, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2484003480034048082, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
       propertyPath: m_Name
       value: Farm Ground
+      objectReference: {fileID: 0}
+    - target: {fileID: 2547636624398559512, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2560665559456708543, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2812422919241551544, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
       propertyPath: m_Size.x
@@ -1136,6 +1152,18 @@ PrefabInstance:
     - target: {fileID: 2812422919241551544, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
       propertyPath: m_Offset.x
       value: -0.16456413
+      objectReference: {fileID: 0}
+    - target: {fileID: 2917640108204693706, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3863716739950866946, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4009964895063928131, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4248059721397779941, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
       propertyPath: interactionPrompt
@@ -1149,10 +1177,26 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: -0.14810753
       objectReference: {fileID: 0}
+    - target: {fileID: 4497521652745575799, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4562837695464516850, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
       propertyPath: interactionPrompt
       value: 
       objectReference: {fileID: 709875617}
+    - target: {fileID: 5209604389555548023, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5498189017792244501, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b3637f99a55e4e94e9ca3f19bd662209, type: 2}
+    - target: {fileID: 6160173914296949528, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6249161277108458058, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1200,6 +1244,18 @@ PrefabInstance:
     - target: {fileID: 6622158711570733101, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
       propertyPath: m_Offset.y
       value: 0.13165092
+      objectReference: {fileID: 0}
+    - target: {fileID: 6679256369735494444, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6799267421606128330, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6812134736183129197, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7298273420255802104, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
       propertyPath: level
@@ -1273,6 +1329,14 @@ PrefabInstance:
       propertyPath: currentPlant
       value: strawberry
       objectReference: {fileID: 0}
+    - target: {fileID: 8365925127493535931, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8512173422193039354, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8681184283094648471, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
       propertyPath: level
       value: 1
@@ -1289,6 +1353,10 @@ PrefabInstance:
       propertyPath: interactionPrompt
       value: 
       objectReference: {fileID: 709875617}
+    - target: {fileID: 9218157525747312590, guid: 8384ea5a84b0db441b9318245131b778, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 8886965060491218491, guid: 8384ea5a84b0db441b9318245131b778, type: 3}

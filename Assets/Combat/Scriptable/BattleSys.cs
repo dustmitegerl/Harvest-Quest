@@ -187,7 +187,10 @@ if (currAttacker.IsPlayer)
         currAttacker.BattleAction = BattleEntities.Action.Attack;
 
         Skill chosen = null;
-        Enemy matchingEnemyData = enemyManager.GetCurrentEnemies().Find(e => e.EnemyName == currAttacker.Name);
+        // Strip number if present to match original EnemyName
+        string cleanName = currAttacker.Name.Split(' ')[0];
+        Enemy matchingEnemyData = enemyManager.GetCurrentEnemies().Find(e => e.EnemyName == cleanName);
+
 
         if (matchingEnemyData != null)
         {
